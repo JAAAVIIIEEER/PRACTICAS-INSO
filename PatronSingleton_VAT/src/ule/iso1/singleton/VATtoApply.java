@@ -3,7 +3,7 @@ package ule.iso1.singleton;
 
 
 public class VATtoApply {
-	private VATtoApply uniqueInstance = null; 
+	private static VATtoApply uniqueInstance = null; 
   	private double vatType;
 
   	private VATtoApply(double vat) {
@@ -11,7 +11,7 @@ public class VATtoApply {
    	}
   	public static VATtoApply getInstance(double vatType) {
 		if(uniqueInstance == null) {
-			VATtoApply uniqueInstance = new VATtoApply(vatType);
+			uniqueInstance = new VATtoApply(vatType);
 		}
 		return uniqueInstance;
    	}	

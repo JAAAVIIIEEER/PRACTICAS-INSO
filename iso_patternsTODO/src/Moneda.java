@@ -4,9 +4,7 @@ public abstract class Moneda {
 	public String texto;
 	public double valor;
 	
-	public Moneda() {
-		
-	}
+	public Moneda() {}
 	
 	public String getTexto() {
 		return this.texto;
@@ -25,7 +23,7 @@ public abstract class Moneda {
 	}
 	
 	public void visualizar() {
-		
+		System.out.println("Moneda: "+texto+" Valor: "+valor);
 	}
 	
 	public abstract void configurar();

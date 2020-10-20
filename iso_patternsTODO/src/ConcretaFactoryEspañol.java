@@ -1,17 +1,19 @@
 
 public class ConcretaFactoryEspañol implements AbstractFactoryIdiomas{
 	
-	private ConcretaFactoryEspañol moneda;
+	private Moneda moneda;
+	private Lista lista;
 	
 	public ConcretaFactoryEspañol() {
-		
+		this.moneda = new MonedaEspaña();
+		this.lista = new ListaEspañol();
 	}
 	
 	public Moneda getMoneda() {
-		return new MonedaEspaña();
+		return this.moneda;
 	}
 	
 	public Lista getLista() {
-		return null;
+		return this.lista;
 	}
 }

@@ -1,7 +1,12 @@
+package implementacion;
+
 import java.sql.*;
 import java.io.*;
 
-public class Conectar {
+public class Conexion {
+	
+	private Connection conexion;
+	
 	public void establecerConexion() {
 		// Class.forName("sun.jdbc.odbc.Jdbc0dbcDriver");
 		try {
@@ -12,13 +17,26 @@ public class Conectar {
 			String usuario = teclado.readLine();
 			System.out.println("Introduzca la contraseña: ");
 			String pass = teclado.readLine();
-			Connection c = DriverManager.getConnection("jdbc:mysql://localhost:" + puerto + "/alquileres", usuario,
+			
+			// Creamos la conexión con la base de datos
+			
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:"+puerto+"/rentleondb", usuario,
 					pass);
-		} catch (SQLException e) {
+			
+		} catch (SQLException | IOException e) {
 			System.out.println("No se pudo conectar con la base de datos");
-		} catch (IOException e) {
-			System.out.println("Datos incorrectos");
 		}
 	}
-
+	
+	public void cerrarConexion() {
+		try {
+			this.conexion.close();
+		} catch(SQLException e) {
+			System.out.println("Se produje un error al cerrar la BD");
+		}
+	}
+	
+	public Connection getConexion() {
+		return conexion;
+	}
 }

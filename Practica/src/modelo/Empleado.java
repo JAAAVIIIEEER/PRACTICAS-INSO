@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import implementacion.EmpleadoImpl;
 
 public class Empleado {
 	
@@ -91,6 +92,16 @@ public class Empleado {
 	
 	public Date getNacimiento() {
 		return this.nacimiento;
+	}
+	
+	public int autenticarConexion(String usuario, String contrasenia) {
+		EmpleadoImpl aux = new EmpleadoImpl();
+		return aux.autenticarConexion(usuario, contrasenia);
+	}
+	
+	public boolean aniadirEmpleado() {
+		EmpleadoImpl aux = new EmpleadoImpl();
+		return aux.aniadirEmpleado(new Empleado());
 	}
 }
 

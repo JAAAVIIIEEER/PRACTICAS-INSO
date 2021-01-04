@@ -6,7 +6,7 @@ import modelo.Empleado;
 
 public interface EmpleadoInterface {
 	
-	public void aniadirEmpleado(Empleado empleado) throws SQLException;
+	public boolean aniadirEmpleado(Empleado empleado) throws SQLException;
 	public void eliminarEmpleado(Empleado empleado) throws SQLException;
 	public int autenticarConexion(String usuario, String contrasenia) throws SQLException;
 	

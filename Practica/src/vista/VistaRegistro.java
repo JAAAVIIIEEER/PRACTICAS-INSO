@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 
-import implementacion.EmpleadoImpl;
+import controlador.EmpleadoController;
 
 /**
  *
@@ -98,20 +98,20 @@ public class VistaRegistro extends javax.swing.JFrame {
     private void validarActionPerformed(java.awt.event.ActionEvent evt) {          
     	String contrasenia = String.valueOf(passwordText.getPassword());
     	String usuario = textFieldUsuario.getText();
-    	EmpleadoImpl a = new EmpleadoImpl();
+    	EmpleadoController a = new EmpleadoController();
     	
     	int autenticar = a.autenticarConexion(usuario, contrasenia);
+    	
     	if (autenticar == 2) {
     		errores+=1;
     		if (errores == 3) {
     			cerrarProgramaErrorAutenticacion();
     		}
     		avisarAutentificacionErronea();
-    	} else if (autenticar == 1) {
-    		// TODO Mostrar vista empleados
-    	} else if (autenticar == 0) {
-    		// TODO Mostrar vista administrador
-    		System.out.println("A");
+    	} else {
+    		VistaGeneral admin = new VistaGeneral(autenticar);
+    		admin.setVisible(true);
+    		this.setVisible(false);
     	}
     }
     

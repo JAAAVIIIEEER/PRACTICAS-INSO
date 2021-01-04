@@ -6,9 +6,11 @@ import vista.VistaVehiculos;
 public class VehiculoController {
 	
 	private Vehiculo modelo;
+	private VistaVehiculos vista;
 	
 	public VehiculoController(Vehiculo modelo, VistaVehiculos vista) {
 		this.modelo = modelo;
+		this.vista = vista;
 	}
 
 	public void setMatricula(String matricula) {

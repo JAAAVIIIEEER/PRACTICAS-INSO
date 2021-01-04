@@ -11,14 +11,15 @@ import interfaces.EmpleadoInterface;
 import modelo.Empleado;
 
 public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
-	
+
 	private final int incorrecta = 2;
 	private final int correctaBase = 1;
 	private final int correctaAdmin = 0;
+	private ArrayList<Empleado> listaEmpleados;
 
 	public List<Empleado> listaEmpleados() throws SQLException {
 
-		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
+		listaEmpleados = new ArrayList<Empleado>();
 
 		this.establecerConexion();
 		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS");
@@ -35,9 +36,11 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public void aniadirEmpleado(Empleado empleado) throws SQLException {
+	public boolean aniadirEmpleado(Empleado empleado) {
 		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, apellidos, telefono, nacimiento) VALUES (?, ?, ?, ?, ?, ?)");
+		try {
+		PreparedStatement st = this.getConexion().prepareStatement(
+				"INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, apellidos, telefono, nacimiento) VALUES (?, ?, ?, ?, ?, ?)");
 		st.setString(1, empleado.getUsuario());
 		st.setString(2, empleado.getContrasenia());
 		st.setString(3, empleado.getDNI());
@@ -45,28 +48,37 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 		st.setString(5, empleado.getApellidos());
 		st.setDate(6, empleado.getNacimiento());
 		st.executeUpdate();
+		} catch (SQLException e) {
+			
+		}
 		this.cerrarConexion();
+		listaEmpleados.add(empleado);
+		return true;
 	}
 
 	@Override
-	public void eliminarEmpleado(Empleado empleado) throws SQLException {
+	public void eliminarEmpleado(Empleado empleado) {
 		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM EMPLEADOS WHERE ID=?");
-		st.setInt(1, empleado.getID());
-		st.executeUpdate();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("UPDATE EMPLEADOS SET estado=? WHERE ID=?");
+			st.setInt(1, empleado.getID());
+			st.executeUpdate();
+		} catch (SQLException e) {
+
+		}
 		this.cerrarConexion();
 	}
 
-	@Override
 	public int autenticarConexion(String usuario, String contrasenia) {
 		String userConsult = "";
 		String passConsult = "";
 		String tipo = "";
-		
+
 		this.establecerConexion();
 
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT usuario, contrasenia, tipo FROM EMPLEADOS WHERE usuario=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT usuario, contrasenia, tipo FROM EMPLEADOS WHERE usuario=?");
 			st.setString(1, usuario);
 			ResultSet rs = st.executeQuery();
 

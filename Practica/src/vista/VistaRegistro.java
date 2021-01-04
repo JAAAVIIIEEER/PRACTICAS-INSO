@@ -99,8 +99,19 @@ public class VistaRegistro extends javax.swing.JFrame {
     	String contrasenia = String.valueOf(passwordText.getPassword());
     	String usuario = textFieldUsuario.getText();
     	EmpleadoImpl a = new EmpleadoImpl();
-    	if (!a.autenticarConexion(usuario, contrasenia)) {
+    	
+    	int autenticar = a.autenticarConexion(usuario, contrasenia);
+    	if (autenticar == 2) {
+    		errores+=1;
+    		if (errores == 3) {
+    			cerrarProgramaErrorAutenticacion();
+    		}
     		avisarAutentificacionErronea();
+    	} else if (autenticar == 1) {
+    		// TODO Mostrar vista empleados
+    	} else if (autenticar == 0) {
+    		// TODO Mostrar vista administrador
+    		System.out.println("A");
     	}
     }
     
@@ -109,7 +120,8 @@ public class VistaRegistro extends javax.swing.JFrame {
     }
     
     private void cerrarProgramaErrorAutenticacion() {
-    	
+    	JOptionPane.showMessageDialog(null, "Exceso de errores\nCerrando programa", "Autenticacion Incorrecta", JOptionPane.ERROR_MESSAGE);
+    	System.exit(0);
     }
 
     // Variables declaration - do not modify                     
@@ -118,5 +130,6 @@ public class VistaRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel labelContrasenia;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JTextField textFieldUsuario;
+    private int errores = 0;
     // End of variables declaration                   
 }

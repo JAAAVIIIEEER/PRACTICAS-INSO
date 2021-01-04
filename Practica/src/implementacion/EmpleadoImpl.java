@@ -11,6 +11,10 @@ import interfaces.EmpleadoInterface;
 import modelo.Empleado;
 
 public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
+	
+	private final int incorrecta = 2;
+	private final int correctaBase = 1;
+	private final int correctaAdmin = 0;
 
 	public List<Empleado> listaEmpleados() throws SQLException {
 
@@ -33,8 +37,7 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	@Override
 	public void aniadirEmpleado(Empleado empleado) throws SQLException {
 		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement(
-				"INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, apellidos, telefono, nacimiento) VALUES (?, ?, ?, ?, ?, ?)");
+		PreparedStatement st = this.getConexion().prepareStatement("INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, apellidos, telefono, nacimiento) VALUES (?, ?, ?, ?, ?, ?)");
 		st.setString(1, empleado.getUsuario());
 		st.setString(2, empleado.getContrasenia());
 		st.setString(3, empleado.getDNI());
@@ -55,21 +58,22 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public boolean autenticarConexion(String usuario, String contrasenia) {
+	public int autenticarConexion(String usuario, String contrasenia) {
 		String userConsult = "";
 		String passConsult = "";
-
+		String tipo = "";
+		
 		this.establecerConexion();
 
 		try {
-			PreparedStatement st = this.getConexion()
-					.prepareStatement("SELECT usuario, contrasenia FROM EMPLEADOS WHERE usuario=?");
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT usuario, contrasenia, tipo FROM EMPLEADOS WHERE usuario=?");
 			st.setString(1, usuario);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
 				userConsult = rs.getString("usuario");
 				passConsult = rs.getString("contrasenia");
+				tipo = rs.getString("tipo");
 			}
 
 		} catch (SQLException e) {
@@ -78,9 +82,13 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 
 		this.cerrarConexion();
 		if (userConsult.equals(usuario) && passConsult.equals(contrasenia)) {
-			return true;
+			if (tipo.equals(Empleado.administrador)) {
+				return correctaAdmin;
+			} else if (tipo.equals(Empleado.base)) {
+				return correctaBase;
+			}
 		}
-		return false;
+		return incorrecta;
 	}
 
 }

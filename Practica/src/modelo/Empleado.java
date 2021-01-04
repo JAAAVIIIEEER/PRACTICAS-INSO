@@ -7,6 +7,9 @@ public class Empleado {
 	public static final int baja = 0;
 	public static final int activo = 1; 
 	
+	public static final String administrador = "Administrador";
+	public static final String base = "Base";
+	
 	private int id;
 	private String usuario;
 	private String contrasenia;

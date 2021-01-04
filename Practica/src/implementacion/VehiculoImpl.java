@@ -9,14 +9,14 @@ import java.util.List;
 import interfaces.VehiculoInterface;
 
 
-public class VehiculoImp extends Conexion implements VehiculoInterface{
+public class VehiculoImpl extends Conexion implements VehiculoInterface{
 	
 	public List<Vehiculo> listaVehiculos() throws Exception {
 		
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 		
 		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULO");
+		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS");
 		ResultSet rs = st.executeQuery();
 		
 		while (rs.next()) {

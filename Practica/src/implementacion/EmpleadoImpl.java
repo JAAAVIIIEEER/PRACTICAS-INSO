@@ -1,0 +1,86 @@
+package implementacion;
+
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import interfaces.EmpleadoInterface;
+import modelo.Empleado;
+
+public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
+
+	public List<Empleado> listaEmpleados() throws SQLException {
+
+		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
+
+		this.establecerConexion();
+		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS");
+		ResultSet rs = st.executeQuery();
+
+		// TODO
+		while (rs.next()) {
+
+		}
+
+		this.cerrarConexion();
+		return listaEmpleados;
+
+	}
+
+	@Override
+	public void aniadirEmpleado(Empleado empleado) throws SQLException {
+		this.establecerConexion();
+		PreparedStatement st = this.getConexion().prepareStatement(
+				"INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, apellidos, telefono, nacimiento) VALUES (?, ?, ?, ?, ?, ?)");
+		st.setString(1, empleado.getUsuario());
+		st.setString(2, empleado.getContrasenia());
+		st.setString(3, empleado.getDNI());
+		st.setString(4, empleado.getNombre());
+		st.setString(5, empleado.getApellidos());
+		st.setDate(6, empleado.getNacimiento());
+		st.executeUpdate();
+		this.cerrarConexion();
+	}
+
+	@Override
+	public void eliminarEmpleado(Empleado empleado) throws SQLException {
+		this.establecerConexion();
+		PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM EMPLEADOS WHERE ID=?");
+		st.setInt(1, empleado.getID());
+		st.executeUpdate();
+		this.cerrarConexion();
+	}
+
+	@Override
+	public boolean autenticarConexion(String usuario, String contrasenia) {
+		String userConsult = "";
+		String passConsult = "";
+
+		this.establecerConexion();
+
+		try {
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT usuario, contrasenia FROM EMPLEADOS WHERE usuario=?");
+			st.setString(1, usuario);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				userConsult = rs.getString("usuario");
+				passConsult = rs.getString("contrasenia");
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+		this.cerrarConexion();
+		if (userConsult.equals(usuario) && passConsult.equals(contrasenia)) {
+			return true;
+		}
+		return false;
+	}
+
+}

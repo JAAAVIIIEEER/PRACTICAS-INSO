@@ -5,8 +5,9 @@ package vista;
  * and open the template in the editor.
  */
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import javax.swing.JOptionPane;
+
+import implementacion.EmpleadoImpl;
 
 /**
  *
@@ -37,7 +38,7 @@ public class VistaRegistro extends javax.swing.JFrame {
         setTitle("RentLeon Login");
         setSize(409, 104);
         setLocationRelativeTo(null);
-       
+        setResizable(false);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buttonValidar.setText("Validar");
@@ -94,9 +95,22 @@ public class VistaRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                                                
 
-    private void validarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+    private void validarActionPerformed(java.awt.event.ActionEvent evt) {          
+    	String contrasenia = String.valueOf(passwordText.getPassword());
+    	String usuario = textFieldUsuario.getText();
+    	EmpleadoImpl a = new EmpleadoImpl();
+    	if (!a.autenticarConexion(usuario, contrasenia)) {
+    		avisarAutentificacionErronea();
+    	}
+    }
+    
+    private void avisarAutentificacionErronea() {
+    	JOptionPane.showMessageDialog(null, "Contraseña Incorrecta\nIntentelo de nuevo", "Autenticacion Incorrecta", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void cerrarProgramaErrorAutenticacion() {
+    	
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton buttonValidar;

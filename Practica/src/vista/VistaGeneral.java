@@ -1,8 +1,12 @@
 package vista;
 
+import java.awt.Dimension;
+
 import javax.swing.JOptionPane;
 
 import implementacion.EmpleadoImpl;
+import implementacion.TiendaImpl;
+import implementacion.VehiculoImpl;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,29 +41,30 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        barraMenus = new javax.swing.JMenuBar();
+        opcionesMenu = new javax.swing.JMenu();
         cambiarUsuario = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        vehiculosMenu = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        tiendaMenu = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        alquileresMenu = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        clientesMenu = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        incidenciasMenu = new javax.swing.JMenu();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.setTitle("Empleado Base RentLeon");
 
         jLabel1.setText("Aqluileres Activos:");
 
@@ -69,7 +74,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 
         jLabel4.setText("0");
 
-        jMenu1.setText("Opciones");
+        opcionesMenu.setText("Opciones");
 
         cambiarUsuario.setText("Cambiar Usuario");
         cambiarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -77,18 +82,18 @@ public class VistaGeneral extends javax.swing.JFrame {
             	cambioUsuarioClicked(evt);
             }
         });
-        jMenu1.add(cambiarUsuario);
+        opcionesMenu.add(cambiarUsuario);
 
-        jMenuBar1.add(jMenu1);
+        barraMenus.add(opcionesMenu);
 
-        jMenu2.setText("Vehiculos");
+        vehiculosMenu.setText("Vehiculos");
 
         jMenuItem6.setText("Consultar");
-        jMenu2.add(jMenuItem6);
+        vehiculosMenu.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu2);
+        barraMenus.add(vehiculosMenu);
 
-        jMenu3.setText("Tiendas");
+        tiendaMenu.setText("Tiendas");
 
         jMenuItem9.setText("Consultar");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -96,14 +101,14 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        tiendaMenu.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu3);
+        barraMenus.add(tiendaMenu);
 
-        jMenu6.setText("Clientes");
+        alquileresMenu.setText("Clientes");
 
         jMenuItem17.setText("Añadir");
-        jMenu6.add(jMenuItem17);
+        alquileresMenu.add(jMenuItem17);
 
         jMenuItem18.setText("Baja");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -111,17 +116,17 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem18ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem18);
+        alquileresMenu.add(jMenuItem18);
 
         jMenuItem19.setText("Consultar");
-        jMenu6.add(jMenuItem19);
+        alquileresMenu.add(jMenuItem19);
 
         jMenuItem20.setText("Modificar");
-        jMenu6.add(jMenuItem20);
+        alquileresMenu.add(jMenuItem20);
 
-        jMenuBar1.add(jMenu6);
+        barraMenus.add(alquileresMenu);
 
-        jMenu5.setText("Alquileres");
+        clientesMenu.setText("Alquileres");
 
         jMenuItem14.setText("Añadir");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +134,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem14ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem14);
+        clientesMenu.add(jMenuItem14);
 
         jMenuItem15.setText("Consultar");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +142,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem15ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem15);
+        clientesMenu.add(jMenuItem15);
 
         jMenuItem16.setText("Modificar");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +150,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem16ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem16);
+        clientesMenu.add(jMenuItem16);
 
         jMenuItem23.setText("Finalizar");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
@@ -153,11 +158,11 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem23ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem23);
+        clientesMenu.add(jMenuItem23);
 
-        jMenuBar1.add(jMenu5);
+        barraMenus.add(clientesMenu);
 
-        jMenu8.setText("Incidencias");
+        incidenciasMenu.setText("Incidencias");
 
         jMenuItem24.setText("Añadir");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -165,17 +170,17 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem24ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem24);
+        incidenciasMenu.add(jMenuItem24);
 
         jMenuItem25.setText("Consultar");
-        jMenu8.add(jMenuItem25);
+        incidenciasMenu.add(jMenuItem25);
 
         jMenuItem26.setText("Modificar");
-        jMenu8.add(jMenuItem26);
+        incidenciasMenu.add(jMenuItem26);
 
-        jMenuBar1.add(jMenu8);
+        barraMenus.add(incidenciasMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(barraMenus);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,38 +229,38 @@ public class VistaGeneral extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        barraMenus = new javax.swing.JMenuBar();
+        opcionesMenu = new javax.swing.JMenu();
         cambiarUsuario = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        vehiculosMenu = new javax.swing.JMenu();
+        aniadirVehiculo = new javax.swing.JMenuItem();
+        bajaVehiculo = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        tiendaMenu = new javax.swing.JMenu();
         aniadirTienda = new javax.swing.JMenuItem();
         bajaTienda = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        empleadosMenu = new javax.swing.JMenu();
         aniadirEmpleado = new javax.swing.JMenuItem();
         bajaEmpleado = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        alquileresMenu = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        clientesMenu = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        ofertasMenu = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        incidenciasMenu = new javax.swing.JMenu();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
@@ -272,7 +277,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 
         jLabel4.setText("0");
 
-        jMenu1.setText("Opciones");
+        opcionesMenu.setText("Opciones");
 
         cambiarUsuario.setText("Cambiar Usuario");
         cambiarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -280,37 +285,37 @@ public class VistaGeneral extends javax.swing.JFrame {
                 cambioUsuarioClicked(evt);
             }
         });
-        jMenu1.add(cambiarUsuario);
+        opcionesMenu.add(cambiarUsuario);
 
-        jMenuBar1.add(jMenu1);
+        barraMenus.add(opcionesMenu);
 
-        jMenu2.setText("Vehiculos");
+        vehiculosMenu.setText("Vehiculos");
 
-        jMenuItem4.setText("Añadir");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        aniadirVehiculo.setText("Añadir");
+        aniadirVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                aniadirVehiculoClicked(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        vehiculosMenu.add(aniadirVehiculo);
 
-        jMenuItem5.setText("Baja");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        bajaVehiculo.setText("Baja");
+        bajaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                bajaVehiculoClicked(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        vehiculosMenu.add(bajaVehiculo);
 
         jMenuItem6.setText("Consultar");
-        jMenu2.add(jMenuItem6);
+        vehiculosMenu.add(jMenuItem6);
 
         jMenuItem2.setText("Modificar");
-        jMenu2.add(jMenuItem2);
+        vehiculosMenu.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        barraMenus.add(vehiculosMenu);
 
-        jMenu3.setText("Tiendas");
+        tiendaMenu.setText("Tiendas");
 
         aniadirTienda.setText("Añadir");
         aniadirTienda.addActionListener(new java.awt.event.ActionListener() {
@@ -318,7 +323,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 aniadirTiendaClicked(evt);
             }
         });
-        jMenu3.add(aniadirTienda);
+        tiendaMenu.add(aniadirTienda);
 
         bajaTienda.setText("Eliminar");
         bajaTienda.addActionListener(new java.awt.event.ActionListener() {
@@ -326,7 +331,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 bajaTiendaClicked(evt);
             }
         });
-        jMenu3.add(bajaTienda);
+        tiendaMenu.add(bajaTienda);
 
         jMenuItem9.setText("Consultar");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -334,14 +339,14 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        tiendaMenu.add(jMenuItem9);
 
         jMenuItem3.setText("Modificar");
-        jMenu3.add(jMenuItem3);
+        tiendaMenu.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu3);
+        barraMenus.add(tiendaMenu);
 
-        jMenu4.setText("Empleados");
+        empleadosMenu.setText("Empleados");
 
         aniadirEmpleado.setText("Añadir");
         aniadirEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +354,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 aniadirEmpleadoClicked(evt);
             }
         });
-        jMenu4.add(aniadirEmpleado);
+        empleadosMenu.add(aniadirEmpleado);
 
         bajaEmpleado.setText("Baja");
         bajaEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -357,10 +362,10 @@ public class VistaGeneral extends javax.swing.JFrame {
                 bajaEmpleadoClicked(evt);
             }
         });
-        jMenu4.add(bajaEmpleado);
+        empleadosMenu.add(bajaEmpleado);
 
         jMenuItem12.setText("Consultar");
-        jMenu4.add(jMenuItem12);
+        empleadosMenu.add(jMenuItem12);
 
         jMenuItem13.setText("Modificar");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -368,14 +373,14 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem13ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem13);
+        empleadosMenu.add(jMenuItem13);
 
-        jMenuBar1.add(jMenu4);
+        barraMenus.add(empleadosMenu);
 
-        jMenu6.setText("Clientes");
+        alquileresMenu.setText("Clientes");
 
         jMenuItem17.setText("Añadir");
-        jMenu6.add(jMenuItem17);
+        alquileresMenu.add(jMenuItem17);
 
         jMenuItem18.setText("Baja");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -383,17 +388,17 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem18ActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem18);
+        alquileresMenu.add(jMenuItem18);
 
         jMenuItem19.setText("Consultar");
-        jMenu6.add(jMenuItem19);
+        alquileresMenu.add(jMenuItem19);
 
         jMenuItem20.setText("Modificar");
-        jMenu6.add(jMenuItem20);
+        alquileresMenu.add(jMenuItem20);
 
-        jMenuBar1.add(jMenu6);
+        barraMenus.add(alquileresMenu);
 
-        jMenu5.setText("Alquileres");
+        clientesMenu.setText("Alquileres");
 
         jMenuItem14.setText("Añadir");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -401,7 +406,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem14ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem14);
+        clientesMenu.add(jMenuItem14);
 
         jMenuItem15.setText("Consultar");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -409,7 +414,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem15ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem15);
+        clientesMenu.add(jMenuItem15);
 
         jMenuItem16.setText("Modificar");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
@@ -417,7 +422,7 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem16ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem16);
+        clientesMenu.add(jMenuItem16);
 
         jMenuItem23.setText("Finalizar");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
@@ -425,21 +430,21 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem23ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem23);
+        clientesMenu.add(jMenuItem23);
 
-        jMenuBar1.add(jMenu5);
+        barraMenus.add(clientesMenu);
 
-        jMenu7.setText("Ofertas");
+        ofertasMenu.setText("Ofertas");
 
         jMenuItem21.setText("Añadir");
-        jMenu7.add(jMenuItem21);
+        ofertasMenu.add(jMenuItem21);
 
         jMenuItem22.setText("Modificar");
-        jMenu7.add(jMenuItem22);
+        ofertasMenu.add(jMenuItem22);
 
-        jMenuBar1.add(jMenu7);
+        barraMenus.add(ofertasMenu);
 
-        jMenu8.setText("Incidencias");
+        incidenciasMenu.setText("Incidencias");
 
         jMenuItem24.setText("Añadir");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
@@ -447,17 +452,17 @@ public class VistaGeneral extends javax.swing.JFrame {
                 jMenuItem24ActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem24);
+        incidenciasMenu.add(jMenuItem24);
 
         jMenuItem25.setText("Consultar");
-        jMenu8.add(jMenuItem25);
+        incidenciasMenu.add(jMenuItem25);
 
         jMenuItem26.setText("Modificar");
-        jMenu8.add(jMenuItem26);
+        incidenciasMenu.add(jMenuItem26);
 
-        jMenuBar1.add(jMenu8);
+        barraMenus.add(incidenciasMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(barraMenus);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -489,16 +494,20 @@ public class VistaGeneral extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addContainerGap(697, Short.MAX_VALUE))
         );
-
+        
         pack();
     }// </editor-fold>                        
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+    private void aniadirVehiculoClicked(java.awt.event.ActionEvent evt) {                                           
+        VistaAniadirVehiculo a = new VistaAniadirVehiculo();
+        a.setVisible(true);
     }                                          
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+    private void bajaVehiculoClicked(java.awt.event.ActionEvent evt) {                                           
+    	String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Vehiculo", JOptionPane.QUESTION_MESSAGE);
+    	// TODO implementar modelos
+    	VehiculoImpl a = new VehiculoImpl();
+        a.bajaVehiculo(baja);
     }                                          
 
     private void cambioUsuarioClicked(java.awt.event.ActionEvent evt) {                                           
@@ -511,24 +520,28 @@ public class VistaGeneral extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                          
 
-    private void aniadirEmpleadoClicked(java.awt.event.ActionEvent evt) {                                            
-        VistaAniadirEmpleado aniadir = new VistaAniadirEmpleado();
+    private void aniadirEmpleadoClicked(java.awt.event.ActionEvent evt) {    
+    	VistaAniadirEmpleado aniadir = new VistaAniadirEmpleado();
         aniadir.setVisible(true);
     }                                           
 
     private void bajaEmpleadoClicked(java.awt.event.ActionEvent evt) {                                            
         String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Empleado", JOptionPane.QUESTION_MESSAGE);
         // TODO Implementar modelos esto solo es una prueba de funcionamiento de la implementacion
-        //EmpleadoImpl a = new EmpleadoImpl();
-        //a.eliminarEmpleado(Integer.valueOf(baja));
+        EmpleadoImpl a = new EmpleadoImpl();
+        a.eliminarEmpleado(Integer.valueOf(baja));
     }
     
     private void aniadirTiendaClicked(java.awt.event.ActionEvent evt) {
-    	//TODO
+    	 VistaAniadirTienda aniadir = new VistaAniadirTienda();
+         aniadir.setVisible(true);
     }
     
     private void bajaTiendaClicked(java.awt.event.ActionEvent evt) {
     	String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Tienda", JOptionPane.QUESTION_MESSAGE);
+    	// TODO Implementar modelo
+    	TiendaImpl a = new TiendaImpl();
+    	a.eliminarTienda(Integer.valueOf(baja));
     }
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -564,15 +577,15 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu opcionesMenu;
+    private javax.swing.JMenu vehiculosMenu;
+    private javax.swing.JMenu tiendaMenu;
+    private javax.swing.JMenu empleadosMenu;
+    private javax.swing.JMenu clientesMenu;
+    private javax.swing.JMenu alquileresMenu;
+    private javax.swing.JMenu ofertasMenu;
+    private javax.swing.JMenu incidenciasMenu;
+    private javax.swing.JMenuBar barraMenus;
     private javax.swing.JMenuItem cambiarUsuario;
     private javax.swing.JMenuItem aniadirEmpleado;
     private javax.swing.JMenuItem bajaEmpleado;
@@ -593,8 +606,8 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem aniadirVehiculo;
+    private javax.swing.JMenuItem bajaVehiculo;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem aniadirTienda;
     private javax.swing.JMenuItem bajaTienda;

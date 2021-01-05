@@ -233,8 +233,8 @@ public class VistaGeneral extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        aniadirTienda = new javax.swing.JMenuItem();
+        bajaTienda = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -312,11 +312,21 @@ public class VistaGeneral extends javax.swing.JFrame {
 
         jMenu3.setText("Tiendas");
 
-        jMenuItem7.setText("Añadir");
-        jMenu3.add(jMenuItem7);
+        aniadirTienda.setText("Añadir");
+        aniadirTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aniadirTiendaClicked(evt);
+            }
+        });
+        jMenu3.add(aniadirTienda);
 
-        jMenuItem8.setText("Eliminar");
-        jMenu3.add(jMenuItem8);
+        bajaTienda.setText("Eliminar");
+        bajaTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaTiendaClicked(evt);
+            }
+        });
+        jMenu3.add(bajaTienda);
 
         jMenuItem9.setText("Consultar");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -511,7 +521,15 @@ public class VistaGeneral extends javax.swing.JFrame {
         // TODO Implementar modelos esto solo es una prueba de funcionamiento de la implementacion
         //EmpleadoImpl a = new EmpleadoImpl();
         //a.eliminarEmpleado(Integer.valueOf(baja));
-    }                                           
+    }
+    
+    private void aniadirTiendaClicked(java.awt.event.ActionEvent evt) {
+    	//TODO
+    }
+    
+    private void bajaTiendaClicked(java.awt.event.ActionEvent evt) {
+    	String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Tienda", JOptionPane.QUESTION_MESSAGE);
+    }
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
@@ -578,8 +596,8 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem aniadirTienda;
+    private javax.swing.JMenuItem bajaTienda;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration                   
 }

@@ -487,7 +487,7 @@ public class VistaGeneral extends javax.swing.JFrame {
     }                                          
 
     private void cambioUsuarioClicked(java.awt.event.ActionEvent evt) {                                           
-        VistaRegistro newRegistro = new VistaRegistro();
+        VistaAutenticar newRegistro = new VistaAutenticar();
         newRegistro.setVisible(true);
         this.setVisible(false);
     }                                          

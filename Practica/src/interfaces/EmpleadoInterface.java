@@ -1,13 +1,15 @@
 package interfaces;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 import modelo.Empleado;
 
 public interface EmpleadoInterface {
 	
-	public boolean aniadirEmpleado(Empleado empleado) throws SQLException;
-	public void eliminarEmpleado(Empleado empleado) throws SQLException;
+	public void eliminarEmpleado(Empleado empleado);
 	public int autenticarConexion(String usuario, String contrasenia) throws SQLException;
+	public boolean aniadirEmpleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos,
+			String telefono, Date nacimiento, String email, String tipo); 
 	
 }

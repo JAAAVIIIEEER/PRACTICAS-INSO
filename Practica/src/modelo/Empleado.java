@@ -18,9 +18,23 @@ public class Empleado {
 	private String nombre;
 	private String apellidos;
 	private String telefono;
+	private String email;
+	private String tipo;
 	private Date nacimiento;
 	
-	public Empleado() {	}
+	public Empleado() {}
+	
+	public Empleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos, String telefono, Date nacimiento, String email, String tipo) {	
+		this.usuario = usuario;
+		this.contrasenia = contrasenia;
+		this.DNI = DNI;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
+		this.nacimiento = nacimiento;
+		this.tipo = tipo;
+		this.email = email;
+	}
 	
 	public void setID(int id) {
 		this.id = id;
@@ -62,6 +76,14 @@ public class Empleado {
 		this.nacimiento.setYear(year);
 	}
 	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public int getID() {
 		return this.id;
 	}
@@ -90,8 +112,16 @@ public class Empleado {
 		return this.telefono;
 	}
 	
+	public String getTipo() {
+		return this.tipo;
+	}
+	
 	public Date getNacimiento() {
 		return this.nacimiento;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 	
 	public int autenticarConexion(String usuario, String contrasenia) {
@@ -101,7 +131,7 @@ public class Empleado {
 	
 	public boolean aniadirEmpleado() {
 		EmpleadoImpl aux = new EmpleadoImpl();
-		return aux.aniadirEmpleado(new Empleado());
+		return false;
 	}
 }
 

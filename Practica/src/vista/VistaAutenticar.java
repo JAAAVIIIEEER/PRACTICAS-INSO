@@ -13,12 +13,12 @@ import controlador.EmpleadoController;
  *
  * @author rauls
  */
-public class VistaRegistro extends javax.swing.JFrame {
+public class VistaAutenticar extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
-    public VistaRegistro() {
+    public VistaAutenticar() {
         initComponents();
     }
 
@@ -111,7 +111,7 @@ public class VistaRegistro extends javax.swing.JFrame {
     	} else {
     		VistaGeneral admin = new VistaGeneral(autenticar);
     		admin.setVisible(true);
-    		this.setVisible(false);
+    		dispose();
     	}
     }
     

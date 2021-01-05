@@ -1,4 +1,9 @@
 package vista;
+
+import javax.swing.JOptionPane;
+
+import implementacion.EmpleadoImpl;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -234,7 +239,7 @@ public class VistaGeneral extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         aniadirEmpleado = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        bajaEmpleado = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -336,13 +341,13 @@ public class VistaGeneral extends javax.swing.JFrame {
         });
         jMenu4.add(aniadirEmpleado);
 
-        jMenuItem11.setText("Baja");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        bajaEmpleado.setText("Baja");
+        bajaEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                bajaEmpleadoClicked(evt);
             }
         });
-        jMenu4.add(jMenuItem11);
+        jMenu4.add(bajaEmpleado);
 
         jMenuItem12.setText("Consultar");
         jMenu4.add(jMenuItem12);
@@ -501,8 +506,11 @@ public class VistaGeneral extends javax.swing.JFrame {
         aniadir.setVisible(true);
     }                                           
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+    private void bajaEmpleadoClicked(java.awt.event.ActionEvent evt) {                                            
+        String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Empleado", JOptionPane.QUESTION_MESSAGE);
+        // TODO Implementar modelos esto solo es una prueba de funcionamiento de la implementacion
+        //EmpleadoImpl a = new EmpleadoImpl();
+        //a.eliminarEmpleado(Integer.valueOf(baja));
     }                                           
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {                                            
@@ -549,7 +557,7 @@ public class VistaGeneral extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem cambiarUsuario;
     private javax.swing.JMenuItem aniadirEmpleado;
-    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem bajaEmpleado;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;

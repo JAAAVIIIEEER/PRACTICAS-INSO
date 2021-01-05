@@ -62,15 +62,17 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public void eliminarEmpleado(Empleado empleado) {
+	public void eliminarEmpleado(int empleadoid) {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement("UPDATE EMPLEADOS SET estado=? WHERE ID=?");
-			st.setInt(1, empleado.getID());
+			st.setString(1, "Baja");
+			st.setInt(2, empleadoid);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 	}
 

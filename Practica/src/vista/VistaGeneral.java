@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JOptionPane;
 
+import implementacion.AlquilerImpl;
 import implementacion.ClienteImpl;
 import implementacion.EmpleadoImpl;
 import implementacion.TiendaImpl;
@@ -56,10 +57,10 @@ public class VistaGeneral extends javax.swing.JFrame {
 		jMenuItem19 = new javax.swing.JMenuItem();
 		jMenuItem20 = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
-		jMenuItem14 = new javax.swing.JMenuItem();
+		aniadirAlquiler = new javax.swing.JMenuItem();
 		jMenuItem15 = new javax.swing.JMenuItem();
 		jMenuItem16 = new javax.swing.JMenuItem();
-		jMenuItem23 = new javax.swing.JMenuItem();
+		finalizarAlquiler = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
 		jMenuItem24 = new javax.swing.JMenuItem();
 		jMenuItem25 = new javax.swing.JMenuItem();
@@ -135,13 +136,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		clientesMenu.setText("Alquileres");
 
-		jMenuItem14.setText("Añadir");
-		jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+		aniadirAlquiler.setText("Añadir");
+		aniadirAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem14ActionPerformed(evt);
+				aniadirAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem14);
+		clientesMenu.add(aniadirAlquiler);
 
 		jMenuItem15.setText("Consultar");
 		jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -159,13 +160,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		clientesMenu.add(jMenuItem16);
 
-		jMenuItem23.setText("Finalizar");
-		jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+		finalizarAlquiler.setText("Finalizar");
+		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem23ActionPerformed(evt);
+				finalizarAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem23);
+		clientesMenu.add(finalizarAlquiler);
 
 		barraMenus.add(clientesMenu);
 
@@ -251,10 +252,10 @@ public class VistaGeneral extends javax.swing.JFrame {
 		jMenuItem19 = new javax.swing.JMenuItem();
 		jMenuItem20 = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
-		jMenuItem14 = new javax.swing.JMenuItem();
+		aniadirAlquiler = new javax.swing.JMenuItem();
 		jMenuItem15 = new javax.swing.JMenuItem();
 		jMenuItem16 = new javax.swing.JMenuItem();
-		jMenuItem23 = new javax.swing.JMenuItem();
+		finalizarAlquiler = new javax.swing.JMenuItem();
 		ofertasMenu = new javax.swing.JMenu();
 		jMenuItem21 = new javax.swing.JMenuItem();
 		jMenuItem22 = new javax.swing.JMenuItem();
@@ -403,13 +404,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		clientesMenu.setText("Alquileres");
 
-		jMenuItem14.setText("Añadir");
-		jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+		aniadirAlquiler.setText("Añadir");
+		aniadirAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem14ActionPerformed(evt);
+				aniadirAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem14);
+		clientesMenu.add(aniadirAlquiler);
 
 		jMenuItem15.setText("Consultar");
 		jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -427,13 +428,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		clientesMenu.add(jMenuItem16);
 
-		jMenuItem23.setText("Finalizar");
-		jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+		finalizarAlquiler.setText("Finalizar");
+		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem23ActionPerformed(evt);
+				finalizarAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem23);
+		clientesMenu.add(finalizarAlquiler);
 
 		barraMenus.add(clientesMenu);
 
@@ -546,8 +547,9 @@ public class VistaGeneral extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
-	private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void aniadirAlquilerClicked(java.awt.event.ActionEvent evt) {
+		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
+		a.setVisible(true);
 	}
 
 	private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,8 +574,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 		a.eliminarCliente(Integer.valueOf(baja));
 	}
 
-	private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void finalizarAlquilerClicked(java.awt.event.ActionEvent evt) {
+		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Finalizar Alquiler",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+		// implementacion
+		AlquilerImpl a = new AlquilerImpl();
+		a.finalizarAlquiler(Integer.valueOf(baja));
 	}
 
 	private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,7 +606,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenuItem bajaEmpleado;
 	private javax.swing.JMenuItem jMenuItem12;
 	private javax.swing.JMenuItem jMenuItem13;
-	private javax.swing.JMenuItem jMenuItem14;
+	private javax.swing.JMenuItem aniadirAlquiler;
 	private javax.swing.JMenuItem jMenuItem15;
 	private javax.swing.JMenuItem jMenuItem16;
 	private javax.swing.JMenuItem aniadirCliente;
@@ -609,7 +616,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenuItem jMenuItem20;
 	private javax.swing.JMenuItem jMenuItem21;
 	private javax.swing.JMenuItem jMenuItem22;
-	private javax.swing.JMenuItem jMenuItem23;
+	private javax.swing.JMenuItem finalizarAlquiler;
 	private javax.swing.JMenuItem jMenuItem24;
 	private javax.swing.JMenuItem jMenuItem25;
 	private javax.swing.JMenuItem jMenuItem26;

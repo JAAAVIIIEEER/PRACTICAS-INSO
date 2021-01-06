@@ -62,7 +62,7 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public void eliminarEmpleado(int empleadoid) {
+	public boolean eliminarEmpleado(int empleadoid) {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement("UPDATE EMPLEADOS SET estado=? WHERE ID=?");
@@ -71,9 +71,11 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			return false;
 		}
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
+		return true;
 	}
 
 	public int autenticarConexion(String usuario, String contrasenia) {

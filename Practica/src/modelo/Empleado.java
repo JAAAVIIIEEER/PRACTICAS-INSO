@@ -22,8 +22,6 @@ public class Empleado {
 	private String tipo;
 	private Date nacimiento;
 	
-	public Empleado() {}
-	
 	public Empleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos, String telefono, Date nacimiento, String email, String tipo) {	
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
@@ -64,16 +62,8 @@ public class Empleado {
 		this.telefono = telefono;
 	}
 
-	public void setNacimientoDay(int dia) {
-		this.nacimiento.setDate(dia);
-	}
-	
-	public void setNacimientoMonth(int mes) {
-		this.nacimiento.setMonth(mes);
-	}
-	
-	public void setNacimientoYear(int year) {
-		this.nacimiento.setYear(year);
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
 	}
 	
 	public void setTipo(String tipo) {

@@ -68,8 +68,9 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 			System.out.println(e.getMessage());
 		}
 		// TODO Poner todos los datos
-		Cliente found = new Cliente();
-		return found;
+		//Cliente found = new Cliente();
+		//return found;
+		return null;
 	}
 
 	@Override

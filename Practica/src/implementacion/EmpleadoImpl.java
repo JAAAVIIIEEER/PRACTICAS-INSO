@@ -125,8 +125,9 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 			System.out.println(e.getMessage());
 		}
 		// TODO Poner todos los datos
-		Empleado found = new Empleado();
-		return found;
+//		Empleado found = new Empleado();
+//		return found;
+		return null;
 	}
 
 	@Override

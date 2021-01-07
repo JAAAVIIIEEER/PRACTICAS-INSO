@@ -95,24 +95,25 @@ public class VistaAutenticar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                                                
 
-    private void validarActionPerformed(java.awt.event.ActionEvent evt) {          
-    	String contrasenia = String.valueOf(passwordText.getPassword());
-    	String usuario = textFieldUsuario.getText();
-    	EmpleadoController a = new EmpleadoController();
-    	
-    	int autenticar = a.autenticarConexion(usuario, contrasenia);
-    	
-    	if (autenticar == 2) {
-    		errores+=1;
-    		if (errores == 3) {
-    			cerrarProgramaErrorAutenticacion();
-    		}
-    		avisarAutentificacionErronea();
-    	} else {
-    		VistaGeneral admin = new VistaGeneral(autenticar);
-    		admin.setVisible(true);
-    		dispose();
-    	}
+    private void validarActionPerformed(java.awt.event.ActionEvent evt) {       
+    	// TODO Implementar modelo
+//    	String contrasenia = String.valueOf(passwordText.getPassword());
+//    	String usuario = textFieldUsuario.getText();
+//    	EmpleadoController a = new EmpleadoController();
+//    	
+//    	int autenticar = a.autenticarConexion(usuario, contrasenia);
+//    	
+//    	if (autenticar == 2) {
+//    		errores+=1;
+//    		if (errores == 3) {
+//    			cerrarProgramaErrorAutenticacion();
+//    		}
+//    		avisarAutentificacionErronea();
+//    	} else {
+//    		VistaGeneral admin = new VistaGeneral(autenticar);
+//    		admin.setVisible(true);
+//    		dispose();
+//    	}
     }
     
     private void avisarAutentificacionErronea() {

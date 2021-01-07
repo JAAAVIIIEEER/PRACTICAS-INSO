@@ -44,4 +44,8 @@ public class VehiculoController {
 	public int getCoste() {
 		return this.modelo.getCoste();
 	}
+	
+	public void actualizarVistaAniadirVehiculo() {
+		this.vista.isFontSet();
+	}
 }

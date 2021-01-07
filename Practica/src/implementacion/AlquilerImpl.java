@@ -66,8 +66,9 @@ public class AlquilerImpl extends Conexion implements AlquilerInterface {
 			System.out.println(e.getMessage());
 		}
 		// TODO Poner todos los datos
-		Alquiler found = new Alquiler();
-		return found;
+		// Alquiler found = new Alquiler();
+		// return found;
+		return null;
 	}
 
 	@Override

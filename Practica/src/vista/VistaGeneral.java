@@ -144,6 +144,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 		alquileresMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
+		modificarCliente.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				modificarClienteClicked(evt);
+			}
+		});
 		alquileresMenu.add(modificarCliente);
 
 		barraMenus.add(alquileresMenu);
@@ -169,7 +174,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		modificarAlquiler.setText("Modificar");
 		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem16ActionPerformed(evt);
+				modificarAlquilerClicked(evt);
 			}
 		});
 		clientesMenu.add(modificarAlquiler);
@@ -360,8 +365,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 		tiendaMenu.add(consultarTienda);
 
 		modificarTienda.setText("Modificar");
+		modificarTienda.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				modificarTiendaClicked(evt);
+			}
+		});
 		tiendaMenu.add(modificarTienda);
-
+		
 		barraMenus.add(tiendaMenu);
 
 		empleadosMenu.setText("Empleados");
@@ -393,7 +403,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		modificarEmpleado.setText("Modificar");
 		modificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem13ActionPerformed(evt);
+				modificarEmpleadoClicked(evt);
 			}
 		});
 		empleadosMenu.add(modificarEmpleado);
@@ -427,6 +437,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 		alquileresMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
+		modificarCliente.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				modificarClienteClicked(evt);
+			}
+		});
 		alquileresMenu.add(modificarCliente);
 
 		barraMenus.add(alquileresMenu);
@@ -452,7 +467,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		modificarAlquiler.setText("Modificar");
 		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem16ActionPerformed(evt);
+				modificarAlquilerClicked(evt);
 			}
 		});
 		clientesMenu.add(modificarAlquiler);
@@ -538,9 +553,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private void modificarVehiculoClicked(java.awt.event.ActionEvent evt) {
 		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
 				JOptionPane.QUESTION_MESSAGE);
+		// TODO Añadir implementacion de modelos
 		VehiculoImpl consulta = new VehiculoImpl();
 		consulta.consultarVehiculo(modificacion);
-		VistaAniadirVehiculo a = new VistaAniadirVehiculo();		
+		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
+		a.setVisible(true);
 	}
 
 	private void cambioUsuarioClicked(java.awt.event.ActionEvent evt) {
@@ -562,6 +579,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		// TODO Añadir implementacion de modelos
 		TiendaImpl consulta = new TiendaImpl();
 		Tienda a = consulta.consultarTienda(Integer.valueOf(idConsultar));
+	}
+	
+	private void modificarTiendaClicked(java.awt.event.ActionEvent evt) {
+		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Añadir implementacion de modelos
+		TiendaImpl consulta = new TiendaImpl();
+		consulta.consultarTienda(Integer.valueOf(modificacion));
+		VistaAniadirTienda a = new VistaAniadirTienda();
+		a.setVisible(true);
 	}
 
 	private void aniadirEmpleadoClicked(java.awt.event.ActionEvent evt) {
@@ -598,8 +625,14 @@ public class VistaGeneral extends javax.swing.JFrame {
 		Empleado a = consulta.consultarEmpleado(Integer.valueOf(idConsultar));
 	}
 
-	private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {
-		
+	private void modificarEmpleadoClicked(java.awt.event.ActionEvent evt) {
+		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Añadir implementacion de modelos
+		EmpleadoImpl consulta = new EmpleadoImpl();
+		consulta.consultarEmpleado(Integer.valueOf(modificacion));
+		VistaAniadirEmpleado a = new VistaAniadirEmpleado();
+		a.setVisible(true);
 	}
 
 	private void aniadirAlquilerClicked(java.awt.event.ActionEvent evt) {
@@ -614,8 +647,14 @@ public class VistaGeneral extends javax.swing.JFrame {
 		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
 	}
 
-	private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void modificarAlquilerClicked(java.awt.event.ActionEvent evt) {
+		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Añadir implementacion de modelos
+		AlquilerImpl consulta = new AlquilerImpl();
+		consulta.consultarAlquiler(Integer.valueOf(modificacion));
+		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
+		a.setVisible(true);
 	}
 
 	private void aniadirClienteClicked(java.awt.event.ActionEvent evt) {
@@ -639,6 +678,17 @@ public class VistaGeneral extends javax.swing.JFrame {
 		// implementacion
 		ClienteImpl a = new ClienteImpl();
 		a.consultarCliente(dniCliente);
+	}
+	
+	private void modificarClienteClicked(java.awt.event.ActionEvent evt) {
+		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+		// implementacion
+		ClienteImpl consulta = new ClienteImpl();
+		consulta.consultarCliente(dniCliente);
+		VistaAniadirCliente a = new VistaAniadirCliente();
+		a.setVisible(true);
 	}
 
 	private void finalizarAlquilerClicked(java.awt.event.ActionEvent evt) {

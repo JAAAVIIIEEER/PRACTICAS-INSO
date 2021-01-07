@@ -61,43 +61,19 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
 
         jLabel2.setText("Contraseña");
 
-        contraseniaText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Nombre");
 
         jLabel4.setText("Apelliido 1");
 
         mesBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        apellido2Text.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Apellido 2");
 
         jLabel6.setText("Fecha Nacimiento");
 
-        telefonoText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Telefono");
 
         jLabel8.setText("DNI");
-
-        dniText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("Email");
 
@@ -208,23 +184,7 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
+    }// </editor-fold>                                                         
 
     private void aniadirClicked(java.awt.event.ActionEvent evt) {       
     	// TODO APLICAR Patrones solo esta asi para probar que funciona el añadir
@@ -232,6 +192,14 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
     	
         //EmpleadoImpl a = new EmpleadoImpl();
         //a.aniadirEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
+    }
+    
+    private void modificarClicked(java.awt.event.ActionEvent evt) {       
+    	// TODO APLICAR Patrones solo esta asi para probar que funciona el añadir
+    	// Borrar tambien esta importacion
+    	
+        //EmpleadoImpl a = new EmpleadoImpl();
+        //a.modificarEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
     }
     
     private int gestionarMes(String month) {

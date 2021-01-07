@@ -83,4 +83,29 @@ public class VehiculoImpl extends Conexion implements VehiculoInterface{
 		Vehiculo found = new Vehiculo();
 		return found;
 	}
+
+	@Override
+	public boolean modificarVehiculo(String matricula, String tipo, int plazas, String combustible, int precio) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la base de datos
+			PreparedStatement st = this.getConexion().prepareStatement(
+					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
+//			st.setString(1, emp.getUsuario());
+//			st.setString(2, emp.getContrasenia());
+//			st.setString(3, emp.getDNI());
+//			st.setString(4, emp.getNombre());
+//			st.setString(5, emp.getApellidos());
+//			st.setString(6, emp.getTelefono());
+//			st.setDate(7, emp.getNacimiento());
+//			st.setString(8, emp.getTipo());
+//			st.setString(9, emp.getEmail());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		this.cerrarConexion();
+		return true;
+	}
 }

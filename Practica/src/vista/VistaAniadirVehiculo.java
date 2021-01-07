@@ -147,7 +147,13 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
     	// TODO implementar modelo
     	VehiculoImpl a = new VehiculoImpl();
     	a.aniadirVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
-    }                                                                                    
+    }
+    
+    private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
+    	// TODO implementar modelo
+    	VehiculoImpl a = new VehiculoImpl();
+    	a.modificarVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadirButton;

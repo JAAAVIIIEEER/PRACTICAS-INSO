@@ -71,4 +71,31 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 		Cliente found = new Cliente();
 		return found;
 	}
+
+	@Override
+	public boolean modificarCliente(String DNI, String nombre, String apellidos, String telefono, Date nacimiento,
+			String email) {
+		this.establecerConexion();
+		try {
+			// TODO Realizar correctamente el query a la implementacion de la bd
+			PreparedStatement st = this.getConexion().prepareStatement(
+					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
+//			st.setString(1, emp.getUsuario());
+//			st.setString(2, emp.getContrasenia());
+//			st.setString(3, emp.getDNI());
+//			st.setString(4, emp.getNombre());
+//			st.setString(5, emp.getApellidos());
+//			st.setString(6, emp.getTelefono());
+//			st.setDate(7, emp.getNacimiento());
+//			st.setString(8, emp.getTipo());
+//			st.setString(9, emp.getEmail());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		this.cerrarConexion();
+		//listaEmpleados.add(emp);
+		return true;
+	}
 }

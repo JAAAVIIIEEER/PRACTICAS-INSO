@@ -152,7 +152,13 @@ public class VistaAniadirAlquiler extends javax.swing.JFrame {
         // TODO Implementar modelos
     	AlquilerImpl a = new AlquilerImpl();
     	a.aniadirAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
-    }       
+    }      
+    
+    private void modificarButtonClicked(java.awt.event.ActionEvent evt) {                                         
+        // TODO Implementar modelos
+    	AlquilerImpl a = new AlquilerImpl();
+    	a.modificarAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
+    }    
     
     private int gestionarMes(String month) {
     	switch(month) {

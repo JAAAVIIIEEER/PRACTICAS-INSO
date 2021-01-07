@@ -1,6 +1,7 @@
 package vista;
 
 import implementacion.TiendaImpl;
+import implementacion.VehiculoImpl;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -121,8 +122,14 @@ public class VistaAniadirTienda extends javax.swing.JFrame {
     private void aniadirTiendaClicked(java.awt.event.ActionEvent evt) {                                         
         // TODO Aplicar modelo
     	TiendaImpl a = new TiendaImpl();
-    	a.AniadirTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
-    }                                        
+    	a.aniadirTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
+    }          
+    
+    private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
+    	// TODO implementar modelo
+    	TiendaImpl a = new TiendaImpl();
+    	a.modificarTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadir;

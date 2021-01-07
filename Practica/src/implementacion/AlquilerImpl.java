@@ -69,4 +69,30 @@ public class AlquilerImpl extends Conexion implements AlquilerInterface {
 		Alquiler found = new Alquiler();
 		return found;
 	}
+
+	@Override
+	public boolean modificarAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente bd
+			PreparedStatement st = this.getConexion().prepareStatement(
+					"UPDATE Alquileres SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
+//			st.setString(1, emp.getUsuario());
+//			st.setString(2, emp.getContrasenia());
+//			st.setString(3, emp.getDNI());
+//			st.setString(4, emp.getNombre());
+//			st.setString(5, emp.getApellidos());
+//			st.setString(6, emp.getTelefono());
+//			st.setDate(7, emp.getNacimiento());
+//			st.setString(8, emp.getTipo());
+//			st.setString(9, emp.getEmail());
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		this.cerrarConexion();
+		//listaEmpleados.add(emp);
+		return true;
+	}
 }

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import interfaces.AlquilerInterface;
+import modelo.Alquiler;
+import modelo.Vehiculo;
 
 public class AlquilerImpl extends Conexion implements AlquilerInterface {
 
@@ -50,5 +52,21 @@ public class AlquilerImpl extends Conexion implements AlquilerInterface {
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
+	}
+
+	@Override
+	public Alquiler consultarAlquiler(int alquilerid) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES WHERE ID=?");
+			st.setInt(1, alquilerid);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// TODO Poner todos los datos
+		Alquiler found = new Alquiler();
+		return found;
 	}
 }

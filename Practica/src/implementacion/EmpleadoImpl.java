@@ -9,6 +9,7 @@ import java.util.List;
 
 import interfaces.EmpleadoInterface;
 import modelo.Empleado;
+import modelo.Vehiculo;
 
 public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 
@@ -110,6 +111,22 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 			}
 		}
 		return incorrecta;
+	}
+	
+	@Override
+	public Empleado consultarEmpleado(int empleadoid) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE ID=?");
+			st.setInt(1, empleadoid);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// TODO Poner todos los datos
+		Empleado found = new Empleado();
+		return found;
 	}
 
 }

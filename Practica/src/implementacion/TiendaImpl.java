@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import interfaces.TiendaInterface;
 import modelo.Tienda;
+import modelo.Vehiculo;
 
 public class TiendaImpl extends Conexion implements TiendaInterface {
 	
@@ -49,5 +50,21 @@ public class TiendaImpl extends Conexion implements TiendaInterface {
 		}
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
+	}
+
+	@Override
+	public Tienda consultarTienda(int tiendaid) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * TIENDA WHERE ID=?");
+			st.setInt(1, tiendaid);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// TODO Poner todos los datos
+		//Tienda found = new Tienda();
+		return null;
 	}
 }

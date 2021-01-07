@@ -9,6 +9,10 @@ import implementacion.ClienteImpl;
 import implementacion.EmpleadoImpl;
 import implementacion.TiendaImpl;
 import implementacion.VehiculoImpl;
+import modelo.Alquiler;
+import modelo.Empleado;
+import modelo.Tienda;
+import modelo.Vehiculo;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -48,18 +52,18 @@ public class VistaGeneral extends javax.swing.JFrame {
 		opcionesMenu = new javax.swing.JMenu();
 		cambiarUsuario = new javax.swing.JMenuItem();
 		vehiculosMenu = new javax.swing.JMenu();
-		jMenuItem6 = new javax.swing.JMenuItem();
+		consultarVehiculo = new javax.swing.JMenuItem();
 		tiendaMenu = new javax.swing.JMenu();
-		jMenuItem9 = new javax.swing.JMenuItem();
+		consultarTienda = new javax.swing.JMenuItem();
 		alquileresMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
-		jMenuItem19 = new javax.swing.JMenuItem();
-		jMenuItem20 = new javax.swing.JMenuItem();
+		consultarCliente = new javax.swing.JMenuItem();
+		modificarCliente = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
-		jMenuItem15 = new javax.swing.JMenuItem();
-		jMenuItem16 = new javax.swing.JMenuItem();
+		consultarAlquiler = new javax.swing.JMenuItem();
+		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
 		jMenuItem24 = new javax.swing.JMenuItem();
@@ -91,20 +95,25 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		vehiculosMenu.setText("Vehiculos");
 
-		jMenuItem6.setText("Consultar");
-		vehiculosMenu.add(jMenuItem6);
+		consultarVehiculo.setText("Consultar");
+		consultarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				consultarVehiculoClicked(evt);
+			}
+		});
+		vehiculosMenu.add(consultarVehiculo);
 
 		barraMenus.add(vehiculosMenu);
 
 		tiendaMenu.setText("Tiendas");
 
-		jMenuItem9.setText("Consultar");
-		jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+		consultarTienda.setText("Consultar");
+		consultarTienda.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem9ActionPerformed(evt);
+				consultarTiendaClicked(evt);
 			}
 		});
-		tiendaMenu.add(jMenuItem9);
+		tiendaMenu.add(consultarTienda);
 
 		barraMenus.add(tiendaMenu);
 
@@ -126,11 +135,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		alquileresMenu.add(bajaCliente);
 
-		jMenuItem19.setText("Consultar");
-		alquileresMenu.add(jMenuItem19);
+		consultarCliente.setText("Consultar");
+		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				consultarClienteClicked(evt);
+			}
+		});
+		alquileresMenu.add(consultarCliente);
 
-		jMenuItem20.setText("Modificar");
-		alquileresMenu.add(jMenuItem20);
+		modificarCliente.setText("Modificar");
+		alquileresMenu.add(modificarCliente);
 
 		barraMenus.add(alquileresMenu);
 
@@ -144,21 +158,21 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		clientesMenu.add(aniadirAlquiler);
 
-		jMenuItem15.setText("Consultar");
-		jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+		consultarAlquiler.setText("Consultar");
+		consultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem15ActionPerformed(evt);
+				consultarAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem15);
+		clientesMenu.add(consultarAlquiler);
 
-		jMenuItem16.setText("Modificar");
-		jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+		modificarAlquiler.setText("Modificar");
+		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem16ActionPerformed(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem16);
+		clientesMenu.add(modificarAlquiler);
 
 		finalizarAlquiler.setText("Finalizar");
 		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
@@ -234,27 +248,27 @@ public class VistaGeneral extends javax.swing.JFrame {
 		vehiculosMenu = new javax.swing.JMenu();
 		aniadirVehiculo = new javax.swing.JMenuItem();
 		bajaVehiculo = new javax.swing.JMenuItem();
-		jMenuItem6 = new javax.swing.JMenuItem();
-		jMenuItem2 = new javax.swing.JMenuItem();
+		consultarVehiculo = new javax.swing.JMenuItem();
+		modificarVehiculo = new javax.swing.JMenuItem();
 		tiendaMenu = new javax.swing.JMenu();
 		aniadirTienda = new javax.swing.JMenuItem();
 		bajaTienda = new javax.swing.JMenuItem();
-		jMenuItem9 = new javax.swing.JMenuItem();
-		jMenuItem3 = new javax.swing.JMenuItem();
+		consultarTienda = new javax.swing.JMenuItem();
+		modificarTienda = new javax.swing.JMenuItem();
 		empleadosMenu = new javax.swing.JMenu();
 		aniadirEmpleado = new javax.swing.JMenuItem();
 		bajaEmpleado = new javax.swing.JMenuItem();
-		jMenuItem12 = new javax.swing.JMenuItem();
-		jMenuItem13 = new javax.swing.JMenuItem();
+		consultarEmpleado = new javax.swing.JMenuItem();
+		modificarEmpleado = new javax.swing.JMenuItem();
 		alquileresMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
-		jMenuItem19 = new javax.swing.JMenuItem();
-		jMenuItem20 = new javax.swing.JMenuItem();
+		consultarCliente = new javax.swing.JMenuItem();
+		modificarCliente = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
-		jMenuItem15 = new javax.swing.JMenuItem();
-		jMenuItem16 = new javax.swing.JMenuItem();
+		consultarAlquiler = new javax.swing.JMenuItem();
+		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
 		ofertasMenu = new javax.swing.JMenu();
 		jMenuItem21 = new javax.swing.JMenuItem();
@@ -306,11 +320,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		vehiculosMenu.add(bajaVehiculo);
 
-		jMenuItem6.setText("Consultar");
-		vehiculosMenu.add(jMenuItem6);
+		consultarVehiculo.setText("Consultar");
+		vehiculosMenu.add(consultarVehiculo);
 
-		jMenuItem2.setText("Modificar");
-		vehiculosMenu.add(jMenuItem2);
+		modificarVehiculo.setText("Modificar");
+		modificarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				modificarVehiculoClicked(evt);
+			}
+		});
+		vehiculosMenu.add(modificarVehiculo);
 
 		barraMenus.add(vehiculosMenu);
 
@@ -332,16 +351,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		tiendaMenu.add(bajaTienda);
 
-		jMenuItem9.setText("Consultar");
-		jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+		consultarTienda.setText("Consultar");
+		consultarTienda.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem9ActionPerformed(evt);
+				consultarTiendaClicked(evt);
 			}
 		});
-		tiendaMenu.add(jMenuItem9);
+		tiendaMenu.add(consultarTienda);
 
-		jMenuItem3.setText("Modificar");
-		tiendaMenu.add(jMenuItem3);
+		modificarTienda.setText("Modificar");
+		tiendaMenu.add(modificarTienda);
 
 		barraMenus.add(tiendaMenu);
 
@@ -363,16 +382,21 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		empleadosMenu.add(bajaEmpleado);
 
-		jMenuItem12.setText("Consultar");
-		empleadosMenu.add(jMenuItem12);
+		consultarEmpleado.setText("Consultar");
+		consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				consultarEmpleadoClicked(evt);
+			}
+		});
+		empleadosMenu.add(consultarEmpleado);
 
-		jMenuItem13.setText("Modificar");
-		jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+		modificarEmpleado.setText("Modificar");
+		modificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem13ActionPerformed(evt);
 			}
 		});
-		empleadosMenu.add(jMenuItem13);
+		empleadosMenu.add(modificarEmpleado);
 
 		barraMenus.add(empleadosMenu);
 
@@ -394,11 +418,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		alquileresMenu.add(bajaCliente);
 
-		jMenuItem19.setText("Consultar");
-		alquileresMenu.add(jMenuItem19);
+		consultarCliente.setText("Consultar");
+		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				consultarClienteClicked(evt);
+			}
+		});
+		alquileresMenu.add(consultarCliente);
 
-		jMenuItem20.setText("Modificar");
-		alquileresMenu.add(jMenuItem20);
+		modificarCliente.setText("Modificar");
+		alquileresMenu.add(modificarCliente);
 
 		barraMenus.add(alquileresMenu);
 
@@ -412,21 +441,21 @@ public class VistaGeneral extends javax.swing.JFrame {
 		});
 		clientesMenu.add(aniadirAlquiler);
 
-		jMenuItem15.setText("Consultar");
-		jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+		consultarAlquiler.setText("Consultar");
+		consultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem15ActionPerformed(evt);
+				consultarAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem15);
+		clientesMenu.add(consultarAlquiler);
 
-		jMenuItem16.setText("Modificar");
-		jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+		modificarAlquiler.setText("Modificar");
+		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem16ActionPerformed(evt);
 			}
 		});
-		clientesMenu.add(jMenuItem16);
+		clientesMenu.add(modificarAlquiler);
 
 		finalizarAlquiler.setText("Finalizar");
 		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
@@ -505,15 +534,34 @@ public class VistaGeneral extends javax.swing.JFrame {
 		VehiculoImpl a = new VehiculoImpl();
 		a.bajaVehiculo(baja);
 	}
+	
+	private void modificarVehiculoClicked(java.awt.event.ActionEvent evt) {
+		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+				JOptionPane.QUESTION_MESSAGE);
+		VehiculoImpl consulta = new VehiculoImpl();
+		consulta.consultarVehiculo(modificacion);
+		VistaAniadirVehiculo a = new VistaAniadirVehiculo();		
+	}
 
 	private void cambioUsuarioClicked(java.awt.event.ActionEvent evt) {
 		VistaAutenticar newRegistro = new VistaAutenticar();
 		newRegistro.setVisible(true);
 		this.setVisible(false);
 	}
-
-	private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	
+	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
+		String matConsulta = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Vehiculo a consultar",
+				JOptionPane.QUESTION_MESSAGE);
+		VehiculoImpl consulta = new VehiculoImpl();
+		Vehiculo a = consulta.consultarVehiculo(matConsulta);
+	}
+	
+	private void consultarTiendaClicked(java.awt.event.ActionEvent evt) {
+		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Añadir implementacion de modelos
+		TiendaImpl consulta = new TiendaImpl();
+		Tienda a = consulta.consultarTienda(Integer.valueOf(idConsultar));
 	}
 
 	private void aniadirEmpleadoClicked(java.awt.event.ActionEvent evt) {
@@ -542,9 +590,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		TiendaImpl a = new TiendaImpl();
 		a.eliminarTienda(Integer.valueOf(baja));
 	}
+	
+	private void consultarEmpleadoClicked(java.awt.event.ActionEvent evt) {
+		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
+				JOptionPane.QUESTION_MESSAGE);
+		EmpleadoImpl consulta = new EmpleadoImpl();
+		Empleado a = consulta.consultarEmpleado(Integer.valueOf(idConsultar));
+	}
 
 	private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		
 	}
 
 	private void aniadirAlquilerClicked(java.awt.event.ActionEvent evt) {
@@ -552,8 +607,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 		a.setVisible(true);
 	}
 
-	private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void consultarAlquilerClicked(java.awt.event.ActionEvent evt) {
+		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Cliente a consultar",
+				JOptionPane.QUESTION_MESSAGE);
+		AlquilerImpl consulta = new AlquilerImpl();
+		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
 	}
 
 	private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,6 +630,15 @@ public class VistaGeneral extends javax.swing.JFrame {
 		// implementacion
 		ClienteImpl a = new ClienteImpl();
 		a.eliminarCliente(Integer.valueOf(baja));
+	}
+	
+	private void consultarClienteClicked(java.awt.event.ActionEvent evt) {
+		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
+				JOptionPane.QUESTION_MESSAGE);
+		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+		// implementacion
+		ClienteImpl a = new ClienteImpl();
+		a.consultarCliente(dniCliente);
 	}
 
 	private void finalizarAlquilerClicked(java.awt.event.ActionEvent evt) {
@@ -604,28 +671,28 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenuItem cambiarUsuario;
 	private javax.swing.JMenuItem aniadirEmpleado;
 	private javax.swing.JMenuItem bajaEmpleado;
-	private javax.swing.JMenuItem jMenuItem12;
-	private javax.swing.JMenuItem jMenuItem13;
+	private javax.swing.JMenuItem consultarEmpleado;
+	private javax.swing.JMenuItem modificarEmpleado;
 	private javax.swing.JMenuItem aniadirAlquiler;
-	private javax.swing.JMenuItem jMenuItem15;
-	private javax.swing.JMenuItem jMenuItem16;
+	private javax.swing.JMenuItem consultarAlquiler;
+	private javax.swing.JMenuItem modificarAlquiler;
 	private javax.swing.JMenuItem aniadirCliente;
 	private javax.swing.JMenuItem bajaCliente;
-	private javax.swing.JMenuItem jMenuItem19;
-	private javax.swing.JMenuItem jMenuItem2;
-	private javax.swing.JMenuItem jMenuItem20;
+	private javax.swing.JMenuItem consultarCliente;
+	private javax.swing.JMenuItem modificarVehiculo;
+	private javax.swing.JMenuItem modificarCliente;
 	private javax.swing.JMenuItem jMenuItem21;
 	private javax.swing.JMenuItem jMenuItem22;
 	private javax.swing.JMenuItem finalizarAlquiler;
 	private javax.swing.JMenuItem jMenuItem24;
 	private javax.swing.JMenuItem jMenuItem25;
 	private javax.swing.JMenuItem jMenuItem26;
-	private javax.swing.JMenuItem jMenuItem3;
+	private javax.swing.JMenuItem modificarTienda;
 	private javax.swing.JMenuItem aniadirVehiculo;
 	private javax.swing.JMenuItem bajaVehiculo;
-	private javax.swing.JMenuItem jMenuItem6;
+	private javax.swing.JMenuItem consultarVehiculo;
 	private javax.swing.JMenuItem aniadirTienda;
 	private javax.swing.JMenuItem bajaTienda;
-	private javax.swing.JMenuItem jMenuItem9;
+	private javax.swing.JMenuItem consultarTienda;
 	// End of variables declaration
 }

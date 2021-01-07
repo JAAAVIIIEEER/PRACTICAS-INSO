@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import interfaces.ClienteInterface;
+import modelo.Cliente;
+import modelo.Vehiculo;
 
 public class ClienteImpl extends Conexion implements ClienteInterface {
 
@@ -54,4 +56,19 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 
 	}
 
+	@Override
+	public Cliente consultarCliente(String DNI) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM CLIENTES WHERE DNI=?");
+			st.setString(1, DNI);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// TODO Poner todos los datos
+		Cliente found = new Cliente();
+		return found;
+	}
 }

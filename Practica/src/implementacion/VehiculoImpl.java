@@ -67,4 +67,20 @@ public class VehiculoImpl extends Conexion implements VehiculoInterface{
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 	}
+
+	@Override
+	public Vehiculo consultarVehiculo(String matricula) {
+		this.establecerConexion();
+		try {
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS WHERE MATRICULA=?");
+			st.setString(1, matricula);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// TODO Poner todos los datos
+		Vehiculo found = new Vehiculo();
+		return found;
+	}
 }

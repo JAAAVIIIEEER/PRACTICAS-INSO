@@ -114,11 +114,6 @@ public class Empleado {
 		return this.email;
 	}
 	
-	public int autenticarConexion(String usuario, String contrasenia) {
-		EmpleadoImpl aux = new EmpleadoImpl();
-		return aux.autenticarConexion(usuario, contrasenia);
-	}
-	
 	public boolean aniadirEmpleado() {
 		EmpleadoImpl aux = new EmpleadoImpl();
 		return false;

@@ -5,7 +5,11 @@ package vista;
  * and open the template in the editor.
  */
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import controlador.EmpleadoController;
 
@@ -42,12 +46,7 @@ public class VistaAutenticar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buttonValidar.setText("Validar");
-        buttonValidar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	validarActionPerformed(evt);
-            }
-        });
-
+        
         labelRegistro.setText("Usuario");
 
         labelContrasenia.setText("Contraseña");
@@ -93,34 +92,29 @@ public class VistaAutenticar extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                                                
-
-    private void validarActionPerformed(java.awt.event.ActionEvent evt) {       
-    	// TODO Implementar modelo
-//    	String contrasenia = String.valueOf(passwordText.getPassword());
-//    	String usuario = textFieldUsuario.getText();
-//    	EmpleadoController a = new EmpleadoController();
-//    	
-//    	int autenticar = a.autenticarConexion(usuario, contrasenia);
-//    	
-//    	if (autenticar == 2) {
-//    		errores+=1;
-//    		if (errores == 3) {
-//    			cerrarProgramaErrorAutenticacion();
-//    		}
-//    		avisarAutentificacionErronea();
-//    	} else {
-//    		VistaGeneral admin = new VistaGeneral(autenticar);
-//    		admin.setVisible(true);
-//    		dispose();
-//    	}
+    }// </editor-fold>          
+    
+    public void addButtonListener(ActionListener listenerForButtons) {
+    	buttonValidar.addActionListener(listenerForButtons);
     }
     
-    private void avisarAutentificacionErronea() {
+    public JTextField getTextFieldUsuario() {
+    	return textFieldUsuario;
+    }
+    
+    public JPasswordField getPasswordText() {
+    	return passwordText;
+    }
+    
+    public javax.swing.JButton getValidarButton() {
+    	return this.buttonValidar;
+    }
+    
+    public void avisarAutentificacionErronea() {
     	JOptionPane.showMessageDialog(null, "Contraseña Incorrecta\nIntentelo de nuevo", "Autenticacion Incorrecta", JOptionPane.ERROR_MESSAGE);
     }
     
-    private void cerrarProgramaErrorAutenticacion() {
+    public void cerrarProgramaErrorAutenticacion() {
     	JOptionPane.showMessageDialog(null, "Exceso de errores\nCerrando programa", "Autenticacion Incorrecta", JOptionPane.ERROR_MESSAGE);
     	System.exit(0);
     }
@@ -131,6 +125,5 @@ public class VistaAutenticar extends javax.swing.JFrame {
     private javax.swing.JLabel labelContrasenia;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JTextField textFieldUsuario;
-    private int errores = 0;
     // End of variables declaration                   
 }

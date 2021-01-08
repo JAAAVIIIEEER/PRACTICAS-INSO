@@ -18,11 +18,25 @@ public class AutenticarController{
 	}
 	
 	public void mostrarVentanaAutenticar() {
-		aniadirListener();
+		this.errores = 0;
+		aniadirListenerAutenticar();
 		vista.setVisible(true);
 	}
 	
-	private void aniadirListener() {
+	private void mostrarVentanaAutenticarSec() {
+		this.errores = 0;
+		vista.setVisible(true);
+	}
+	
+	private void aniadirListenerGeneral() {
+		this.general.addButtonListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				mostrarVentanaAutenticarSec();
+			}
+		});
+	}
+	
+	private void aniadirListenerAutenticar() {
 		this.vista.addButtonListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	validar(evt);
@@ -31,6 +45,9 @@ public class AutenticarController{
 	}
 	
 	private void validar(ActionEvent evt) {
+		if (general != null) {
+			general.dispose();
+		}
 		String usuario = this.vista.getTextFieldUsuario().getText();
 		String contrasenia = String.valueOf(this.vista.getPasswordText().getPassword());
 		AutenticarImpl autenticar = new AutenticarImpl();
@@ -45,8 +62,11 @@ public class AutenticarController{
 		} else {
 			general = new VistaGeneral(estado);
     		general.setVisible(true);
-    		this.vista.dispose();
+    		aniadirListenerGeneral();
+    		this.vista.setVisible(false);;
 		}
+		this.vista.getTextFieldUsuario().setText("");
+		this.vista.getPasswordText().setText("");
 	}
 }
 

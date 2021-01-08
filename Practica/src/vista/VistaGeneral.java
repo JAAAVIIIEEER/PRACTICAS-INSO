@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
@@ -84,11 +85,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		opcionesMenu.setText("Opciones");
 
 		cambiarUsuario.setText("Cambiar Usuario");
-		cambiarUsuario.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				cambioUsuarioClicked(evt);
-			}
-		});
+		
 		opcionesMenu.add(cambiarUsuario);
 
 		barraMenus.add(opcionesMenu);
@@ -298,11 +295,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		opcionesMenu.setText("Opciones");
 
 		cambiarUsuario.setText("Cambiar Usuario");
-		cambiarUsuario.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				cambioUsuarioClicked(evt);
-			}
-		});
+
 		opcionesMenu.add(cambiarUsuario);
 
 		barraMenus.add(opcionesMenu);
@@ -536,6 +529,10 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		pack();
 	}// </editor-fold>
+	
+	public void addButtonListener(ActionListener listenerForButtons) {
+		cambiarUsuario.addActionListener(listenerForButtons);
+	}
 
 	private void aniadirVehiculoClicked(java.awt.event.ActionEvent evt) {
 		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
@@ -560,12 +557,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		a.setVisible(true);
 	}
 
-	private void cambioUsuarioClicked(java.awt.event.ActionEvent evt) {
-		VistaAutenticar newRegistro = new VistaAutenticar();
-		newRegistro.setVisible(true);
-		this.setVisible(false);
-	}
-	
 	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
 		String matConsulta = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Vehiculo a consultar",
 				JOptionPane.QUESTION_MESSAGE);

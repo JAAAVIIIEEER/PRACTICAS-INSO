@@ -10,7 +10,7 @@ public interface EmpleadoInterface {
 	
 	public boolean aniadirEmpleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos,
 			String telefono, Date nacimiento, String email, String tipo);
-	public boolean eliminarEmpleado(int empleadoid);
+	public boolean eliminarEmpleado(String empleadoid);
 	public Empleado consultarEmpleado(int empleadoid); 
 	public boolean modificarEmpleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos,
 			String telefono, Date nacimiento, String email, String tipo);

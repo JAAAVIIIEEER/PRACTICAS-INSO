@@ -1,7 +1,5 @@
 package interfaces;
 
-import java.sql.SQLException;
-
 import modelo.Vehiculo;
 
 public interface VehiculoInterface {

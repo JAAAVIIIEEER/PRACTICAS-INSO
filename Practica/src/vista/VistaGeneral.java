@@ -56,12 +56,12 @@ public class VistaGeneral extends javax.swing.JFrame {
 		consultarVehiculo = new javax.swing.JMenuItem();
 		tiendaMenu = new javax.swing.JMenu();
 		consultarTienda = new javax.swing.JMenuItem();
-		alquileresMenu = new javax.swing.JMenu();
+		clientesMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
 		consultarCliente = new javax.swing.JMenuItem();
 		modificarCliente = new javax.swing.JMenuItem();
-		clientesMenu = new javax.swing.JMenu();
+		alquileresMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
 		consultarAlquiler = new javax.swing.JMenuItem();
 		modificarAlquiler = new javax.swing.JMenuItem();
@@ -114,23 +114,15 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		barraMenus.add(tiendaMenu);
 
-		alquileresMenu.setText("Clientes");
+		clientesMenu.setText("Clientes");
 
 		aniadirCliente.setText("Añadir");
-		aniadirCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(aniadirCliente);
+
+		clientesMenu.add(aniadirCliente);
 
 		bajaCliente.setText("Baja");
-		bajaCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bajaClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(bajaCliente);
+
+		clientesMenu.add(bajaCliente);
 
 		consultarCliente.setText("Consultar");
 		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -138,27 +130,19 @@ public class VistaGeneral extends javax.swing.JFrame {
 				consultarClienteClicked(evt);
 			}
 		});
-		alquileresMenu.add(consultarCliente);
+		clientesMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
-		modificarCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(modificarCliente);
 
-		barraMenus.add(alquileresMenu);
+		clientesMenu.add(modificarCliente);
 
-		clientesMenu.setText("Alquileres");
+		barraMenus.add(clientesMenu);
+
+		alquileresMenu.setText("Alquileres");
 
 		aniadirAlquiler.setText("Añadir");
-		aniadirAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(aniadirAlquiler);
+
+		alquileresMenu.add(aniadirAlquiler);
 
 		consultarAlquiler.setText("Consultar");
 		consultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
@@ -166,25 +150,17 @@ public class VistaGeneral extends javax.swing.JFrame {
 				consultarAlquilerClicked(evt);
 			}
 		});
-		clientesMenu.add(consultarAlquiler);
+		alquileresMenu.add(consultarAlquiler);
 
 		modificarAlquiler.setText("Modificar");
-		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(modificarAlquiler);
+
+		alquileresMenu.add(modificarAlquiler);
 
 		finalizarAlquiler.setText("Finalizar");
-		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				finalizarAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(finalizarAlquiler);
 
-		barraMenus.add(clientesMenu);
+		alquileresMenu.add(finalizarAlquiler);
+
+		barraMenus.add(alquileresMenu);
 
 		incidenciasMenu.setText("Incidencias");
 
@@ -262,12 +238,12 @@ public class VistaGeneral extends javax.swing.JFrame {
 		bajaEmpleado = new javax.swing.JMenuItem();
 		consultarEmpleado = new javax.swing.JMenuItem();
 		modificarEmpleado = new javax.swing.JMenuItem();
-		alquileresMenu = new javax.swing.JMenu();
+		clientesMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
 		consultarCliente = new javax.swing.JMenuItem();
 		modificarCliente = new javax.swing.JMenuItem();
-		clientesMenu = new javax.swing.JMenu();
+		alquileresMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
 		consultarAlquiler = new javax.swing.JMenuItem();
 		modificarAlquiler = new javax.swing.JMenuItem();
@@ -303,30 +279,18 @@ public class VistaGeneral extends javax.swing.JFrame {
 		vehiculosMenu.setText("Vehiculos");
 
 		aniadirVehiculo.setText("Añadir");
-		aniadirVehiculo.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirVehiculoClicked(evt);
-			}
-		});
+
 		vehiculosMenu.add(aniadirVehiculo);
 
 		bajaVehiculo.setText("Baja");
-		bajaVehiculo.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bajaVehiculoClicked(evt);
-			}
-		});
+		
 		vehiculosMenu.add(bajaVehiculo);
 
 		consultarVehiculo.setText("Consultar");
 		vehiculosMenu.add(consultarVehiculo);
 
 		modificarVehiculo.setText("Modificar");
-		modificarVehiculo.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarVehiculoClicked(evt);
-			}
-		});
+
 		vehiculosMenu.add(modificarVehiculo);
 
 		barraMenus.add(vehiculosMenu);
@@ -334,35 +298,19 @@ public class VistaGeneral extends javax.swing.JFrame {
 		tiendaMenu.setText("Tiendas");
 
 		aniadirTienda.setText("Añadir");
-		aniadirTienda.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirTiendaClicked(evt);
-			}
-		});
+
 		tiendaMenu.add(aniadirTienda);
 
 		bajaTienda.setText("Eliminar");
-		bajaTienda.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bajaTiendaClicked(evt);
-			}
-		});
+
 		tiendaMenu.add(bajaTienda);
 
 		consultarTienda.setText("Consultar");
-		consultarTienda.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarTiendaClicked(evt);
-			}
-		});
+
 		tiendaMenu.add(consultarTienda);
 
 		modificarTienda.setText("Modificar");
-		modificarTienda.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarTiendaClicked(evt);
-			}
-		});
+
 		tiendaMenu.add(modificarTienda);
 		
 		barraMenus.add(tiendaMenu);
@@ -370,19 +318,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 		empleadosMenu.setText("Empleados");
 
 		aniadirEmpleado.setText("Añadir");
-		aniadirEmpleado.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirEmpleadoClicked(evt);
-			}
-		});
+	
 		empleadosMenu.add(aniadirEmpleado);
 
 		bajaEmpleado.setText("Baja");
-		bajaEmpleado.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bajaEmpleadoClicked(evt);
-			}
-		});
+
 		empleadosMenu.add(bajaEmpleado);
 
 		consultarEmpleado.setText("Consultar");
@@ -394,32 +334,20 @@ public class VistaGeneral extends javax.swing.JFrame {
 		empleadosMenu.add(consultarEmpleado);
 
 		modificarEmpleado.setText("Modificar");
-		modificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarEmpleadoClicked(evt);
-			}
-		});
+
 		empleadosMenu.add(modificarEmpleado);
 
 		barraMenus.add(empleadosMenu);
 
-		alquileresMenu.setText("Clientes");
+		clientesMenu.setText("Clientes");
 
 		aniadirCliente.setText("Añadir");
-		aniadirCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(aniadirCliente);
+
+		clientesMenu.add(aniadirCliente);
 
 		bajaCliente.setText("Baja");
-		bajaCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				bajaClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(bajaCliente);
+
+		clientesMenu.add(bajaCliente);
 
 		consultarCliente.setText("Consultar");
 		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -427,53 +355,33 @@ public class VistaGeneral extends javax.swing.JFrame {
 				consultarClienteClicked(evt);
 			}
 		});
-		alquileresMenu.add(consultarCliente);
+		clientesMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
-		modificarCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarClienteClicked(evt);
-			}
-		});
-		alquileresMenu.add(modificarCliente);
 
-		barraMenus.add(alquileresMenu);
-
-		clientesMenu.setText("Alquileres");
-
-		aniadirAlquiler.setText("Añadir");
-		aniadirAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				aniadirAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(aniadirAlquiler);
-
-		consultarAlquiler.setText("Consultar");
-		consultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(consultarAlquiler);
-
-		modificarAlquiler.setText("Modificar");
-		modificarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				modificarAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(modificarAlquiler);
-
-		finalizarAlquiler.setText("Finalizar");
-		finalizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				finalizarAlquilerClicked(evt);
-			}
-		});
-		clientesMenu.add(finalizarAlquiler);
+		clientesMenu.add(modificarCliente);
 
 		barraMenus.add(clientesMenu);
+
+		alquileresMenu.setText("Alquileres");
+
+		aniadirAlquiler.setText("Añadir");
+
+		alquileresMenu.add(aniadirAlquiler);
+
+		consultarAlquiler.setText("Consultar");
+
+		alquileresMenu.add(consultarAlquiler);
+
+		modificarAlquiler.setText("Modificar");
+
+		alquileresMenu.add(modificarAlquiler);
+
+		finalizarAlquiler.setText("Finalizar");
+		
+		alquileresMenu.add(finalizarAlquiler);
+
+		barraMenus.add(alquileresMenu);
 
 		ofertasMenu.setText("Ofertas");
 
@@ -533,29 +441,139 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void addButtonListener(ActionListener listenerForButtons) {
 		cambiarUsuario.addActionListener(listenerForButtons);
 	}
-
-	private void aniadirVehiculoClicked(java.awt.event.ActionEvent evt) {
-		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
-		a.setVisible(true);
+	
+	public void listenerAniadirEmpleado(ActionListener listenerForButtons) {
+		this.aniadirEmpleado.addActionListener(listenerForButtons);
 	}
 
-	private void bajaVehiculoClicked(java.awt.event.ActionEvent evt) {
-		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Vehiculo",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO implementar modelos
-		VehiculoImpl a = new VehiculoImpl();
-		a.bajaVehiculo(baja);
+	public void listenerBajaEmpleado(ActionListener listenerForButtons) {
+		this.bajaEmpleado.addActionListener(listenerForButtons);	
 	}
 	
-	private void modificarVehiculoClicked(java.awt.event.ActionEvent evt) {
-		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+	public String mostrarVentanaBajaEmpleado() {
+		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Empleado",
 				JOptionPane.QUESTION_MESSAGE);
-		// TODO Añadir implementacion de modelos
-		VehiculoImpl consulta = new VehiculoImpl();
-		consulta.consultarVehiculo(modificacion);
-		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
-		a.setVisible(true);
+		return dni;
 	}
+	
+	public void listenerModificarEmpleado(ActionListener listenerForButtons) {
+		this.modificarEmpleado.addActionListener(listenerForButtons);
+//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Añadir implementacion de modelos
+//		EmpleadoImpl consulta = new EmpleadoImpl();
+//		consulta.consultarEmpleado(Integer.valueOf(modificacion));
+//		VistaAniadirEmpleado a = new VistaAniadirEmpleado();
+//		a.setVisible(true);
+	}
+
+	public void listenerAniadirVehiculo(ActionListener listenerForButtons) {
+		this.aniadirVehiculo.addActionListener(listenerForButtons);
+//		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
+//		a.setVisible(true);
+	}
+
+	public void listenerBajaVehiculo(ActionListener listenerForButtons) {
+		this.bajaVehiculo.addActionListener(listenerForButtons);
+//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Vehiculo",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO implementar modelos
+//		VehiculoImpl a = new VehiculoImpl();
+//		a.bajaVehiculo(baja);
+	}
+	
+	public void listenerModificarVehiculo(ActionListener listenerForButtons) {
+		this.modificarVehiculo.addActionListener(listenerForButtons);
+//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Añadir implementacion de modelos
+//		VehiculoImpl consulta = new VehiculoImpl();
+//		consulta.consultarVehiculo(modificacion);
+//		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
+//		a.setVisible(true);
+	}
+	
+	public void listenerAniadirTienda(ActionListener listenerForButtons) {
+		this.aniadirTienda.addActionListener(listenerForButtons);
+//		VistaAniadirTienda aniadir = new VistaAniadirTienda();
+//		aniadir.setVisible(true);
+	}
+
+	public void listenerBajaTienda(ActionListener listenerForButtons) {
+		this.bajaTienda.addActionListener(listenerForButtons);
+//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Tienda",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Implementar modelo
+//		TiendaImpl a = new TiendaImpl();
+//		a.eliminarTienda(Integer.valueOf(baja));
+	}
+	
+	public void listenerModificarTienda(ActionListener listenerForButtons) {
+		this.modificarTienda.addActionListener(listenerForButtons);
+//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Añadir implementacion de modelos
+//		TiendaImpl consulta = new TiendaImpl();
+//		consulta.consultarTienda(Integer.valueOf(modificacion));
+//		VistaAniadirTienda a = new VistaAniadirTienda();
+//		a.setVisible(true);
+	}
+	
+	public void listenerAniadirAlquiler(ActionListener listenerForButtons) {
+		this.aniadirAlquiler.addActionListener(listenerForButtons);
+//		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
+//		a.setVisible(true);
+	}
+
+	public void listenerFinalizarAlquiler(ActionListener listenerForButtons) {
+		this.finalizarAlquiler.addActionListener(listenerForButtons);
+//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Finalizar Alquiler",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+//		// implementacion
+//		AlquilerImpl a = new AlquilerImpl();
+//		a.finalizarAlquiler(Integer.valueOf(baja));
+	}
+
+	public void listenerModificarAlquiler(ActionListener listenerForButtons) {
+		this.modificarAlquiler.addActionListener(listenerForButtons);
+//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Añadir implementacion de modelos
+//		AlquilerImpl consulta = new AlquilerImpl();
+//		consulta.consultarAlquiler(Integer.valueOf(modificacion));
+//		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
+//		a.setVisible(true);
+	}
+	
+	public void listenerAniadirCliente(ActionListener listenerForButtons) {
+		this.aniadirCliente.addActionListener(listenerForButtons);
+//		VistaAniadirCliente aniadir = new VistaAniadirCliente();
+//		aniadir.setVisible(true);
+	}
+
+	public void listenerBajaCliente(ActionListener listenerForButtons) {
+		this.bajaCliente.addActionListener(listenerForButtons);
+//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Cliente",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+//		// implementacion
+//		ClienteImpl a = new ClienteImpl();
+//		a.eliminarCliente(Integer.valueOf(baja));
+	}
+	
+	public void listenerModificarCliente(ActionListener listenerForButtons) {
+		this.modificarCliente.addActionListener(listenerForButtons);
+//		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
+//				JOptionPane.QUESTION_MESSAGE);
+//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
+//		// implementacion
+//		ClienteImpl consulta = new ClienteImpl();
+//		consulta.consultarCliente(dniCliente);
+//		VistaAniadirCliente a = new VistaAniadirCliente();
+//		a.setVisible(true);
+	}
+	
 
 	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
 		String matConsulta = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Vehiculo a consultar",
@@ -572,43 +590,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		Tienda a = consulta.consultarTienda(Integer.valueOf(idConsultar));
 	}
 	
-	private void modificarTiendaClicked(java.awt.event.ActionEvent evt) {
-		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Añadir implementacion de modelos
-		TiendaImpl consulta = new TiendaImpl();
-		consulta.consultarTienda(Integer.valueOf(modificacion));
-		VistaAniadirTienda a = new VistaAniadirTienda();
-		a.setVisible(true);
-	}
-
-	private void aniadirEmpleadoClicked(java.awt.event.ActionEvent evt) {
-		VistaAniadirEmpleado aniadir = new VistaAniadirEmpleado();
-		aniadir.setVisible(true);
-	}
-
-	private void bajaEmpleadoClicked(java.awt.event.ActionEvent evt) {
-		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Empleado",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-		// implementacion
-		EmpleadoImpl a = new EmpleadoImpl();
-		a.eliminarEmpleado(Integer.valueOf(baja));
-	}
-
-	private void aniadirTiendaClicked(java.awt.event.ActionEvent evt) {
-		VistaAniadirTienda aniadir = new VistaAniadirTienda();
-		aniadir.setVisible(true);
-	}
-
-	private void bajaTiendaClicked(java.awt.event.ActionEvent evt) {
-		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Tienda",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelo
-		TiendaImpl a = new TiendaImpl();
-		a.eliminarTienda(Integer.valueOf(baja));
-	}
-	
 	private void consultarEmpleadoClicked(java.awt.event.ActionEvent evt) {
 		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
 				JOptionPane.QUESTION_MESSAGE);
@@ -616,51 +597,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		Empleado a = consulta.consultarEmpleado(Integer.valueOf(idConsultar));
 	}
 
-	private void modificarEmpleadoClicked(java.awt.event.ActionEvent evt) {
-		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Añadir implementacion de modelos
-		EmpleadoImpl consulta = new EmpleadoImpl();
-		consulta.consultarEmpleado(Integer.valueOf(modificacion));
-		VistaAniadirEmpleado a = new VistaAniadirEmpleado();
-		a.setVisible(true);
-	}
-
-	private void aniadirAlquilerClicked(java.awt.event.ActionEvent evt) {
-		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
-		a.setVisible(true);
-	}
-
-	private void consultarAlquilerClicked(java.awt.event.ActionEvent evt) {
-		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Cliente a consultar",
-				JOptionPane.QUESTION_MESSAGE);
-		AlquilerImpl consulta = new AlquilerImpl();
-		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
-	}
-
-	private void modificarAlquilerClicked(java.awt.event.ActionEvent evt) {
-		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Añadir implementacion de modelos
-		AlquilerImpl consulta = new AlquilerImpl();
-		consulta.consultarAlquiler(Integer.valueOf(modificacion));
-		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
-		a.setVisible(true);
-	}
-
-	private void aniadirClienteClicked(java.awt.event.ActionEvent evt) {
-		VistaAniadirCliente aniadir = new VistaAniadirCliente();
-		aniadir.setVisible(true);
-	}
-
-	private void bajaClienteClicked(java.awt.event.ActionEvent evt) {
-		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Cliente",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-		// implementacion
-		ClienteImpl a = new ClienteImpl();
-		a.eliminarCliente(Integer.valueOf(baja));
-	}
 	
 	private void consultarClienteClicked(java.awt.event.ActionEvent evt) {
 		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
@@ -670,25 +606,12 @@ public class VistaGeneral extends javax.swing.JFrame {
 		ClienteImpl a = new ClienteImpl();
 		a.consultarCliente(dniCliente);
 	}
-	
-	private void modificarClienteClicked(java.awt.event.ActionEvent evt) {
-		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-		// implementacion
-		ClienteImpl consulta = new ClienteImpl();
-		consulta.consultarCliente(dniCliente);
-		VistaAniadirCliente a = new VistaAniadirCliente();
-		a.setVisible(true);
-	}
 
-	private void finalizarAlquilerClicked(java.awt.event.ActionEvent evt) {
-		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Finalizar Alquiler",
+	private void consultarAlquilerClicked(java.awt.event.ActionEvent evt) {
+		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Cliente a consultar",
 				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-		// implementacion
-		AlquilerImpl a = new AlquilerImpl();
-		a.finalizarAlquiler(Integer.valueOf(baja));
+		AlquilerImpl consulta = new AlquilerImpl();
+		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
 	}
 
 	private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -704,8 +627,8 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenu vehiculosMenu;
 	private javax.swing.JMenu tiendaMenu;
 	private javax.swing.JMenu empleadosMenu;
-	private javax.swing.JMenu clientesMenu;
 	private javax.swing.JMenu alquileresMenu;
+	private javax.swing.JMenu clientesMenu;
 	private javax.swing.JMenu ofertasMenu;
 	private javax.swing.JMenu incidenciasMenu;
 	private javax.swing.JMenuBar barraMenus;

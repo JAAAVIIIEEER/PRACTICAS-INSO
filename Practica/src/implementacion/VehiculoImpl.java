@@ -28,7 +28,7 @@ public class VehiculoImpl extends Conexion implements VehiculoInterface{
 	}
 
 	@Override
-	public boolean aniadirVehiculo(String matricula, String tipo, int plazas, String combustible, int precio) {
+	public boolean aniadirVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la base de datos

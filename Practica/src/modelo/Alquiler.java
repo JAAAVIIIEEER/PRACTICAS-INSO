@@ -10,13 +10,6 @@ public class Alquiler {
 	private Date fecha2;
 	private String matVehiculo;
 	private int estado;
-
-	public Alquiler(String dni, Date fecha1, Date fecha2, String matVehiculo) {
-		this.dni = dni;
-		this.fecha1 = fecha1;
-		this.fecha2 = fecha2;
-		this.matVehiculo = matVehiculo;
-	}
 	
 	public int getId() {
 		return id;

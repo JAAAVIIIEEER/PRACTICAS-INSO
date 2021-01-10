@@ -14,8 +14,15 @@ public class Vehiculo {
 	private int coste;
 	private int plazas;
 	private int estado;
+	private String marca;
 	
-	public Vehiculo() {}
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
 	
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;

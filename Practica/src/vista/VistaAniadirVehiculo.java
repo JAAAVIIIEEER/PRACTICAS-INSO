@@ -1,5 +1,8 @@
 package vista;
 
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 import implementacion.VehiculoImpl;
@@ -43,10 +46,8 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
         costeSpinner = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         tipoBox = new javax.swing.JComboBox();
-        
-        this.setTitle("Añadir Vehiculo RentLeon");
-        this.setSize(510, 167);
-        this.setLocationRelativeTo(null);
+        marcaText = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,26 +62,18 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
         jLabel3.setText("Matricula");
 
         aniadirButton.setText("Validar");
-        aniadirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aniadirButtonClicked(evt);
-            }
-        });
 
         jLabel4.setText("Coste");
 
         costeSpinner.setToolTipText("");
         costeSpinner.setOpaque(false);
         costeSpinner.setVerifyInputWhenFocusTarget(false);
-        costeSpinner.setFocusable(false);
-        SpinnerNumberModel spinModel = new SpinnerNumberModel();
-        spinModel.setMinimum(0);
-        spinModel.setStepSize(100);
-        costeSpinner.setModel(spinModel);
-        
+
         jLabel5.setText("Tipo");
 
         tipoBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Turismo", "Furgoneta", "Caravana" }));
+
+        jLabel6.setText("Marca");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,22 +88,24 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(combustibleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(plazasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(167, 167, 167)
-                                        .addComponent(jLabel4)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(matriculaText)
-                                    .addComponent(costeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
-                            .addComponent(tipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(combustibleBox, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(plazasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(167, 167, 167)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(matriculaText)
+                            .addComponent(costeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(marcaText)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
                         .addComponent(aniadirButton)))
@@ -134,7 +129,9 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(marcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(aniadirButton)
                 .addContainerGap())
@@ -145,14 +142,52 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
 
     private void aniadirButtonClicked(java.awt.event.ActionEvent evt) {                                           
     	// TODO implementar modelo
-    	VehiculoImpl a = new VehiculoImpl();
-    	a.aniadirVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
+//    	VehiculoImpl a = new VehiculoImpl();
+//    	a.aniadirVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
     }
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
     	// TODO implementar modelo
     	VehiculoImpl a = new VehiculoImpl();
     	a.modificarVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
+    }
+    
+    public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.aniadirButton.addActionListener(listenerForButtons);
+    }
+    
+    public void avisarVehiculoAniadidoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public String mostrarVentanaBajaVehiculo() {
+		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Baja Vehiculo",
+				JOptionPane.QUESTION_MESSAGE);
+		return id;
+	}
+    
+    public int getPlazasBoxText() {
+    	return Integer.parseInt(this.plazasBox.getSelectedItem().toString());
+    }
+    
+    public String getCombustibleBoxText() {
+    	return this.combustibleBox.getSelectedItem().toString();
+    }
+    
+    public String getTipoBoxText() {
+    	return this.tipoBox.getSelectedItem().toString();
+    }
+
+    public int getCosteSpinnerText() {
+    	return Integer.parseInt(this.costeSpinner.getValue().toString());
+    }
+    
+    public String getMatriculaText() {
+    	return matriculaText.getText();
+    }
+    
+    public String getMarcaText() {
+    	return marcaText.getText();
     }
 
     // Variables declaration - do not modify                     
@@ -165,7 +200,9 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSpinner costeSpinner;
     private javax.swing.JTextField matriculaText;
+    private javax.swing.JTextField marcaText;
     // End of variables declaration               
 }

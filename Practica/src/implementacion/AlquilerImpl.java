@@ -11,7 +11,7 @@ import modelo.Vehiculo;
 public class AlquilerImpl extends Conexion implements AlquilerInterface {
 
 	@Override
-	public boolean aniadirAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo) {
+	public boolean aniadirAlquiler(Alquiler miAlquiler) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente bd

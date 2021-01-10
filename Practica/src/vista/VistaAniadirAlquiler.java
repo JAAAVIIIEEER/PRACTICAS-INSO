@@ -5,7 +5,11 @@ package vista;
  * and open the template in the editor.
  */
 
+import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.Calendar;
+
+import javax.swing.JOptionPane;
 
 import implementacion.AlquilerImpl;
 
@@ -68,11 +72,6 @@ public class VistaAniadirAlquiler extends javax.swing.JFrame {
         jLabel4.setText("Fecha Fin");
 
         aniadirButton.setText("Añadir");
-        aniadirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anidirButtonClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,46 +147,51 @@ public class VistaAniadirAlquiler extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                          
 
-    private void anidirButtonClicked(java.awt.event.ActionEvent evt) {                                         
-        // TODO Implementar modelos
-    	AlquilerImpl a = new AlquilerImpl();
-    	a.aniadirAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
+    public void listenerAniadirButton(ActionListener listenForButtons) {             
+    	this.aniadirButton.addActionListener(listenForButtons);
+//        // TODO Implementar modelos
+//    	AlquilerImpl a = new AlquilerImpl();
+//    	a.aniadirAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
     }      
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {                                         
-        // TODO Implementar modelos
-    	AlquilerImpl a = new AlquilerImpl();
-    	a.modificarAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
+//        // TODO Implementar modelos
+//    	AlquilerImpl a = new AlquilerImpl();
+//    	a.modificarAlquiler(dniText.getText(), new Date((int)diaInicioSpinner.getValue(), gestionarMes(mesInicioBox.getSelectedItem().toString()), (int)anioInicioSpinner.getValue()), new Date((int)diaFinalSpinner.getValue(), gestionarMes(mesFinalBox.getSelectedItem().toString()), (int)anioFinalSpinner.getValue()), vehiculosDisponiblesBox.getSelectedItem().toString());
     }    
     
-    private int gestionarMes(String month) {
-    	switch(month) {
-    	case "Enero":
-    		return 1;
-    	case "Febrero":
-    		return 2;
-    	case "Marzo":
-    		return 3;
-    	case "Abril":
-    		return 4;
-    	case "Mayo":
-    		return 5;
-    	case "Junio":
-    		return 6;
-    	case "Julio":
-    		return 7;
-    	case "Agosto":
-    		return 8;
-    	case "Septiembre":
-    		return 9;
-    	case "Octubre":
-    		return 10;
-    	case "Noviembre":
-    		return 11;
-    	case "Diciembre":
-    		return 12;
-       	}
-    	return 0;
+    public void avisaAlquilerAniadidoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public String mostrarVentanaFinalizarAlquiler() {
+		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Finalizar Alquiler",
+				JOptionPane.QUESTION_MESSAGE);
+		return id;
+	}
+    
+    public Date getFechaInicio() {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(Calendar.YEAR, Integer.valueOf(anioInicioSpinner.getValue().toString()));
+    	cal.set(Calendar.MONTH, mesInicioBox.getSelectedIndex());
+    	cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(diaInicioSpinner.getValue().toString()));
+    	return new Date(cal.getTimeInMillis());
+    }
+    
+    public Date getFechaFin() {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(Calendar.YEAR, Integer.valueOf(anioFinalSpinner.getValue().toString()));
+    	cal.set(Calendar.MONTH, mesFinalBox.getSelectedIndex());
+    	cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(diaFinalSpinner.getValue().toString()));
+    	return new Date(cal.getTimeInMillis());
+    }
+    
+    public String getDNIText() {
+    	return dniText.getText();
+    }
+    
+    public String getVehiculo() {
+    	return vehiculosDisponiblesBox.getSelectedItem().toString();
     }
 
     // Variables declaration - do not modify                     

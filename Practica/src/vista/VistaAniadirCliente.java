@@ -1,6 +1,10 @@
 package vista;
 
+import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.Calendar;
+
+import javax.swing.JOptionPane;
 
 import implementacion.ClienteImpl;
 
@@ -35,7 +39,7 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         mesBox = new javax.swing.JComboBox();
-        daySpinner = new javax.swing.JSpinner();
+        diaSpinner = new javax.swing.JSpinner();
         anioSpinner = new javax.swing.JSpinner();
         nombreText = new javax.swing.JTextField();
         apellido1Text = new javax.swing.JTextField();
@@ -69,12 +73,7 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
         jLabel9.setText("Email");
 
         aniadirButton.setText("Agregar");
-        aniadirButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aniadirButtonClicked(evt);
-            }
-        });
-
+    
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +105,7 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(daySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(diaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,7 +148,7 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(daySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(anioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
@@ -160,48 +159,54 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                                                         
 
-    private void aniadirButtonClicked(java.awt.event.ActionEvent evt) {               
-    	// TODO Aplicar modelos
-        ClienteImpl a = new ClienteImpl();
-        a.aniadirCliente(dniText.getText(), nombreText.getText(), apellido1Text.getText(), telefonoText.getText(), new Date((int)daySpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText());
-    }   
+    public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.aniadirButton.addActionListener(listenerForButtons);
+    }    
+    
+    public void avisarClienteAniadidoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Cliente añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public String mostrarVentanaBajaCliente() {
+		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Cliente",
+				JOptionPane.QUESTION_MESSAGE);
+		return dni;
+	}   
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {               
     	// TODO Aplicar modelos
-        ClienteImpl a = new ClienteImpl();
-        a.modificarCliente(dniText.getText(), nombreText.getText(), apellido1Text.getText(), telefonoText.getText(), new Date((int)daySpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText());
+//        ClienteImpl a = new ClienteImpl();
+//        a.modificarCliente(dniText.getText(), nombreText.getText(), apellido1Text.getText(), telefonoText.getText(), new Date((int)daySpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText());
     }    
     
-    private int gestionarMes(String month) {
-    	switch(month) {
-    	case "Enero":
-    		return 1;
-    	case "Febrero":
-    		return 2;
-    	case "Marzo":
-    		return 3;
-    	case "Abril":
-    		return 4;
-    	case "Mayo":
-    		return 5;
-    	case "Junio":
-    		return 6;
-    	case "Julio":
-    		return 7;
-    	case "Agosto":
-    		return 8;
-    	case "Septiembre":
-    		return 9;
-    	case "Octubre":
-    		return 10;
-    	case "Noviembre":
-    		return 11;
-    	case "Diciembre":
-    		return 12;
-       	}
-    	return 0;
+    public String getDNIText() {
+    	return dniText.getText();
     }
-
+    
+    public String getNombreText() {
+    	return nombreText.getText();
+    }
+    
+    public String getApellidosText() {
+    	return apellido1Text.getText() + " " + apellido2Text.getText();
+    }
+    
+    public String getTelefonoText() {
+    	return telefonoText.getText();
+    }
+    
+    public String getEmailText() {
+    	return emailText.getText();
+    }
+    
+    public Date getNacimientoDate() {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(Calendar.YEAR, Integer.valueOf(anioSpinner.getValue().toString()));
+    	cal.set(Calendar.MONTH, mesBox.getSelectedIndex());
+    	cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(diaSpinner.getValue().toString()));
+    	return new Date(cal.getTimeInMillis());
+    }
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadirButton;
     private javax.swing.JComboBox mesBox;
@@ -212,7 +217,7 @@ public class VistaAniadirCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSpinner daySpinner;
+    private javax.swing.JSpinner diaSpinner;
     private javax.swing.JSpinner anioSpinner;
     private javax.swing.JTextField nombreText;
     private javax.swing.JTextField apellido1Text;

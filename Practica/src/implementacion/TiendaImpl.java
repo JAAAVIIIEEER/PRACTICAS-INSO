@@ -10,8 +10,7 @@ import modelo.Vehiculo;
 public class TiendaImpl extends Conexion implements TiendaInterface {
 	
 	@Override
-	public boolean aniadirTienda(String via, String provincia, String municipio, int numero) {
-		Tienda t = new Tienda(via, provincia, municipio, numero);
+	public boolean aniadirTienda(Tienda miTienda) {
 		this.establecerConexion();
 		try {
 			// TODO STATEMENT Realizar cuando se implemente bd
@@ -70,7 +69,6 @@ public class TiendaImpl extends Conexion implements TiendaInterface {
 
 	@Override
 	public boolean modificarTienda(String via, String provincia, String municipio, int numero) {
-		Tienda t = new Tienda(via, provincia, municipio, numero);
 		this.establecerConexion();
 		try {
 			// TODO STATEMENT Realizar cuando se implemente bd

@@ -1,7 +1,10 @@
 package controlador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 
+import implementacion.EmpleadoImpl;
 import modelo.Empleado;
 import vista.VistaAniadirEmpleado;
 

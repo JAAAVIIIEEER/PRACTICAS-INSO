@@ -9,7 +9,8 @@ import modelo.*;
 public class Main {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
-		AutenticarController aut = new AutenticarController(new VistaAutenticar());
+
+		Controlador aut = new Controlador();
 		aut.mostrarVentanaAutenticar();	
 	}
 }

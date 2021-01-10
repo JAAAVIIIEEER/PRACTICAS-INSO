@@ -439,7 +439,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	}// </editor-fold>
 	
 	public void addButtonListener(ActionListener listenerForButtons) {
-		cambiarUsuario.addActionListener(listenerForButtons);
+		this.cambiarUsuario.addActionListener(listenerForButtons);
 	}
 	
 	public void listenerAniadirEmpleado(ActionListener listenerForButtons) {
@@ -448,12 +448,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 	public void listenerBajaEmpleado(ActionListener listenerForButtons) {
 		this.bajaEmpleado.addActionListener(listenerForButtons);	
-	}
-	
-	public String mostrarVentanaBajaEmpleado() {
-		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Empleado",
-				JOptionPane.QUESTION_MESSAGE);
-		return dni;
 	}
 	
 	public void listenerModificarEmpleado(ActionListener listenerForButtons) {
@@ -469,17 +463,10 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 	public void listenerAniadirVehiculo(ActionListener listenerForButtons) {
 		this.aniadirVehiculo.addActionListener(listenerForButtons);
-//		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
-//		a.setVisible(true);
 	}
 
 	public void listenerBajaVehiculo(ActionListener listenerForButtons) {
 		this.bajaVehiculo.addActionListener(listenerForButtons);
-//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Vehiculo",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO implementar modelos
-//		VehiculoImpl a = new VehiculoImpl();
-//		a.bajaVehiculo(baja);
 	}
 	
 	public void listenerModificarVehiculo(ActionListener listenerForButtons) {

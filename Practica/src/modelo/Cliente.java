@@ -12,15 +12,6 @@ public class Cliente {
 	private String email;
 	private Date nacimiento;
 	
-	public Cliente(String DNI, String nombre, String apellidos, String telefono, Date nacimiento, String email) {	
-		this.DNI = DNI;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.telefono = telefono;
-		this.nacimiento = nacimiento;
-		this.email = email;
-	}
-	
 	public void setID(int id) {
 		this.id = id;
 	}

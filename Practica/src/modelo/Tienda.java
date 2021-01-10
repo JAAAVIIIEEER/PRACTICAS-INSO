@@ -8,13 +8,6 @@ public class Tienda {
 	private String municipio;
 	private int numero;
 	
-	public Tienda(String via, String provincia, String municipio, int numero) {
-		this.via = via;
-		this.provincia = provincia;
-		this.municipio = municipio;
-		this.numero = numero;
-	}
-
 	public int getId() {
 		return id;
 	}

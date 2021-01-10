@@ -18,47 +18,27 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	private final int correctaAdmin = 0;
 	private ArrayList<Empleado> listaEmpleados;
 
-	public List<Empleado> listaEmpleados() throws SQLException {
-
-		listaEmpleados = new ArrayList<Empleado>();
-
-		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS");
-		ResultSet rs = st.executeQuery();
-
-		// TODO
-		while (rs.next()) {
-
-		}
-
-		this.cerrarConexion();
-		return listaEmpleados;
-
-	}
-
 	@Override
-	public boolean aniadirEmpleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos, String telefono, Date nacimiento, String email, String tipo) {
-		Empleado emp = new Empleado(usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, email, tipo);
+	public boolean aniadirEmpleado(Empleado nuevoEmpleado) {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			st.setString(1, emp.getUsuario());
-			st.setString(2, emp.getContrasenia());
-			st.setString(3, emp.getDNI());
-			st.setString(4, emp.getNombre());
-			st.setString(5, emp.getApellidos());
-			st.setString(6, emp.getTelefono());
-			st.setDate(7, emp.getNacimiento());
-			st.setString(8, emp.getTipo());
-			st.setString(9, emp.getEmail());
+			st.setString(1, nuevoEmpleado.getUsuario());
+			st.setString(2, nuevoEmpleado.getContrasenia());
+			st.setString(3, nuevoEmpleado.getDNI());
+			st.setString(4, nuevoEmpleado.getNombre());
+			st.setString(5, nuevoEmpleado.getApellidos());
+			st.setString(6, nuevoEmpleado.getTelefono());
+			st.setDate(7, nuevoEmpleado.getNacimiento());
+			st.setString(8, nuevoEmpleado.getTipo());
+			st.setString(9, nuevoEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
 	}
 
@@ -97,23 +77,21 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public boolean modificarEmpleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos,
-			String telefono, Date nacimiento, String email, String tipo) {
-		Empleado emp = new Empleado(usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, email, tipo);
+	public boolean modificarEmpleado(Empleado modEmpleado) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
-			st.setString(1, emp.getUsuario());
-			st.setString(2, emp.getContrasenia());
-			st.setString(3, emp.getDNI());
-			st.setString(4, emp.getNombre());
-			st.setString(5, emp.getApellidos());
-			st.setString(6, emp.getTelefono());
-			st.setDate(7, emp.getNacimiento());
-			st.setString(8, emp.getTipo());
-			st.setString(9, emp.getEmail());
+			st.setString(1, modEmpleado.getUsuario());
+			st.setString(2, modEmpleado.getContrasenia());
+			st.setString(3, modEmpleado.getDNI());
+			st.setString(4, modEmpleado.getNombre());
+			st.setString(5, modEmpleado.getApellidos());
+			st.setString(6, modEmpleado.getTelefono());
+			st.setDate(7, modEmpleado.getNacimiento());
+			st.setString(8, modEmpleado.getTipo());
+			st.setString(9, modEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

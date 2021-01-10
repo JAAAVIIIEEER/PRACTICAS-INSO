@@ -1,5 +1,9 @@
 package vista;
 
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
 import implementacion.TiendaImpl;
 import implementacion.VehiculoImpl;
 
@@ -56,12 +60,7 @@ public class VistaAniadirTienda extends javax.swing.JFrame {
         jLabel5.setText("Numero");
 
         aniadir.setText("Añadir");
-        aniadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aniadirTiendaClicked(evt);
-            }
-        });
-
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,18 +118,42 @@ public class VistaAniadirTienda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void aniadirTiendaClicked(java.awt.event.ActionEvent evt) {                                         
-        // TODO Aplicar modelo
-    	TiendaImpl a = new TiendaImpl();
-    	a.aniadirTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
-    }          
+    public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.aniadir.addActionListener(listenerForButtons);
+    }    
+    
+    public void avisarTiendaAniadidaCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Tienda añadida correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public String mostrarVentanaBajaTienda() {
+		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Baja Tienda",
+				JOptionPane.QUESTION_MESSAGE);
+		return id;
+	}
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
     	// TODO implementar modelo
     	TiendaImpl a = new TiendaImpl();
     	a.modificarTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
     }
+    
+    public String getProvinciaText() {
+    	return provinciaText.getText();
+    }
 
+    public String getMunicipioText() {
+    	return municipioText.getText();
+    }
+    
+    public String getCalleText() {
+    	return calleText.getText();
+    }
+    
+    public int getNumeroText() {
+    	return Integer.parseInt(numeroText.getText());
+    }
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadir;
     private javax.swing.JLabel jLabel1;

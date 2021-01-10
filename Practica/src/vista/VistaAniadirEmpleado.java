@@ -5,7 +5,11 @@ package vista;
  * and open the template in the editor.
  */
 
+import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.Calendar;
+
+import javax.swing.JOptionPane;
 
 import implementacion.EmpleadoImpl;
 
@@ -78,11 +82,6 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
         jLabel9.setText("Email");
 
         aniadir.setText("Agregar");
-        aniadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aniadirClicked(evt);
-            }
-        });
 
         jLabel10.setText("Tipo");
 
@@ -186,11 +185,11 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                                                         
 
-    private void aniadirClicked(java.awt.event.ActionEvent evt) {       
-    	// TODO APLICAR Patrones solo esta asi para probar que funciona el añadir
-    	// Borrar tambien esta importacion
-    	
-        //EmpleadoImpl a = new EmpleadoImpl();
+    
+    public void listenerAniadirButton(ActionListener listenForButtons) {             
+    	this.aniadir.addActionListener(listenForButtons);
+//        // TODO Implementar modelos
+//    	/EmpleadoImpl a = new EmpleadoImpl();
         //a.aniadirEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
     }
     
@@ -202,36 +201,57 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
         //a.modificarEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
     }
     
-    private int gestionarMes(String month) {
-    	switch(month) {
-    	case "Enero":
-    		return 1;
-    	case "Febrero":
-    		return 2;
-    	case "Marzo":
-    		return 3;
-    	case "Abril":
-    		return 4;
-    	case "Mayo":
-    		return 5;
-    	case "Junio":
-    		return 6;
-    	case "Julio":
-    		return 7;
-    	case "Agosto":
-    		return 8;
-    	case "Septiembre":
-    		return 9;
-    	case "Octubre":
-    		return 10;
-    	case "Noviembre":
-    		return 11;
-    	case "Diciembre":
-    		return 12;
-       	}
-    	return 0;
+    public String getDNIText() {
+    	return this.dniText.getText();
     }
-
+    
+    public String getUsuarioText() {
+		return this.usuarioText.getText();
+    }
+    
+    public String getContraseniaText() {
+    	return this.contraseniaText.getText();
+    }
+    
+    public Date getNacimientoDate() {
+    	Calendar cal = Calendar.getInstance();
+    	cal.set(Calendar.YEAR, Integer.valueOf(anioSpinner.getValue().toString()));
+    	cal.set(Calendar.MONTH, mesBox.getSelectedIndex());
+    	cal.set(Calendar.DAY_OF_MONTH, Integer.valueOf(diaSpinner.getValue().toString()));
+    	return new Date(cal.getTimeInMillis());
+    }
+    
+    public String getEmailText() {
+    	return this.emailText.getText();
+    }
+    
+    public String getTelefonoText() {
+    	return this.telefonoText.getText();
+    }
+    
+    public String getNombreText() {
+    	return this.nombreText.getText();
+    }
+    
+    public String getApellidosText() {
+    	return this.apellido1Text.getText() + " " + this.apellido2Text.getText();
+    }
+    
+    public String getTipoText() {
+    	return this.tipoBox.getSelectedItem().toString();
+    }
+    
+    public void avisarEmpleadoAniadidoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+	
+	public String mostrarVentanaBajaEmpleado() {
+		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Empleado",
+				JOptionPane.QUESTION_MESSAGE);
+		return dni;
+	}
+    
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadir;
     private javax.swing.JComboBox mesBox;

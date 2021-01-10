@@ -11,8 +11,7 @@ import modelo.Vehiculo;
 public class ClienteImpl extends Conexion implements ClienteInterface {
 
 	@Override
-	public boolean aniadirCliente(String DNI, String nombre, String apellidos, String telefono, Date nacimiento,
-			String email) {
+	public boolean aniadirCliente(Cliente miCliente) {
 		this.establecerConexion();
 		try {
 			// TODO Realizar correctamente el query a la implementacion de la bd
@@ -38,7 +37,7 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 	}
 
 	@Override
-	public boolean eliminarCliente(int clienteid) {
+	public boolean eliminarCliente(String clienteDNI) {
 		this.establecerConexion();
 		// TODO cambiar query cuando se implemente bd
 		try {

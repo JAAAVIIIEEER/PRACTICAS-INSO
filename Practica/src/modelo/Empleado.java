@@ -22,18 +22,6 @@ public class Empleado {
 	private String tipo;
 	private Date nacimiento;
 	
-	public Empleado(String usuario, String contrasenia, String DNI, String nombre, String apellidos, String telefono, Date nacimiento, String email, String tipo) {	
-		this.usuario = usuario;
-		this.contrasenia = contrasenia;
-		this.DNI = DNI;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.telefono = telefono;
-		this.nacimiento = nacimiento;
-		this.tipo = tipo;
-		this.email = email;
-	}
-	
 	public void setID(int id) {
 		this.id = id;
 	}

@@ -4,16 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 
-import implementacion.EmpleadoImpl;
+import implementacion.EmpleadoDao;
 import modelo.Empleado;
-import vista.VistaAniadirEmpleado;
+import vista.VistaEmpleado;
 
 public class EmpleadoController {
 	
 	private Empleado modelo;
-	private VistaAniadirEmpleado vista;
+	private VistaEmpleado vista;
 	
-	public EmpleadoController(Empleado modelo, VistaAniadirEmpleado vista) {
+	public EmpleadoController(Empleado modelo, VistaEmpleado vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

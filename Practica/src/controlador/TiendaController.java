@@ -1,14 +1,14 @@
 package controlador;
 
 import modelo.Tienda;
-import vista.VistaAniadirTienda;
+import vista.VistaTienda;
 
 public class TiendaController {
 	
 	private Tienda modelo;
-	private VistaAniadirTienda vista;
+	private VistaTienda vista;
 
-	public TiendaController(Tienda modelo, VistaAniadirTienda vista) {
+	public TiendaController(Tienda modelo, VistaTienda vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

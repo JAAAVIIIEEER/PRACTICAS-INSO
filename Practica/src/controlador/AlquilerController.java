@@ -3,14 +3,14 @@ package controlador;
 import java.sql.Date;
 
 import modelo.Alquiler;
-import vista.VistaAniadirAlquiler;
+import vista.VistaAlquiler;
 
 public class AlquilerController {
 
 	private Alquiler modelo;
-	private VistaAniadirAlquiler vista;
+	private VistaAlquiler vista;
 	
-	public AlquilerController(Alquiler modelo, VistaAniadirAlquiler vista) {
+	public AlquilerController(Alquiler modelo, VistaAlquiler vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

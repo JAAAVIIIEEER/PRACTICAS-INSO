@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import implementacion.TiendaImpl;
-import implementacion.VehiculoImpl;
+import implementacion.TiendaDao;
+import implementacion.VehiculoDao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,12 +17,12 @@ import implementacion.VehiculoImpl;
  *
  * @author rauls
  */
-public class VistaAniadirTienda extends javax.swing.JFrame {
+public class VistaTienda extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaAniadirTienda
+     * Creates new form VistaTienda
      */
-    public VistaAniadirTienda() {
+    public VistaTienda() {
         initComponents();
     }
 
@@ -134,7 +134,7 @@ public class VistaAniadirTienda extends javax.swing.JFrame {
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
     	// TODO implementar modelo
-    	TiendaImpl a = new TiendaImpl();
+    	TiendaDao a = new TiendaDao();
     	a.modificarTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
     }
     

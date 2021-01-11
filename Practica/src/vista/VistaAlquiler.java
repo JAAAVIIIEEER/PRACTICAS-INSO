@@ -11,18 +11,18 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-import implementacion.AlquilerImpl;
+import implementacion.AlquilerDao;
 
 /**
  *
  * @author rauls
  */
-public class VistaAniadirAlquiler extends javax.swing.JFrame {
+public class VistaAlquiler extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaAniadirAlquiler
      */
-    public VistaAniadirAlquiler() {
+    public VistaAlquiler() {
         initComponents();
     }
 

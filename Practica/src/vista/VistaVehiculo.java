@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
-import implementacion.VehiculoImpl;
+import implementacion.VehiculoDao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,12 +17,12 @@ import implementacion.VehiculoImpl;
  *
  * @author rauls
  */
-public class VistaAniadirVehiculo extends javax.swing.JFrame {
+public class VistaVehiculo extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaAniadirVehiculo
+     * Creates new form VistaVehiculo
      */
-    public VistaAniadirVehiculo() {
+    public VistaVehiculo() {
         initComponents();
     }
 
@@ -148,7 +148,7 @@ public class VistaAniadirVehiculo extends javax.swing.JFrame {
     
     private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
     	// TODO implementar modelo
-    	VehiculoImpl a = new VehiculoImpl();
+    	VehiculoDao a = new VehiculoDao();
     	a.modificarVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
     }
     

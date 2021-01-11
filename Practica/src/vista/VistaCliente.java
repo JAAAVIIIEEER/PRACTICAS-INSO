@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-import implementacion.ClienteImpl;
+import implementacion.ClienteDao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,12 +18,12 @@ import implementacion.ClienteImpl;
  *
  * @author rauls
  */
-public class VistaAniadirCliente extends javax.swing.JFrame {
+public class VistaCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaAniadirEmpleado
+     * Creates new form VistaEmpleado
      */
-    public VistaAniadirCliente() {
+    public VistaCliente() {
         initComponents();
     }
 

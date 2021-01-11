@@ -1,22 +1,39 @@
 package implementacion;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import interfaces.AlquilerInterface;
-import modelo.Alquiler;
 import modelo.Vehiculo;
 
-public class AlquilerImpl extends Conexion implements AlquilerInterface {
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import interfaces.VehiculoInterface;
+
+
+public class VehiculoDao extends Conexion implements VehiculoInterface{
+	
+	public List<Vehiculo> listaVehiculos() throws Exception {
+		
+		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		
+		this.establecerConexion();
+		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS");
+		ResultSet rs = st.executeQuery();
+		
+		while (rs.next()) {
+			
+		}
+		
+		this.cerrarConexion();
+		return listaVehiculos;
+	}
 
 	@Override
-	public boolean aniadirAlquiler(Alquiler miAlquiler) {
+	public boolean aniadirVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente bd
+			// TODO Implementar query cuando se implemente la base de datos
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO ALQUILERES (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO Vehiculos (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 //			st.setString(1, emp.getUsuario());
 //			st.setString(2, emp.getContrasenia());
 //			st.setString(3, emp.getDNI());
@@ -32,52 +49,48 @@ public class AlquilerImpl extends Conexion implements AlquilerInterface {
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
-	}	
-	
+	}
+
 	@Override
-	public boolean finalizarAlquiler(int alquilerid) {
+	public void bajaVehiculo(String matricula) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE ID=?");
+			PreparedStatement st = this.getConexion().prepareStatement("UPDATE VEHICULOS SET estado=? WHERE ID=?");
 //			st.setString(1, "Baja");
 //			st.setInt(2, empleadoid);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			return false;
 		}
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
-		return true;
 	}
 
 	@Override
-	public Alquiler consultarAlquiler(int alquilerid) {
+	public Vehiculo consultarVehiculo(String matricula) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES WHERE ID=?");
-			st.setInt(1, alquilerid);
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS WHERE MATRICULA=?");
+			st.setString(1, matricula);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// TODO Poner todos los datos
-		// Alquiler found = new Alquiler();
-		// return found;
-		return null;
+		Vehiculo found = new Vehiculo();
+		return found;
 	}
 
 	@Override
-	public boolean modificarAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo) {
+	public boolean modificarVehiculo(String matricula, String tipo, int plazas, String combustible, int precio) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente bd
+			// TODO Implementar query cuando se implemente la base de datos
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Alquileres SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
+					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
 //			st.setString(1, emp.getUsuario());
 //			st.setString(2, emp.getContrasenia());
 //			st.setString(3, emp.getDNI());
@@ -93,7 +106,6 @@ public class AlquilerImpl extends Conexion implements AlquilerInterface {
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
 	}
 }

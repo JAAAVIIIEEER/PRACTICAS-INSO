@@ -9,39 +9,41 @@ import modelo.*;
 
 public class Controlador{
 	
-	private VistaAutenticar vista;
+	private VistaAutenticar vistaAutenticar;
 	private int errores = 0;
-	private VistaGeneral general;
-	private VistaAniadirAlquiler aniadirAlquiler;
-	private VistaAniadirEmpleado aniadirEmpleado;
-	private VistaAniadirVehiculo aniadirVehiculo;
-	private VistaAniadirTienda vistaTienda;
-	private VistaAniadirCliente vistaCliente;
-	private VistaAniadirOferta vistaOferta;
+	private VistaGeneral vistaGeneral;
+	private VistaAlquiler vistaAlquiler;
+	private VistaEmpleado vistaEmpleado;
+	private VistaVehiculo vistaVehiculo;
+	private VistaTienda vistaTienda;
+	private VistaCliente vistaCliente;
+	private VistaOferta vistaOferta;
+	private ValidarDatos validar;
 	
 	private final boolean visible = true;
 	private final boolean noVisible = false;
 
 	public Controlador() {
-		this.vista = new VistaAutenticar();
-		this.aniadirAlquiler = new VistaAniadirAlquiler();
-		this.aniadirEmpleado = new VistaAniadirEmpleado();
-		this.aniadirVehiculo = new VistaAniadirVehiculo();
-		this.vistaTienda = new VistaAniadirTienda();
-		this.vistaCliente = new VistaAniadirCliente();
-		this.vistaOferta = new VistaAniadirOferta();
+		this.vistaAutenticar = new VistaAutenticar();
+		this.vistaAlquiler = new VistaAlquiler();
+		this.vistaEmpleado = new VistaEmpleado();
+		this.vistaVehiculo = new VistaVehiculo();
+		this.vistaTienda = new VistaTienda();
+		this.vistaCliente = new VistaCliente();
+		this.vistaOferta = new VistaOferta();
+		this.validar = new ValidarDatos();
 	}
 	
 	public void mostrarVentanaAniadirAlquiler(boolean estado) {
-		this.aniadirAlquiler.setVisible(true);
+		this.vistaAlquiler.setVisible(true);
 	}
 	
 	public void mostrarVentanaAniadirEmpleado(boolean estado) {
-		this.aniadirEmpleado.setVisible(estado);
+		this.vistaEmpleado.setVisible(estado);
 	}
 	
 	public void mostrarVentanaAniadirVehiculo(boolean estado) {
-		this.aniadirVehiculo.setVisible(estado);
+		this.vistaVehiculo.setVisible(estado);
 	}
 	
 	public void mostrarVentanaAniadirCliente(boolean estado) {
@@ -64,16 +66,16 @@ public class Controlador{
 	public void mostrarVentanaAutenticar() {
 		this.errores = 0;
 		aniadirListenerAutenticar();
-		vista.setVisible(true);
+		vistaAutenticar.setVisible(true);
 	}
 	
 	private void mostrarVentanaAutenticarSec() {
 		this.errores = 0;
-		vista.setVisible(true);
+		vistaAutenticar.setVisible(true);
 	}
 	
 	private void listenerCambiarUsuario() {
-		this.general.addButtonListener(new ActionListener() {
+		this.vistaGeneral.addButtonListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				mostrarVentanaAutenticarSec();
 			}
@@ -81,7 +83,7 @@ public class Controlador{
 	}
 	
 	private void listenerAniadirEmpleado() {
-		this.general.listenerAniadirEmpleado(new ActionListener() {
+		this.vistaGeneral.listenerAniadirEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestionarNuevoEmpleado();
 			}
@@ -90,47 +92,80 @@ public class Controlador{
 	
 	private void gestionarNuevoEmpleado() {
 		this.mostrarVentanaAniadirEmpleado(visible);
-		this.aniadirEmpleado.listenerAniadirButton(new ActionListener() {
+		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Empleado miEmpleado = new Empleado();
-				miEmpleado.setDNI(aniadirEmpleado.getDNIText());
-				miEmpleado.setUsuario(aniadirEmpleado.getUsuarioText());
-				miEmpleado.setContrasenia(aniadirEmpleado.getContraseniaText());
-				miEmpleado.setNacimiento(aniadirEmpleado.getNacimientoDate());
-				miEmpleado.setEmail(aniadirEmpleado.getEmailText());
-				miEmpleado.setTelefono(aniadirEmpleado.getTelefonoText());
-				miEmpleado.setNombre(aniadirEmpleado.getNombreText());
-				miEmpleado.setApellidos(aniadirEmpleado.getApellidosText());
-				miEmpleado.setTipo(aniadirEmpleado.getTipoText());
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				miEmpleado.setDNI(vistaEmpleado.getDNIText());
+				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
+				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
+				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setEmail(vistaEmpleado.getEmailText());
+				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
+				miEmpleado.setNombre(vistaEmpleado.getNombreText());
+				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
+				miEmpleado.setTipo(vistaEmpleado.getTipoText());
+				EmpleadoDao empleado = new EmpleadoDao();
 				if (empleado.aniadirEmpleado(miEmpleado)) {
 					mostrarVentanaAniadirEmpleado(noVisible);
-					aniadirEmpleado.avisarEmpleadoAniadidoCorrecto();
+					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
 				}
 			}
 		});	
 	}
 	
 	private void listenerBajaEmpleado() {
-		this.general.listenerBajaEmpleado(new ActionListener() {
+		this.vistaGeneral.listenerBajaEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				String dni = aniadirEmpleado.mostrarVentanaBajaEmpleado();
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				String dni = vistaEmpleado.mostrarVentanaBajaEmpleado();
+				EmpleadoDao empleado = new EmpleadoDao();
 				empleado.eliminarEmpleado(dni);
 			}
 		});
 	}
 	
 	private void listenerModificarEmpleado() {
-		this.general.listenerModificarEmpleado(new ActionListener() {
+		this.vistaGeneral.listenerModificarEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				gestionarModificarEmpleado();
 			}
 		});
 	}
 	
+	private void gestionarModificarEmpleado() {
+		String dni = vistaEmpleado.mostrarVentanaConsultarEmpleado();
+		EmpleadoDao empleado = new EmpleadoDao();
+		Empleado miEmpleado = empleado.consultarEmpleado(dni);
+		vistaEmpleado.setDNIText(miEmpleado.getDNI());
+		vistaEmpleado.setUsuarioText(miEmpleado.getUsuario());
+		vistaEmpleado.setContraseniaText(miEmpleado.getContrasenia());
+		vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
+		vistaEmpleado.setEmailText(miEmpleado.getEmail());
+		vistaEmpleado.setTelefonoText(miEmpleado.getTelefono());
+		vistaEmpleado.setNombreText(miEmpleado.getNombre());
+		vistaEmpleado.setApellidosText(miEmpleado.getApellidos());
+		vistaEmpleado.setTipoText(miEmpleado.getTipo());
+		mostrarVentanaAniadirEmpleado(visible);
+		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miEmpleado.setDNI(vistaEmpleado.getDNIText());
+				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
+				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
+				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setEmail(vistaEmpleado.getEmailText());
+				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
+				miEmpleado.setNombre(vistaEmpleado.getNombreText());
+				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
+				miEmpleado.setTipo(vistaEmpleado.getTipoText());
+				if (empleado.modificarEmpleado(miEmpleado)) {
+					mostrarVentanaAniadirEmpleado(noVisible);
+					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+				}
+			}
+		});	
+	}
+	
 	private void listenerAniadirVehiculo() {
-		this.general.listenerAniadirVehiculo(new ActionListener() {
+		this.vistaGeneral.listenerAniadirVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestionarNuevoVehiculo();
 			}
@@ -139,47 +174,79 @@ public class Controlador{
 	
 	private void gestionarNuevoVehiculo() {
 		this.mostrarVentanaAniadirVehiculo(visible);
-		this.aniadirVehiculo.listenerAniadirButton(new ActionListener() {
+		this.vistaVehiculo.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Vehiculo miVehiculo = new Vehiculo();
-				miVehiculo.setPlazas(aniadirVehiculo.getPlazasBoxText());
-				miVehiculo.setCombustible(aniadirVehiculo.getCombustibleBoxText());
-				miVehiculo.setTipo(aniadirVehiculo.getTipoBoxText());
-				miVehiculo.setCoste(aniadirVehiculo.getCosteSpinnerText());
-				miVehiculo.setMatricula(aniadirVehiculo.getMatriculaText());
-				miVehiculo.setMarca(aniadirVehiculo.getMarcaText());
-//				miVehiculo.setNombre(aniadirEmpleado.getNombreText());
-//				miVehiculo.setApellidos(aniadirEmpleado.getApellidosText());
-//				miVehiculo.setTipo(aniadirEmpleado.getTipoText());
-				VehiculoImpl vehiculo = new VehiculoImpl();
+				miVehiculo.setPlazas(vistaVehiculo.getPlazasBoxText());
+				miVehiculo.setCombustible(vistaVehiculo.getCombustibleBoxText());
+				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
+				miVehiculo.setCoste(vistaVehiculo.getCosteSpinnerText());
+				miVehiculo.setMatricula(vistaVehiculo.getMatriculaText());
+				miVehiculo.setMarca(vistaVehiculo.getMarcaText());
+//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
+//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
+//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				VehiculoDao vehiculo = new VehiculoDao();
 				if (vehiculo.aniadirVehiculo(miVehiculo)) {
 					mostrarVentanaAniadirVehiculo(noVisible);
-					aniadirVehiculo.avisarVehiculoAniadidoCorrecto();
+					vistaVehiculo.avisarVehiculoAniadidoCorrecto();
 				}
 			}
 		});	
 	}
 	
 	private void listenerBajaVehiculo() {
-		this.general.listenerBajaVehiculo(new ActionListener() {
+		this.vistaGeneral.listenerBajaVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				String id = aniadirVehiculo.mostrarVentanaBajaVehiculo();
-				VehiculoImpl vehiculo = new VehiculoImpl();
+				String id = vistaVehiculo.mostrarVentanaBajaVehiculo();
+				VehiculoDao vehiculo = new VehiculoDao();
 				vehiculo.bajaVehiculo(id);
 			}
 		});
 	}
 	
 	private void listenerModificarVehiculo() {
-		this.general.listenerModificarVehiculo(new ActionListener() {
+		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				gestionarModificarVehiculo();
 			}
 		});
 	}
 	
+	private void gestionarModificarVehiculo() {
+//		String id = vistaEmpleado.mostrarVentanaConsultarEmpleado();
+//		VehiculoDao vehiculo = new VehiculoDao();
+//		Vehiculo miVehiculo = vehiculo.consultarVehiculo(Integer.valueOf(id));
+//		vistaVehiculo.setDNIText(miEmpleado.getDNI());
+//		vistaVehiculo.setUsuarioText(miEmpleado.getUsuario());
+//		vistaVehiculo.setContraseniaText(miEmpleado.getContrasenia());
+//		vistaVehiculo.setNacimientoDate(miEmpleado.getNacimiento());
+//		vistaVehiculo.setEmailText(miEmpleado.getEmail());
+//		vistaVehiculo.setTelefonoText(miEmpleado.getTelefono());
+//		vistaVehiculo.setNombreText(miEmpleado.getNombre());
+//		mostrarVentanaAniadirVehiculo(visible);
+//		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				miEmpleado.setDNI(vistaEmpleado.getDNIText());
+//				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
+//				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
+//				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+//				miEmpleado.setEmail(vistaEmpleado.getEmailText());
+//				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
+//				miEmpleado.setNombre(vistaEmpleado.getNombreText());
+//				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
+//				miEmpleado.setTipo(vistaEmpleado.getTipoText());
+//				EmpleadoDao empleado = new EmpleadoDao();
+//				if (empleado.modificarEmpleado(miEmpleado)) {
+//					mostrarVentanaAniadirVehiculo(noVisible);
+//					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+//				}
+//			}
+//		});	
+	}
+	
 	private void listenerAniadirTienda() {
-		this.general.listenerAniadirTienda(new ActionListener() {
+		this.vistaGeneral.listenerAniadirTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestionarNuevaTienda();
 			}
@@ -197,10 +264,10 @@ public class Controlador{
 				miTienda.setNumero(vistaTienda.getNumeroText());
 //				miVehiculo.setMatricula(vistaTienda.getMatriculaText());
 //				miVehiculo.setMarca(vistaTienda.getMarcaText());
-//				miVehiculo.setNombre(aniadirEmpleado.getNombreText());
-//				miVehiculo.setApellidos(aniadirEmpleado.getApellidosText());
-//				miVehiculo.setTipo(aniadirEmpleado.getTipoText());
-				TiendaImpl tienda = new TiendaImpl();
+//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
+//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
+//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				TiendaDao tienda = new TiendaDao();
 				if (tienda.aniadirTienda(miTienda)) {
 					mostrarVentanaAniadirTienda(noVisible);
 					vistaTienda.avisarTiendaAniadidaCorrecto();
@@ -210,25 +277,25 @@ public class Controlador{
 	}
 	
 	private void listenerBajaTienda() {
-		this.general.listenerBajaTienda(new ActionListener() {
+		this.vistaGeneral.listenerBajaTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				String id = vistaTienda.mostrarVentanaBajaTienda();
-				TiendaImpl tienda = new TiendaImpl();
+				TiendaDao tienda = new TiendaDao();
 				tienda.eliminarTienda(Integer.parseInt(id));
 			}
 		});
 	}
 	
 	private void listenerModificarTienda() {
-		this.general.listenerModificarTienda(new ActionListener() {
+		this.vistaGeneral.listenerModificarTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				EmpleadoDao empleado = new EmpleadoDao();
 			}
 		});
 	}
 	
 	private void listenerAniadirAlquiler() {
-		this.general.listenerAniadirAlquiler(new ActionListener() {
+		this.vistaGeneral.listenerAniadirAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestionaNuevoAlquiler();
 			}
@@ -237,47 +304,47 @@ public class Controlador{
 	
 	private void gestionaNuevoAlquiler() {
 		this.mostrarVentanaAniadirAlquiler(visible);
-		this.aniadirAlquiler.listenerAniadirButton(new ActionListener() {
+		this.vistaAlquiler.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Alquiler miAlquiler = new Alquiler();
-				miAlquiler.setDni(aniadirAlquiler.getDNIText());
-				miAlquiler.setFecha1(aniadirAlquiler.getFechaInicio());
-				miAlquiler.setFecha2(aniadirAlquiler.getFechaFin());
-				miAlquiler.setMatVehiculo(aniadirAlquiler.getVehiculo());
-//				miAlquiler.setMatricula(aniadirAlquiler.getMatriculaText());
-//				miAlquiler.setMarca(aniadirAlquiler.getMarcaText());
-//				miVehiculo.setNombre(aniadirEmpleado.getNombreText());
-//				miVehiculo.setApellidos(aniadirEmpleado.getApellidosText());
-//				miVehiculo.setTipo(aniadirEmpleado.getTipoText());
-				AlquilerImpl alquiler = new AlquilerImpl();
+				miAlquiler.setDni(vistaAlquiler.getDNIText());
+				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
+				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
+				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
+//				miAlquiler.setMatricula(vistaAlquiler.getMatriculaText());
+//				miAlquiler.setMarca(vistaAlquiler.getMarcaText());
+//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
+//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
+//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				AlquilerDao alquiler = new AlquilerDao();
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
-					aniadirAlquiler.avisaAlquilerAniadidoCorrecto();
+					vistaAlquiler.avisaAlquilerAniadidoCorrecto();
 				}
 			}
 		});	
 	}
 	
 	private void listenerFinalizarAlquiler() {
-		this.general.listenerFinalizarAlquiler(new ActionListener() {
+		this.vistaGeneral.listenerFinalizarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				String id = aniadirAlquiler.mostrarVentanaFinalizarAlquiler();
-				TiendaImpl alquiler = new TiendaImpl();
+				String id = vistaAlquiler.mostrarVentanaFinalizarAlquiler();
+				TiendaDao alquiler = new TiendaDao();
 				alquiler.eliminarTienda(Integer.parseInt(id));
 			}
 		});
 	}
 	
 	private void listenerModificarAlquiler() {
-		this.general.listenerModificarAlquiler(new ActionListener() {
+		this.vistaGeneral.listenerModificarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				EmpleadoDao empleado = new EmpleadoDao();
 			}
 		});
 	}
 	
 	private void listenerAniadirCliente() {
-		this.general.listenerAniadirCliente(new ActionListener() {
+		this.vistaGeneral.listenerAniadirCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				gestionaNuevoCliente();
 			}
@@ -295,10 +362,10 @@ public class Controlador{
 				miCliente.setTelefono(vistaCliente.getTelefonoText());
 				miCliente.setNacimiento(vistaCliente.getNacimientoDate());
 				miCliente.setEmail(vistaCliente.getEmailText());
-//				miVehiculo.setNombre(aniadirEmpleado.getNombreText());
-//				miVehiculo.setApellidos(aniadirEmpleado.getApellidosText());
-//				miVehiculo.setTipo(aniadirEmpleado.getTipoText());
-				ClienteImpl cliente = new ClienteImpl();
+//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
+//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
+//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				ClienteDao cliente = new ClienteDao();
 				if (cliente.aniadirCliente(miCliente)) {
 					mostrarVentanaAniadirCliente(noVisible);
 					vistaCliente.avisarClienteAniadidoCorrecto();
@@ -308,19 +375,19 @@ public class Controlador{
 	}
 	
 	private void listenerBajaCliente() {
-		this.general.listenerBajaCliente(new ActionListener() {
+		this.vistaGeneral.listenerBajaCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				String dni = vistaCliente.mostrarVentanaBajaCliente();
-				ClienteImpl cliente = new ClienteImpl();
+				ClienteDao cliente = new ClienteDao();
 				cliente.eliminarCliente(dni);
 			}
 		});
 	}
 	
 	private void listenerModificarCliente() {
-		this.general.listenerModificarCliente(new ActionListener() {
+		this.vistaGeneral.listenerModificarCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoImpl empleado = new EmpleadoImpl();
+				EmpleadoDao empleado = new EmpleadoDao();
 			}
 		});
 	}
@@ -348,7 +415,7 @@ public class Controlador{
 	}
 	
 	private void aniadirListenerAutenticar() {
-		this.vista.addButtonListener(new ActionListener() {
+		this.vistaAutenticar.addButtonListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
             	validar(evt);
             }
@@ -356,28 +423,28 @@ public class Controlador{
 	}
 	
 	private void validar(ActionEvent evt) {
-		if (general != null) {
-			general.dispose();
+		if (vistaGeneral != null) {
+			vistaGeneral.dispose();
 		}
-		String usuario = this.vista.getTextFieldUsuario().getText();
-		String contrasenia = String.valueOf(this.vista.getPasswordText().getPassword());
-		AutenticarImpl autenticar = new AutenticarImpl();
+		String usuario = this.vistaAutenticar.getTextFieldUsuario().getText();
+		String contrasenia = String.valueOf(this.vistaAutenticar.getPasswordText().getPassword());
+		AutenticarDao autenticar = new AutenticarDao();
 		int estado = autenticar.autenticarConexion(usuario, contrasenia);
 		if (estado == 2) {
 			errores += 1;
 			if (errores < 3) {
-				this.vista.avisarAutentificacionErronea();
+				this.vistaAutenticar.avisarAutentificacionErronea();
 			} else {
-				this.vista.cerrarProgramaErrorAutenticacion();
+				this.vistaAutenticar.cerrarProgramaErrorAutenticacion();
 			}
 		} else {
-			general = new VistaGeneral(estado);
-    		general.setVisible(true);
+			vistaGeneral = new VistaGeneral(estado);
+    		vistaGeneral.setVisible(true);
     		aniadirListenerGeneral(estado);
-    		this.vista.setVisible(false);;
+    		this.vistaAutenticar.setVisible(false);;
 		}
-		this.vista.getTextFieldUsuario().setText("");
-		this.vista.getPasswordText().setText("");
+		this.vistaAutenticar.getTextFieldUsuario().setText("");
+		this.vistaAutenticar.getPasswordText().setText("");
 	}
 }
 

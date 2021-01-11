@@ -3,13 +3,13 @@ package controlador;
 import java.sql.Date;
 
 import modelo.Oferta;
-import vista.VistaAniadirOferta;
+import vista.VistaOferta;
 
 public class OfertaController {
 	private  Oferta modelo;
-	private VistaAniadirOferta vista;
+	private VistaOferta vista;
 	
-	public OfertaController(Oferta modelo, VistaAniadirOferta vista) {
+	public OfertaController(Oferta modelo, VistaOferta vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

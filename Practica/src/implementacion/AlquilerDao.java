@@ -4,19 +4,19 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import interfaces.ClienteInterface;
-import modelo.Cliente;
+import interfaces.AlquilerInterface;
+import modelo.Alquiler;
 import modelo.Vehiculo;
 
-public class ClienteImpl extends Conexion implements ClienteInterface {
+public class AlquilerDao extends Conexion implements AlquilerInterface {
 
 	@Override
-	public boolean aniadirCliente(Cliente miCliente) {
+	public boolean aniadirAlquiler(Alquiler miAlquiler) {
 		this.establecerConexion();
 		try {
-			// TODO Realizar correctamente el query a la implementacion de la bd
+			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO CLIENTES (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO ALQUILERES (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 //			st.setString(1, emp.getUsuario());
 //			st.setString(2, emp.getContrasenia());
 //			st.setString(3, emp.getDNI());
@@ -34,14 +34,14 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 		this.cerrarConexion();
 		//listaEmpleados.add(emp);
 		return true;
-	}
-
+	}	
+	
 	@Override
-	public boolean eliminarCliente(String clienteDNI) {
+	public boolean finalizarAlquiler(int alquilerid) {
 		this.establecerConexion();
-		// TODO cambiar query cuando se implemente bd
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE CLIENTES SET estado=? WHERE ID=?");
+			// TODO Implementar query cuando se implemente la bd
+			PreparedStatement st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE ID=?");
 //			st.setString(1, "Baja");
 //			st.setInt(2, empleadoid);
 			st.executeUpdate();
@@ -52,34 +52,32 @@ public class ClienteImpl extends Conexion implements ClienteInterface {
 		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
-
 	}
 
 	@Override
-	public Cliente consultarCliente(String DNI) {
+	public Alquiler consultarAlquiler(int alquilerid) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM CLIENTES WHERE DNI=?");
-			st.setString(1, DNI);
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES WHERE ID=?");
+			st.setInt(1, alquilerid);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// TODO Poner todos los datos
-		//Cliente found = new Cliente();
-		//return found;
+		// Alquiler found = new Alquiler();
+		// return found;
 		return null;
 	}
 
 	@Override
-	public boolean modificarCliente(String DNI, String nombre, String apellidos, String telefono, Date nacimiento,
-			String email) {
+	public boolean modificarAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo) {
 		this.establecerConexion();
 		try {
-			// TODO Realizar correctamente el query a la implementacion de la bd
+			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
+					"UPDATE Alquileres SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
 //			st.setString(1, emp.getUsuario());
 //			st.setString(2, emp.getContrasenia());
 //			st.setString(3, emp.getDNI());

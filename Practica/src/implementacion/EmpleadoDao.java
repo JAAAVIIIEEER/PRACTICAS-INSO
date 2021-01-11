@@ -11,7 +11,7 @@ import interfaces.EmpleadoInterface;
 import modelo.Empleado;
 import modelo.Vehiculo;
 
-public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
+public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 
 	private final int incorrecta = 2;
 	private final int correctaBase = 1;
@@ -60,20 +60,27 @@ public class EmpleadoImpl extends Conexion implements EmpleadoInterface {
 	}
 	
 	@Override
-	public Empleado consultarEmpleado(int empleadoid) {
+	public Empleado consultarEmpleado(String empleadoDNI) {
+		Empleado miEmpleado = new Empleado();
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE ID=?");
-			st.setInt(1, empleadoid);
-			st.executeUpdate();
+			st.setString(1, empleadoDNI);
+			ResultSet res = st.executeQuery();
+			while(res.next()){
+//				miEmpleado.setIdPersona(Integer.parseInt(res.getString("id")));
+//				miEmpleado.setNombrePersona(res.getString("nombre"));
+//				miEmpleado.setEdadPersona(Integer.parseInt(res.getString("edad")));
+//				miEmpleado.setProfesionPersona(res.getString("profesion"));
+//				miEmpleado.setTelefonoPersona(Integer.parseInt(res.getString("telefono")));
+			 }
+			res.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		// TODO Poner todos los datos
-//		Empleado found = new Empleado();
-//		return found;
-		return null;
+		this.cerrarConexion();
+		return miEmpleado;
 	}
 
 	@Override

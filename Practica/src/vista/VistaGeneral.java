@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import implementacion.AlquilerImpl;
-import implementacion.ClienteImpl;
-import implementacion.EmpleadoImpl;
-import implementacion.TiendaImpl;
-import implementacion.VehiculoImpl;
+import implementacion.AlquilerDao;
+import implementacion.ClienteDao;
+import implementacion.EmpleadoDao;
+import implementacion.TiendaDao;
+import implementacion.VehiculoDao;
 import modelo.Alquiler;
 import modelo.Empleado;
 import modelo.Tienda;
@@ -452,13 +452,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 	
 	public void listenerModificarEmpleado(ActionListener listenerForButtons) {
 		this.modificarEmpleado.addActionListener(listenerForButtons);
-//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Añadir implementacion de modelos
-//		EmpleadoImpl consulta = new EmpleadoImpl();
-//		consulta.consultarEmpleado(Integer.valueOf(modificacion));
-//		VistaAniadirEmpleado a = new VistaAniadirEmpleado();
-//		a.setVisible(true);
 	}
 
 	public void listenerAniadirVehiculo(ActionListener listenerForButtons) {
@@ -476,13 +469,13 @@ public class VistaGeneral extends javax.swing.JFrame {
 //		// TODO Añadir implementacion de modelos
 //		VehiculoImpl consulta = new VehiculoImpl();
 //		consulta.consultarVehiculo(modificacion);
-//		VistaAniadirVehiculo a = new VistaAniadirVehiculo();
+//		VistaVehiculo a = new VistaVehiculo();
 //		a.setVisible(true);
 	}
 	
 	public void listenerAniadirTienda(ActionListener listenerForButtons) {
 		this.aniadirTienda.addActionListener(listenerForButtons);
-//		VistaAniadirTienda aniadir = new VistaAniadirTienda();
+//		VistaTienda aniadir = new VistaTienda();
 //		aniadir.setVisible(true);
 	}
 
@@ -502,7 +495,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 //		// TODO Añadir implementacion de modelos
 //		TiendaImpl consulta = new TiendaImpl();
 //		consulta.consultarTienda(Integer.valueOf(modificacion));
-//		VistaAniadirTienda a = new VistaAniadirTienda();
+//		VistaTienda a = new VistaTienda();
 //		a.setVisible(true);
 	}
 	
@@ -565,7 +558,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
 		String matConsulta = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Vehiculo a consultar",
 				JOptionPane.QUESTION_MESSAGE);
-		VehiculoImpl consulta = new VehiculoImpl();
+		VehiculoDao consulta = new VehiculoDao();
 		Vehiculo a = consulta.consultarVehiculo(matConsulta);
 	}
 	
@@ -573,15 +566,16 @@ public class VistaGeneral extends javax.swing.JFrame {
 		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
 				JOptionPane.QUESTION_MESSAGE);
 		// TODO Añadir implementacion de modelos
-		TiendaImpl consulta = new TiendaImpl();
+		TiendaDao consulta = new TiendaDao();
 		Tienda a = consulta.consultarTienda(Integer.valueOf(idConsultar));
 	}
 	
 	private void consultarEmpleadoClicked(java.awt.event.ActionEvent evt) {
+		// TODO probablemente haya que mover estos listener
 		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
 				JOptionPane.QUESTION_MESSAGE);
-		EmpleadoImpl consulta = new EmpleadoImpl();
-		Empleado a = consulta.consultarEmpleado(Integer.valueOf(idConsultar));
+		EmpleadoDao consulta = new EmpleadoDao();
+		Empleado a = consulta.consultarEmpleado(idConsultar);
 	}
 
 	
@@ -590,14 +584,14 @@ public class VistaGeneral extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE);
 		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
 		// implementacion
-		ClienteImpl a = new ClienteImpl();
+		ClienteDao a = new ClienteDao();
 		a.consultarCliente(dniCliente);
 	}
 
 	private void consultarAlquilerClicked(java.awt.event.ActionEvent evt) {
 		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Cliente a consultar",
 				JOptionPane.QUESTION_MESSAGE);
-		AlquilerImpl consulta = new AlquilerImpl();
+		AlquilerDao consulta = new AlquilerDao();
 		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
 	}
 

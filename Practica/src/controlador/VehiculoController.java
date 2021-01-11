@@ -1,14 +1,14 @@
 package controlador;
 
 import modelo.Vehiculo;
-import vista.VistaAniadirVehiculo;
+import vista.VistaVehiculo;
 
 public class VehiculoController {
 	
 	private Vehiculo modelo;
-	private VistaAniadirVehiculo vista;
+	private VistaVehiculo vista;
 	
-	public VehiculoController(Vehiculo modelo, VistaAniadirVehiculo vista) {
+	public VehiculoController(Vehiculo modelo, VistaVehiculo vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

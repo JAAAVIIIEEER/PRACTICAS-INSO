@@ -1,7 +1,7 @@
 package modelo;
 
 import java.sql.Date;
-import implementacion.EmpleadoImpl;
+import implementacion.EmpleadoDao;
 
 public class Empleado {
 	
@@ -103,7 +103,7 @@ public class Empleado {
 	}
 	
 	public boolean aniadirEmpleado() {
-		EmpleadoImpl aux = new EmpleadoImpl();
+		EmpleadoDao aux = new EmpleadoDao();
 		return false;
 	}
 }

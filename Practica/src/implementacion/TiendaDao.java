@@ -7,7 +7,7 @@ import interfaces.TiendaInterface;
 import modelo.Tienda;
 import modelo.Vehiculo;
 
-public class TiendaImpl extends Conexion implements TiendaInterface {
+public class TiendaDao extends Conexion implements TiendaInterface {
 	
 	@Override
 	public boolean aniadirTienda(Tienda miTienda) {

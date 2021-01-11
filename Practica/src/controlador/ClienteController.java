@@ -3,14 +3,14 @@ package controlador;
 import java.sql.Date;
 
 import modelo.Cliente;
-import vista.VistaAniadirCliente;
+import vista.VistaCliente;
 
 public class ClienteController {
 	
 	private Cliente modelo;
-	private VistaAniadirCliente vista;
+	private VistaCliente vista;
 
-	public ClienteController(Cliente modelo, VistaAniadirCliente vista) {
+	public ClienteController(Cliente modelo, VistaCliente vista) {
 		this.modelo = modelo;
 		this.vista = vista;
 	}

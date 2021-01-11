@@ -11,18 +11,18 @@ import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 
-import implementacion.EmpleadoImpl;
+import implementacion.EmpleadoDao;
 
 /**
  *
  * @author rauls
  */
-public class VistaAniadirEmpleado extends javax.swing.JFrame {
+public class VistaEmpleado extends javax.swing.JFrame {
 
     /**
-     * Creates new form VistaAniadirEmpleado
+     * Creates new form VistaEmpleado
      */
-    public VistaAniadirEmpleado() {
+    public VistaEmpleado() {
         initComponents();
     }
 
@@ -205,12 +205,24 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
     	return this.dniText.getText();
     }
     
+    public void setDNIText(String dni) {
+    	this.dniText.setText(dni);
+    }
+    
     public String getUsuarioText() {
 		return this.usuarioText.getText();
     }
     
+    public void setUsuarioText(String usuario) {
+    	this.usuarioText.setText(usuario);
+    }
+    
     public String getContraseniaText() {
     	return this.contraseniaText.getText();
+    }
+    
+    public void setContraseniaText(String contrasenia) {
+    	this.contraseniaText.setText(contrasenia);
     }
     
     public Date getNacimientoDate() {
@@ -221,24 +233,55 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
     	return new Date(cal.getTimeInMillis());
     }
     
+    
+    public void setNacimientoDate(Date fecha) {
+    	Calendar cal = Calendar.getInstance();
+    	cal.setTime(fecha);
+    	this.diaSpinner.setValue(cal.get(Calendar.DAY_OF_MONTH));
+    	this.mesBox.setSelectedIndex(cal.get(Calendar.MONTH));
+    	this.anioSpinner.setValue(cal.get(Calendar.YEAR));
+    }
+    
     public String getEmailText() {
     	return this.emailText.getText();
+    }
+    
+    public void setEmailText(String email) {
+    	this.emailText.setText(email);
     }
     
     public String getTelefonoText() {
     	return this.telefonoText.getText();
     }
     
+    public void setTelefonoText(String telefono) {
+    	this.telefonoText.setText(telefono);
+    }
+    
     public String getNombreText() {
     	return this.nombreText.getText();
+    }
+    
+    public void setNombreText(String nombre) {
+    	this.telefonoText.setText(nombre);
     }
     
     public String getApellidosText() {
     	return this.apellido1Text.getText() + " " + this.apellido2Text.getText();
     }
     
+    public void setApellidosText(String apellidos) {
+    	String[] apellidosSplit = apellidos.split(" ");
+    	this.apellido1Text.setText(apellidosSplit[0]);
+    	this.apellido2Text.setText(apellidosSplit[1]);
+    }
+    
     public String getTipoText() {
     	return this.tipoBox.getSelectedItem().toString();
+    }
+    
+    public void setTipoText(String tipo) {
+    	this.tipoBox.setSelectedItem(tipo);
     }
     
     public void avisarEmpleadoAniadidoCorrecto() {
@@ -248,6 +291,12 @@ public class VistaAniadirEmpleado extends javax.swing.JFrame {
 	
 	public String mostrarVentanaBajaEmpleado() {
 		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Empleado",
+				JOptionPane.QUESTION_MESSAGE);
+		return dni;
+	}
+	
+	public String mostrarVentanaConsultarEmpleado() {
+		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Empleado",
 				JOptionPane.QUESTION_MESSAGE);
 		return dni;
 	}

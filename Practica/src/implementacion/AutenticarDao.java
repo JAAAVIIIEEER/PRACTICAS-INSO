@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import modelo.Empleado;
 
-public class AutenticarImpl extends Conexion {
+public class AutenticarDao extends Conexion {
 
 	public int autenticarConexion(String usuario, String contrasenia) {
 		String userConsult = "";

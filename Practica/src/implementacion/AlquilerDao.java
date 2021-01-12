@@ -72,7 +72,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 	}
 
 	@Override
-	public boolean modificarAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo) {
+	public boolean modificarAlquiler(Alquiler miAlquiler) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente bd

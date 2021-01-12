@@ -73,8 +73,7 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 	}
 
 	@Override
-	public boolean modificarCliente(String DNI, String nombre, String apellidos, String telefono, Date nacimiento,
-			String email) {
+	public boolean modificarCliente(Cliente miCliente) {
 		this.establecerConexion();
 		try {
 			// TODO Realizar correctamente el query a la implementacion de la bd

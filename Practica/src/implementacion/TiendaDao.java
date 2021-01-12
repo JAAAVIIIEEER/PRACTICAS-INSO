@@ -68,7 +68,7 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 	}
 
 	@Override
-	public boolean modificarTienda(String via, String provincia, String municipio, int numero) {
+	public boolean modificarTienda(Tienda miTienda) {
 		this.establecerConexion();
 		try {
 			// TODO STATEMENT Realizar cuando se implemente bd

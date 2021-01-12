@@ -186,19 +186,14 @@ public class VistaEmpleado extends javax.swing.JFrame {
     }// </editor-fold>                                                         
 
     
-    public void listenerAniadirButton(ActionListener listenForButtons) {             
+    public void listenerAniadirButton(ActionListener listenForButtons) { 
+    	this.aniadir.setText("Añadir");
     	this.aniadir.addActionListener(listenForButtons);
-//        // TODO Implementar modelos
-//    	/EmpleadoImpl a = new EmpleadoImpl();
-        //a.aniadirEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
     }
     
-    private void modificarClicked(java.awt.event.ActionEvent evt) {       
-    	// TODO APLICAR Patrones solo esta asi para probar que funciona el añadir
-    	// Borrar tambien esta importacion
-    	
-        //EmpleadoImpl a = new EmpleadoImpl();
-        //a.modificarEmpleado(usuarioText.getText(), contraseniaText.getText(), dniText.getText(), nombreText.getText(), apellido1Text.getText()+" "+apellido2Text.getText(), telefonoText.getText(), new Date((int)diaSpinner.getValue(), gestionarMes(mesBox.getSelectedItem().toString()), (int)anioSpinner.getValue()), emailText.getText(), tipoBox.getSelectedItem().toString());
+    public void listenerModificarButton(ActionListener listenForButtons) {       
+    	this.aniadir.setText("Modificar");
+    	this.aniadir.addActionListener(listenForButtons);
     }
     
     public String getDNIText() {
@@ -263,7 +258,7 @@ public class VistaEmpleado extends javax.swing.JFrame {
     }
     
     public void setNombreText(String nombre) {
-    	this.telefonoText.setText(nombre);
+    	this.nombreText.setText(nombre);
     }
     
     public String getApellidosText() {
@@ -288,7 +283,10 @@ public class VistaEmpleado extends javax.swing.JFrame {
     	JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
     }
     
-	
+    public void avisarEmpleadoModificadoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Empleado modificado correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
 	public String mostrarVentanaBajaEmpleado() {
 		String dni = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Baja Empleado",
 				JOptionPane.QUESTION_MESSAGE);

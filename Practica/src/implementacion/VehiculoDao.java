@@ -85,7 +85,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 	}
 
 	@Override
-	public boolean modificarVehiculo(String matricula, String tipo, int plazas, String combustible, int precio) {
+	public boolean modificarVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la base de datos

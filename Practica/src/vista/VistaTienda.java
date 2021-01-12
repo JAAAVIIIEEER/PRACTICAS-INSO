@@ -119,11 +119,21 @@ public class VistaTienda extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.aniadir.setText("Añadir");
     	this.aniadir.addActionListener(listenerForButtons);
-    }    
+    }   
+    
+    public void listenerModificarButton(ActionListener listenerForButtons) {
+    	this.aniadir.setText("Modificar");
+    	this.aniadir.addActionListener(listenerForButtons);
+    }
     
     public void avisarTiendaAniadidaCorrecto() {
     	JOptionPane.showMessageDialog(null, "Tienda añadida correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public void avisarTiendaModificadoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Tienda modificada correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
     }
     
     public String mostrarVentanaBajaTienda() {
@@ -131,12 +141,6 @@ public class VistaTienda extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE);
 		return id;
 	}
-    
-    private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
-    	// TODO implementar modelo
-    	TiendaDao a = new TiendaDao();
-    	a.modificarTienda(provinciaText.getText(), municipioText.getText(), calleText.getText(), Integer.valueOf(numeroText.getText()));
-    }
     
     public String getProvinciaText() {
     	return provinciaText.getText();
@@ -154,7 +158,29 @@ public class VistaTienda extends javax.swing.JFrame {
     	return Integer.parseInt(numeroText.getText());
     }
     
-    // Variables declaration - do not modify                     
+    public String mostrarVentanaConsultarTienda() {
+		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Consultar tienda",
+				JOptionPane.QUESTION_MESSAGE);
+		return id;
+	}
+    
+    public void setProvinciaText(String provincia) {
+		this.provinciaText.setText(provincia);
+	}
+
+	public void setMunicipioText(String municipio) {
+		this.municipioText.setText(municipio);
+	}
+
+	public void setCalleText(String calle) {
+		this.calleText.setText(calle);
+	}
+
+	public void setNumeroText(int numero) {
+		this.calleText.setText(String.valueOf(numero));
+	}
+
+	// Variables declaration - do not modify                     
     private javax.swing.JButton aniadir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

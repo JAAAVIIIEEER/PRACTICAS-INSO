@@ -145,7 +145,7 @@ public class Controlador{
 		vistaEmpleado.setApellidosText(miEmpleado.getApellidos());
 		vistaEmpleado.setTipoText(miEmpleado.getTipo());
 		mostrarVentanaAniadirEmpleado(visible);
-		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
+		this.vistaEmpleado.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miEmpleado.setDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
@@ -158,7 +158,7 @@ public class Controlador{
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
 				if (empleado.modificarEmpleado(miEmpleado)) {
 					mostrarVentanaAniadirEmpleado(noVisible);
-					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+					vistaEmpleado.avisarEmpleadoModificadoCorrecto();
 				}
 			}
 		});	
@@ -198,9 +198,9 @@ public class Controlador{
 	private void listenerBajaVehiculo() {
 		this.vistaGeneral.listenerBajaVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				String id = vistaVehiculo.mostrarVentanaBajaVehiculo();
+				String matricula = vistaVehiculo.mostrarVentanaBajaVehiculo();
 				VehiculoDao vehiculo = new VehiculoDao();
-				vehiculo.bajaVehiculo(id);
+				vehiculo.bajaVehiculo(matricula);
 			}
 		});
 	}
@@ -214,35 +214,33 @@ public class Controlador{
 	}
 	
 	private void gestionarModificarVehiculo() {
-//		String id = vistaEmpleado.mostrarVentanaConsultarEmpleado();
-//		VehiculoDao vehiculo = new VehiculoDao();
-//		Vehiculo miVehiculo = vehiculo.consultarVehiculo(Integer.valueOf(id));
-//		vistaVehiculo.setDNIText(miEmpleado.getDNI());
-//		vistaVehiculo.setUsuarioText(miEmpleado.getUsuario());
-//		vistaVehiculo.setContraseniaText(miEmpleado.getContrasenia());
-//		vistaVehiculo.setNacimientoDate(miEmpleado.getNacimiento());
-//		vistaVehiculo.setEmailText(miEmpleado.getEmail());
-//		vistaVehiculo.setTelefonoText(miEmpleado.getTelefono());
-//		vistaVehiculo.setNombreText(miEmpleado.getNombre());
-//		mostrarVentanaAniadirVehiculo(visible);
-//		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				miEmpleado.setDNI(vistaEmpleado.getDNIText());
-//				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
-//				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
-//				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
-//				miEmpleado.setEmail(vistaEmpleado.getEmailText());
-//				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
-//				miEmpleado.setNombre(vistaEmpleado.getNombreText());
-//				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
-//				miEmpleado.setTipo(vistaEmpleado.getTipoText());
-//				EmpleadoDao empleado = new EmpleadoDao();
-//				if (empleado.modificarEmpleado(miEmpleado)) {
-//					mostrarVentanaAniadirVehiculo(noVisible);
-//					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
-//				}
-//			}
-//		});	
+		String matricula = vistaVehiculo.mostrarVentanaConsultarVehiculo();
+		VehiculoDao vehiculo = new VehiculoDao();
+		Vehiculo miVehiculo = vehiculo.consultarVehiculo(matricula);
+		vistaVehiculo.setPlazasBox(miVehiculo.getPlazas());
+		vistaVehiculo.setCombustibleBox(miVehiculo.getCombustible());
+		vistaVehiculo.setTipoBox(miVehiculo.getTipo());
+		vistaVehiculo.setCosteSpinner(miVehiculo.getCoste());
+		vistaVehiculo.setMatriculaText(miVehiculo.getMatricula());
+		vistaVehiculo.setMarcaText(miVehiculo.getMarca());
+		mostrarVentanaAniadirVehiculo(visible);
+		this.vistaVehiculo.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miVehiculo.setPlazas(vistaVehiculo.getPlazasBoxText());
+				miVehiculo.setCombustible(vistaVehiculo.getCombustibleBoxText());
+				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
+				miVehiculo.setCoste(vistaVehiculo.getCosteSpinnerText());
+				miVehiculo.setMatricula(vistaVehiculo.getMatriculaText());
+				miVehiculo.setMarca(vistaVehiculo.getMarcaText());
+//				miVehiculo.setNombre(vistaVehiculo.getNombreText());
+//				miVehiculo.setApellidos(vistaVehiculo.getApellidosText());
+//				miVehiculo.setTipo(vistaVehiculo.getTipoText());
+				if (vehiculo.modificarVehiculo(miVehiculo)) {
+					mostrarVentanaAniadirVehiculo(noVisible);
+					vistaVehiculo.avisarVehiculoModificadoCorrecto();
+				}
+			}
+		});	
 	}
 	
 	private void listenerAniadirTienda() {
@@ -289,9 +287,39 @@ public class Controlador{
 	private void listenerModificarTienda() {
 		this.vistaGeneral.listenerModificarTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoDao empleado = new EmpleadoDao();
+				gestionarModificarTienda();
 			}
 		});
+	}
+	
+	private void gestionarModificarTienda() {
+		String id = vistaTienda.mostrarVentanaConsultarTienda();
+		TiendaDao tienda = new TiendaDao();
+		Tienda miTienda = tienda.consultarTienda(Integer.valueOf(id));
+		vistaTienda.setProvinciaText(miTienda.getProvincia());
+		vistaTienda.setMunicipioText(miTienda.getMunicipio());
+		vistaTienda.setCalleText(miTienda.getVia());
+		vistaTienda.setNumeroText(miTienda.getNumero());
+//		vistaTienda.setMatriculaText(miTienda.getMatricula());
+//		vistaTienda.setMarcaText(miTienda.getMarca());
+		mostrarVentanaAniadirTienda(visible);
+		this.vistaTienda.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miTienda.setProvincia(vistaTienda.getProvinciaText());
+				miTienda.setMunicipio(vistaTienda.getMunicipioText());
+				miTienda.setVia(vistaTienda.getCalleText());
+				miTienda.setNumero(vistaTienda.getNumeroText());
+//				miTienda.setMatricula(vistaTienda.getMatriculaText());
+//				miTienda.setMarca(vistaTienda.getMarcaText());
+//				miTienda.setNombre(vistaTienda.getNombreText());
+//				miTienda.setApellidos(vistaTienda.getApellidosText());
+//				miTienda.setTipo(vistaTienda.getTipoText());
+				if (tienda.modificarTienda(miTienda)) {
+					mostrarVentanaAniadirTienda(noVisible);
+					vistaTienda.avisarTiendaModificadoCorrecto();
+				}
+			}
+		});	
 	}
 	
 	private void listenerAniadirAlquiler() {
@@ -319,7 +347,7 @@ public class Controlador{
 				AlquilerDao alquiler = new AlquilerDao();
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
-					vistaAlquiler.avisaAlquilerAniadidoCorrecto();
+					vistaAlquiler.avisarAlquilerAniadidoCorrecto();
 				}
 			}
 		});	
@@ -338,9 +366,42 @@ public class Controlador{
 	private void listenerModificarAlquiler() {
 		this.vistaGeneral.listenerModificarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoDao empleado = new EmpleadoDao();
+				gestionarModificarAlquiler();
 			}
 		});
+	}
+	
+	private void gestionarModificarAlquiler() {
+		String id = vistaAlquiler.mostrarVentanaConsultarAlquiler();
+		AlquilerDao alquiler = new AlquilerDao();
+		Alquiler miAlquiler = alquiler.consultarAlquiler(Integer.parseInt(id));
+		vistaAlquiler.setDniText(miAlquiler.getDni());
+		vistaAlquiler.setInicioDate(miAlquiler.getFecha1());
+		vistaAlquiler.setFinalDate(miAlquiler.getFecha2());
+		vistaAlquiler.setVehiculosDisponiblesBox(miAlquiler.getMatVehiculo());
+//		vistaAlquiler.setEmailText(miAlquiler.getEmail());
+//		vistaAlquiler.setTelefonoText(miAlquiler.getTelefono());
+//		vistaAlquiler.setNombreText(miAlquiler.getNombre());
+//		vistaAlquiler.setApellidosText(miAlquiler.getApellidos());
+//		vistaAlquiler.setTipoText(miAlquiler.getTipo());
+		mostrarVentanaAniadirAlquiler(visible);
+		this.vistaAlquiler.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miAlquiler.setDni(vistaAlquiler.getDNIText());
+				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
+				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
+				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
+//				miAlquiler.setMatricula(vistaAlquiler.getMatriculaText());
+//				miAlquiler.setMarca(vistaAlquiler.getMarcaText());
+//				miAlquiler.setNombre(vistaAlquiler.getNombreText());
+//				miAlquiler.setApellidos(vistaAlquiler.getApellidosText());
+//				miAlquiler.setTipo(vistaAlquiler.getTipoText());
+				if (alquiler.modificarAlquiler(miAlquiler)) {
+					mostrarVentanaAniadirAlquiler(noVisible);
+					vistaAlquiler.avisarAlquilerModificadoCorrecto();
+				}
+			}
+		});	
 	}
 	
 	private void listenerAniadirCliente() {
@@ -387,9 +448,42 @@ public class Controlador{
 	private void listenerModificarCliente() {
 		this.vistaGeneral.listenerModificarCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				EmpleadoDao empleado = new EmpleadoDao();
+				gestionarModificarCliente();
 			}
 		});
+	}
+	
+
+	private void gestionarModificarCliente() {
+		String dni = vistaCliente.mostrarVentanaConsultarCliente();
+		ClienteDao cliente = new ClienteDao();
+		Cliente miCliente = cliente.consultarCliente(dni);
+		vistaCliente.setDNIText(miCliente.getDNI());
+		vistaCliente.setNombreText(miCliente.getNombre());
+		vistaCliente.setApellidosText(miCliente.getApellidos());
+		vistaCliente.setNacimientoDate(miCliente.getNacimiento());
+		vistaCliente.setTelefonoText(miCliente.getTelefono());
+		vistaCliente.setEmailText(miCliente.getEmail());
+//		vistaCliente.setApellidosText(miAlquiler.getApellidos());
+//		vistaCliente.setTipoText(miAlquiler.getTipo());
+		mostrarVentanaAniadirCliente(visible);
+		this.vistaCliente.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miCliente.setDNI(vistaCliente.getDNIText());
+				miCliente.setNombre(vistaCliente.getNombreText());
+				miCliente.setApellidos(vistaCliente.getApellidosText());
+				miCliente.setTelefono(vistaCliente.getTelefonoText());
+				miCliente.setNacimiento(vistaCliente.getNacimientoDate());
+				miCliente.setEmail(vistaCliente.getEmailText());
+//				miCliente.setNombre(vistaCliente.getNombreText());
+//				miCliente.setApellidos(vistaCliente.getApellidosText());
+//				miCliente.setTipo(vistaCliente.getTipoText());
+				if (cliente.modificarCliente(miCliente)) {
+					mostrarVentanaAniadirCliente(noVisible);
+					vistaCliente.avisarClienteModificadoCorrecto();
+				}
+			}
+		});	
 	}
 	
 	private void aniadirListenerGeneral(int estado) {

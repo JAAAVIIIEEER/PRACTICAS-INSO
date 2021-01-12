@@ -54,11 +54,11 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		//listaEmpleados.remove(empleadoid);
+		// listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
 	}
-	
+
 	@Override
 	public Empleado consultarEmpleado(String empleadoDNI) {
 		Empleado miEmpleado = new Empleado();
@@ -68,13 +68,13 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE ID=?");
 			st.setString(1, empleadoDNI);
 			ResultSet res = st.executeQuery();
-			while(res.next()){
+			while (res.next()) {
 //				miEmpleado.setIdPersona(Integer.parseInt(res.getString("id")));
 //				miEmpleado.setNombrePersona(res.getString("nombre"));
 //				miEmpleado.setEdadPersona(Integer.parseInt(res.getString("edad")));
 //				miEmpleado.setProfesionPersona(res.getString("profesion"));
 //				miEmpleado.setTelefonoPersona(Integer.parseInt(res.getString("telefono")));
-			 }
+			}
 			res.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -105,7 +105,7 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
+		// listaEmpleados.add(emp);
 		return true;
 	}
 

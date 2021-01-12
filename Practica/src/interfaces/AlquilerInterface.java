@@ -9,5 +9,5 @@ public interface AlquilerInterface {
 	public boolean finalizarAlquiler(int alquilerid);
 	public boolean aniadirAlquiler(Alquiler miAlquiler);
 	public Alquiler consultarAlquiler(int alquilerid);
-	public boolean modificarAlquiler(String DNI, Date inicio, Date finalAlquiler, String vehiculo);
+	public boolean modificarAlquiler(Alquiler miAlquiler);
 }

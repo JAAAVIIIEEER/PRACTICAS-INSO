@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -139,31 +140,29 @@ public class VistaVehiculo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
-    private void aniadirButtonClicked(java.awt.event.ActionEvent evt) {                                           
-    	// TODO implementar modelo
-//    	VehiculoImpl a = new VehiculoImpl();
-//    	a.aniadirVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
-    }
-    
-    private void modificarButtonClicked(java.awt.event.ActionEvent evt) {
-    	// TODO implementar modelo
-    	VehiculoDao a = new VehiculoDao();
-    	a.modificarVehiculo(matriculaText.getText(), tipoBox.getSelectedItem().toString(), Integer.valueOf(plazasBox.getSelectedItem().toString()), combustibleBox.getSelectedItem().toString(), (int) costeSpinner.getValue());
-    }
     
     public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.aniadirButton.setText("Añadir");
+    	this.aniadirButton.addActionListener(listenerForButtons);
+    }
+    
+    public void listenerModificarButton(ActionListener listenerForButtons) {
+    	this.aniadirButton.setText("Modificar");
     	this.aniadirButton.addActionListener(listenerForButtons);
     }
     
     public void avisarVehiculoAniadidoCorrecto() {
-    	JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    	JOptionPane.showMessageDialog(null, "Vehiculo añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
+    }
+    
+    public void avisarVehiculoModificadoCorrecto() {
+    	JOptionPane.showMessageDialog(null, "Vehiculo modificado correctamente", null, JOptionPane.INFORMATION_MESSAGE, null);
     }
     
     public String mostrarVentanaBajaVehiculo() {
-		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Baja Vehiculo",
+		String mat = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Baja Vehiculo",
 				JOptionPane.QUESTION_MESSAGE);
-		return id;
+		return mat;
 	}
     
     public int getPlazasBoxText() {
@@ -189,10 +188,39 @@ public class VistaVehiculo extends javax.swing.JFrame {
     public String getMarcaText() {
     	return marcaText.getText();
     }
+    
+    public String mostrarVentanaConsultarVehiculo() {
+		String dni = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Consultar Vehiculo",
+				JOptionPane.QUESTION_MESSAGE);
+		return dni;
+	}
+    
+	public void setPlazasBox(int plazas) {
+		this.plazasBox.setSelectedItem(plazas);
+	}
+
+	public void setCombustibleBox(String combustible) {
+		this.combustibleBox.setSelectedItem(combustible);
+	}
+
+	public void setTipoBox(String tipo) {
+		this.tipoBox.setSelectedItem(tipo);
+	}
+
+	public void setCosteSpinner(int coste) {
+		this.costeSpinner.setValue(coste);
+	}
+
+	public void setMatriculaText(String matricula) {
+		this.matriculaText.setText(matricula);	}
+
+	public void setMarcaText(String marca) {
+		this.marcaText.setText(marca);
+	}
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadirButton;
-    private javax.swing.JComboBox plazasBox;
+	private javax.swing.JComboBox plazasBox;
     private javax.swing.JComboBox combustibleBox;
     private javax.swing.JComboBox tipoBox;
     private javax.swing.JLabel jLabel1;

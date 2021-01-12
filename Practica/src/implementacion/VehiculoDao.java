@@ -11,38 +11,19 @@ import interfaces.VehiculoInterface;
 
 public class VehiculoDao extends Conexion implements VehiculoInterface{
 	
-	public List<Vehiculo> listaVehiculos() throws Exception {
-		
-		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-		
-		this.establecerConexion();
-		PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS");
-		ResultSet rs = st.executeQuery();
-		
-		while (rs.next()) {
-			
-		}
-		
-		this.cerrarConexion();
-		return listaVehiculos;
-	}
-
 	@Override
 	public boolean aniadirVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la base de datos
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO Vehiculos (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"INSERT INTO Vehiculos (Matricula, Tipo, Combustible, Plazas, CostePorDia, Extras, Tienda) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			st.setString(1, miVehiculo.getMatricula());
+			st.setString(2, miVehiculo.getTipo());
+			st.setString(3, miVehiculo.getCombustible());
+			st.setInt(4, miVehiculo.getPlazas());
+			st.setInt(5, miVehiculo.getCoste());
+			st.setString(6, miVehiculo.getExtras());
+			st.setInt(7, miVehiculo.getTiendaID());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -56,32 +37,38 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 	public void bajaVehiculo(String matricula) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE VEHICULOS SET estado=? WHERE ID=?");
-//			st.setString(1, "Baja");
-//			st.setInt(2, empleadoid);
-			st.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		//listaEmpleados.remove(empleadoid);
-		this.cerrarConexion();
-	}
-
-	@Override
-	public Vehiculo consultarVehiculo(String matricula) {
-		this.establecerConexion();
-		try {
-			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS WHERE MATRICULA=?");
+			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM VEHICULOS WHERE Matricula=?");
 			st.setString(1, matricula);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		// TODO Poner todos los datos
-		Vehiculo found = new Vehiculo();
-		return found;
+		this.cerrarConexion();
+	}
+
+	@Override
+	public Vehiculo consultarVehiculo(String matricula) {
+		Vehiculo miVehiculo = new Vehiculo();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS WHERE MATRICULA=?");
+			st.setString(1, matricula);
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				miVehiculo.setMatricula(res.getString("Matricula"));
+				miVehiculo.setTipo(res.getString("Tipo"));
+				miVehiculo.setCombustible(res.getString("Combustible"));
+				miVehiculo.setPlazas(res.getInt("Plazas"));
+				miVehiculo.setCoste(res.getInt("CostePorDia"));
+				miVehiculo.setExtras(res.getString("Extras"));
+				miVehiculo.setTiendaID(res.getInt("Tienda"));
+				miVehiculo.setEstado(res.getString("Estado"));
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return miVehiculo;
 	}
 
 	@Override
@@ -90,16 +77,15 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		try {
 			// TODO Implementar query cuando se implemente la base de datos
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"UPDATE Vehiculos SET Matricula=?, Tipo=?, Combustible=?, Plazas=?, CostePorDia=?, Extras=?, Tienda=? WHERE matricula=?");
+			st.setString(1, miVehiculo.getMatricula());
+			st.setString(2, miVehiculo.getTipo());
+			st.setString(3, miVehiculo.getCombustible());
+			st.setInt(4, miVehiculo.getPlazas());
+			st.setInt(5, miVehiculo.getCoste());
+			st.setString(6, miVehiculo.getExtras());
+			st.setInt(7, miVehiculo.getTiendaID());
+			st.setString(8, miVehiculo.getMatricula());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

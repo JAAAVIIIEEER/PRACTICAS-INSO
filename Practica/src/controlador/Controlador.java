@@ -191,9 +191,8 @@ public class Controlador{
 				miVehiculo.setCoste(vistaVehiculo.getCosteSpinnerText());
 				miVehiculo.setMatricula(vistaVehiculo.getMatriculaText());
 				miVehiculo.setMarca(vistaVehiculo.getMarcaText());
-//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
-//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
-//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				miVehiculo.setTiendaID(vistaVehiculo.getTiendasBox());
+				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
 				VehiculoDao vehiculo = new VehiculoDao();
 				if (vehiculo.aniadirVehiculo(miVehiculo)) {
 					mostrarVentanaAniadirVehiculo(noVisible);

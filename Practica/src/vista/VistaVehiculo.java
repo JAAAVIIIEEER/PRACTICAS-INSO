@@ -247,11 +247,28 @@ public class VistaVehiculo extends javax.swing.JFrame {
 		this.marcaText.setText(marca);
 	}
 	
+	public int getTiendasBox() {
+		return Integer.valueOf(tiendasBox.getSelectedItem().toString());
+	}
+
+	public void setTiendasBox(int tiendasBox) {
+		this.tiendasBox.setSelectedItem(String.valueOf(tiendasBox));
+	}
+
+	public String getExtrasText() {
+		return extrasText.getText();
+	}
+
+	public void setExtrasText(String extrasText) {
+		this.extrasText.setText(extrasText);
+	}
+
 	public void establecerEstadoDefecto() {
 		plazasBox.setSelectedIndex(0);
 		tipoBox.setSelectedIndex(0);
 		plazasBox.setSelectedIndex(0);
-		tiendasBox.setSelectedIndex(0);
+		tiendasBox.setSelectedItem(null);
+		//tiendasBox.setSelectedIndex(0);
 		matriculaText.setText("");
 		marcaText.setText("");
 		extrasText.setText("");

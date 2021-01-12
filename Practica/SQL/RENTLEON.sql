@@ -19,6 +19,10 @@
 -- Table structure for table `alquileres`
 --
 
+create database if not exists `RentLeonDB`;
+
+use `RentLeonDB`; 
+
 DROP TABLE IF EXISTS `alquileres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -40,7 +44,7 @@ CREATE TABLE `alquileres` (
   CONSTRAINT `CocheAlquilado` FOREIGN KEY (`CocheAlquilado`) REFERENCES `coches` (`CocheID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Empleado` FOREIGN KEY (`Empleado`) REFERENCES `empleados` (`EmpleadoID`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `Ofertas` FOREIGN KEY (`Oferta`) REFERENCES `ofertas` (`OfertaID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +65,9 @@ DROP TABLE IF EXISTS `clientes`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
   `DNI` char(9) NOT NULL COMMENT 'Clave primaria',
-  `NombreCompleto` varchar(45) NOT NULL,
+  `Nombre` varchar(20) NOT NULL, 
+  `Apellido1` varchar(40) NOT NULL,
+  `Apellido2` varchar(40) NOT NULL,
   `TipoVia` varchar(45) DEFAULT NULL,
   `NombreVia` varchar(45) DEFAULT NULL,
   `Portal` int unsigned DEFAULT NULL,
@@ -71,8 +77,8 @@ CREATE TABLE `clientes` (
   `Telefono` int NOT NULL,
   `CorreoElectronico` varchar(45) NOT NULL,
   PRIMARY KEY (`DNI`),
-  UNIQUE KEY `NombreCompleto_UNIQUE` (`NombreCompleto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `NombreCompleto_UNIQUE` (`Nombre`, `Apellido1`, `Apellido2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +110,7 @@ CREATE TABLE `coches` (
   UNIQUE KEY `Matricula_UNIQUE` (`Matricula`),
   KEY `Tienda_idx` (`Tienda`),
   CONSTRAINT `Tienda` FOREIGN KEY (`Tienda`) REFERENCES `tiendas` (`TiendaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,12 +134,14 @@ CREATE TABLE `empleados` (
   `UsuarioDNI` char(9) NOT NULL COMMENT 'Usuario para conexión al sistema',
   `Contraseña` varchar(12) NOT NULL,
   `Tipo` varchar(20) NOT NULL,
-  `NombreCompleto` varchar(50) NOT NULL COMMENT 'nombre cliente',
+  `Nombre` varchar(20) NOT NULL, 
+  `Apellido1` varchar(40) NOT NULL,
+  `Apellido2` varchar(40) NOT NULL,
   `Telefono` int unsigned NOT NULL COMMENT 'móvil',
   `Email` varchar(100) NOT NULL,
   PRIMARY KEY (`EmpleadoID`),
   UNIQUE KEY `Usuario` (`UsuarioDNI`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +167,7 @@ CREATE TABLE `incidencias` (
   `Estado` tinyint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`IncidenciaID`,`AlquilerID`),
   CONSTRAINT `AlquilerID` FOREIGN KEY (`IncidenciaID`) REFERENCES `alquileres` (`AlquilerID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +191,7 @@ CREATE TABLE `ofertas` (
   `Descuento` int unsigned NOT NULL,
   `Estado` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`OfertaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +220,7 @@ CREATE TABLE `tiendas` (
   `Telefono` int DEFAULT NULL,
   `CorreoElectronico` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`TiendaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,3 +242,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-01-11 20:53:26
+
+DELETE FROM `empleados` WHERE `UsuarioDNI`='admin';
+INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com');

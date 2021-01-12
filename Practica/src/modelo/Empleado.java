@@ -12,38 +12,39 @@ public class Empleado {
 	public static final String base = "Base";
 	
 	private int id;
-	private String usuario;
 	private String contrasenia;
-	private String DNI;
+	private String UsuarioDNI;
 	private String nombre;
-	private String apellidos;
+	private String apellido1;
+	private String apellido2;
 	private String telefono;
 	private String email;
 	private String tipo;
+	// TODO
 	private Date nacimiento;
 	
 	public void setID(int id) {
 		this.id = id;
-	}
-	
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
 	
-	public void setDNI(String DNI) {
-		this.DNI = DNI;
+	public void setUsuarioDNI(String DNI) {
+		this.UsuarioDNI = DNI;
 	}
 	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+	
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
 	}
 	
 	public void setTelefono(String telefono) {
@@ -66,24 +67,24 @@ public class Empleado {
 		return this.id;
 	}
 	
-	public String getUsuario() {
-		return this.usuario;
-	}
-	
 	public String getContrasenia() {
 		return this.contrasenia;
 	}
 	
-	public String getDNI() {
-		return this.DNI;
+	public String getUsuarioDNI() {
+		return this.UsuarioDNI;
 	}
 	
 	public String getNombre() {
 		return this.nombre;
 	}
 	
-	public String getApellidos() {
-		return this.apellidos;
+	public String getApellido1() {
+		return this.apellido1;
+	}
+	
+	public String getApellido2() {
+		return this.apellido2;
 	}
 	
 	public String getTelefono() {
@@ -100,11 +101,6 @@ public class Empleado {
 	
 	public String getEmail() {
 		return this.email;
-	}
-	
-	public boolean aniadirEmpleado() {
-		EmpleadoDao aux = new EmpleadoDao();
-		return false;
 	}
 }
 

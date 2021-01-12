@@ -13,26 +13,21 @@ import modelo.Vehiculo;
 
 public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 
-	private final int incorrecta = 2;
-	private final int correctaBase = 1;
-	private final int correctaAdmin = 0;
-	private ArrayList<Empleado> listaEmpleados;
-
 	@Override
-	public boolean aniadirEmpleado(Empleado nuevoEmpleado) {
+	public boolean aniadirEmpleado(Empleado miEmpleado) {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO EMPLEADOS (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			st.setString(1, nuevoEmpleado.getUsuario());
-			st.setString(2, nuevoEmpleado.getContrasenia());
-			st.setString(3, nuevoEmpleado.getDNI());
-			st.setString(4, nuevoEmpleado.getNombre());
-			st.setString(5, nuevoEmpleado.getApellidos());
-			st.setString(6, nuevoEmpleado.getTelefono());
-			st.setDate(7, nuevoEmpleado.getNacimiento());
-			st.setString(8, nuevoEmpleado.getTipo());
-			st.setString(9, nuevoEmpleado.getEmail());
+					"INSERT INTO EMPLEADOS (UsuarioDNI, Contraseña, Tipo, Nombre, Apellido1, Apellido2, nacimiento, Telefono, Email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			st.setString(1, miEmpleado.getUsuarioDNI());
+			st.setString(2, miEmpleado.getContrasenia());
+			st.setString(3, miEmpleado.getTipo());
+			st.setString(4, miEmpleado.getNombre());
+			st.setString(5, miEmpleado.getApellido1());
+			st.setString(6, miEmpleado.getApellido2());
+			st.setDate(7, miEmpleado.getNacimiento());
+			st.setString(8, miEmpleado.getTelefono());
+			st.setString(9, miEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -46,15 +41,13 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 	public boolean eliminarEmpleado(String dni) {
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE EMPLEADOS SET estado=? WHERE DNI=?");
-			st.setString(1, "Baja");
-			st.setString(2, dni);
+			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM EMPLEADOS WHERE DNI=?");
+			st.setString(1, dni);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		// listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
 	}
@@ -65,15 +58,19 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE ID=?");
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE DNI=?");
 			st.setString(1, empleadoDNI);
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
-//				miEmpleado.setIdPersona(Integer.parseInt(res.getString("id")));
-//				miEmpleado.setNombrePersona(res.getString("nombre"));
-//				miEmpleado.setEdadPersona(Integer.parseInt(res.getString("edad")));
-//				miEmpleado.setProfesionPersona(res.getString("profesion"));
-//				miEmpleado.setTelefonoPersona(Integer.parseInt(res.getString("telefono")));
+				miEmpleado.setUsuarioDNI(res.getString("UsuarioDNI"));
+				miEmpleado.setContrasenia(res.getString("Contraseña"));
+				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setEmail(res.getString("Email"));
+				miEmpleado.setTelefono(res.getString("Telefono"));
+				miEmpleado.setNombre(res.getString("Nombre"));
+				miEmpleado.setApellido1(res.getString("Apellido1"));
+				miEmpleado.setApellido2(res.getString("Apellido2"));
+				miEmpleado.setTipo(res.getString("Tipo"));
 			}
 			res.close();
 		} catch (SQLException e) {
@@ -84,28 +81,27 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 	}
 
 	@Override
-	public boolean modificarEmpleado(Empleado modEmpleado) {
+	public boolean modificarEmpleado(Empleado miEmpleado) {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
-			st.setString(1, modEmpleado.getUsuario());
-			st.setString(2, modEmpleado.getContrasenia());
-			st.setString(3, modEmpleado.getDNI());
-			st.setString(4, modEmpleado.getNombre());
-			st.setString(5, modEmpleado.getApellidos());
-			st.setString(6, modEmpleado.getTelefono());
-			st.setDate(7, modEmpleado.getNacimiento());
-			st.setString(8, modEmpleado.getTipo());
-			st.setString(9, modEmpleado.getEmail());
+					"UPDATE EMPLEADOS SET UsuarioDNI=?, Contraseña=?, Tipo=?, Nombre=?, Apellido1=?, Apellido2=?, nacimiento=?, Telefono=?, Email=? WHERE matricula=?");
+			st.setString(1, miEmpleado.getUsuarioDNI());
+			st.setString(2, miEmpleado.getContrasenia());
+			st.setString(3, miEmpleado.getTipo());
+			st.setString(4, miEmpleado.getNombre());
+			st.setString(5, miEmpleado.getApellido1());
+			st.setString(6, miEmpleado.getApellido2());
+			// TODO st.setDate(7, miEmpleado.getNacimiento());
+			st.setString(8, miEmpleado.getTelefono());
+			st.setString(9, miEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
-		// listaEmpleados.add(emp);
 		return true;
 	}
 

@@ -17,14 +17,14 @@ public class AutenticarDao extends Conexion {
 
 		try {
 			PreparedStatement st = this.getConexion()
-					.prepareStatement("SELECT usuario, contrasenia, tipo FROM EMPLEADOS WHERE usuario=?");
+					.prepareStatement("SELECT UsuarioDNI, Contraseña, Tipo FROM EMPLEADOS WHERE UsuarioDNI=?");
 			st.setString(1, usuario);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				userConsult = rs.getString("usuario");
-				passConsult = rs.getString("contrasenia");
-				tipo = rs.getString("tipo");
+				userConsult = rs.getString("UsuarioDNI");
+				passConsult = rs.getString("Contraseña");
+				tipo = rs.getString("Tipo");
 			}
 
 		} catch (SQLException e) {

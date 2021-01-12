@@ -95,14 +95,14 @@ public class Controlador{
 		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Empleado miEmpleado = new Empleado();
-				miEmpleado.setDNI(vistaEmpleado.getDNIText());
-				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
+				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
-				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
 				miEmpleado.setEmail(vistaEmpleado.getEmailText());
 				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
 				miEmpleado.setNombre(vistaEmpleado.getNombreText());
-				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
+				miEmpleado.setApellido1(vistaEmpleado.getApellido1Text());
+				miEmpleado.setApellido2(vistaEmpleado.getApellido2Text());
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
 				EmpleadoDao empleado = new EmpleadoDao();
 				if (empleado.aniadirEmpleado(miEmpleado)) {
@@ -135,26 +135,26 @@ public class Controlador{
 		String dni = vistaEmpleado.mostrarVentanaConsultarEmpleado();
 		EmpleadoDao empleado = new EmpleadoDao();
 		Empleado miEmpleado = empleado.consultarEmpleado(dni);
-		vistaEmpleado.setDNIText(miEmpleado.getDNI());
-		vistaEmpleado.setUsuarioText(miEmpleado.getUsuario());
+		vistaEmpleado.setDNIText(miEmpleado.getUsuarioDNI());
 		vistaEmpleado.setContraseniaText(miEmpleado.getContrasenia());
-		vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
+		// TODO vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
 		vistaEmpleado.setEmailText(miEmpleado.getEmail());
 		vistaEmpleado.setTelefonoText(miEmpleado.getTelefono());
 		vistaEmpleado.setNombreText(miEmpleado.getNombre());
-		vistaEmpleado.setApellidosText(miEmpleado.getApellidos());
+		vistaEmpleado.setApellido1Text(miEmpleado.getApellido1());
+		vistaEmpleado.setApellido2Text(miEmpleado.getApellido2());
 		vistaEmpleado.setTipoText(miEmpleado.getTipo());
 		mostrarVentanaAniadirEmpleado(visible);
 		this.vistaEmpleado.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miEmpleado.setDNI(vistaEmpleado.getDNIText());
-				miEmpleado.setUsuario(vistaEmpleado.getUsuarioText());
+				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
-				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
 				miEmpleado.setEmail(vistaEmpleado.getEmailText());
 				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
 				miEmpleado.setNombre(vistaEmpleado.getNombreText());
-				miEmpleado.setApellidos(vistaEmpleado.getApellidosText());
+				miEmpleado.setApellido1(vistaEmpleado.getApellido1Text());
+				miEmpleado.setApellido2(vistaEmpleado.getApellido2Text());
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
 				if (empleado.modificarEmpleado(miEmpleado)) {
 					mostrarVentanaAniadirEmpleado(noVisible);

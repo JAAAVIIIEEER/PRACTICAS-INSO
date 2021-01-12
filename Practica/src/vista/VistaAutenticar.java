@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controlador.EmpleadoController;
-
 /**
  *
  * @author rauls

@@ -173,6 +173,8 @@ public class Controlador{
 	private void listenerAniadirVehiculo() {
 		this.vistaGeneral.listenerAniadirVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaVehiculo.removeListenerAniadirButton();
+				vistaVehiculo.establecerEstadoDefecto();
 				gestionarNuevoVehiculo();
 			}
 		});
@@ -214,6 +216,7 @@ public class Controlador{
 	private void listenerModificarVehiculo() {
 		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaVehiculo.removeListenerAniadirButton();
 				gestionarModificarVehiculo();
 			}
 		});
@@ -266,7 +269,8 @@ public class Controlador{
 				miTienda.setMunicipio(vistaTienda.getMunicipioText());
 				miTienda.setVia(vistaTienda.getCalleText());
 				miTienda.setNumero(vistaTienda.getNumeroText());
-//				miVehiculo.setMatricula(vistaTienda.getMatriculaText());
+//				miTienda.setEmail(vistaTienda);
+//				miTienda.setTelefono(vistaTienda.getMatriculaText());
 //				miVehiculo.setMarca(vistaTienda.getMarcaText());
 //				miVehiculo.setNombre(vistaEmpleado.getNombreText());
 //				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());

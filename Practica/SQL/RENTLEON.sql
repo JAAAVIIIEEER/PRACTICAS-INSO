@@ -73,9 +73,10 @@ CREATE TABLE `clientes` (
   `Portal` int unsigned DEFAULT NULL,
   `Piso` int unsigned DEFAULT NULL,
   `Letra` char(1) DEFAULT NULL,
-  `CodigoPostal` int unsigned DEFAULT NULL,
-  `Telefono` int NOT NULL,
+  `CodigoPostal` varchar(5) DEFAULT NULL,
+  `Telefono` varchar(15) NOT NULL,
   `CorreoElectronico` varchar(45) NOT NULL,
+  `FechaNacimiento` DATE NOT NULL,
   PRIMARY KEY (`DNI`),
   UNIQUE KEY `NombreCompleto_UNIQUE` (`Nombre`, `Apellido1`, `Apellido2`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -94,11 +95,11 @@ UNLOCK TABLES;
 -- Table structure for table `coches`
 --
 
-DROP TABLE IF EXISTS `coches`;
+DROP TABLE IF EXISTS `vehiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `coches` (
-  `CocheID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
+CREATE TABLE `vehiculos` (
+  `VehiculoID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
   `Matricula` varchar(45) NOT NULL,
   `Tipo` varchar(45) NOT NULL,
   `Combustible` varchar(45) NOT NULL,
@@ -106,7 +107,7 @@ CREATE TABLE `coches` (
   `CostePorDia` int unsigned NOT NULL,
   `Extras` varchar(250) DEFAULT NULL,
   `Tienda` int NOT NULL,
-  PRIMARY KEY (`CocheID`),
+  PRIMARY KEY (`VehiculoID`),
   UNIQUE KEY `Matricula_UNIQUE` (`Matricula`),
   KEY `Tienda_idx` (`Tienda`),
   CONSTRAINT `Tienda` FOREIGN KEY (`Tienda`) REFERENCES `tiendas` (`TiendaID`)
@@ -117,9 +118,9 @@ CREATE TABLE `coches` (
 -- Dumping data for table `coches`
 --
 
-LOCK TABLES `coches` WRITE;
-/*!40000 ALTER TABLE `coches` DISABLE KEYS */;
-/*!40000 ALTER TABLE `coches` ENABLE KEYS */;
+LOCK TABLES `vehiculos` WRITE;
+/*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -213,11 +214,10 @@ DROP TABLE IF EXISTS `tiendas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tiendas` (
   `TiendaID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
-  `TipoVia` varchar(45) NOT NULL,
+  `Provincia` varchar(45) NOT NULL,
+  `Municipio` varchar(45) NOT NULL,
   `NombreVia` varchar(45) NOT NULL,
   `Portal` int NOT NULL,
-  `Piso` int DEFAULT NULL,
-  `Letra` char(1) DEFAULT NULL,
   `Telefono` int DEFAULT NULL,
   `CorreoElectronico` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`TiendaID`)

@@ -13,10 +13,6 @@ import javax.swing.JOptionPane;
 
 import implementacion.EmpleadoDao;
 
-/**
- *
- * @author rauls
- */
 public class VistaEmpleado extends javax.swing.JFrame {
 
 	/**
@@ -213,7 +209,6 @@ public class VistaEmpleado extends javax.swing.JFrame {
 
 	public void removeListenerAniadirButton() {
 		for (ActionListener al : aniadir.getActionListeners()) {
-			System.out.println("QUITANDO LISTNER");
 			aniadir.removeActionListener(al);
 		}
 	}

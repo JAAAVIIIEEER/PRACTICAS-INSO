@@ -255,6 +255,8 @@ public class Controlador{
 	private void listenerAniadirTienda() {
 		this.vistaGeneral.listenerAniadirTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaTienda.removeListenerAniadirButton();
+				vistaTienda.establecerEstadoDefecto();
 				gestionarNuevaTienda();
 			}
 		});
@@ -269,12 +271,8 @@ public class Controlador{
 				miTienda.setMunicipio(vistaTienda.getMunicipioText());
 				miTienda.setVia(vistaTienda.getCalleText());
 				miTienda.setNumero(vistaTienda.getNumeroText());
-//				miTienda.setEmail(vistaTienda);
-//				miTienda.setTelefono(vistaTienda.getMatriculaText());
-//				miVehiculo.setMarca(vistaTienda.getMarcaText());
-//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
-//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
-//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				miTienda.setEmail(vistaTienda.getEmailText());
+				miTienda.setTelefono(vistaTienda.getTelefonoText());
 				TiendaDao tienda = new TiendaDao();
 				if (tienda.aniadirTienda(miTienda)) {
 					mostrarVentanaAniadirTienda(noVisible);
@@ -297,6 +295,7 @@ public class Controlador{
 	private void listenerModificarTienda() {
 		this.vistaGeneral.listenerModificarTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaTienda.removeListenerAniadirButton();
 				gestionarModificarTienda();
 			}
 		});
@@ -310,8 +309,8 @@ public class Controlador{
 		vistaTienda.setMunicipioText(miTienda.getMunicipio());
 		vistaTienda.setCalleText(miTienda.getVia());
 		vistaTienda.setNumeroText(miTienda.getNumero());
-//		vistaTienda.setMatriculaText(miTienda.getMatricula());
-//		vistaTienda.setMarcaText(miTienda.getMarca());
+		vistaTienda.setEmailText(miTienda.getEmail());
+		vistaTienda.setTelefonoText(miTienda.getTelefono());
 		mostrarVentanaAniadirTienda(visible);
 		this.vistaTienda.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -319,11 +318,8 @@ public class Controlador{
 				miTienda.setMunicipio(vistaTienda.getMunicipioText());
 				miTienda.setVia(vistaTienda.getCalleText());
 				miTienda.setNumero(vistaTienda.getNumeroText());
-//				miTienda.setMatricula(vistaTienda.getMatriculaText());
-//				miTienda.setMarca(vistaTienda.getMarcaText());
-//				miTienda.setNombre(vistaTienda.getNombreText());
-//				miTienda.setApellidos(vistaTienda.getApellidosText());
-//				miTienda.setTipo(vistaTienda.getTipoText());
+				miTienda.setEmail(vistaTienda.getEmailText());
+				miTienda.setTelefono(vistaTienda.getTelefonoText());
 				if (tienda.modificarTienda(miTienda)) {
 					mostrarVentanaAniadirTienda(noVisible);
 					vistaTienda.avisarTiendaModificadoCorrecto();

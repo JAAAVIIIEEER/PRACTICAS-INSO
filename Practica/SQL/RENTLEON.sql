@@ -218,7 +218,7 @@ CREATE TABLE `tiendas` (
   `Municipio` varchar(45) NOT NULL,
   `NombreVia` varchar(45) NOT NULL,
   `Portal` int NOT NULL,
-  `Telefono` int DEFAULT NULL,
+  `Telefono` varchar(15) DEFAULT NULL,
   `CorreoElectronico` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`TiendaID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

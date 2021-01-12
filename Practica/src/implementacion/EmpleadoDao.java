@@ -57,7 +57,6 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		Empleado miEmpleado = new Empleado();
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la bd
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE UsuarioDNI=?");
 			st.setString(1, empleadoDNI);
 			ResultSet res = st.executeQuery();

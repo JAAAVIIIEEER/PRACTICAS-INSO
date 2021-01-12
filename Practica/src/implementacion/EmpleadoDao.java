@@ -18,7 +18,7 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO EMPLEADOS (UsuarioDNI, Contraseña, Tipo, Nombre, Apellido1, Apellido2, nacimiento, Telefono, Email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO EMPLEADOS (UsuarioDNI, Contraseña, Tipo, Nombre, Apellido1, Apellido2, FechaNacimiento, Telefono, Email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			st.setString(1, miEmpleado.getUsuarioDNI());
 			st.setString(2, miEmpleado.getContrasenia());
 			st.setString(3, miEmpleado.getTipo());
@@ -58,13 +58,13 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE DNI=?");
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS WHERE UsuarioDNI=?");
 			st.setString(1, empleadoDNI);
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
 				miEmpleado.setUsuarioDNI(res.getString("UsuarioDNI"));
 				miEmpleado.setContrasenia(res.getString("Contraseña"));
-				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setNacimiento(res.getDate("FechaNacimiento"));
 				miEmpleado.setEmail(res.getString("Email"));
 				miEmpleado.setTelefono(res.getString("Telefono"));
 				miEmpleado.setNombre(res.getString("Nombre"));
@@ -84,18 +84,18 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 	public boolean modificarEmpleado(Empleado miEmpleado) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE EMPLEADOS SET UsuarioDNI=?, Contraseña=?, Tipo=?, Nombre=?, Apellido1=?, Apellido2=?, nacimiento=?, Telefono=?, Email=? WHERE matricula=?");
+					"UPDATE EMPLEADOS SET UsuarioDNI=?, Contraseña=?, Tipo=?, Nombre=?, Apellido1=?, Apellido2=?, FechaNacimiento=?, Telefono=?, Email=? WHERE UsuarioDNI=?");
 			st.setString(1, miEmpleado.getUsuarioDNI());
 			st.setString(2, miEmpleado.getContrasenia());
 			st.setString(3, miEmpleado.getTipo());
 			st.setString(4, miEmpleado.getNombre());
 			st.setString(5, miEmpleado.getApellido1());
 			st.setString(6, miEmpleado.getApellido2());
-			// TODO st.setDate(7, miEmpleado.getNacimiento());
+			st.setDate(7, miEmpleado.getNacimiento());
 			st.setString(8, miEmpleado.getTelefono());
 			st.setString(9, miEmpleado.getEmail());
+			st.setString(10, miEmpleado.getUsuarioDNI());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

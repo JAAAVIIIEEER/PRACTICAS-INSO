@@ -137,8 +137,9 @@ CREATE TABLE `empleados` (
   `Nombre` varchar(20) NOT NULL, 
   `Apellido1` varchar(40) NOT NULL,
   `Apellido2` varchar(40) NOT NULL,
-  `Telefono` int unsigned NOT NULL COMMENT 'móvil',
+  `Telefono` varchar(15) NOT NULL COMMENT 'móvil',
   `Email` varchar(100) NOT NULL,
+  `FechaNacimiento` DATE NOT NULL,
   PRIMARY KEY (`EmpleadoID`),
   UNIQUE KEY `Usuario` (`UsuarioDNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -244,4 +245,4 @@ UNLOCK TABLES;
 -- Dump completed on 2021-01-11 20:53:26
 
 DELETE FROM `empleados` WHERE `UsuarioDNI`='admin';
-INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com');
+INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`, `FechaNacimiento`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com', 1/1/1900);

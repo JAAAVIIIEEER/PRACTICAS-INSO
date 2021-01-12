@@ -22,6 +22,9 @@ public class Controlador{
 	
 	private final boolean visible = true;
 	private final boolean noVisible = false;
+	
+	private final int aniadir = 0;
+	private final int modificar = 1;
 
 	public Controlador() {
 		this.vistaAutenticar = new VistaAutenticar();
@@ -85,6 +88,8 @@ public class Controlador{
 	private void listenerAniadirEmpleado() {
 		this.vistaGeneral.listenerAniadirEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaEmpleado.removeListenerAniadirButton();
+				vistaEmpleado.establecerEstadoDefecto();
 				gestionarNuevoEmpleado();
 			}
 		});
@@ -97,7 +102,7 @@ public class Controlador{
 				Empleado miEmpleado = new Empleado();
 				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
-				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
 				miEmpleado.setEmail(vistaEmpleado.getEmailText());
 				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
 				miEmpleado.setNombre(vistaEmpleado.getNombreText());
@@ -126,6 +131,7 @@ public class Controlador{
 	private void listenerModificarEmpleado() {
 		this.vistaGeneral.listenerModificarEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaEmpleado.removeListenerAniadirButton();
 				gestionarModificarEmpleado();
 			}
 		});
@@ -137,7 +143,7 @@ public class Controlador{
 		Empleado miEmpleado = empleado.consultarEmpleado(dni);
 		vistaEmpleado.setDNIText(miEmpleado.getUsuarioDNI());
 		vistaEmpleado.setContraseniaText(miEmpleado.getContrasenia());
-		// TODO vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
+		vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
 		vistaEmpleado.setEmailText(miEmpleado.getEmail());
 		vistaEmpleado.setTelefonoText(miEmpleado.getTelefono());
 		vistaEmpleado.setNombreText(miEmpleado.getNombre());
@@ -149,7 +155,7 @@ public class Controlador{
 			public void actionPerformed(ActionEvent e) {
 				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
-				// TODO miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
+				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
 				miEmpleado.setEmail(vistaEmpleado.getEmailText());
 				miEmpleado.setTelefono(vistaEmpleado.getTelefonoText());
 				miEmpleado.setNombre(vistaEmpleado.getNombreText());

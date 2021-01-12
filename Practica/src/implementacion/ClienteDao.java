@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import interfaces.ClienteInterface;
 import modelo.Cliente;
-import modelo.Vehiculo;
 
 public class ClienteDao extends Conexion implements ClienteInterface {
 

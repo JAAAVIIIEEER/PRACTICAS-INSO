@@ -413,6 +413,8 @@ public class Controlador{
 	private void listenerAniadirCliente() {
 		this.vistaGeneral.listenerAniadirCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaCliente.establecerEstadoDefecto();
+				vistaCliente.removeListenerAniadirButton();
 				gestionaNuevoCliente();
 			}
 		});
@@ -425,13 +427,18 @@ public class Controlador{
 				Cliente miCliente = new Cliente();
 				miCliente.setDNI(vistaCliente.getDNIText());
 				miCliente.setNombre(vistaCliente.getNombreText());
-				miCliente.setApellidos(vistaCliente.getApellidosText());
+				miCliente.setApellido1(vistaCliente.getApellido1Text());
+				miCliente.setApellido2(vistaCliente.getApellido2Text());
 				miCliente.setTelefono(vistaCliente.getTelefonoText());
 				miCliente.setNacimiento(vistaCliente.getNacimientoDate());
+				miCliente.setPais(vistaCliente.getPaisText());
+				miCliente.setProvincia(vistaCliente.getProvinciaText());
+				miCliente.setMunicipio(vistaCliente.getMunicipioText());
+				miCliente.setCalle(vistaCliente.getCalleText());
+				miCliente.setPortal(vistaCliente.getPortalText());
+				miCliente.setLetra(vistaCliente.getLetraText());
 				miCliente.setEmail(vistaCliente.getEmailText());
-//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
-//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
-//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				miCliente.setPiso(vistaCliente.getPisoText());
 				ClienteDao cliente = new ClienteDao();
 				if (cliente.aniadirCliente(miCliente)) {
 					mostrarVentanaAniadirCliente(noVisible);
@@ -454,6 +461,7 @@ public class Controlador{
 	private void listenerModificarCliente() {
 		this.vistaGeneral.listenerModificarCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaCliente.removeListenerAniadirButton();
 				gestionarModificarCliente();
 			}
 		});
@@ -466,24 +474,35 @@ public class Controlador{
 		Cliente miCliente = cliente.consultarCliente(dni);
 		vistaCliente.setDNIText(miCliente.getDNI());
 		vistaCliente.setNombreText(miCliente.getNombre());
-		vistaCliente.setApellidosText(miCliente.getApellidos());
-		vistaCliente.setNacimientoDate(miCliente.getNacimiento());
+		vistaCliente.setApellido1Text(miCliente.getApellido1());
+		vistaCliente.setApellido2Text(miCliente.getApellido2());
 		vistaCliente.setTelefonoText(miCliente.getTelefono());
 		vistaCliente.setEmailText(miCliente.getEmail());
-//		vistaCliente.setApellidosText(miAlquiler.getApellidos());
-//		vistaCliente.setTipoText(miAlquiler.getTipo());
+		vistaCliente.setNacimientoDate(miCliente.getNacimiento());
+		vistaCliente.setPaisText(miCliente.getPais());
+		vistaCliente.setProvinciaText(miCliente.getProvincia());
+		vistaCliente.setMunicipioText(miCliente.getMunicipio());
+		vistaCliente.setPortalText(miCliente.getPortal());
+		vistaCliente.setLetraText(miCliente.getLetra());
+		vistaCliente.setCalleText(miCliente.getCalle());
+		vistaCliente.setPisoText(miCliente.getPiso());
 		mostrarVentanaAniadirCliente(visible);
 		this.vistaCliente.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				miCliente.setDNI(vistaCliente.getDNIText());
 				miCliente.setNombre(vistaCliente.getNombreText());
-				miCliente.setApellidos(vistaCliente.getApellidosText());
+				miCliente.setApellido1(vistaCliente.getApellido1Text());
+				miCliente.setApellido2(vistaCliente.getApellido2Text());
 				miCliente.setTelefono(vistaCliente.getTelefonoText());
 				miCliente.setNacimiento(vistaCliente.getNacimientoDate());
+				miCliente.setPais(vistaCliente.getPaisText());
+				miCliente.setProvincia(vistaCliente.getProvinciaText());
+				miCliente.setMunicipio(vistaCliente.getMunicipioText());
+				miCliente.setCalle(vistaCliente.getCalleText());
+				miCliente.setPortal(vistaCliente.getPortalText());
+				miCliente.setLetra(vistaCliente.getLetraText());
 				miCliente.setEmail(vistaCliente.getEmailText());
-//				miCliente.setNombre(vistaCliente.getNombreText());
-//				miCliente.setApellidos(vistaCliente.getApellidosText());
-//				miCliente.setTipo(vistaCliente.getTipoText());
+				miCliente.setPiso(vistaCliente.getPisoText());
 				if (cliente.modificarCliente(miCliente)) {
 					mostrarVentanaAniadirCliente(noVisible);
 					vistaCliente.avisarClienteModificadoCorrecto();

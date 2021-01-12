@@ -4,17 +4,20 @@ import java.sql.Date;
 
 public class Cliente {
 
-	private int id;
 	private String DNI;
 	private String nombre;
-	private String apellidos;
+	private String apellido1;
+	private String apellido2;
 	private String telefono;
 	private String email;
 	private Date nacimiento;
-	
-	public void setID(int id) {
-		this.id = id;
-	}
+	private String pais;
+	private String provincia;
+	private String municipio;
+	private String calle;
+	private int portal;
+	private int piso;
+	private String letra;
 	
 	public void setDNI(String DNI) {
 		this.DNI = DNI;
@@ -24,8 +27,12 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 	
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
+	public void setApellido1(String apellido1) {
+		this.apellido1 = apellido1;
+	}
+	
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
 	}
 	
 	public void setTelefono(String telefono) {
@@ -39,10 +46,6 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public int getID() {
-		return this.id;
-	}
 
 	public String getDNI() {
 		return this.DNI;
@@ -52,8 +55,12 @@ public class Cliente {
 		return this.nombre;
 	}
 	
-	public String getApellidos() {
-		return this.apellidos;
+	public String getApellido1() {
+		return this.apellido1;
+	}
+	
+	public String getApellido2() {
+		return this.apellido2;
 	}
 	
 	public String getTelefono() {
@@ -66,5 +73,61 @@ public class Cliente {
 	
 	public String getEmail() {
 		return this.email;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(String municipio) {
+		this.municipio = municipio;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public int getPortal() {
+		return portal;
+	}
+
+	public void setPortal(int portal) {
+		this.portal = portal;
+	}
+
+	public String getLetra() {
+		return letra;
+	}
+
+	public void setLetra(String letra) {
+		this.letra = letra;
+	}
+
+	public int getPiso() {
+		return piso;
+	}
+
+	public void setPiso(int piso) {
+		this.piso = piso;
 	}
 }

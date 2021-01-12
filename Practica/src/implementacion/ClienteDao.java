@@ -2,10 +2,12 @@ package implementacion;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import interfaces.ClienteInterface;
 import modelo.Cliente;
+import modelo.Empleado;
 
 public class ClienteDao extends Conexion implements ClienteInterface {
 
@@ -13,42 +15,42 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 	public boolean aniadirCliente(Cliente miCliente) {
 		this.establecerConexion();
 		try {
-			// TODO Realizar correctamente el query a la implementacion de la bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO CLIENTES (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"INSERT INTO CLIENTES (DNI, Nombre, Apellido1, Apellido2, Telefono, CorreoElectronico, FechaNacimiento, Pais, Provincia, Municipio, NombreVia, Portal, Piso, Letra) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			st.setString(1, miCliente.getDNI());
+			st.setString(2, miCliente.getNombre());
+			st.setString(3, miCliente.getApellido1());
+			st.setString(4, miCliente.getApellido2());
+			st.setString(5, miCliente.getTelefono());
+			st.setString(6, miCliente.getEmail());
+			st.setDate(7, miCliente.getNacimiento());
+			st.setString(8, miCliente.getPais());
+			st.setString(9, miCliente.getProvincia());
+			st.setString(10, miCliente.getMunicipio());
+			st.setString(11, miCliente.getCalle());
+			st.setInt(12, miCliente.getPortal());
+			st.setInt(13, miCliente.getPiso());
+			st.setString(14, miCliente.getLetra());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
 	}
 
 	@Override
 	public boolean eliminarCliente(String clienteDNI) {
 		this.establecerConexion();
-		// TODO cambiar query cuando se implemente bd
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE CLIENTES SET estado=? WHERE ID=?");
-//			st.setString(1, "Baja");
-//			st.setInt(2, empleadoid);
+			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM CLIENTES WHERE DNI=?");
+			st.setString(2, clienteDNI);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
 
@@ -56,37 +58,57 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 
 	@Override
 	public Cliente consultarCliente(String DNI) {
+		Cliente miCliente = new Cliente();
 		this.establecerConexion();
 		try {
 			// TODO Implementar query cuando se implemente la bd
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM CLIENTES WHERE DNI=?");
 			st.setString(1, DNI);
-			st.executeUpdate();
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				miCliente.setDNI(res.getString("DNI"));
+				miCliente.setNombre(res.getString("Nombre"));
+				miCliente.setApellido1(res.getString("Apellido1"));
+				miCliente.setApellido2(res.getString("Apellido2"));
+				miCliente.setTelefono(res.getString("Telefono"));
+				miCliente.setEmail(res.getString("CorreoElectronico"));
+				miCliente.setNacimiento(res.getDate("FechaNacimiento"));
+				miCliente.setPais(res.getString("Pais"));
+				miCliente.setProvincia(res.getString("Provincia"));
+				miCliente.setMunicipio(res.getString("Municipio"));
+				miCliente.setCalle(res.getString("NombreVia"));
+				miCliente.setPortal(res.getInt("Portal"));
+				miCliente.setPiso(res.getInt("Piso"));
+				miCliente.setLetra(res.getString("Letra"));
+			}
+			res.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		// TODO Poner todos los datos
-		//Cliente found = new Cliente();
-		//return found;
-		return null;
+		return miCliente;
 	}
 
 	@Override
 	public boolean modificarCliente(Cliente miCliente) {
 		this.establecerConexion();
 		try {
-			// TODO Realizar correctamente el query a la implementacion de la bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Vehiculos SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"UPDATE CLIENTES SET DNI=?, Nombre=?, Apellido1=?, Apellido2=?, Telefono=?, CorreoElectronico=?, FechaNacimiento=?, Pais=?, Provincia=?, Municipio=?, NombreVia=?, Portal=?, Piso=?, Letra=? WHERE DNI=?");
+			st.setString(1, miCliente.getDNI());
+			st.setString(2, miCliente.getNombre());
+			st.setString(3, miCliente.getApellido1());
+			st.setString(4, miCliente.getApellido2());
+			st.setString(5, miCliente.getTelefono());
+			st.setString(6, miCliente.getEmail());
+			st.setDate(7, miCliente.getNacimiento());
+			st.setString(8, miCliente.getPais());
+			st.setString(9, miCliente.getProvincia());
+			st.setString(10, miCliente.getMunicipio());
+			st.setString(11, miCliente.getCalle());
+			st.setInt(12, miCliente.getPortal());
+			st.setInt(13, miCliente.getPiso());
+			st.setString(14, miCliente.getLetra());
+			st.setString(15, miCliente.getDNI());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

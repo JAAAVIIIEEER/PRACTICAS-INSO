@@ -18,6 +18,7 @@ public class Controlador{
 	private VistaTienda vistaTienda;
 	private VistaCliente vistaCliente;
 	private VistaOferta vistaOferta;
+	private VistaIncidencia vistaIncidencia; 
 	private ValidarDatos validar;
 	
 	private final boolean visible = true;
@@ -34,6 +35,7 @@ public class Controlador{
 		this.vistaTienda = new VistaTienda();
 		this.vistaCliente = new VistaCliente();
 		this.vistaOferta = new VistaOferta();
+		this.vistaIncidencia = new VistaIncidencia();
 		this.validar = new ValidarDatos();
 	}
 	
@@ -62,8 +64,7 @@ public class Controlador{
 	}
 	
 	public void mostrarVentanaAniadirIncidencia(boolean estado) {
-		// TODO
-		// this.aniadirVehiculo.setVisible(estado);
+		this.vistaIncidencia.setVisible(estado);
 	}
 	
 	public void mostrarVentanaAutenticar() {
@@ -589,6 +590,73 @@ public class Controlador{
 		});	
 	}
 	
+	private void listenerAniadirIncidencia() {
+		this.vistaGeneral.listenerAniadirIncidencia(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				vistaIncidencia.removeListenerAniadirButton();
+				vistaIncidencia.establecerEstadoDefecto();
+				gestionarNuevaIncidencia();
+			}
+		});
+	}
+	
+	private void gestionarNuevaIncidencia() {
+		this.mostrarVentanaAniadirIncidencia(visible);
+		this.vistaIncidencia.listenerAniadirButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Incidencia miIncidencia = new Incidencia();
+				miIncidencia.setAlquilerID(vistaIncidencia.getIdAlquilerText());
+				miIncidencia.setTipo(vistaIncidencia.getTipoBox());
+				miIncidencia.setInforme(vistaIncidencia.getInformeText());
+				IncidenciaDao incidencia = new IncidenciaDao();
+				if (incidencia.almacenarIncidencia(miIncidencia)) {
+					mostrarVentanaAniadirIncidencia(noVisible);
+					vistaIncidencia.avisarIncidenciaAniadidoCorrecto();
+				}
+			}
+		});	
+	}
+	
+	private void listenerFinalizarIncidencia() {
+		this.vistaGeneral.listenerFinalizarIncidencia(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				String id = vistaIncidencia.mostrarVentanaFinalizarIncidencia();
+				IncidenciaDao incidencia = new IncidenciaDao();
+				incidencia.finalizarIncidencia(Integer.valueOf(id));
+			}
+		});
+	}
+	
+	private void listenerModificarIncidencia() {
+		this.vistaGeneral.listenerModificarIncidencia(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				vistaIncidencia.removeListenerAniadirButton();
+				gestionarModificarIncidencia();
+			}
+		});
+	}
+	
+	private void gestionarModificarIncidencia() {
+		String id = vistaIncidencia.mostrarVentanaConsultarIncidencia();
+		IncidenciaDao incidencia = new IncidenciaDao();
+		Incidencia miIncidencia = incidencia.consultarIncidencia(Integer.valueOf(id));
+		vistaIncidencia.setTipoBox(miIncidencia.getTipo());
+		vistaIncidencia.setIdAlquilerText(miIncidencia.getAlquilerID());
+		vistaIncidencia.setInformeText(miIncidencia.getInforme());
+		mostrarVentanaAniadirIncidencia(visible);
+		this.vistaIncidencia.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miIncidencia.setAlquilerID(vistaIncidencia.getIdAlquilerText());
+				miIncidencia.setTipo(vistaIncidencia.getTipoBox());
+				miIncidencia.setInforme(vistaIncidencia.getInformeText());
+				if (incidencia.modificarIncidencia(miIncidencia)) {
+					mostrarVentanaAniadirIncidencia(noVisible);
+					vistaIncidencia.avisarIncidenciaModificadoCorrecto();
+				}
+			}
+		});	
+	}
+	
 	private void aniadirListenerGeneral(int estado) {
 		listenerCambiarUsuario();
 		listenerAniadirAlquiler();
@@ -597,6 +665,9 @@ public class Controlador{
 		listenerAniadirCliente();
 		listenerBajaCliente();
 		listenerModificarCliente();
+		listenerAniadirIncidencia();
+		listenerFinalizarIncidencia();
+		listenerModificarIncidencia();
 		// Cargar los listener de administrador
 		if (estado == 0) {
 			listenerAniadirEmpleado();

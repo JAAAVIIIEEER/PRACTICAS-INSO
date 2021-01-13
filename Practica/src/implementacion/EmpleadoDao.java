@@ -103,5 +103,4 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.cerrarConexion();
 		return true;
 	}
-
 }

@@ -170,6 +170,7 @@ CREATE TABLE `incidencias` (
   `AlquilerID` int NOT NULL COMMENT 'Clave primaria',
   `Tipo` varchar(45) NOT NULL,
   `Estado` varchar(15) NOT NULL DEFAULT 'No finalizada',
+  `Informe` TEXT NOT NULL,
   PRIMARY KEY (`IncidenciaID`,`AlquilerID`),
   CONSTRAINT `AlquilerID` FOREIGN KEY (`IncidenciaID`) REFERENCES `alquileres` (`AlquilerID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

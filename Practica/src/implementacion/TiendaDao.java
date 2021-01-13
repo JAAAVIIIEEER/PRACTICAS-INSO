@@ -3,6 +3,7 @@ package implementacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import interfaces.TiendaInterface;
 import modelo.Empleado;
@@ -75,7 +76,7 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"UPDATE TIENDAS SET Provincia=?, Municipio=?, NombreVia=?, Portal=?, Telefono=?, CorreoElectronico=? WHERE TiendaID=?");
-			st.setString(1, miTienda.getProvincia());
+			st.setString(1, miTienda.getProvincia()); 
 			st.setString(2, miTienda.getMunicipio());
 			st.setString(3, miTienda.getVia());
 			st.setInt(4, miTienda.getNumero());
@@ -89,5 +90,22 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		}
 		this.cerrarConexion();;
 		return true;
+	}
+
+	@Override
+	public ArrayList<Integer> buscarTiendas() {
+		ArrayList<Integer> tiendaIDs=new ArrayList<Integer>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT TiendaID FROM TIENDAS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				tiendaIDs.add(res.getInt("TiendaID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.cerrarConexion();;
+		return tiendaIDs;
 	}
 }

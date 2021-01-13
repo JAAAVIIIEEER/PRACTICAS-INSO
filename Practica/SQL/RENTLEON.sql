@@ -31,18 +31,18 @@ CREATE TABLE `alquileres` (
   `FechaRecogida` date NOT NULL,
   `FechaEntrega` date NOT NULL,
   `CosteTotal` int unsigned NOT NULL,
-  `CocheAlquilado` char(7) NOT NULL,
+  `VehiculoAlquilado` char(7) NOT NULL,
   `EmpleadoDNI` char(9) DEFAULT NULL,
   `ClienteDNI` char(9) NOT NULL,
   `Oferta` int DEFAULT NULL,
   `Estado` varchar(20) NOT NULL DEFAULT 'Activo',
   PRIMARY KEY (`AlquilerID`),
-  KEY `CocheAlquilado_idx` (`CocheAlquilado`),
+  KEY `VehiculoAlquilado_idx` (`VehiculoAlquilado`),
   KEY `Empleado_idx` (`EmpleadoDNI`),
   KEY `Cliente_idx` (`ClienteDNI`),
   KEY `Ofertas_idx` (`Oferta`),
   CONSTRAINT `Cliente` FOREIGN KEY (`ClienteDNI`) REFERENCES `clientes` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `CocheAlquilado` FOREIGN KEY (`CocheAlquilado`) REFERENCES `coches` (`CocheID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `VehiculoAlquilado` FOREIGN KEY (`VehiculoAlquilado`) REFERENCES `vehiculos` (`Matricula`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `Empleado` FOREIGN KEY (`EmpleadoDNI`) REFERENCES `empleados` (`UsuarioDNI`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `Ofertas` FOREIGN KEY (`Oferta`) REFERENCES `ofertas` (`OfertaID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -254,3 +254,5 @@ UNLOCK TABLES;
 
 DELETE FROM `empleados` WHERE `UsuarioDNI`='admin';
 INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`, `FechaNacimiento`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com', 1/1/1900);
+
+INSERT INTO `ofertas` (`OfertaID`, `FechaInicio`, `FechaFin`, `Tipo`, `Especificacion`, `Descuento`) VALUES (-1, STR_TO_DATE('01/01/1900', '%d/%m/%Y'), STR_TO_DATE('01/01/2100', '%d/%m/%Y'), 'TODO', 'TODO', 0);

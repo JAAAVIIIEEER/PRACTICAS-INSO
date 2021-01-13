@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.ArrayList;
+
 import modelo.Vehiculo;
 
 public interface VehiculoInterface {
@@ -8,5 +10,6 @@ public interface VehiculoInterface {
 	public void bajaVehiculo(String matricula);
 	public Vehiculo consultarVehiculo(String matricula);
 	public boolean modificarVehiculo(Vehiculo miVehiculo);
+	public ArrayList<String> buscarVehiculosDisponibles();
 	
 }

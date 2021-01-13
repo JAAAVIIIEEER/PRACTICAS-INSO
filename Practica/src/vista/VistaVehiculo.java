@@ -1,12 +1,10 @@
 package vista;
 
 import java.awt.event.ActionListener;
-import java.util.Calendar;
+import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.SpinnerNumberModel;
-
-import implementacion.VehiculoDao;
 
 public class VistaVehiculo extends javax.swing.JFrame {
 
@@ -27,19 +25,19 @@ public class VistaVehiculo extends javax.swing.JFrame {
     private void initComponents() {
 
        jLabel1 = new javax.swing.JLabel();
-       plazasBox = new javax.swing.JComboBox();
+       plazasBox = new javax.swing.JComboBox<Integer>();
        jLabel2 = new javax.swing.JLabel();
-       combustibleBox = new javax.swing.JComboBox();
+       combustibleBox = new javax.swing.JComboBox<String>();
        matriculaText = new javax.swing.JTextField();
        jLabel3 = new javax.swing.JLabel();
        aniadirButton = new javax.swing.JButton();
        jLabel4 = new javax.swing.JLabel();
        costeSpinner = new javax.swing.JSpinner();
        jLabel5 = new javax.swing.JLabel();
-       tipoBox = new javax.swing.JComboBox();
+       tipoBox = new javax.swing.JComboBox<String>();
        marcaText = new javax.swing.JTextField();
        jLabel6 = new javax.swing.JLabel();
-       tiendasBox = new javax.swing.JComboBox();
+       tiendasBox = new javax.swing.JComboBox<Object>();
        jLabel7 = new javax.swing.JLabel();
        jLabel8 = new javax.swing.JLabel();
        jScrollPane2 = new javax.swing.JScrollPane();
@@ -49,11 +47,11 @@ public class VistaVehiculo extends javax.swing.JFrame {
 
        jLabel1.setText("Plazas");
 
-       plazasBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2", "3", "4", "5", "7", "9" }));
+       plazasBox.setModel(new javax.swing.DefaultComboBoxModel<Integer>(new Integer[] { 2, 3, 4, 5, 7, 9 }));
 
        jLabel2.setText("Combustible");
 
-       combustibleBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diesel", "Gasolina", "Electrico", "Hibrido" }));
+       combustibleBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Diesel", "Gasolina", "Electrico", "Hibrido" }));
 
        jLabel3.setText("Matricula");
 
@@ -67,7 +65,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
 
        jLabel5.setText("Tipo");
 
-       tipoBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Turismo", "Furgoneta", "Caravana" }));
+       tipoBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Turismo", "Furgoneta", "Caravana" }));
 
        jLabel6.setText("Marca");
 
@@ -268,19 +266,23 @@ public class VistaVehiculo extends javax.swing.JFrame {
 		tipoBox.setSelectedIndex(0);
 		plazasBox.setSelectedIndex(0);
 		tiendasBox.setSelectedItem(null);
-		//tiendasBox.setSelectedIndex(0);
+		tiendasBox.setSelectedIndex(0);
 		matriculaText.setText("");
 		marcaText.setText("");
 		extrasText.setText("");
 		costeSpinner.setValue(0);
 	}
+	
+	public void establecerTiendasDisponibles(ArrayList<Integer> tiendas) {
+		tiendasBox.setModel(new DefaultComboBoxModel<Object>(tiendas.toArray()));
+	}
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton aniadirButton;
-	private javax.swing.JComboBox plazasBox;
-    private javax.swing.JComboBox combustibleBox;
-    private javax.swing.JComboBox tipoBox;
-    private javax.swing.JComboBox tiendasBox;
+	private javax.swing.JComboBox<Integer> plazasBox;
+    private javax.swing.JComboBox<String> combustibleBox;
+    private javax.swing.JComboBox<String> tipoBox;
+    private javax.swing.JComboBox<Object> tiendasBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

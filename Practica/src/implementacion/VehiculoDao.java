@@ -75,7 +75,6 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 	public boolean modificarVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la base de datos
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"UPDATE Vehiculos SET Matricula=?, Tipo=?, Combustible=?, Plazas=?, CostePorDia=?, Extras=?, Tienda=? WHERE matricula=?");
 			st.setString(1, miVehiculo.getMatricula());
@@ -93,5 +92,23 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		}
 		this.cerrarConexion();
 		return true;
+	}
+	
+	@Override
+	public ArrayList<String> buscarVehiculosDisponibles() {
+		ArrayList<String> disponibles = new ArrayList<String>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT Matricula FROM VEHICULOS WHERE Estado=?");
+			st.setString(1, "Disponible");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				disponibles.add(res.getString("Matricula"));
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return disponibles;
 	}
 }

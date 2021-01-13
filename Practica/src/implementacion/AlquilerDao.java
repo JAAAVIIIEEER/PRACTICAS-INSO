@@ -17,7 +17,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO ALQUILERES (FechaRecogida, FechaEntrega, CosteTotal, EmpleadoDNI, ClienteDNI, Oferta, CocheAlquilado) VALUES (?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO ALQUILERES (FechaRecogida, FechaEntrega, CosteTotal, EmpleadoDNI, ClienteDNI, Oferta, VehiculoAlquilado) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			st.setDate(1, miAlquiler.getFecha1());
 			st.setDate(2, miAlquiler.getFecha2());
 			st.setInt(3, miAlquiler.getCoste());
@@ -63,7 +63,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 				miAlquiler.setFecha1(res.getDate("FechaRecogida"));
 				miAlquiler.setFecha2(res.getDate("FechaEntrega"));
 				miAlquiler.setCoste(res.getInt("CosteTotal"));
-				miAlquiler.setMatVehiculo(res.getString("CocheAlquilado"));
+				miAlquiler.setMatVehiculo(res.getString("VehiculoAlquilado"));
 				miAlquiler.setDniEmpleado(res.getString("EmpleadoDNI"));
 				miAlquiler.setDniCliente(res.getString("ClienteDNI"));
 				miAlquiler.setOferta(res.getInt("Oferta"));
@@ -73,7 +73,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return null;
+		return miAlquiler;
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE ALQUILERES SET FechaRecogida=?, FechaEntrega=?, CosteTotal=?, EmpleadoDNI=?, ClienteDNI=?, Oferta=?, CocheAlquilado=? WHERE matricula=?");
+					"UPDATE ALQUILERES SET FechaRecogida=?, FechaEntrega=?, CosteTotal=?, EmpleadoDNI=?, ClienteDNI=?, Oferta=?, VehiculoAlquilado=? WHERE matricula=?");
 			st.setDate(1, miAlquiler.getFecha1());
 			st.setDate(2, miAlquiler.getFecha2());
 			st.setInt(3, miAlquiler.getCoste());

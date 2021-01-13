@@ -354,6 +354,13 @@ public class Controlador{
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
 				// TODO Funcion para calcular el coste y buscar posible oferta
 				miAlquiler.setOferta(null);
+				OfertaDao oferta=new OfertaDao();
+				oferta.buscarOferta(miAlquiler.getOferta());
+				if(oferta.equals(miAlquiler)) {
+					miAlquiler.setOferta(miAlquiler.getOferta());
+				}else {
+					miAlquiler.setOferta(-1);
+				}
 				miAlquiler.setCoste(0);
 				AlquilerDao alquiler = new AlquilerDao();
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
@@ -404,7 +411,13 @@ public class Controlador{
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
 				miAlquiler.setId(Integer.parseInt(id));
 				// TODO Funcion para calcular el coste y buscar posible oferta
-				miAlquiler.setOferta(0);
+				OfertaDao oferta=new OfertaDao();
+				oferta.buscarOferta(miAlquiler.getOferta());
+				if(oferta.equals(miAlquiler)) {
+					miAlquiler.setOferta(miAlquiler.getOferta());
+				}else {
+					miAlquiler.setOferta(-1);
+				}
 				miAlquiler.setCoste(0);
 				if (alquiler.modificarAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
@@ -716,4 +729,3 @@ public class Controlador{
 		this.vistaAutenticar.getPasswordText().setText("");
 	}
 }
-

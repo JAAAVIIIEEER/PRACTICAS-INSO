@@ -353,16 +353,19 @@ public class Controlador{
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
 				// TODO Funcion para calcular el coste y buscar posible oferta
-				miAlquiler.setOferta(null);
-				OfertaDao oferta=new OfertaDao();
-				oferta.buscarOferta(miAlquiler.getOferta());
-				if(oferta.equals(miAlquiler)) {
-					miAlquiler.setOferta(miAlquiler.getOferta());
-				}else {
-					miAlquiler.setOferta(-1);
-				}
-				miAlquiler.setCoste(0);
+//				miAlquiler.setOferta(null);
+//				OfertaDao oferta=new OfertaDao();
+//				oferta.buscarOferta(miAlquiler.getOferta());
+//				if(oferta.equals(miAlquiler)) {
+//					miAlquiler.setOferta(miAlquiler.getOferta());
+//				}else {
+//					miAlquiler.setOferta(null);
+//				}
+				int milisecondsByDay = 86400000;
+				int dias = (int) ((vistaAlquiler.getFechaFin().getTime()-vistaAlquiler.getFechaInicio().getTime()) / milisecondsByDay);
 				AlquilerDao alquiler = new AlquilerDao();
+				System.out.println(alquiler.calcularCoste(vistaAlquiler.getVehiculo()));
+				miAlquiler.setCoste((int) alquiler.calcularCoste(vistaAlquiler.getVehiculo())*dias);
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
 					vistaAlquiler.avisarAlquilerAniadidoCorrecto();
@@ -375,8 +378,8 @@ public class Controlador{
 		this.vistaGeneral.listenerFinalizarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				String id = vistaAlquiler.mostrarVentanaFinalizarAlquiler();
-				TiendaDao alquiler = new TiendaDao();
-				alquiler.eliminarTienda(Integer.parseInt(id));
+				AlquilerDao alquiler = new AlquilerDao();
+				alquiler.finalizarAlquiler(Integer.parseInt(id));
 			}
 		});
 	}

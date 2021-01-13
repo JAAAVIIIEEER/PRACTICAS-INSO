@@ -119,4 +119,24 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		this.cerrarConexion();
 		return true;
 	}
+	
+	@Override
+	public int calcularCoste(String matVehiculo) {
+		int coste = 0;
+		this.establecerConexion(); 
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement(
+					"SELECT CostePorDia FROM vehiculos WHERE Matricula=?");
+			st.setString(1, matVehiculo);
+			ResultSet res = st.executeQuery();
+			while(res.next()) {
+				coste = res.getInt("CostePorDia");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return -1;
+		}
+		this.cerrarConexion();
+		return coste;
+	}
 }

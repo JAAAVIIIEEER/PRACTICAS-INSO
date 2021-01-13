@@ -11,7 +11,7 @@ public class Alquiler {
 	private Date fecha2;
 	private String matVehiculo;
 	private String estado;
-	private int oferta;
+	private Integer oferta;
 	private int coste;
 	
 	public int getId() {
@@ -70,11 +70,11 @@ public class Alquiler {
 		this.dniEmpleado = dniEmpleado;
 	}
 
-	public int getOferta() {
+	public Integer getOferta() {
 		return oferta;
 	}
 
-	public void setOferta(int oferta) {
+	public void setOferta(Integer oferta) {
 		this.oferta = oferta;
 	}
 

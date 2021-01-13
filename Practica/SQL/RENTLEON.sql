@@ -254,5 +254,3 @@ UNLOCK TABLES;
 
 DELETE FROM `empleados` WHERE `UsuarioDNI`='admin';
 INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`, `FechaNacimiento`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com', 1/1/1900);
-
-INSERT INTO `ofertas` (`OfertaID`, `FechaInicio`, `FechaFin`, `Tipo`, `Especificacion`, `Descuento`) VALUES (-1, STR_TO_DATE('01/01/1900', '%d/%m/%Y'), STR_TO_DATE('01/01/2100', '%d/%m/%Y'), 'TODO', 'TODO', 0);

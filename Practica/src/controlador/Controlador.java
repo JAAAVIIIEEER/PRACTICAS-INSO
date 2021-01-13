@@ -353,7 +353,7 @@ public class Controlador{
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
 				// TODO Funcion para calcular el coste y buscar posible oferta
-				miAlquiler.setOferta(-1);
+				miAlquiler.setOferta(null);
 				miAlquiler.setCoste(0);
 				AlquilerDao alquiler = new AlquilerDao();
 				if (alquiler.aniadirAlquiler(miAlquiler)) {

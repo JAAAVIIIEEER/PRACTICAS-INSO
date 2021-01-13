@@ -1,14 +1,12 @@
 package implementacion;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import interfaces.AlquilerInterface;
 import modelo.Alquiler;
-import modelo.Cliente;
-import modelo.Vehiculo;
 
 public class AlquilerDao extends Conexion implements AlquilerInterface {
 
@@ -23,25 +21,48 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 			st.setInt(3, miAlquiler.getCoste());
 			st.setString(4, miAlquiler.getDniEmpleado());
 			st.setString(5, miAlquiler.getDniCliente());
-			st.setInt(6, miAlquiler.getOferta());
+			if (miAlquiler.getOferta() != null) {
+				st.setInt(6, miAlquiler.getOferta());
+			} else {
+				st.setNull(6, Types.INTEGER);
+			}
 			st.setString(7, miAlquiler.getMatVehiculo());
 			st.executeUpdate();
+			PreparedStatement stSec = this.getConexion()
+					.prepareStatement("UPDATE VEHICULOS SET ESTADO=? WHERE Matricula=?");
+			stSec.setString(1, "No disponible");
+			stSec.setString(2, miAlquiler.getMatVehiculo());
+			stSec.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
 		return true;
-	}	
-	
+	}
+
 	@Override
 	public boolean finalizarAlquiler(int alquilerid) {
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
 			st.setString(1, "Finalizado");
 			st.setInt(2, alquilerid);
 			st.executeUpdate();
+			PreparedStatement stTer = this.getConexion()
+					.prepareStatement("SELECT VehiculoAlquilado FROM ALQUILERES WHERE AlquilerID=?");
+			stTer.setInt(1, alquilerid);
+			ResultSet res = stTer.executeQuery();
+			String mat = "";;
+			while(res.next()) {
+				mat = res.getString("VehiculoAlquilado");
+			}
+			PreparedStatement stSec = this.getConexion()
+					.prepareStatement("UPDATE VEHICULOS SET estado=? WHERE Matricula=?");
+			stSec.setString(1, "Disponible");
+			stSec.setString(2, mat);
+			stSec.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;

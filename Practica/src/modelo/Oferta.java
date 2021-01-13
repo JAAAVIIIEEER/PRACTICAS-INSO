@@ -8,7 +8,7 @@ public class Oferta {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private String tipoOferta;
-	private int ofertaid;
+	private Integer ofertaid;
 	private String estado;
 	private String especificacion;
 	
@@ -44,11 +44,11 @@ public class Oferta {
 		this.tipoOferta = tipoOferta;
 	}
 
-	public int getOfertaid() {
+	public Integer getOfertaid() {
 		return ofertaid;
 	}
 
-	public void setOfertaid(int id) {
+	public void setOfertaid(Integer id) {
 		this.ofertaid = id;
 	}
 

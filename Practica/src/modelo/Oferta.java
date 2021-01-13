@@ -5,20 +5,13 @@ import java.sql.Date;
 public class Oferta {
 
 	private int descuento;
-	private Date fechaInincio;
+	private Date fechaInicio;
 	private Date fechaFin;
 	private String tipoOferta;
-	private String ofertaid;
-	private int estado;
+	private int ofertaid;
+	private String estado;
+	private String especificacion;
 	
-	public Oferta(int descuento, Date fechaInicio, Date fechaFin,String tipoOferta, String ofertaid) {
-		this.descuento=descuento;
-		this.fechaInincio=fechaInicio;
-		this.fechaFin=fechaFin;
-		this.tipoOferta=tipoOferta;
-		this.ofertaid=ofertaid;
-	}
-
 	public int getDescuento() {
 		return descuento;
 	}
@@ -27,12 +20,12 @@ public class Oferta {
 		this.descuento = descuento;
 	}
 
-	public Date getFechaInincio() {
-		return fechaInincio;
+	public Date getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public void setFechaInincio(Date fechaInincio) {
-		this.fechaInincio = fechaInincio;
+	public void setFechaInicio(Date fechaInincio) {
+		this.fechaInicio = fechaInincio;
 	}
 
 	public Date getFechaFin() {
@@ -51,20 +44,27 @@ public class Oferta {
 		this.tipoOferta = tipoOferta;
 	}
 
-	public String getOfertaid() {
+	public int getOfertaid() {
 		return ofertaid;
 	}
 
-	public void setOfertaid(String ofertaid) {
-		this.ofertaid = ofertaid;
+	public void setOfertaid(int id) {
+		this.ofertaid = id;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setEstado(String string) {
+		this.estado = string;
 	}
-	
+
+	public String getEspecificacion() {
+		return especificacion;
+	}
+
+	public void setEspecificacion(String especificacion) {
+		this.especificacion = especificacion;
+	}
 }

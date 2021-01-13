@@ -193,8 +193,12 @@ DROP TABLE IF EXISTS `ofertas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ofertas` (
   `OfertaID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
+  `FechaInicio` DATE NOT NULL, 
+  `FechaFin` DATE NOT NULL,
+  `Tipo` varchar(30),
+  `Especificacion` varchar(30),
   `Descuento` int unsigned NOT NULL,
-  `Estado` tinyint NOT NULL DEFAULT '1',
+  `Estado` varchar(15) NOT NULL DEFAULT 'Activa',
   PRIMARY KEY (`OfertaID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;

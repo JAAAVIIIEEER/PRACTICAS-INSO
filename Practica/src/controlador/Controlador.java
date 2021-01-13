@@ -508,6 +508,87 @@ public class Controlador{
 		});	
 	}
 	
+	private void aniadirListenerAutenticar() {
+		this.vistaAutenticar.addButtonListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	validar(evt);
+            }
+        });	
+	}
+	
+	private void listenerAniadirOferta() {
+		this.vistaGeneral.listenerAniadirOferta(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				vistaOferta.removeListenerAniadirButton();
+				vistaOferta.establecerEstadoDefecto();
+				gestionarNuevaOferta();
+			}
+		});
+	}
+	
+	private void gestionarNuevaOferta() {
+		this.mostrarVentanaAniadirOferta(visible);
+		this.vistaOferta.listenerAniadirButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Oferta miOferta = new Oferta();
+				miOferta.setFechaInicio(vistaOferta.getFechaInicio());
+				miOferta.setFechaFin(vistaOferta.getFechaFinal());
+				miOferta.setTipoOferta(vistaOferta.getTipoBox());
+				miOferta.setEspecificacion(vistaOferta.getEspecificacionText());
+				miOferta.setDescuento(vistaOferta.getDescuentoSpinner());
+				OfertaDao oferta = new OfertaDao();
+				if (oferta.aniadirOferta(miOferta)) {
+					mostrarVentanaAniadirOferta(noVisible);
+					vistaOferta.avisarOfertaAniadidoCorrecto();
+				}
+			}
+		});	
+	}
+	
+	private void listenerFinalizarOferta() {
+		this.vistaGeneral.listenerFinalizarOferta(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				String id = vistaOferta.mostrarVentanaFinalizarOferta();
+				OfertaDao oferta = new OfertaDao();
+				oferta.eliminarOferta(Integer.valueOf(id));
+			}
+		});
+	}
+	
+	private void listenerModificarOferta() {
+		this.vistaGeneral.listenerModificarOferta(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				vistaOferta.removeListenerAniadirButton();
+				gestionarModificarOferta();
+			}
+		});
+	}
+	
+	private void gestionarModificarOferta() {
+		String id = vistaOferta.mostrarVentanaConsultarOferta();
+		OfertaDao oferta = new OfertaDao();
+		Oferta miOferta = oferta.buscarOferta(Integer.valueOf(id));
+		vistaOferta.setFechaInicio(miOferta.getFechaInicio());
+		vistaOferta.setFechaFinal(miOferta.getFechaFin());
+		vistaOferta.setTipoBox(miOferta.getTipoOferta());
+		vistaOferta.setEspecificacionText(miOferta.getEspecificacion());
+		vistaOferta.setDescuentoSpinner(miOferta.getDescuento());
+		mostrarVentanaAniadirOferta(visible);
+		this.vistaOferta.listenerModificarButton(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				miOferta.setFechaInicio(vistaOferta.getFechaInicio());
+				miOferta.setFechaFin(vistaOferta.getFechaFinal());
+				miOferta.setTipoOferta(vistaOferta.getTipoBox());
+				miOferta.setEspecificacion(vistaOferta.getEspecificacionText());
+				miOferta.setDescuento(vistaOferta.getDescuentoSpinner());
+				if (oferta.modificarOferta(miOferta)) {
+					mostrarVentanaAniadirOferta(noVisible);
+					vistaOferta.avisarOfertaModificadoCorrecto();
+				}
+			}
+		});	
+	}
+	
 	private void aniadirListenerGeneral(int estado) {
 		listenerCambiarUsuario();
 		listenerAniadirAlquiler();
@@ -527,15 +608,10 @@ public class Controlador{
 			listenerAniadirTienda();
 			listenerBajaTienda();
 			listenerModificarTienda();
+			listenerAniadirOferta();
+			listenerFinalizarOferta();
+			listenerModificarOferta();
 		}
-	}
-	
-	private void aniadirListenerAutenticar() {
-		this.vistaAutenticar.addButtonListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-            	validar(evt);
-            }
-        });	
 	}
 	
 	private void validar(ActionEvent evt) {

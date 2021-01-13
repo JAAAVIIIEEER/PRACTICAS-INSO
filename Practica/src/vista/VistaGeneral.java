@@ -67,9 +67,9 @@ public class VistaGeneral extends javax.swing.JFrame {
 		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
-		jMenuItem24 = new javax.swing.JMenuItem();
-		jMenuItem25 = new javax.swing.JMenuItem();
-		jMenuItem26 = new javax.swing.JMenuItem();
+		aniadirIncidencia = new javax.swing.JMenuItem();
+		consultarIncidencia = new javax.swing.JMenuItem();
+		modificarIncidencia = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		this.setTitle("Empleado Base RentLeon");
@@ -93,11 +93,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		vehiculosMenu.setText("Vehiculos");
 
 		consultarVehiculo.setText("Consultar");
-		consultarVehiculo.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarVehiculoClicked(evt);
-			}
-		});
+
 		vehiculosMenu.add(consultarVehiculo);
 
 		barraMenus.add(vehiculosMenu);
@@ -105,11 +101,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		tiendaMenu.setText("Tiendas");
 
 		consultarTienda.setText("Consultar");
-		consultarTienda.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarTiendaClicked(evt);
-			}
-		});
+		
 		tiendaMenu.add(consultarTienda);
 
 		barraMenus.add(tiendaMenu);
@@ -125,11 +117,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		clientesMenu.add(bajaCliente);
 
 		consultarCliente.setText("Consultar");
-		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarClienteClicked(evt);
-			}
-		});
+
 		clientesMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
@@ -145,11 +133,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		alquileresMenu.add(aniadirAlquiler);
 
 		consultarAlquiler.setText("Consultar");
-		consultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarAlquilerClicked(evt);
-			}
-		});
 		alquileresMenu.add(consultarAlquiler);
 
 		modificarAlquiler.setText("Modificar");
@@ -164,19 +147,17 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		incidenciasMenu.setText("Incidencias");
 
-		jMenuItem24.setText("Añadir");
-		jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem24ActionPerformed(evt);
-			}
-		});
-		incidenciasMenu.add(jMenuItem24);
+		aniadirIncidencia.setText("Añadir");
+		incidenciasMenu.add(aniadirIncidencia);
 
-		jMenuItem25.setText("Consultar");
-		incidenciasMenu.add(jMenuItem25);
+		consultarIncidencia.setText("Consultar");
+		incidenciasMenu.add(consultarIncidencia);
 
-		jMenuItem26.setText("Modificar");
-		incidenciasMenu.add(jMenuItem26);
+		modificarIncidencia.setText("Modificar");
+		incidenciasMenu.add(modificarIncidencia);
+		
+		finalizarIncidencia.setText("Finalizar");
+		incidenciasMenu.add(finalizarIncidencia);
 
 		barraMenus.add(incidenciasMenu);
 
@@ -249,12 +230,15 @@ public class VistaGeneral extends javax.swing.JFrame {
 		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
 		ofertasMenu = new javax.swing.JMenu();
-		jMenuItem21 = new javax.swing.JMenuItem();
-		jMenuItem22 = new javax.swing.JMenuItem();
+		aniadirOferta = new javax.swing.JMenuItem();
+		modificarOferta = new javax.swing.JMenuItem();
+		consultarOferta = new javax.swing.JMenuItem();
+		finalizarOferta = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
-		jMenuItem24 = new javax.swing.JMenuItem();
-		jMenuItem25 = new javax.swing.JMenuItem();
-		jMenuItem26 = new javax.swing.JMenuItem();
+		aniadirIncidencia = new javax.swing.JMenuItem();
+		consultarIncidencia = new javax.swing.JMenuItem();
+		modificarIncidencia = new javax.swing.JMenuItem();
+		finalizarIncidencia = new javax.swing.JMenuItem();
 
 		this.setTitle("Administración RentLeon");
 
@@ -385,29 +369,33 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		ofertasMenu.setText("Ofertas");
 
-		jMenuItem21.setText("Añadir");
-		ofertasMenu.add(jMenuItem21);
+		aniadirOferta.setText("Añadir");
+		ofertasMenu.add(aniadirOferta);
+		
+		consultarOferta.setText("Consultar");
+		ofertasMenu.add(consultarOferta);
 
-		jMenuItem22.setText("Modificar");
-		ofertasMenu.add(jMenuItem22);
-
+		modificarOferta.setText("Modificar");
+		ofertasMenu.add(modificarOferta);
+		
+		finalizarOferta.setText("Finalizar");
+		ofertasMenu.add(finalizarOferta);
+		
 		barraMenus.add(ofertasMenu);
 
 		incidenciasMenu.setText("Incidencias");
 
-		jMenuItem24.setText("Añadir");
-		jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem24ActionPerformed(evt);
-			}
-		});
-		incidenciasMenu.add(jMenuItem24);
+		aniadirIncidencia.setText("Añadir");
+		incidenciasMenu.add(aniadirIncidencia);
 
-		jMenuItem25.setText("Consultar");
-		incidenciasMenu.add(jMenuItem25);
+		consultarIncidencia.setText("Consultar");
+		incidenciasMenu.add(consultarIncidencia);
 
-		jMenuItem26.setText("Modificar");
-		incidenciasMenu.add(jMenuItem26);
+		modificarIncidencia.setText("Modificar");
+		incidenciasMenu.add(modificarIncidencia);
+		
+		finalizarIncidencia.setText("Finalizar");
+		incidenciasMenu.add(finalizarIncidencia);
 
 		barraMenus.add(incidenciasMenu);
 
@@ -464,95 +452,68 @@ public class VistaGeneral extends javax.swing.JFrame {
 	
 	public void listenerModificarVehiculo(ActionListener listenerForButtons) {
 		this.modificarVehiculo.addActionListener(listenerForButtons);
-//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Añadir implementacion de modelos
-//		VehiculoImpl consulta = new VehiculoImpl();
-//		consulta.consultarVehiculo(modificacion);
-//		VistaVehiculo a = new VistaVehiculo();
-//		a.setVisible(true);
 	}
 	
 	public void listenerAniadirTienda(ActionListener listenerForButtons) {
 		this.aniadirTienda.addActionListener(listenerForButtons);
-//		VistaTienda aniadir = new VistaTienda();
-//		aniadir.setVisible(true);
 	}
 
 	public void listenerBajaTienda(ActionListener listenerForButtons) {
 		this.bajaTienda.addActionListener(listenerForButtons);
-//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Tienda",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Implementar modelo
-//		TiendaImpl a = new TiendaImpl();
-//		a.eliminarTienda(Integer.valueOf(baja));
 	}
 	
 	public void listenerModificarTienda(ActionListener listenerForButtons) {
 		this.modificarTienda.addActionListener(listenerForButtons);
-//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Añadir implementacion de modelos
-//		TiendaImpl consulta = new TiendaImpl();
-//		consulta.consultarTienda(Integer.valueOf(modificacion));
-//		VistaTienda a = new VistaTienda();
-//		a.setVisible(true);
 	}
 	
 	public void listenerAniadirAlquiler(ActionListener listenerForButtons) {
 		this.aniadirAlquiler.addActionListener(listenerForButtons);
-//		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
-//		a.setVisible(true);
 	}
 
 	public void listenerFinalizarAlquiler(ActionListener listenerForButtons) {
 		this.finalizarAlquiler.addActionListener(listenerForButtons);
-//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Finalizar Alquiler",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-//		// implementacion
-//		AlquilerImpl a = new AlquilerImpl();
-//		a.finalizarAlquiler(Integer.valueOf(baja));
 	}
 
 	public void listenerModificarAlquiler(ActionListener listenerForButtons) {
 		this.modificarAlquiler.addActionListener(listenerForButtons);
-//		String modificacion = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Vehiculo a modificar",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Añadir implementacion de modelos
-//		AlquilerImpl consulta = new AlquilerImpl();
-//		consulta.consultarAlquiler(Integer.valueOf(modificacion));
-//		VistaAniadirAlquiler a = new VistaAniadirAlquiler();
-//		a.setVisible(true);
 	}
 	
 	public void listenerAniadirCliente(ActionListener listenerForButtons) {
 		this.aniadirCliente.addActionListener(listenerForButtons);
-//		VistaAniadirCliente aniadir = new VistaAniadirCliente();
-//		aniadir.setVisible(true);
 	}
 
 	public void listenerBajaCliente(ActionListener listenerForButtons) {
 		this.bajaCliente.addActionListener(listenerForButtons);
-//		String baja = JOptionPane.showInputDialog(null, "Introduce el identificador:", "Baja Cliente",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-//		// implementacion
-//		ClienteImpl a = new ClienteImpl();
-//		a.eliminarCliente(Integer.valueOf(baja));
 	}
 	
 	public void listenerModificarCliente(ActionListener listenerForButtons) {
 		this.modificarCliente.addActionListener(listenerForButtons);
-//		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
-//				JOptionPane.QUESTION_MESSAGE);
-//		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-//		// implementacion
-//		ClienteImpl consulta = new ClienteImpl();
-//		consulta.consultarCliente(dniCliente);
-//		VistaAniadirCliente a = new VistaAniadirCliente();
-//		a.setVisible(true);
 	}
+	
+	public void listenerAniadirOferta(ActionListener listenerForButtons) {
+		this.aniadirOferta.addActionListener(listenerForButtons);
+	}
+
+	public void listenerFinalizarOferta(ActionListener listenerForButtons) {
+		this.finalizarOferta.addActionListener(listenerForButtons);
+	}
+	
+	public void listenerModificarOferta(ActionListener listenerForButtons) {
+		this.modificarOferta.addActionListener(listenerForButtons);
+	}
+	
+	public void listenerAniadirIncidencia(ActionListener listenerForButtons) {
+		this.aniadirIncidencia.addActionListener(listenerForButtons);
+	}
+
+	public void listenerFinalizarIncidencia(ActionListener listenerForButtons) {
+		this.finalizarIncidencia.addActionListener(listenerForButtons);
+	}
+	
+	public void listenerModificarIncidencia(ActionListener listenerForButtons) {
+		this.modificarIncidencia.addActionListener(listenerForButtons);
+	}
+	
 	
 
 	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
@@ -595,10 +556,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
 	}
 
-	private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
-
 	// Variables declaration - do not modify
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
@@ -626,12 +583,15 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenuItem consultarCliente;
 	private javax.swing.JMenuItem modificarVehiculo;
 	private javax.swing.JMenuItem modificarCliente;
-	private javax.swing.JMenuItem jMenuItem21;
-	private javax.swing.JMenuItem jMenuItem22;
+	private javax.swing.JMenuItem aniadirOferta;
+	private javax.swing.JMenuItem modificarOferta;
+	private javax.swing.JMenuItem consultarOferta;
+	private javax.swing.JMenuItem finalizarOferta;
 	private javax.swing.JMenuItem finalizarAlquiler;
-	private javax.swing.JMenuItem jMenuItem24;
-	private javax.swing.JMenuItem jMenuItem25;
-	private javax.swing.JMenuItem jMenuItem26;
+	private javax.swing.JMenuItem aniadirIncidencia;
+	private javax.swing.JMenuItem consultarIncidencia;
+	private javax.swing.JMenuItem modificarIncidencia;
+	private javax.swing.JMenuItem finalizarIncidencia;
 	private javax.swing.JMenuItem modificarTienda;
 	private javax.swing.JMenuItem aniadirVehiculo;
 	private javax.swing.JMenuItem bajaVehiculo;

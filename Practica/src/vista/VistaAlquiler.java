@@ -36,119 +36,123 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	private void initComponents() {
 
 		jLabel1 = new javax.swing.JLabel();
-		dniText = new javax.swing.JTextField();
-		mesInicioBox = new javax.swing.JComboBox();
-		mesFinalBox = new javax.swing.JComboBox();
-		vehiculosDisponiblesBox = new javax.swing.JComboBox();
-		jLabel2 = new javax.swing.JLabel();
-		diaFinalSpinner = new javax.swing.JSpinner();
-		anioFinalSpinner = new javax.swing.JSpinner();
-		anioInicioSpinner = new javax.swing.JSpinner();
-		diaInicioSpinner = new javax.swing.JSpinner();
-		jLabel3 = new javax.swing.JLabel();
-		jLabel4 = new javax.swing.JLabel();
-		aniadirButton = new javax.swing.JButton();
+        dniClienteText = new javax.swing.JTextField();
+        mesInicioBox = new javax.swing.JComboBox();
+        mesFinalBox = new javax.swing.JComboBox();
+        vehiculosDisponiblesBox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        diaFinalSpinner = new javax.swing.JSpinner();
+        anioFinalSpinner = new javax.swing.JSpinner();
+        anioInicioSpinner = new javax.swing.JSpinner();
+        diaInicioSpinner = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        aniadirButton = new javax.swing.JButton();
+        dniEmpleadoText = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jLabel1.setText("DNI");
+        jLabel1.setText("Cliente DNI");
 
-		mesInicioBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril",
-				"Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        mesInicioBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-		mesFinalBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril",
-				"Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        mesFinalBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-		jLabel2.setText("Vehiculo");
+        jLabel2.setText("Vehiculo");
 
-		jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-		jLabel3.setText("Fecha Inicio");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Fecha Inicio");
 
-		jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-		jLabel4.setText("Fecha Fin");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Fecha Fin");
 
-		aniadirButton.setText("Añadir");
+        aniadirButton.setText("Añadir");
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
-				.createSequentialGroup().addGap(45, 45, 45)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(jLabel3)
-						.addGroup(layout.createSequentialGroup()
-								.addComponent(diaInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(mesInicioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 96,
-										javax.swing.GroupLayout.PREFERRED_SIZE)))
-				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-						javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(jLabel2).addComponent(jLabel1))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(layout
-										.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(
-												dniText, javax.swing.GroupLayout.PREFERRED_SIZE, 105,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(vehiculosDisponiblesBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-												105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-						.addGroup(layout.createSequentialGroup()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(jLabel4)
-										.addGroup(layout.createSequentialGroup()
-												.addComponent(anioInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-														84, javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGap(44, 44, 44)
-												.addComponent(diaFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-												.addComponent(mesFinalBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(anioFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 84,
-										javax.swing.GroupLayout.PREFERRED_SIZE)))
-				.addGap(32, 32, 32))
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(aniadirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(228, 228, 228)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(26, 26, 26)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel1).addComponent(dniText, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(vehiculosDisponiblesBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(jLabel2))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(jLabel3).addComponent(jLabel4))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(mesInicioBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(mesFinalBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(diaFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(anioFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(anioInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(diaInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(32, 32, 32).addComponent(aniadirButton).addContainerGap()));
+        jLabel5.setText("Empleado DNI");
 
-		pack();
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(29, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(diaInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mesInicioBox, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
+                            .addComponent(dniEmpleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(dniClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(anioInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(diaFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mesFinalBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(anioFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(4, 4, 4)
+                            .addComponent(aniadirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(196, 196, 196))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(vehiculosDisponiblesBox, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(9, 9, 9))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addGap(51, 51, 51))))
+                .addGap(32, 32, 32))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vehiculosDisponiblesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dniClienteText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dniEmpleadoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mesInicioBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mesFinalBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anioFinalSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anioInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(diaInicioSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(aniadirButton)
+                .addContainerGap())
+        );
+
+        pack();
 	}// </editor-fold>
 
 	public void listenerAniadirButton(ActionListener listenForButtons) {
@@ -159,6 +163,12 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	public void listenerModificarButton(ActionListener listenForButtons) {
 		this.aniadirButton.setText("Modificar");
 		this.aniadirButton.addActionListener(listenForButtons);
+	}
+	
+	public void removeListenerAniadirButton() {
+		for (ActionListener al : aniadirButton.getActionListeners()) {
+			aniadirButton.removeActionListener(al);
+		}
 	}
 
 	public void avisarAlquilerAniadidoCorrecto() {
@@ -199,8 +209,8 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		return new Date(cal.getTimeInMillis());
 	}
 
-	public String getDNIText() {
-		return dniText.getText();
+	public String getClienteDNIText() {
+		return dniClienteText.getText();
 	}
 
 	public String getVehiculo() {
@@ -212,8 +222,8 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		// this.vehiculosDisponiblesBox = vehiculosDisponiblesBox;
 	}
 
-	public void setDniText(String dni) {
-		this.dniText.setText(dni);
+	public void setClienteDNIText(String dni) {
+		this.dniClienteText.setText(dni);
 	}
 
 	public void setInicioDate(Date fecha) {
@@ -231,6 +241,26 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		this.mesFinalBox.setSelectedIndex(cal.get(Calendar.MONTH));
 		this.anioFinalSpinner.setValue(cal.get(Calendar.YEAR));
 	}
+	
+	public String getDniEmpleadoText() {
+		return dniEmpleadoText.getText();
+	}
+
+	public void setDniEmpleadoText(String dniEmpleadoText) {
+		this.dniEmpleadoText.setText(dniEmpleadoText);
+	}
+
+	public void establecerEstadoDefecto() {
+		mesInicioBox.setSelectedIndex(0);
+		mesFinalBox.setSelectedIndex(0);
+		vehiculosDisponiblesBox.setSelectedItem(null);
+		dniEmpleadoText.setText("");
+		dniClienteText.setText("");
+		diaFinalSpinner.setValue(1);
+		anioFinalSpinner.setValue(1900);
+		diaInicioSpinner.setValue(1);
+		anioInicioSpinner.setValue(1900);
+	}
 
 	// Variables declaration - do not modify
 	private javax.swing.JButton aniadirButton;
@@ -241,10 +271,12 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
 	private javax.swing.JSpinner diaFinalSpinner;
 	private javax.swing.JSpinner anioFinalSpinner;
 	private javax.swing.JSpinner anioInicioSpinner;
 	private javax.swing.JSpinner diaInicioSpinner;
-	private javax.swing.JTextField dniText;
+	private javax.swing.JTextField dniClienteText;
+	private javax.swing.JTextField dniEmpleadoText;
 	// End of variables declaration
 }

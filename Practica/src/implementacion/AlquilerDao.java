@@ -2,10 +2,12 @@ package implementacion;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import interfaces.AlquilerInterface;
 import modelo.Alquiler;
+import modelo.Cliente;
 import modelo.Vehiculo;
 
 public class AlquilerDao extends Conexion implements AlquilerInterface {
@@ -14,25 +16,21 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 	public boolean aniadirAlquiler(Alquiler miAlquiler) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO ALQUILERES (usuario, contrasenia, DNI, nombre, apellidos, telefono, nacimiento, tipo, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"INSERT INTO ALQUILERES (FechaRecogida, FechaEntrega, CosteTotal, EmpleadoDNI, ClienteDNI, Oferta, CocheAlquilado) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			st.setDate(1, miAlquiler.getFecha1());
+			st.setDate(2, miAlquiler.getFecha2());
+			st.setInt(3, miAlquiler.getCoste());
+			st.setString(4, miAlquiler.getDniEmpleado());
+			st.setString(5, miAlquiler.getDniCliente());
+			st.setInt(6, miAlquiler.getOferta());
+			st.setString(7, miAlquiler.getMatVehiculo());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
 	}	
 	
@@ -40,34 +38,41 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 	public boolean finalizarAlquiler(int alquilerid) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE ID=?");
-//			st.setString(1, "Baja");
-//			st.setInt(2, empleadoid);
+			PreparedStatement st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
+			st.setString(1, "Finalizado");
+			st.setInt(2, alquilerid);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		//listaEmpleados.remove(empleadoid);
 		this.cerrarConexion();
 		return true;
 	}
 
 	@Override
 	public Alquiler consultarAlquiler(int alquilerid) {
+		Alquiler miAlquiler = new Alquiler();
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la bd
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES WHERE ID=?");
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES WHERE AlquilerID=?");
 			st.setInt(1, alquilerid);
-			st.executeUpdate();
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				miAlquiler.setId(res.getInt("AlquilerID"));
+				miAlquiler.setFecha1(res.getDate("FechaRecogida"));
+				miAlquiler.setFecha2(res.getDate("FechaEntrega"));
+				miAlquiler.setCoste(res.getInt("CosteTotal"));
+				miAlquiler.setMatVehiculo(res.getString("CocheAlquilado"));
+				miAlquiler.setDniEmpleado(res.getString("EmpleadoDNI"));
+				miAlquiler.setDniCliente(res.getString("ClienteDNI"));
+				miAlquiler.setOferta(res.getInt("Oferta"));
+				miAlquiler.setEstado(res.getString("Estado"));
+			}
+			res.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		// TODO Poner todos los datos
-		// Alquiler found = new Alquiler();
-		// return found;
 		return null;
 	}
 
@@ -75,25 +80,22 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 	public boolean modificarAlquiler(Alquiler miAlquiler) {
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente bd
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Alquileres SET usuario=?, contrasenia=?, DNI=?, nombre=?, apellidos=?, telefono=?, nacimiento=?, tipo=?, email=? WHERE matricula=?");
-//			st.setString(1, emp.getUsuario());
-//			st.setString(2, emp.getContrasenia());
-//			st.setString(3, emp.getDNI());
-//			st.setString(4, emp.getNombre());
-//			st.setString(5, emp.getApellidos());
-//			st.setString(6, emp.getTelefono());
-//			st.setDate(7, emp.getNacimiento());
-//			st.setString(8, emp.getTipo());
-//			st.setString(9, emp.getEmail());
+					"UPDATE ALQUILERES SET FechaRecogida=?, FechaEntrega=?, CosteTotal=?, EmpleadoDNI=?, ClienteDNI=?, Oferta=?, CocheAlquilado=? WHERE matricula=?");
+			st.setDate(1, miAlquiler.getFecha1());
+			st.setDate(2, miAlquiler.getFecha2());
+			st.setInt(3, miAlquiler.getCoste());
+			st.setString(4, miAlquiler.getDniEmpleado());
+			st.setString(5, miAlquiler.getDniCliente());
+			st.setInt(6, miAlquiler.getOferta());
+			st.setString(7, miAlquiler.getMatVehiculo());
+			st.setInt(8, miAlquiler.getId());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
 		return true;
 	}
 }

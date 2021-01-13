@@ -29,20 +29,21 @@ DROP TABLE IF EXISTS `alquileres`;
 CREATE TABLE `alquileres` (
   `AlquilerID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
   `FechaRecogida` date NOT NULL,
-  `DiasAlquilados` int unsigned NOT NULL,
+  `FechaEntrega` date NOT NULL,
   `CosteTotal` int unsigned NOT NULL,
-  `CocheAlquilado` int NOT NULL,
-  `Empleado` int DEFAULT NULL,
-  `Cliente` char(9) NOT NULL,
+  `CocheAlquilado` char(7) NOT NULL,
+  `EmpleadoDNI` char(9) DEFAULT NULL,
+  `ClienteDNI` char(9) NOT NULL,
   `Oferta` int DEFAULT NULL,
+  `Estado` varchar(20) NOT NULL DEFAULT 'Activo',
   PRIMARY KEY (`AlquilerID`),
   KEY `CocheAlquilado_idx` (`CocheAlquilado`),
-  KEY `Empleado_idx` (`Empleado`),
-  KEY `Cliente_idx` (`Cliente`),
+  KEY `Empleado_idx` (`EmpleadoDNI`),
+  KEY `Cliente_idx` (`ClienteDNI`),
   KEY `Ofertas_idx` (`Oferta`),
-  CONSTRAINT `Cliente` FOREIGN KEY (`Cliente`) REFERENCES `clientes` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Cliente` FOREIGN KEY (`ClienteDNI`) REFERENCES `clientes` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `CocheAlquilado` FOREIGN KEY (`CocheAlquilado`) REFERENCES `coches` (`CocheID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `Empleado` FOREIGN KEY (`Empleado`) REFERENCES `empleados` (`EmpleadoID`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `Empleado` FOREIGN KEY (`EmpleadoDNI`) REFERENCES `empleados` (`UsuarioDNI`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `Ofertas` FOREIGN KEY (`Oferta`) REFERENCES `ofertas` (`OfertaID`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -101,7 +102,7 @@ DROP TABLE IF EXISTS `vehiculos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehiculos` (
   `VehiculoID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
-  `Matricula` varchar(45) NOT NULL,
+  `Matricula` char(7) NOT NULL,
   `Tipo` varchar(45) NOT NULL,
   `Combustible` varchar(45) NOT NULL,
   `Plazas` int unsigned NOT NULL,
@@ -165,10 +166,10 @@ DROP TABLE IF EXISTS `incidencias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `incidencias` (
-  `IncidenciaID` int NOT NULL,
+  `IncidenciaID` int NOT NULL AUTO_INCREMENT,
   `AlquilerID` int NOT NULL COMMENT 'Clave primaria',
   `Tipo` varchar(45) NOT NULL,
-  `Estado` tinyint unsigned NOT NULL DEFAULT '1',
+  `Estado` varchar(15) NOT NULL DEFAULT 'No finalizada',
   PRIMARY KEY (`IncidenciaID`,`AlquilerID`),
   CONSTRAINT `AlquilerID` FOREIGN KEY (`IncidenciaID`) REFERENCES `alquileres` (`AlquilerID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

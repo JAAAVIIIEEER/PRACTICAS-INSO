@@ -330,6 +330,8 @@ public class Controlador{
 	private void listenerAniadirAlquiler() {
 		this.vistaGeneral.listenerAniadirAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaAlquiler.removeListenerAniadirButton();
+				vistaAlquiler.establecerEstadoDefecto();
 				gestionaNuevoAlquiler();
 			}
 		});
@@ -340,15 +342,14 @@ public class Controlador{
 		this.vistaAlquiler.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Alquiler miAlquiler = new Alquiler();
-				miAlquiler.setDni(vistaAlquiler.getDNIText());
+				miAlquiler.setDniCliente(vistaAlquiler.getClienteDNIText());
+				miAlquiler.setDniEmpleado(vistaAlquiler.getDniEmpleadoText());
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
-//				miAlquiler.setMatricula(vistaAlquiler.getMatriculaText());
-//				miAlquiler.setMarca(vistaAlquiler.getMarcaText());
-//				miVehiculo.setNombre(vistaEmpleado.getNombreText());
-//				miVehiculo.setApellidos(vistaEmpleado.getApellidosText());
-//				miVehiculo.setTipo(vistaEmpleado.getTipoText());
+				// TODO Funcion para calcular el coste y buscar posible oferta
+				miAlquiler.setOferta(0);
+				miAlquiler.setCoste(0);
 				AlquilerDao alquiler = new AlquilerDao();
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
@@ -371,6 +372,7 @@ public class Controlador{
 	private void listenerModificarAlquiler() {
 		this.vistaGeneral.listenerModificarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaAlquiler.removeListenerAniadirButton();
 				gestionarModificarAlquiler();
 			}
 		});
@@ -380,27 +382,23 @@ public class Controlador{
 		String id = vistaAlquiler.mostrarVentanaConsultarAlquiler();
 		AlquilerDao alquiler = new AlquilerDao();
 		Alquiler miAlquiler = alquiler.consultarAlquiler(Integer.parseInt(id));
-		vistaAlquiler.setDniText(miAlquiler.getDni());
+		vistaAlquiler.setClienteDNIText(miAlquiler.getDniCliente());
 		vistaAlquiler.setInicioDate(miAlquiler.getFecha1());
 		vistaAlquiler.setFinalDate(miAlquiler.getFecha2());
 		vistaAlquiler.setVehiculosDisponiblesBox(miAlquiler.getMatVehiculo());
-//		vistaAlquiler.setEmailText(miAlquiler.getEmail());
-//		vistaAlquiler.setTelefonoText(miAlquiler.getTelefono());
-//		vistaAlquiler.setNombreText(miAlquiler.getNombre());
-//		vistaAlquiler.setApellidosText(miAlquiler.getApellidos());
-//		vistaAlquiler.setTipoText(miAlquiler.getTipo());
+		vistaAlquiler.setDniEmpleadoText(miAlquiler.getDniEmpleado());
 		mostrarVentanaAniadirAlquiler(visible);
 		this.vistaAlquiler.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miAlquiler.setDni(vistaAlquiler.getDNIText());
+				miAlquiler.setDniCliente(vistaAlquiler.getClienteDNIText());
+				miAlquiler.setDniEmpleado(vistaAlquiler.getDniEmpleadoText());
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
-//				miAlquiler.setMatricula(vistaAlquiler.getMatriculaText());
-//				miAlquiler.setMarca(vistaAlquiler.getMarcaText());
-//				miAlquiler.setNombre(vistaAlquiler.getNombreText());
-//				miAlquiler.setApellidos(vistaAlquiler.getApellidosText());
-//				miAlquiler.setTipo(vistaAlquiler.getTipoText());
+				miAlquiler.setId(Integer.parseInt(id));
+				// TODO Funcion para calcular el coste y buscar posible oferta
+				miAlquiler.setOferta(0);
+				miAlquiler.setCoste(0);
 				if (alquiler.modificarAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
 					vistaAlquiler.avisarAlquilerModificadoCorrecto();

@@ -5,11 +5,14 @@ import java.sql.Date;
 public class Alquiler {
 	
 	private int id;
-	private String dni;
+	private String dniCliente;
+	private String dniEmpleado;
 	private Date fecha1;
 	private Date fecha2;
 	private String matVehiculo;
-	private int estado;
+	private String estado;
+	private int oferta;
+	private int coste;
 	
 	public int getId() {
 		return id;
@@ -19,12 +22,12 @@ public class Alquiler {
 		this.id = id;
 	}
 
-	public String getDni() {
-		return dni;
+	public String getDniCliente() {
+		return dniCliente;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setDniCliente(String dniCliente) {
+		this.dniCliente = dniCliente;
 	}
 
 	public Date getFecha1() {
@@ -51,11 +54,35 @@ public class Alquiler {
 		this.matVehiculo = matVehiculo;
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public String getDniEmpleado() {
+		return dniEmpleado;
+	}
+
+	public void setDniEmpleado(String dniEmpleado) {
+		this.dniEmpleado = dniEmpleado;
+	}
+
+	public int getOferta() {
+		return oferta;
+	}
+
+	public void setOferta(int oferta) {
+		this.oferta = oferta;
+	}
+
+	public int getCoste() {
+		return coste;
+	}
+
+	public void setCoste(int coste) {
+		this.coste = coste;
 	}
 }

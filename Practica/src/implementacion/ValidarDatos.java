@@ -3,6 +3,8 @@ package implementacion;
 import java.sql.Date;
 import java.util.regex.Pattern;
 
+import modelo.Empleado;
+
 public class ValidarDatos {
 
 	/**
@@ -10,7 +12,7 @@ public class ValidarDatos {
 	 * @param dni
 	 * @return
 	 */
-	public boolean validarDNI(String dni) {
+	private boolean validarDNI(String dni) {
 		return Pattern.matches("\\d{8}[A-HJ-NP-TV-Z]", dni);
 	}
 	
@@ -19,7 +21,7 @@ public class ValidarDatos {
 	 * @param telefono
 	 * @return
 	 */
-	public boolean validarTelefono(String telefono) {
+	private boolean validarTelefono(String telefono) {
 		return Pattern.matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}", telefono);
 	}
 	
@@ -29,18 +31,18 @@ public class ValidarDatos {
 	 * @param caracteres
 	 * @return
 	 */
-	public boolean validarNumeroCaracteres(String texto, int caracteres) {
+	private boolean validarNumeroCaracteres(String texto, int caracteres) {
 		if (texto.strip().length() > caracteres) {
 			return false;
 		}
 		return true;
 	}
 	
-	public boolean validarMatricula(String matricula) {
+	private boolean validarMatricula(String matricula) {
 		return Pattern.matches("^[0-9]{1,4}(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}", matricula);
 	}
 	
-	public boolean validarNumero(String entero) {
+	private boolean validarNumero(String entero) {
 		try {
             Integer.parseInt(entero);
             return true;
@@ -49,19 +51,39 @@ public class ValidarDatos {
         }
 	}
 	
-	public boolean validarCadena(String cadena) {
+	private boolean validarCadena(String cadena) {
 		String regex = "(.)*(\\d)(.)*";      
 		Pattern pattern = Pattern.compile(regex);
+		if (cadena.isEmpty())
+			return false;
 		return !pattern.matcher(cadena).matches();
 	}
 	
-	public boolean validarEmail(String email) {
+	private boolean validarEmail(String email) {
 		return Pattern.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]+$", email);
 	}
 	
-	public boolean validarFechaInicioFin(Date inicio, Date fin) {
+	private boolean validarFechaInicioFin(Date inicio, Date fin) {
 		int milisecondsByDay = 86400000;
 		int dias = (int) ((fin.getTime() - inicio.getTime())/ milisecondsByDay);
 		return dias > 0; 
+	}
+	
+	public int validarEmpleado(Empleado miEmpleado) {
+		if (!validarDNI(miEmpleado.getUsuarioDNI()))
+			return 1;
+		if (!validarNumeroCaracteres(miEmpleado.getContrasenia(), 12) || validarNumeroCaracteres(miEmpleado.getContrasenia(), 3)) 
+			return 2;
+		if (!validarCadena(miEmpleado.getNombre()))
+			return 3;
+		if (!validarCadena(miEmpleado.getApellido1()))
+			return 4;
+		if (!validarCadena(miEmpleado.getApellido2()))
+			return 5;
+		if (!validarTelefono(miEmpleado.getTelefono()))
+			return 6;
+		if (!validarEmail(miEmpleado.getEmail()))
+			return 7;
+		return 0;
 	}
 }

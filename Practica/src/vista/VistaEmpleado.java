@@ -1,11 +1,14 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class VistaEmpleado extends javax.swing.JFrame {
 
@@ -327,6 +330,43 @@ public class VistaEmpleado extends javax.swing.JFrame {
 		emailText.setText("");
 		diaSpinner.setValue(1);
 		anioSpinner.setValue(1900);
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			dniText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			contraseniaText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 3:
+			nombreText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 4:
+			apellido1Text.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 5:
+			apellido2Text.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 6:
+			telefonoText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 7:
+			emailText .setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		dniText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		contraseniaText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		nombreText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		dniText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		apellido1Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		apellido2Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		telefonoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		emailText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
 	// Variables declaration - do not modify

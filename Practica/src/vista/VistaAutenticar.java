@@ -12,10 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-/**
- *
- * @author rauls
- */
 public class VistaAutenticar extends javax.swing.JFrame {
 
     /**
@@ -24,8 +20,7 @@ public class VistaAutenticar extends javax.swing.JFrame {
     public VistaAutenticar() {
         initComponents();
     }
-
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    
     private void initComponents() {
         passwordText = new javax.swing.JPasswordField();
         textFieldUsuario = new javax.swing.JTextField();

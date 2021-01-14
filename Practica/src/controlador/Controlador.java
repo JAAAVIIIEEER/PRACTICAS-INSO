@@ -25,7 +25,7 @@ public class Controlador {
 	private VistaCliente vistaCliente;
 	private VistaOferta vistaOferta;
 	private VistaIncidencia vistaIncidencia;
-	private ValidarDatos validar;
+	private ValidarDatos validarDatos;
 
 	private final boolean visible = true;
 	private final boolean noVisible = false;
@@ -41,7 +41,7 @@ public class Controlador {
 		this.vistaCliente = new VistaCliente();
 		this.vistaOferta = new VistaOferta();
 		this.vistaIncidencia = new VistaIncidencia();
-		this.validar = new ValidarDatos();
+		this.validarDatos = new ValidarDatos();
 		establecerLog();
 	}
 
@@ -110,6 +110,7 @@ public class Controlador {
 	private void listenerAniadirEmpleado() {
 		this.vistaGeneral.listenerAniadirEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaEmpleado.establecerBordesDefecto();
 				vistaEmpleado.removeListenerAniadirButton();
 				vistaEmpleado.establecerEstadoDefecto();
 				gestionarNuevoEmpleado();
@@ -122,6 +123,7 @@ public class Controlador {
 		this.vistaEmpleado.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Empleado miEmpleado = new Empleado();
+				vistaEmpleado.establecerBordesDefecto();
 				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
 				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
@@ -131,10 +133,15 @@ public class Controlador {
 				miEmpleado.setApellido1(vistaEmpleado.getApellido1Text());
 				miEmpleado.setApellido2(vistaEmpleado.getApellido2Text());
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
+				int validar = validarDatos.validarEmpleado(miEmpleado);
 				EmpleadoDao empleado = new EmpleadoDao();
-				if (empleado.aniadirEmpleado(miEmpleado)) {
-					mostrarVentanaAniadirEmpleado(noVisible);
-					vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+				if (validar == 0) {
+					if (empleado.aniadirEmpleado(miEmpleado)) {
+						mostrarVentanaAniadirEmpleado(noVisible);
+						vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+					}
+				} else {
+					vistaEmpleado.mostrarError(validar);
 				}
 			}
 		});
@@ -163,6 +170,7 @@ public class Controlador {
 		String dni = vistaEmpleado.mostrarVentanaConsultarEmpleado();
 		EmpleadoDao empleado = new EmpleadoDao();
 		Empleado miEmpleado = empleado.consultarEmpleado(dni);
+		vistaEmpleado.establecerBordesDefecto();
 		vistaEmpleado.setDNIText(miEmpleado.getUsuarioDNI());
 		vistaEmpleado.setContraseniaText(miEmpleado.getContrasenia());
 		vistaEmpleado.setNacimientoDate(miEmpleado.getNacimiento());
@@ -175,6 +183,7 @@ public class Controlador {
 		mostrarVentanaAniadirEmpleado(visible);
 		this.vistaEmpleado.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vistaEmpleado.establecerBordesDefecto();
 				miEmpleado.setUsuarioDNI(vistaEmpleado.getDNIText());
 				miEmpleado.setContrasenia(vistaEmpleado.getContraseniaText());
 				miEmpleado.setNacimiento(vistaEmpleado.getNacimientoDate());
@@ -184,9 +193,14 @@ public class Controlador {
 				miEmpleado.setApellido1(vistaEmpleado.getApellido1Text());
 				miEmpleado.setApellido2(vistaEmpleado.getApellido2Text());
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
-				if (empleado.modificarEmpleado(miEmpleado)) {
-					mostrarVentanaAniadirEmpleado(noVisible);
-					vistaEmpleado.avisarEmpleadoModificadoCorrecto();
+				int validar = validarDatos.validarEmpleado(miEmpleado);
+				if (validar == 0) {
+					if (empleado.aniadirEmpleado(miEmpleado)) {
+						mostrarVentanaAniadirEmpleado(noVisible);
+						vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+					}
+				} else {
+					vistaEmpleado.mostrarError(validar);
 				}
 			}
 		});

@@ -6,7 +6,7 @@ public class Tienda {
 	private String via;
 	private String provincia;
 	private String municipio;
-	private int numero;
+	private Integer numero;
 	private String telefono;
 	private String email;
 	
@@ -42,11 +42,11 @@ public class Tienda {
 		this.municipio = municipio;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

@@ -15,8 +15,8 @@ public class Cliente {
 	private String provincia;
 	private String municipio;
 	private String calle;
-	private int portal;
-	private int piso;
+	private Integer portal;
+	private Integer piso;
 	private String letra;
 	
 	public void setDNI(String DNI) {
@@ -107,11 +107,11 @@ public class Cliente {
 		this.calle = calle;
 	}
 
-	public int getPortal() {
+	public Integer getPortal() {
 		return portal;
 	}
 
-	public void setPortal(int portal) {
+	public void setPortal(Integer portal) {
 		this.portal = portal;
 	}
 
@@ -123,11 +123,11 @@ public class Cliente {
 		this.letra = letra;
 	}
 
-	public int getPiso() {
+	public Integer getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(Integer piso) {
 		this.piso = piso;
 	}
 }

@@ -203,8 +203,12 @@ public class VistaTienda extends javax.swing.JFrame {
 		return calleText.getText();
 	}
 
-	public int getNumeroText() {
-		return Integer.parseInt(numeroText.getText());
+	public Integer getNumeroText() {
+		try {
+			return Integer.parseInt(numeroText.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
 	}
 
 	public String mostrarVentanaConsultarTienda() {

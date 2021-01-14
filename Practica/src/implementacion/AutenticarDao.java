@@ -14,7 +14,6 @@ public class AutenticarDao extends Conexion {
 		String tipo = "";
 
 		this.establecerConexion();
-
 		try {
 			PreparedStatement st = this.getConexion()
 					.prepareStatement("SELECT UsuarioDNI, Contraseña, Tipo FROM EMPLEADOS WHERE UsuarioDNI=?");

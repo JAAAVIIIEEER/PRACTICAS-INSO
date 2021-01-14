@@ -5,11 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import interfaces.TiendaInterface;
 import modelo.Tienda;
 
 public class TiendaDao extends Conexion implements TiendaInterface {
-	
+
 	@Override
 	public boolean aniadirTienda(Tienda miTienda) {
 		this.establecerConexion();
@@ -23,14 +25,17 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 			st.setString(5, miTienda.getTelefono());
 			st.setString(6, miTienda.getEmail());
 			st.executeUpdate();
-		} catch (SQLException e) {
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, "Portal no valido", "Number Fail", JOptionPane.ERROR_MESSAGE);
+			return false;
+		} catch  (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
 		this.cerrarConexion();
 		return true;
 	}
-	
+
 	@Override
 	public void eliminarTienda(int tiendaid) {
 		this.establecerConexion();
@@ -74,7 +79,7 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"UPDATE TIENDAS SET Provincia=?, Municipio=?, NombreVia=?, Portal=?, Telefono=?, CorreoElectronico=? WHERE TiendaID=?");
-			st.setString(1, miTienda.getProvincia()); 
+			st.setString(1, miTienda.getProvincia());
 			st.setString(2, miTienda.getMunicipio());
 			st.setString(3, miTienda.getVia());
 			st.setInt(4, miTienda.getNumero());
@@ -86,13 +91,14 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 			System.out.println(e.getMessage());
 			return false;
 		}
-		this.cerrarConexion();;
+		this.cerrarConexion();
+		;
 		return true;
 	}
 
 	@Override
 	public ArrayList<Integer> buscarTiendas() {
-		ArrayList<Integer> tiendaIDs=new ArrayList<Integer>();
+		ArrayList<Integer> tiendaIDs = new ArrayList<Integer>();
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT TiendaID FROM TIENDAS");
@@ -103,7 +109,8 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		this.cerrarConexion();;
+		this.cerrarConexion();
+		;
 		return tiendaIDs;
 	}
 }

@@ -33,10 +33,13 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 			st.setString(14, miCliente.getLetra());
 			st.executeUpdate();
 		} catch (SQLException e) {
-			if (e.getMessage().indexOf("Duplicate entry") != -1? true:false) {
-				JOptionPane.showMessageDialog(null, "Ya hay un cliente con el DNI", "DNI Duplicado", JOptionPane.ERROR_MESSAGE);
+			if (e.getMessage().indexOf("Duplicate entry") != -1 ? true : false) {
+				JOptionPane.showMessageDialog(null, "Ya hay un cliente con el DNI", "DNI Duplicado",
+						JOptionPane.ERROR_MESSAGE);
 			}
-			System.out.println(e.getMessage());
+			return false;
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, "Portal o piso no validos", "Number Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		this.cerrarConexion();
@@ -118,7 +121,7 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 			return false;
 		}
 		this.cerrarConexion();
-		//listaEmpleados.add(emp);
+		// listaEmpleados.add(emp);
 		return true;
 	}
 }

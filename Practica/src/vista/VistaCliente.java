@@ -376,16 +376,24 @@ public class VistaCliente extends javax.swing.JFrame {
 		this.municipioText.setText(municipioText);
 	}
 
-	public int getPortalText() {
-		return Integer.parseInt(portalText.getText());
+	public Integer getPortalText() {
+		try {
+			return Integer.parseInt(portalText.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
 	}
 
-	public void setPortalText(int portalText) {
+	public void setPortalText(Integer portalText) {
 		this.portalText.setText(String.valueOf(portalText));
 	}
 	
-	public int getPisoText() {
-		return Integer.parseInt(pisoText.getText());
+	public Integer getPisoText() {
+		try {
+			return Integer.parseInt(pisoText.getText());
+		} catch (NumberFormatException e) {
+			return null;
+		}
 	}
 
 	public void setPisoText(int pisoText) {

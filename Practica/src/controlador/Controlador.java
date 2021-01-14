@@ -400,6 +400,7 @@ public class Controlador {
 				VehiculoDao vehiculo = new VehiculoDao();
 				vistaAlquiler.establecerVehiculosDisponibles(vehiculo.buscarVehiculosDisponibles());
 				vistaAlquiler.establecerEstadoDefecto();
+				vistaAlquiler.establecerBordesDefecto();
 				gestionaNuevoAlquiler();
 			}
 		});
@@ -410,6 +411,7 @@ public class Controlador {
 		this.vistaAlquiler.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Alquiler miAlquiler = new Alquiler();
+				vistaAlquiler.establecerBordesDefecto();
 				miAlquiler.setDniCliente(vistaAlquiler.getClienteDNIText());
 				miAlquiler.setDniEmpleado(vistaAlquiler.getDniEmpleadoText());
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
@@ -430,9 +432,14 @@ public class Controlador {
 				AlquilerDao alquiler = new AlquilerDao();
 				int coste = (int) (alquiler.calcularCoste(vistaAlquiler.getVehiculo()) * dias * (1 - descuento / 100));
 				miAlquiler.setCoste(coste);
-				if (alquiler.aniadirAlquiler(miAlquiler)) {
-					mostrarVentanaAniadirAlquiler(noVisible);
-					vistaAlquiler.avisarAlquilerAniadidoCorrecto();
+				int validar = validarDatos.validarAlquiler(miAlquiler);
+				if (validar == 0) {
+					if (alquiler.aniadirAlquiler(miAlquiler)) {
+						mostrarVentanaAniadirAlquiler(noVisible);
+						vistaAlquiler.avisarAlquilerAniadidoCorrecto();
+					}
+				} else {
+					vistaAlquiler.mostrarError(validar);
 				}
 			}
 		});
@@ -453,6 +460,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent evt) {
 				vistaAlquiler.removeListenerAniadirButton();
 				VehiculoDao vehiculo = new VehiculoDao();
+				vistaAlquiler.establecerBordesDefecto();
 				vistaAlquiler.establecerVehiculosDisponibles(vehiculo.buscarVehiculosDisponibles());
 				gestionarModificarAlquiler();
 			}
@@ -471,24 +479,36 @@ public class Controlador {
 		mostrarVentanaAniadirAlquiler(visible);
 		this.vistaAlquiler.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Alquiler miAlquiler = new Alquiler();
+				vistaAlquiler.establecerBordesDefecto();
 				miAlquiler.setDniCliente(vistaAlquiler.getClienteDNIText());
 				miAlquiler.setDniEmpleado(vistaAlquiler.getDniEmpleadoText());
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
-				miAlquiler.setId(Integer.parseInt(id));
-				// TODO Funcion para calcular el coste y buscar posible oferta
 				OfertaDao oferta = new OfertaDao();
-				oferta.buscarOferta(miAlquiler.getOferta());
-				if (oferta.equals(miAlquiler)) {
-					miAlquiler.setOferta(miAlquiler.getOferta());
+				Oferta posibleOferta = oferta.buscarPosibleOferta(vistaAlquiler.getVehiculo());
+				double descuento = 0;
+				if (posibleOferta != null) {
+					miAlquiler.setOferta(posibleOferta.getOfertaid());
+					descuento = posibleOferta.getDescuento();
 				} else {
-					miAlquiler.setOferta(-1);
+					miAlquiler.setOferta(null);
 				}
-				miAlquiler.setCoste(0);
-				if (alquiler.modificarAlquiler(miAlquiler)) {
-					mostrarVentanaAniadirAlquiler(noVisible);
-					vistaAlquiler.avisarAlquilerModificadoCorrecto();
+				int milisecondsByDay = 86400000;
+				int dias = (int) ((vistaAlquiler.getFechaFin().getTime() - vistaAlquiler.getFechaInicio().getTime())
+						/ milisecondsByDay);
+				AlquilerDao alquiler = new AlquilerDao();
+				int coste = (int) (alquiler.calcularCoste(vistaAlquiler.getVehiculo()) * dias * (1 - descuento / 100));
+				miAlquiler.setCoste(coste);
+				int validar = validarDatos.validarAlquiler(miAlquiler);
+				if (validar == 0) {
+					if (alquiler.modificarAlquiler(miAlquiler)) {
+						mostrarVentanaAniadirAlquiler(noVisible);
+						vistaAlquiler.avisarAlquilerModificadoCorrecto();
+					}
+				} else {
+					vistaAlquiler.mostrarError(validar);
 				}
 			}
 		});

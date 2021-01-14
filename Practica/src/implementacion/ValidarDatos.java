@@ -112,4 +112,14 @@ public class ValidarDatos {
 			return 6;
 		return 0;
 	}
+	
+	public int validarAlquiler(Alquiler miAlquiler) {
+		if (!validarDNI(miAlquiler.getDniEmpleado()))
+			return 1;
+		if (!validarDNI(miAlquiler.getDniCliente()))
+			return 2;
+		if (!validarFechaInicioFin(miAlquiler.getFecha1(), miAlquiler.getFecha2()))
+			return 3;
+		return 0;
+	}
 }

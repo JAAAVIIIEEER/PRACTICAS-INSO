@@ -5,14 +5,17 @@ package vista;
  * and open the template in the editor.
  */
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import implementacion.AlquilerDao;
 
@@ -289,6 +292,25 @@ public class VistaAlquiler extends javax.swing.JFrame {
 
 	public void establecerVehiculosDisponibles(ArrayList<String> vehiculos) {
 		vehiculosDisponiblesBox.setModel(new DefaultComboBoxModel<Object>(vehiculos.toArray()));
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			dniEmpleadoText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			dniClienteText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 3:
+			JOptionPane.showMessageDialog(null, "Fechas no validas", "Fecha Invalida", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		dniEmpleadoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		dniClienteText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
 	// Variables declaration - do not modify

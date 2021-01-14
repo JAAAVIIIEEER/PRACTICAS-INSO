@@ -47,10 +47,10 @@ public class Controlador {
 
 	public void establecerLog() {
 		try {
-			FileHandler fh = new FileHandler(".\\logs\\RentLeonLog.log");  
-	        logger.addHandler(fh);
-	        fh.setFormatter(new MyFormatter());  
-	        logger.setUseParentHandlers(false);
+			FileHandler fh = new FileHandler(".\\logs\\RentLeonLog.log");
+			logger.addHandler(fh);
+			fh.setFormatter(new MyFormatter());
+			logger.setUseParentHandlers(false);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -197,7 +197,7 @@ public class Controlador {
 				if (validar == 0) {
 					if (empleado.aniadirEmpleado(miEmpleado)) {
 						mostrarVentanaAniadirEmpleado(noVisible);
-						vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+						vistaEmpleado.avisarEmpleadoModificadoCorrecto();
 					}
 				} else {
 					vistaEmpleado.mostrarError(validar);
@@ -213,6 +213,7 @@ public class Controlador {
 				TiendaDao tienda = new TiendaDao();
 				vistaVehiculo.establecerTiendasDisponibles(tienda.buscarTiendas());
 				vistaVehiculo.establecerEstadoDefecto();
+				vistaVehiculo.establecerBordesDefecto();
 				gestionarNuevoVehiculo();
 			}
 		});
@@ -223,6 +224,7 @@ public class Controlador {
 		this.vistaVehiculo.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Vehiculo miVehiculo = new Vehiculo();
+				vistaVehiculo.establecerBordesDefecto();
 				miVehiculo.setPlazas(vistaVehiculo.getPlazasBoxText());
 				miVehiculo.setCombustible(vistaVehiculo.getCombustibleBoxText());
 				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
@@ -231,10 +233,15 @@ public class Controlador {
 				miVehiculo.setModelo(vistaVehiculo.getModeloText());
 				miVehiculo.setTiendaID(vistaVehiculo.getTiendasBox());
 				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
+				int validar = validarDatos.validarVehiculo(miVehiculo);
 				VehiculoDao vehiculo = new VehiculoDao();
-				if (vehiculo.aniadirVehiculo(miVehiculo)) {
-					mostrarVentanaAniadirVehiculo(noVisible);
-					vistaVehiculo.avisarVehiculoAniadidoCorrecto();
+				if (validar == 0) {
+					if (vehiculo.aniadirVehiculo(miVehiculo)) {
+						mostrarVentanaAniadirVehiculo(noVisible);
+						vistaVehiculo.avisarVehiculoAniadidoCorrecto();
+					}
+				} else {
+					vistaVehiculo.mostrarError(validar);
 				}
 			}
 		});
@@ -263,6 +270,7 @@ public class Controlador {
 		String matricula = vistaVehiculo.mostrarVentanaConsultarVehiculo();
 		VehiculoDao vehiculo = new VehiculoDao();
 		Vehiculo miVehiculo = vehiculo.consultarVehiculo(matricula);
+		vistaVehiculo.establecerBordesDefecto();
 		vistaVehiculo.setPlazasBox(miVehiculo.getPlazas());
 		vistaVehiculo.setCombustibleBox(miVehiculo.getCombustible());
 		vistaVehiculo.setTipoBox(miVehiculo.getTipo());
@@ -273,6 +281,7 @@ public class Controlador {
 		mostrarVentanaAniadirVehiculo(visible);
 		this.vistaVehiculo.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vistaVehiculo.establecerBordesDefecto();
 				miVehiculo.setPlazas(vistaVehiculo.getPlazasBoxText());
 				miVehiculo.setCombustible(vistaVehiculo.getCombustibleBoxText());
 				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
@@ -281,9 +290,14 @@ public class Controlador {
 				miVehiculo.setModelo(vistaVehiculo.getModeloText());
 				miVehiculo.setTiendaID(vistaVehiculo.getTiendasBox());
 				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
-				if (vehiculo.modificarVehiculo(miVehiculo)) {
-					mostrarVentanaAniadirVehiculo(noVisible);
-					vistaVehiculo.avisarVehiculoModificadoCorrecto();
+				int validar = validarDatos.validarVehiculo(miVehiculo);
+				if (validar == 0) {
+					if (vehiculo.aniadirVehiculo(miVehiculo)) {
+						mostrarVentanaAniadirVehiculo(noVisible);
+						vistaVehiculo.avisarVehiculoModificadoCorrecto();
+					}
+				} else {
+					vistaVehiculo.mostrarError(validar);
 				}
 			}
 		});
@@ -768,19 +782,19 @@ public class Controlador {
 		this.vistaAutenticar.getTextFieldUsuario().setText("");
 		this.vistaAutenticar.getPasswordText().setText("");
 	}
-	
+
 	private class MyFormatter extends Formatter {
 
 		@Override
 		public String format(LogRecord record) {
 			StringBuilder sb = new StringBuilder();
-			DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss"); 
+			DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 			Date timeStamp = new Date(record.getMillis());
 			sb.append(simple.format(timeStamp));
 			sb.append(" ");
-	        sb.append(record.getLevel()).append(':');
-	        sb.append(record.getMessage()).append('\n');
-	        return sb.toString();
+			sb.append(record.getLevel()).append(':');
+			sb.append(record.getMessage()).append('\n');
+			return sb.toString();
 		}
 	}
 }

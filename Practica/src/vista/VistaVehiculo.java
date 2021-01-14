@@ -1,13 +1,16 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.UIManager;
 
 public class VistaVehiculo extends javax.swing.JFrame {
 
@@ -38,7 +41,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
        costeSpinner = new javax.swing.JSpinner();
        jLabel5 = new javax.swing.JLabel();
        tipoBox = new javax.swing.JComboBox<String>();
-       marcaText = new javax.swing.JTextField();
+       modeloText = new javax.swing.JTextField();
        jLabel6 = new javax.swing.JLabel();
        tiendasBox = new javax.swing.JComboBox<Object>();
        jLabel7 = new javax.swing.JLabel();
@@ -115,7 +118,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                       .addComponent(marcaText)
+                                       .addComponent(modeloText)
                                        .addComponent(tiendasBox, 0, 123, Short.MAX_VALUE))
                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                        .addComponent(jLabel8)
@@ -138,7 +141,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                    .addComponent(plazasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                    .addComponent(jLabel1)
-                   .addComponent(marcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                   .addComponent(modeloText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                    .addComponent(jLabel6))
                .addGap(18, 18, 18)
                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,7 +228,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
     }
     
     public String getModeloText() {
-    	return marcaText.getText();
+    	return modeloText.getText();
     }
     
     public String mostrarVentanaConsultarVehiculo() {
@@ -254,7 +257,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
 		this.matriculaText.setText(matricula);	}
 
 	public void setModeloText(String marca) {
-		this.marcaText.setText(marca);
+		this.modeloText.setText(marca);
 	}
 	
 	public int getTiendasBox() {
@@ -280,13 +283,29 @@ public class VistaVehiculo extends javax.swing.JFrame {
 		tiendasBox.setSelectedItem(null);
 		tiendasBox.setSelectedIndex(0);
 		matriculaText.setText("");
-		marcaText.setText("");
+		modeloText.setText("");
 		extrasText.setText("");
 		costeSpinner.setValue(0);
 	}
 	
 	public void establecerTiendasDisponibles(ArrayList<Integer> tiendas) {
 		tiendasBox.setModel(new DefaultComboBoxModel<Object>(tiendas.toArray()));
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			matriculaText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			modeloText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		matriculaText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		modeloText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
     // Variables declaration - do not modify                     
@@ -305,7 +324,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSpinner costeSpinner;
     private javax.swing.JTextField matriculaText;
-    private javax.swing.JTextField marcaText;
+    private javax.swing.JTextField modeloText;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane extrasText;
     // End of variables declaration               

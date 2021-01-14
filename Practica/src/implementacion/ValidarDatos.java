@@ -3,30 +3,33 @@ package implementacion;
 import java.sql.Date;
 import java.util.regex.Pattern;
 
-import modelo.Empleado;
+import modelo.*;
 
 public class ValidarDatos {
 
 	/**
 	 * Comprueba DNI valido
+	 * 
 	 * @param dni
 	 * @return
 	 */
 	private boolean validarDNI(String dni) {
 		return Pattern.matches("\\d{8}[A-HJ-NP-TV-Z]", dni);
 	}
-	
+
 	/**
 	 * Comprueba numero de telefono valido
+	 * 
 	 * @param telefono
 	 * @return
 	 */
 	private boolean validarTelefono(String telefono) {
 		return Pattern.matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}", telefono);
 	}
-	
+
 	/**
 	 * Comprueba que una cadena no tiene mas de n caracteres
+	 * 
 	 * @param texto
 	 * @param caracteres
 	 * @return
@@ -37,42 +40,43 @@ public class ValidarDatos {
 		}
 		return true;
 	}
-	
+
 	private boolean validarMatricula(String matricula) {
 		return Pattern.matches("^[0-9]{1,4}(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}", matricula);
 	}
-	
+
 	private boolean validarNumero(String entero) {
 		try {
-            Integer.parseInt(entero);
-            return true;
-        } catch (NumberFormatException excepcion) {
-            return false;
-        }
+			Integer.parseInt(entero);
+			return true;
+		} catch (NumberFormatException excepcion) {
+			return false;
+		}
 	}
-	
+
 	private boolean validarCadena(String cadena) {
-		String regex = "(.)*(\\d)(.)*";      
+		String regex = "(.)*(\\d)(.)*";
 		Pattern pattern = Pattern.compile(regex);
 		if (cadena.isEmpty())
 			return false;
 		return !pattern.matcher(cadena).matches();
 	}
-	
+
 	private boolean validarEmail(String email) {
 		return Pattern.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]+$", email);
 	}
-	
+
 	private boolean validarFechaInicioFin(Date inicio, Date fin) {
 		int milisecondsByDay = 86400000;
-		int dias = (int) ((fin.getTime() - inicio.getTime())/ milisecondsByDay);
-		return dias > 0; 
+		int dias = (int) ((fin.getTime() - inicio.getTime()) / milisecondsByDay);
+		return dias > 0;
 	}
-	
+
 	public int validarEmpleado(Empleado miEmpleado) {
 		if (!validarDNI(miEmpleado.getUsuarioDNI()))
 			return 1;
-		if (!validarNumeroCaracteres(miEmpleado.getContrasenia(), 12) || validarNumeroCaracteres(miEmpleado.getContrasenia(), 3)) 
+		if (!validarNumeroCaracteres(miEmpleado.getContrasenia(), 12)
+				|| validarNumeroCaracteres(miEmpleado.getContrasenia(), 3))
 			return 2;
 		if (!validarCadena(miEmpleado.getNombre()))
 			return 3;
@@ -84,6 +88,14 @@ public class ValidarDatos {
 			return 6;
 		if (!validarEmail(miEmpleado.getEmail()))
 			return 7;
+		return 0;
+	}
+
+	public int validarVehiculo(Vehiculo miVehiculo) {
+		if (!validarMatricula(miVehiculo.getMatricula()))
+			return 1;
+		if (miVehiculo.getModelo().isEmpty())
+			return 2;
 		return 0;
 	}
 }

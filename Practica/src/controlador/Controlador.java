@@ -640,6 +640,7 @@ public class Controlador {
 		this.vistaGeneral.listenerAniadirOferta(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				vistaOferta.removeListenerAniadirButton();
+				vistaOferta.establecerBordesDefecto();
 				vistaOferta.establecerEstadoDefecto();
 				gestionarNuevaOferta();
 			}
@@ -651,15 +652,21 @@ public class Controlador {
 		this.vistaOferta.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Oferta miOferta = new Oferta();
+				vistaOferta.establecerBordesDefecto();
 				miOferta.setFechaInicio(vistaOferta.getFechaInicio());
 				miOferta.setFechaFin(vistaOferta.getFechaFinal());
 				miOferta.setTipoOferta(vistaOferta.getTipoBox());
 				miOferta.setEspecificacion(vistaOferta.getEspecificacionText());
 				miOferta.setDescuento(vistaOferta.getDescuentoSpinner());
+				int validar = validarDatos.validarOferta(miOferta);
 				OfertaDao oferta = new OfertaDao();
-				if (oferta.aniadirOferta(miOferta)) {
-					mostrarVentanaAniadirOferta(noVisible);
-					vistaOferta.avisarOfertaAniadidoCorrecto();
+				if (validar == 0) {
+					if (oferta.aniadirOferta(miOferta)) {
+						mostrarVentanaAniadirOferta(noVisible);
+						vistaOferta.avisarOfertaAniadidoCorrecto();
+					}
+				} else {
+					vistaOferta.mostrarError(validar);
 				}
 			}
 		});
@@ -678,6 +685,7 @@ public class Controlador {
 	private void listenerModificarOferta() {
 		this.vistaGeneral.listenerModificarOferta(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaOferta.establecerBordesDefecto();
 				vistaOferta.removeListenerAniadirButton();
 				gestionarModificarOferta();
 			}
@@ -696,14 +704,20 @@ public class Controlador {
 		mostrarVentanaAniadirOferta(visible);
 		this.vistaOferta.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vistaOferta.establecerBordesDefecto();
 				miOferta.setFechaInicio(vistaOferta.getFechaInicio());
 				miOferta.setFechaFin(vistaOferta.getFechaFinal());
 				miOferta.setTipoOferta(vistaOferta.getTipoBox());
 				miOferta.setEspecificacion(vistaOferta.getEspecificacionText());
 				miOferta.setDescuento(vistaOferta.getDescuentoSpinner());
-				if (oferta.modificarOferta(miOferta)) {
-					mostrarVentanaAniadirOferta(noVisible);
-					vistaOferta.avisarOfertaModificadoCorrecto();
+				int validar = validarDatos.validarOferta(miOferta);
+				if (validar == 0) {
+					if (oferta.modificarOferta(miOferta)) {
+						mostrarVentanaAniadirOferta(noVisible);
+						vistaOferta.avisarOfertaModificadoCorrecto();
+					}
+				} else {
+					vistaOferta.mostrarError(validar);
 				}
 			}
 		});

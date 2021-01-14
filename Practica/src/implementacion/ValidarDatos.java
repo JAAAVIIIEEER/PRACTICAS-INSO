@@ -148,4 +148,12 @@ public class ValidarDatos {
 			return 13;
 		return 0;
 	}
+	
+	public int validarOferta(Oferta miOferta) {
+		if (validarNumeroCaracteres(miOferta.getEspecificacion(), 2))
+			return 1;
+		if (!validarFechaInicioFin(miOferta.getFechaInicio(), miOferta.getFechaFin()))
+			return 2;
+		return 0;
+	}
 }

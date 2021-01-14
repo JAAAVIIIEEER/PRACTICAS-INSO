@@ -1,13 +1,16 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.UIManager;
 
 public class VistaOferta extends javax.swing.JFrame {
 
@@ -264,6 +267,21 @@ public class VistaOferta extends javax.swing.JFrame {
 		anioInicioSpinner.setValue(1900);
 		anioFinalSpinner.setValue(1900);
 		descuentoSpinner.setValue(0);
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			especificacionText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			JOptionPane.showMessageDialog(null, "Fechas no validas", "Fecha Invalida", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		especificacionText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
 	// Variables declaration - do not modify                     

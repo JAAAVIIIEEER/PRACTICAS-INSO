@@ -25,6 +25,8 @@ public class Conexion {
 			
 		} catch (SQLException | IOException e) {
 			System.out.println("No se pudo conectar con la base de datos");
+			JOptionPane.showMessageDialog(null, "No se pudo conectar con la base de datos");
+			System.exit(0);
 		}
 	}
 	

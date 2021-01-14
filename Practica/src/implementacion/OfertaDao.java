@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import interfaces.OfertaInterface;
-import modelo.Empleado;
 import modelo.Oferta;
 
 public class OfertaDao extends Conexion implements OfertaInterface {

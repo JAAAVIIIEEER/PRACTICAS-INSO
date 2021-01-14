@@ -10,15 +10,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+@SuppressWarnings("serial")
 public class VistaCliente extends javax.swing.JFrame {
 
-	/**
-	 * Creates new form VistaEmpleado
-	 */
 	public VistaCliente() {
 		initComponents();
 	}
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
+	
 	private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();

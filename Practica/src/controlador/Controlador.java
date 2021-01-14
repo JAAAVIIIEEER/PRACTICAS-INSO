@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Types;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -14,8 +13,6 @@ import modelo.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.*;
-
-import javax.swing.JOptionPane;
 
 public class Controlador {
 

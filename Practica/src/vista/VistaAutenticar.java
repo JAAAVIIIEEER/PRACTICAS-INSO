@@ -1,9 +1,4 @@
 package vista;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -12,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class VistaAutenticar extends javax.swing.JFrame {
 
     /**
@@ -82,7 +78,7 @@ public class VistaAutenticar extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>          
+    }      
     
     public void addButtonListener(ActionListener listenerForButtons) {
     	buttonValidar.addActionListener(listenerForButtons);

@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import javax.swing.JOptionPane;
+
 import interfaces.AlquilerInterface;
 import modelo.Alquiler;
 
@@ -34,7 +36,12 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 			stSec.setString(2, miAlquiler.getMatVehiculo());
 			stSec.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			if (e.getMessage().indexOf("ClienteDNI") != -1? true:false) {
+				JOptionPane.showMessageDialog(null, "No se encuentra un cliente con ese DNI", "Cliente no encontrado", JOptionPane.ERROR_MESSAGE);
+			}
+			if (e.getMessage().indexOf("UsuarioDNI") != -1? true:false) {
+				JOptionPane.showMessageDialog(null, "No se encuentra un empleado con ese DNI", "Empleado no encontrado", JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 		this.cerrarConexion();

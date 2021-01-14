@@ -215,12 +215,17 @@ public class Controlador {
 	private void listenerAniadirVehiculo() {
 		this.vistaGeneral.listenerAniadirVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				vistaVehiculo.removeListenerAniadirButton();
 				TiendaDao tienda = new TiendaDao();
-				vistaVehiculo.establecerTiendasDisponibles(tienda.buscarTiendas());
-				vistaVehiculo.establecerEstadoDefecto();
-				vistaVehiculo.establecerBordesDefecto();
-				gestionarNuevoVehiculo();
+				ArrayList<Integer> tiendas = tienda.buscarTiendas();
+				if (tiendas.isEmpty()) {
+					vistaVehiculo.mostrarVentanaNoTiendas();
+				} else {
+					vistaVehiculo.establecerTiendasDisponibles(tiendas);
+					vistaVehiculo.removeListenerAniadirButton();
+					vistaVehiculo.establecerBordesDefecto();
+					vistaVehiculo.establecerEstadoDefecto();
+					gestionarNuevoVehiculo();
+				}
 			}
 		});
 	}
@@ -268,11 +273,16 @@ public class Controlador {
 
 	private void listenerModificarVehiculo() {
 		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {		
 				TiendaDao tienda = new TiendaDao();
-				vistaVehiculo.establecerTiendasDisponibles(tienda.buscarTiendas());
-				vistaVehiculo.removeListenerAniadirButton();
-				gestionarModificarVehiculo();
+				ArrayList<Integer> tiendas = tienda.buscarTiendas();
+				if (tiendas.isEmpty()) {
+					vistaVehiculo.mostrarVentanaNoTiendas();
+				} else {
+					vistaVehiculo.establecerTiendasDisponibles(tiendas);
+					vistaVehiculo.removeListenerAniadirButton();
+					gestionarModificarVehiculo();
+				}
 			}
 		});
 	}
@@ -414,12 +424,17 @@ public class Controlador {
 	private void listenerAniadirAlquiler() {
 		this.vistaGeneral.listenerAniadirAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				vistaAlquiler.removeListenerAniadirButton();
 				VehiculoDao vehiculo = new VehiculoDao();
-				vistaAlquiler.establecerVehiculosDisponibles(vehiculo.buscarVehiculosDisponibles());
-				vistaAlquiler.establecerEstadoDefecto();
-				vistaAlquiler.establecerBordesDefecto();
-				gestionaNuevoAlquiler();
+				ArrayList<String> vehiculos = vehiculo.buscarVehiculosDisponibles();
+				if(vehiculos.isEmpty()) {
+					vistaAlquiler.mostrarVentanaNoVehiculos();
+				} else {
+					vistaAlquiler.removeListenerAniadirButton();
+					vistaAlquiler.establecerVehiculosDisponibles(vehiculos);
+					vistaAlquiler.establecerEstadoDefecto();
+					vistaAlquiler.establecerBordesDefecto();
+					gestionaNuevoAlquiler();
+				}
 			}
 		});
 	}

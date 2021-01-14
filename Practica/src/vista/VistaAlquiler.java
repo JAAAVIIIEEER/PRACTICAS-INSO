@@ -201,13 +201,13 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	}
 
 	public void avisarAlquilerAniadidoCorrecto(int coste) {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente "+coste, null, JOptionPane.INFORMATION_MESSAGE,
-				null);
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, null,
+				JOptionPane.INFORMATION_MESSAGE, null);
 	}
 
 	public void avisarAlquilerModificadoCorrecto(int coste) {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente "+coste, null, JOptionPane.INFORMATION_MESSAGE,
-				null);
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, null,
+				JOptionPane.INFORMATION_MESSAGE, null);
 	}
 
 	public String mostrarVentanaFinalizarAlquiler() {
@@ -220,6 +220,11 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Consultar Alquiler",
 				JOptionPane.QUESTION_MESSAGE);
 		return id;
+	}
+
+	public void mostrarVentanaNoVehiculos() {
+		JOptionPane.showMessageDialog(null, "No hay vehiculos disponibles", "Error vehiculos",
+				JOptionPane.ERROR_MESSAGE);
 	}
 
 	public Date getFechaInicio() {
@@ -293,9 +298,9 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	public void establecerVehiculosDisponibles(ArrayList<String> vehiculos) {
 		vehiculosDisponiblesBox.setModel(new DefaultComboBoxModel<Object>(vehiculos.toArray()));
 	}
-	
+
 	public void mostrarError(int estado) {
-		switch(estado) {
+		switch (estado) {
 		case 1:
 			dniEmpleadoText.setBorder(BorderFactory.createLineBorder(Color.RED));
 			break;
@@ -307,7 +312,7 @@ public class VistaAlquiler extends javax.swing.JFrame {
 			break;
 		}
 	}
-	
+
 	public void establecerBordesDefecto() {
 		dniEmpleadoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		dniClienteText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));

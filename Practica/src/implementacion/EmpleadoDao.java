@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import interfaces.EmpleadoInterface;
 import modelo.Empleado;
 import modelo.Vehiculo;
@@ -30,7 +32,9 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 			st.setString(9, miEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			if (e.getMessage().indexOf("Duplicate entry") != -1? true:false) {
+				JOptionPane.showMessageDialog(null, "Ya hay un empleado con el DNI", "DNI Duplicado", JOptionPane.ERROR_MESSAGE);
+			}
 			return false;
 		}
 		this.cerrarConexion();

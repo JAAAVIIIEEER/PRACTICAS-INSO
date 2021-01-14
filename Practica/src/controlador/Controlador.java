@@ -139,9 +139,11 @@ public class Controlador {
 					if (empleado.aniadirEmpleado(miEmpleado)) {
 						mostrarVentanaAniadirEmpleado(noVisible);
 						vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
+						logger.info("Empleado añadido correctamente");
 					}
 				} else {
 					vistaEmpleado.mostrarError(validar);
+					logger.warning("Error al añadir un empleado");
 				}
 			}
 		});
@@ -153,6 +155,7 @@ public class Controlador {
 				String dni = vistaEmpleado.mostrarVentanaBajaEmpleado();
 				EmpleadoDao empleado = new EmpleadoDao();
 				empleado.eliminarEmpleado(dni);
+				logger.info("Empleado eliminado correctamente");
 			}
 		});
 	}
@@ -198,9 +201,11 @@ public class Controlador {
 					if (empleado.aniadirEmpleado(miEmpleado)) {
 						mostrarVentanaAniadirEmpleado(noVisible);
 						vistaEmpleado.avisarEmpleadoModificadoCorrecto();
+						logger.info("Empleado modificado correctamente");
 					}
 				} else {
 					vistaEmpleado.mostrarError(validar);
+					logger.warning("Error al modificar un empleado");
 				}
 			}
 		});
@@ -239,9 +244,11 @@ public class Controlador {
 					if (vehiculo.aniadirVehiculo(miVehiculo)) {
 						mostrarVentanaAniadirVehiculo(noVisible);
 						vistaVehiculo.avisarVehiculoAniadidoCorrecto();
+						logger.info("Vehiculo añadido correctamente");
 					}
 				} else {
 					vistaVehiculo.mostrarError(validar);
+					logger.warning("Error al añadir un vehiculo");
 				}
 			}
 		});
@@ -253,6 +260,7 @@ public class Controlador {
 				String matricula = vistaVehiculo.mostrarVentanaBajaVehiculo();
 				VehiculoDao vehiculo = new VehiculoDao();
 				vehiculo.bajaVehiculo(matricula);
+				logger.info("Vehiculo eliminado correctamente");
 			}
 		});
 	}
@@ -295,9 +303,11 @@ public class Controlador {
 					if (vehiculo.aniadirVehiculo(miVehiculo)) {
 						mostrarVentanaAniadirVehiculo(noVisible);
 						vistaVehiculo.avisarVehiculoModificadoCorrecto();
+						logger.info("Vehiculo modificado correctamente");
 					}
 				} else {
 					vistaVehiculo.mostrarError(validar);
+					logger.warning("Error al modificar un vehiculo");
 				}
 			}
 		});
@@ -332,9 +342,11 @@ public class Controlador {
 					if (tienda.aniadirTienda(miTienda)) {
 						mostrarVentanaAniadirTienda(noVisible);
 						vistaTienda.avisarTiendaAniadidaCorrecto();
+						logger.info("Tienda añadida correctamente");
 					}
 				} else {
 					vistaTienda.mostrarError(validar);
+					logger.warning("Error al añadir una tienda");
 				}
 			}
 		});
@@ -346,6 +358,7 @@ public class Controlador {
 				String id = vistaTienda.mostrarVentanaBajaTienda();
 				TiendaDao tienda = new TiendaDao();
 				tienda.eliminarTienda(Integer.parseInt(id));
+				logger.info("Tienda eliminada correctamente");
 			}
 		});
 	}
@@ -385,9 +398,11 @@ public class Controlador {
 					if (tienda.aniadirTienda(miTienda)) {
 						mostrarVentanaAniadirTienda(noVisible);
 						vistaTienda.avisarTiendaModificadoCorrecto();
+						logger.info("Error al modificar una tienda");
 					}
 				} else {
 					vistaTienda.mostrarError(validar);
+					logger.warning("Error al modificar una tienda");
 				}
 			}
 		});
@@ -437,9 +452,11 @@ public class Controlador {
 					if (alquiler.aniadirAlquiler(miAlquiler)) {
 						mostrarVentanaAniadirAlquiler(noVisible);
 						vistaAlquiler.avisarAlquilerAniadidoCorrecto();
+						logger.info("Alquiler añadido correctamente");
 					}
 				} else {
 					vistaAlquiler.mostrarError(validar);
+					logger.warning("Error al añadir un alquiler");
 				}
 			}
 		});
@@ -451,6 +468,7 @@ public class Controlador {
 				String id = vistaAlquiler.mostrarVentanaFinalizarAlquiler();
 				AlquilerDao alquiler = new AlquilerDao();
 				alquiler.finalizarAlquiler(Integer.parseInt(id));
+				logger.info("Alquiler finalizado correctamente");
 			}
 		});
 	}
@@ -506,9 +524,11 @@ public class Controlador {
 					if (alquiler.modificarAlquiler(miAlquiler)) {
 						mostrarVentanaAniadirAlquiler(noVisible);
 						vistaAlquiler.avisarAlquilerModificadoCorrecto();
+						logger.info("Alquiler modificado correctamente");
 					}
 				} else {
 					vistaAlquiler.mostrarError(validar);
+					logger.info("Error al modificar un alquiler");
 				}
 			}
 		});
@@ -551,9 +571,11 @@ public class Controlador {
 					if (cliente.aniadirCliente(miCliente)) {
 						mostrarVentanaAniadirCliente(noVisible);
 						vistaCliente.avisarClienteAniadidoCorrecto();
+						logger.info("Cliente añadido correctamente");
 					}
 				} else {
 					vistaCliente.mostrarError(validar);
+					logger.warning("Error al añadir un cliente");
 				}
 			}
 		});
@@ -565,6 +587,7 @@ public class Controlador {
 				String dni = vistaCliente.mostrarVentanaBajaCliente();
 				ClienteDao cliente = new ClienteDao();
 				cliente.eliminarCliente(dni);
+				logger.info("Cliente eliminado correctamente");
 			}
 		});
 	}
@@ -620,9 +643,11 @@ public class Controlador {
 					if (cliente.modificarCliente(miCliente)) {
 						mostrarVentanaAniadirCliente(noVisible);
 						vistaCliente.avisarClienteModificadoCorrecto();
+						logger.info("Cliente modificado correctamente");
 					}
 				} else {
 					vistaCliente.mostrarError(validar);
+					logger.warning("Error al modificar un cliente");
 				}
 			}
 		});
@@ -664,9 +689,11 @@ public class Controlador {
 					if (oferta.aniadirOferta(miOferta)) {
 						mostrarVentanaAniadirOferta(noVisible);
 						vistaOferta.avisarOfertaAniadidoCorrecto();
+						logger.info("Oferta añadida correctamente");
 					}
 				} else {
 					vistaOferta.mostrarError(validar);
+					logger.warning("Error al añadir una oferta");
 				}
 			}
 		});
@@ -678,6 +705,7 @@ public class Controlador {
 				String id = vistaOferta.mostrarVentanaFinalizarOferta();
 				OfertaDao oferta = new OfertaDao();
 				oferta.eliminarOferta(Integer.valueOf(id));
+				logger.info("Oferta Finalizada Correctamente");
 			}
 		});
 	}
@@ -715,9 +743,11 @@ public class Controlador {
 					if (oferta.modificarOferta(miOferta)) {
 						mostrarVentanaAniadirOferta(noVisible);
 						vistaOferta.avisarOfertaModificadoCorrecto();
+						logger.info("Oferta Añadida Correctamente");
 					}
 				} else {
 					vistaOferta.mostrarError(validar);
+					logger.warning("Error al modificar una oferta");
 				}
 			}
 		});
@@ -757,6 +787,7 @@ public class Controlador {
 				String id = vistaIncidencia.mostrarVentanaFinalizarIncidencia();
 				IncidenciaDao incidencia = new IncidenciaDao();
 				incidencia.finalizarIncidencia(Integer.valueOf(id));
+				logger.info("Incidencia Finalizada");
 			}
 		});
 	}
@@ -786,6 +817,7 @@ public class Controlador {
 				if (incidencia.modificarIncidencia(miIncidencia)) {
 					mostrarVentanaAniadirIncidencia(noVisible);
 					vistaIncidencia.avisarIncidenciaModificadoCorrecto();
+					logger.info("Incidencia Modificada");
 				}
 			}
 		});

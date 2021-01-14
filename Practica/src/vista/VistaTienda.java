@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
@@ -51,7 +52,11 @@ public class VistaTienda extends javax.swing.JFrame {
         telefonoText = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));   
+        setSize(522, 196);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         jLabel1.setText("Provincia");
 
@@ -151,11 +156,13 @@ public class VistaTienda extends javax.swing.JFrame {
 	}// </editor-fold>
 
 	public void listenerAniadirButton(ActionListener listenerForButtons) {
+		this.setTitle("Añadir Tienda");
 		this.aniadir.setText("Añadir");
 		this.aniadir.addActionListener(listenerForButtons);
 	}
 
 	public void listenerModificarButton(ActionListener listenerForButtons) {
+		this.setTitle("Modificar Tienda");
 		this.aniadir.setText("Modificar");
 		this.aniadir.addActionListener(listenerForButtons);
 	}

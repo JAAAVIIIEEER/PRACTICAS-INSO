@@ -5,6 +5,7 @@ package vista;
  * and open the template in the editor.
  */
 
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -53,7 +54,11 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		dniEmpleadoText = new javax.swing.JTextField();
 		jLabel5 = new javax.swing.JLabel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));
+		setSize(530, 179);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 		jLabel1.setText("Cliente DNI");
 
@@ -175,11 +180,13 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	}// </editor-fold>
 
 	public void listenerAniadirButton(ActionListener listenForButtons) {
+		this.setTitle("Añadir Alquiler");
 		this.aniadirButton.setText("Añadir");
 		this.aniadirButton.addActionListener(listenForButtons);
 	}
 
 	public void listenerModificarButton(ActionListener listenForButtons) {
+		this.setTitle("Modificar Alquiler");
 		this.aniadirButton.setText("Modificar");
 		this.aniadirButton.addActionListener(listenForButtons);
 	}

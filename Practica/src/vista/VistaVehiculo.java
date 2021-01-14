@@ -1,10 +1,13 @@
 package vista;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 public class VistaVehiculo extends javax.swing.JFrame {
 
@@ -43,7 +46,14 @@ public class VistaVehiculo extends javax.swing.JFrame {
        jScrollPane2 = new javax.swing.JScrollPane();
        extrasText = new javax.swing.JTextPane();
 
-       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+       this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));   
+       setSize(509, 237);
+       setLocationRelativeTo(null);
+       setResizable(false);
+       
+       SpinnerModel modelSpinner = new SpinnerNumberModel(50, 0, 3000, 50);
+       costeSpinner.setModel(modelSpinner);
 
        jLabel1.setText("Plazas");
 
@@ -67,7 +77,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
 
        tipoBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Turismo", "Furgoneta", "Caravana" }));
 
-       jLabel6.setText("Marca");
+       jLabel6.setText("Modelo");
 
        jLabel7.setText("Tienda");
 
@@ -163,11 +173,13 @@ public class VistaVehiculo extends javax.swing.JFrame {
     }// </editor-fold>                        
     
     public void listenerAniadirButton(ActionListener listenerForButtons) {
+    	this.setTitle("Añadir Vehiculo");
     	this.aniadirButton.setText("Añadir");
     	this.aniadirButton.addActionListener(listenerForButtons);
     }
     
     public void listenerModificarButton(ActionListener listenerForButtons) {
+    	this.setTitle("Modificar Vehiculo");
     	this.aniadirButton.setText("Modificar");
     	this.aniadirButton.addActionListener(listenerForButtons);
     }

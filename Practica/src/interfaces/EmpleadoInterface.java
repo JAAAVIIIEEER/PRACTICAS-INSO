@@ -1,10 +1,6 @@
 package interfaces;
 
-import java.sql.Date;
-import java.sql.SQLException;
-
 import modelo.Empleado;
-import modelo.Vehiculo;
 
 public interface EmpleadoInterface {
 	

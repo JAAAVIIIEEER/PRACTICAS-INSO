@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import interfaces.IncidenciaInterface;
-import modelo.Empleado;
 import modelo.Incidencia;
 
 public class IncidenciaDao extends Conexion implements IncidenciaInterface {
@@ -16,7 +15,6 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 	public boolean almacenarIncidencia(Incidencia miIncidencia) {
 		this.establecerConexion();
 		try {
-			System.out.println(miIncidencia.getAlquilerID());
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"INSERT INTO INCIDENCIAS (AlquilerID, Tipo, Informe) VALUES (?, ?, ?)");
 			st.setInt(1, miIncidencia.getAlquilerID());
@@ -24,7 +22,7 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 			st.setString(3, miIncidencia.getInforme());
 			st.executeUpdate();
 		} catch (SQLException e) {
-			if (e.getMessage().indexOf("IncidenciaID") != -1? true:false) {
+			if (e.getMessage().indexOf("AlquilerID") != -1? true:false) {
 				JOptionPane.showMessageDialog(null, "No hay un alquiler con ese ID", "Alquiler no encontrado", JOptionPane.ERROR_MESSAGE);
 			}
 			return false;

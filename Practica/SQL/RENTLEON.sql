@@ -173,7 +173,7 @@ CREATE TABLE `incidencias` (
   `Estado` varchar(15) NOT NULL DEFAULT 'No finalizada',
   `Informe` TEXT NOT NULL,
   PRIMARY KEY (`IncidenciaID`,`AlquilerID`),
-  CONSTRAINT `AlquilerID` FOREIGN KEY (`IncidenciaID`) REFERENCES `alquileres` (`AlquilerID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `AlquilerID` FOREIGN KEY (`AlquilerID`) REFERENCES `alquileres` (`AlquilerID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

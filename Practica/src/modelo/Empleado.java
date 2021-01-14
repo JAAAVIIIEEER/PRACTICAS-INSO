@@ -1,7 +1,6 @@
 package modelo;
 
 import java.sql.Date;
-import implementacion.EmpleadoDao;
 
 public class Empleado {
 	

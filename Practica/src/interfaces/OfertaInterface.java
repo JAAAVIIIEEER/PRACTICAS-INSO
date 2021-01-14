@@ -1,7 +1,5 @@
 package interfaces;
 
-import java.sql.Date;
-
 import modelo.Oferta;
 
 public interface OfertaInterface {

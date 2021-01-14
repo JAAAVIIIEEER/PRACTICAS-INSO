@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import interfaces.TiendaInterface;
-import modelo.Empleado;
 import modelo.Tienda;
-import modelo.Vehiculo;
 
 public class TiendaDao extends Conexion implements TiendaInterface {
 	

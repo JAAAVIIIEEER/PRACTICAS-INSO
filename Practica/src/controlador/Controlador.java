@@ -519,6 +519,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent evt) {
 				vistaCliente.establecerEstadoDefecto();
 				vistaCliente.removeListenerAniadirButton();
+				vistaCliente.establecerBordesDefecto();
 				gestionaNuevoCliente();
 			}
 		});
@@ -529,6 +530,7 @@ public class Controlador {
 		this.vistaCliente.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Cliente miCliente = new Cliente();
+				vistaCliente.establecerBordesDefecto();
 				miCliente.setDNI(vistaCliente.getDNIText());
 				miCliente.setNombre(vistaCliente.getNombreText());
 				miCliente.setApellido1(vistaCliente.getApellido1Text());
@@ -543,10 +545,15 @@ public class Controlador {
 				miCliente.setLetra(vistaCliente.getLetraText());
 				miCliente.setEmail(vistaCliente.getEmailText());
 				miCliente.setPiso(vistaCliente.getPisoText());
+				int validar = validarDatos.validarCliente(miCliente);
 				ClienteDao cliente = new ClienteDao();
-				if (cliente.aniadirCliente(miCliente)) {
-					mostrarVentanaAniadirCliente(noVisible);
-					vistaCliente.avisarClienteAniadidoCorrecto();
+				if (validar == 0) {
+					if (cliente.aniadirCliente(miCliente)) {
+						mostrarVentanaAniadirCliente(noVisible);
+						vistaCliente.avisarClienteAniadidoCorrecto();
+					}
+				} else {
+					vistaCliente.mostrarError(validar);
 				}
 			}
 		});
@@ -565,6 +572,7 @@ public class Controlador {
 	private void listenerModificarCliente() {
 		this.vistaGeneral.listenerModificarCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				vistaCliente.establecerBordesDefecto();
 				vistaCliente.removeListenerAniadirButton();
 				gestionarModificarCliente();
 			}
@@ -592,6 +600,7 @@ public class Controlador {
 		mostrarVentanaAniadirCliente(visible);
 		this.vistaCliente.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vistaCliente.establecerBordesDefecto();
 				miCliente.setDNI(vistaCliente.getDNIText());
 				miCliente.setNombre(vistaCliente.getNombreText());
 				miCliente.setApellido1(vistaCliente.getApellido1Text());
@@ -606,9 +615,14 @@ public class Controlador {
 				miCliente.setLetra(vistaCliente.getLetraText());
 				miCliente.setEmail(vistaCliente.getEmailText());
 				miCliente.setPiso(vistaCliente.getPisoText());
-				if (cliente.modificarCliente(miCliente)) {
-					mostrarVentanaAniadirCliente(noVisible);
-					vistaCliente.avisarClienteModificadoCorrecto();
+				int validar = validarDatos.validarCliente(miCliente);
+				if (validar == 0) {
+					if (cliente.modificarCliente(miCliente)) {
+						mostrarVentanaAniadirCliente(noVisible);
+						vistaCliente.avisarClienteModificadoCorrecto();
+					}
+				} else {
+					vistaCliente.mostrarError(validar);
 				}
 			}
 		});

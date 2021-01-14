@@ -1,11 +1,14 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class VistaCliente extends javax.swing.JFrame {
 
@@ -422,6 +425,66 @@ public class VistaCliente extends javax.swing.JFrame {
 		letraText.setText("");
 		diaSpinner.setValue(1);
 		anioSpinner.setValue(1900);
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			nombreText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			apellido1Text.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 3:
+			apellido2Text.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 4:
+			telefonoText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 5:
+			emailText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 6:
+			dniText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 7:
+			paisText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 8:
+			provinciaText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 9:
+			municipioText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 10:
+			calleText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 11:
+			portalText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 12:
+			pisoText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 13:
+			letraText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		nombreText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		apellido1Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		apellido2Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		telefonoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		emailText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		dniText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		paisText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		provinciaText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		municipioText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		calleText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		portalText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		pisoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		letraText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
 	// Variables declaration - do not modify

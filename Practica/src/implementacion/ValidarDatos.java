@@ -122,4 +122,30 @@ public class ValidarDatos {
 			return 3;
 		return 0;
 	}
+	
+	public int validarCliente(Cliente miCliente) {
+		if (validarNumeroCaracteres(miCliente.getNombre(), 2))
+			return 1;
+		if (validarNumeroCaracteres(miCliente.getApellido1(), 2))
+			return 2;
+		if (validarNumeroCaracteres(miCliente.getApellido2(), 2))
+			return 3;
+		if (!validarTelefono(miCliente.getTelefono()))
+			return 4;
+		if (!validarEmail(miCliente.getEmail()))
+			return 5;
+		if (!validarDNI(miCliente.getDNI()))
+			return 6;
+		if (validarNumeroCaracteres(miCliente.getPais(), 3))
+			return 7;
+		if (validarNumeroCaracteres(miCliente.getProvincia(), 3))
+			return 8;
+		if (validarNumeroCaracteres(miCliente.getMunicipio(), 2))
+			return 9;
+		if (validarNumeroCaracteres(miCliente.getCalle(), 1))
+			return 10;
+		if (miCliente.getLetra().length() != 1 || Character.isLetter(miCliente.getLetra().charAt(0)))
+			return 13;
+		return 0;
+	}
 }

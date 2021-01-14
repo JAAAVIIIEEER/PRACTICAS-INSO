@@ -11,16 +11,16 @@ public class Vehiculo {
 	private int coste;
 	private int plazas;
 	private String estado;
-	private String marca;
+	private String modelo;
 	private int tiendaID;
 	private String extras;
 	
-	public String getMarca() {
-		return marca;
+	public String getModelo() {
+		return modelo;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 	
 	public void setMatricula(String matricula) {

@@ -212,7 +212,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
     	return matriculaText.getText();
     }
     
-    public String getMarcaText() {
+    public String getModeloText() {
     	return marcaText.getText();
     }
     
@@ -241,7 +241,7 @@ public class VistaVehiculo extends javax.swing.JFrame {
 	public void setMatriculaText(String matricula) {
 		this.matriculaText.setText(matricula);	}
 
-	public void setMarcaText(String marca) {
+	public void setModeloText(String marca) {
 		this.marcaText.setText(marca);
 	}
 	

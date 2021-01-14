@@ -16,7 +16,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO Vehiculos (Matricula, Tipo, Combustible, Plazas, CostePorDia, Extras, Tienda) VALUES (?, ?, ?, ?, ?, ?, ?)");
+					"INSERT INTO Vehiculos (Matricula, Tipo, Combustible, Plazas, CostePorDia, Extras, Tienda, Modelo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 			st.setString(1, miVehiculo.getMatricula());
 			st.setString(2, miVehiculo.getTipo());
 			st.setString(3, miVehiculo.getCombustible());
@@ -24,6 +24,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 			st.setInt(5, miVehiculo.getCoste());
 			st.setString(6, miVehiculo.getExtras());
 			st.setInt(7, miVehiculo.getTiendaID());
+			st.setString(8, miVehiculo.getModelo());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -63,6 +64,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 				miVehiculo.setExtras(res.getString("Extras"));
 				miVehiculo.setTiendaID(res.getInt("Tienda"));
 				miVehiculo.setEstado(res.getString("Estado"));
+				miVehiculo.setModelo(res.getString("Modelo"));
 			}
 			res.close();
 		} catch (SQLException e) {
@@ -76,7 +78,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE Vehiculos SET Matricula=?, Tipo=?, Combustible=?, Plazas=?, CostePorDia=?, Extras=?, Tienda=? WHERE matricula=?");
+					"UPDATE Vehiculos SET Matricula=?, Tipo=?, Combustible=?, Plazas=?, CostePorDia=?, Extras=?, Tienda=?, Modelo=?  WHERE matricula=?");
 			st.setString(1, miVehiculo.getMatricula());
 			st.setString(2, miVehiculo.getTipo());
 			st.setString(3, miVehiculo.getCombustible());
@@ -84,7 +86,8 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 			st.setInt(5, miVehiculo.getCoste());
 			st.setString(6, miVehiculo.getExtras());
 			st.setInt(7, miVehiculo.getTiendaID());
-			st.setString(8, miVehiculo.getMatricula());
+			st.setString(7, miVehiculo.getModelo());
+			st.setString(9, miVehiculo.getMatricula());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

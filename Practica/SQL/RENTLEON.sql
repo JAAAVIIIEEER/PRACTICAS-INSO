@@ -103,6 +103,7 @@ DROP TABLE IF EXISTS `vehiculos`;
 CREATE TABLE `vehiculos` (
   `VehiculoID` int NOT NULL AUTO_INCREMENT COMMENT 'Clave primaria',
   `Matricula` char(7) NOT NULL,
+  `Modelo` varchar(30) NOT NULL,
   `Tipo` varchar(45) NOT NULL,
   `Combustible` varchar(45) NOT NULL,
   `Plazas` int unsigned NOT NULL,

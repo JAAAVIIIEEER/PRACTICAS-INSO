@@ -193,7 +193,7 @@ public class Controlador{
 				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
 				miVehiculo.setCoste(vistaVehiculo.getCosteSpinnerText());
 				miVehiculo.setMatricula(vistaVehiculo.getMatriculaText());
-				miVehiculo.setMarca(vistaVehiculo.getMarcaText());
+				miVehiculo.setModelo(vistaVehiculo.getModeloText());
 				miVehiculo.setTiendaID(vistaVehiculo.getTiendasBox());
 				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
 				VehiculoDao vehiculo = new VehiculoDao();
@@ -233,7 +233,8 @@ public class Controlador{
 		vistaVehiculo.setTipoBox(miVehiculo.getTipo());
 		vistaVehiculo.setCosteSpinner(miVehiculo.getCoste());
 		vistaVehiculo.setMatriculaText(miVehiculo.getMatricula());
-		vistaVehiculo.setMarcaText(miVehiculo.getMarca());
+		vistaVehiculo.setModeloText(miVehiculo.getModelo());
+		vistaVehiculo.setExtrasText(miVehiculo.getExtras());
 		mostrarVentanaAniadirVehiculo(visible);
 		this.vistaVehiculo.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -242,10 +243,9 @@ public class Controlador{
 				miVehiculo.setTipo(vistaVehiculo.getTipoBoxText());
 				miVehiculo.setCoste(vistaVehiculo.getCosteSpinnerText());
 				miVehiculo.setMatricula(vistaVehiculo.getMatriculaText());
-				miVehiculo.setMarca(vistaVehiculo.getMarcaText());
-//				miVehiculo.setNombre(vistaVehiculo.getNombreText());
-//				miVehiculo.setApellidos(vistaVehiculo.getApellidosText());
-//				miVehiculo.setTipo(vistaVehiculo.getTipoText());
+				miVehiculo.setModelo(vistaVehiculo.getModeloText());
+				miVehiculo.setTiendaID(vistaVehiculo.getTiendasBox());
+				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
 				if (vehiculo.modificarVehiculo(miVehiculo)) {
 					mostrarVentanaAniadirVehiculo(noVisible);
 					vistaVehiculo.avisarVehiculoModificadoCorrecto();
@@ -352,20 +352,20 @@ public class Controlador{
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
-				// TODO Funcion para calcular el coste y buscar posible oferta
-//				miAlquiler.setOferta(null);
-//				OfertaDao oferta=new OfertaDao();
-//				oferta.buscarOferta(miAlquiler.getOferta());
-//				if(oferta.equals(miAlquiler)) {
-//					miAlquiler.setOferta(miAlquiler.getOferta());
-//				}else {
-//					miAlquiler.setOferta(null);
-//				}
+				OfertaDao oferta=new OfertaDao();
+				Oferta posibleOferta = oferta.buscarPosibleOferta(vistaAlquiler.getVehiculo());
+				double descuento = 0;
+				if(posibleOferta != null) {
+					miAlquiler.setOferta(posibleOferta.getOfertaid());
+					descuento = posibleOferta.getDescuento();
+				} else {
+					miAlquiler.setOferta(null);
+				}
 				int milisecondsByDay = 86400000;
 				int dias = (int) ((vistaAlquiler.getFechaFin().getTime()-vistaAlquiler.getFechaInicio().getTime()) / milisecondsByDay);
 				AlquilerDao alquiler = new AlquilerDao();
-				System.out.println(alquiler.calcularCoste(vistaAlquiler.getVehiculo()));
-				miAlquiler.setCoste((int) alquiler.calcularCoste(vistaAlquiler.getVehiculo())*dias);
+				int coste = (int) (alquiler.calcularCoste(vistaAlquiler.getVehiculo())*dias*(1-descuento/100));
+				miAlquiler.setCoste(coste);
 				if (alquiler.aniadirAlquiler(miAlquiler)) {
 					mostrarVentanaAniadirAlquiler(noVisible);
 					vistaAlquiler.avisarAlquilerAniadidoCorrecto();

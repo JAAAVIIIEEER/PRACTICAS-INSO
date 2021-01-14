@@ -8,7 +8,7 @@ import interfaces.OfertaInterface;
 import modelo.Empleado;
 import modelo.Oferta;
 
-public class OfertaDao extends Conexion implements OfertaInterface{
+public class OfertaDao extends Conexion implements OfertaInterface {
 
 	@Override
 	public boolean aniadirOferta(Oferta miOferta) {
@@ -90,5 +90,55 @@ public class OfertaDao extends Conexion implements OfertaInterface{
 		}
 		this.cerrarConexion();
 		return true;
+	}
+
+	@Override
+	public Oferta buscarPosibleOferta(String matVehiculo) {
+		String combustibleVehiculo = "";
+		String modeloVehiculo = "";
+		Oferta miOferta = new Oferta();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT Combustible, Modelo FROM vehiculos WHERE Matricula=?");
+			st.setString(1, matVehiculo);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				combustibleVehiculo = rs.getString("Combustible");
+				modeloVehiculo = rs.getString("Modelo");
+			}
+			st = this.getConexion().prepareStatement("SELECT * FROM OFERTAS");
+			rs = st.executeQuery();
+			while (rs.next()) {
+				if (rs.getString("Estado").equals("Activa")) {
+					switch (rs.getString("Tipo")) {
+					case "Modelo":
+						if (rs.getString("Especificacion").equals(modeloVehiculo)) {
+							miOferta.setOfertaid(rs.getInt("OfertaID"));
+							miOferta.setDescuento(rs.getInt("Descuento"));
+							return miOferta;
+						}
+					case "Vehiculo":
+						if (rs.getString("Especificacion").equals(matVehiculo)) {
+							miOferta.setOfertaid(rs.getInt("OfertaID"));
+							miOferta.setDescuento(rs.getInt("Descuento"));
+							return miOferta;
+						}
+					case "Combustible":
+						if (rs.getString("Especificacion").equals(combustibleVehiculo)) {
+							miOferta.setOfertaid(rs.getInt("OfertaID"));
+							miOferta.setDescuento(rs.getInt("Descuento"));
+							return miOferta;
+						}
+					}
+				}
+			}
+			rs.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+		this.cerrarConexion();
+		return null;
 	}
 }

@@ -1,4 +1,4 @@
-package vista;
+ package vista;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -213,12 +213,12 @@ public class VistaVehiculo extends javax.swing.JFrame {
 	}
 
 	public void avisarVehiculoAniadidoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Vehiculo añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Vehiculo añadido correctamente", "Vehiculo Añadido", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
 	public void avisarVehiculoModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Vehiculo modificado correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Vehiculo modificado correctamente", "Vehiculo Modificado", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 

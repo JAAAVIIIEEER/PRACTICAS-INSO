@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Types;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -13,6 +14,8 @@ import modelo.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.*;
+
+import javax.swing.JOptionPane;
 
 public class Controlador {
 
@@ -27,6 +30,7 @@ public class Controlador {
 	private VistaOferta vistaOferta;
 	private VistaIncidencia vistaIncidencia;
 	private ValidarDatos validarDatos;
+	private VistaConsultas vistaConsultas;
 
 	private final boolean visible = true;
 	private final boolean noVisible = false;
@@ -43,6 +47,7 @@ public class Controlador {
 		this.vistaOferta = new VistaOferta();
 		this.vistaIncidencia = new VistaIncidencia();
 		this.validarDatos = new ValidarDatos();
+		this.vistaConsultas = new VistaConsultas();
 		establecerLog();
 	}
 
@@ -87,6 +92,10 @@ public class Controlador {
 
 	public void mostrarVentanaAniadirIncidencia(boolean estado) {
 		this.vistaIncidencia.setVisible(estado);
+	}
+
+	public void mostrarVentanaConsultas(boolean estado) {
+		this.vistaConsultas.setVisible(estado);
 	}
 
 	public void mostrarVentanaAutenticar() {
@@ -212,6 +221,31 @@ public class Controlador {
 		});
 	}
 
+	private void listenerConsultarEmpleado() {
+		this.vistaGeneral.listenerConsultarEmpleado(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dniEmpleado = vistaEmpleado.mostrarVentanaConsultarEmpleado();
+				EmpleadoDao consulta = new EmpleadoDao();
+				Empleado miEmpleado = consulta.consultarEmpleado(dniEmpleado);
+				if (miEmpleado.getUsuarioDNI() != null) {
+					String texto = "";
+					texto += "<html>DNI: " + miEmpleado.getUsuarioDNI() + "<br>";
+					texto += "Tipo: " + miEmpleado.getTipo() + "<br>";
+					texto += "Nombre: " + miEmpleado.getNombre() + "<br>";
+					texto += "Apellido 1: " + miEmpleado.getApellido1() + "<br>";
+					texto += "Apellido 2: " + miEmpleado.getApellido2() + "<br>";
+					texto += "Nacimiento: " + miEmpleado.getNacimiento() + "<br>";
+					texto += "Telefono: " + miEmpleado.getTelefono() + "<br>";
+					texto += "Email: " + miEmpleado.getEmail() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);
+				} else {
+					vistaConsultas.mostrarError();
+				}
+			}
+		});
+	}
+
 	private void listenerAniadirVehiculo() {
 		this.vistaGeneral.listenerAniadirVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -273,7 +307,7 @@ public class Controlador {
 
 	private void listenerModificarVehiculo() {
 		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {		
+			public void actionPerformed(ActionEvent evt) {
 				TiendaDao tienda = new TiendaDao();
 				ArrayList<Integer> tiendas = tienda.buscarTiendas();
 				if (tiendas.isEmpty()) {
@@ -321,6 +355,32 @@ public class Controlador {
 				} else {
 					vistaVehiculo.mostrarError(validar);
 					logger.warning("Error al modificar un vehiculo");
+				}
+			}
+		});
+	}
+
+	private void listenerConsultarVehiculo() {
+		this.vistaGeneral.listenerConsultarVehiculo(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String matConsulta = vistaVehiculo.mostrarVentanaConsultarVehiculo();
+				VehiculoDao consulta = new VehiculoDao();
+				Vehiculo miVehiculo = consulta.consultarVehiculo(matConsulta);
+				String texto = "";
+				if (miVehiculo.getMatricula() != null) {
+					texto += "<html>Matricula: " + miVehiculo.getMatricula() + "<br>";
+					texto += "Tipo: " + miVehiculo.getTipo() + "<br>";
+					texto += "Combustible: " + miVehiculo.getCombustible() + "<br>";
+					texto += "Plazas: " + miVehiculo.getPlazas() + "<br>";
+					texto += "Coste: " + miVehiculo.getCoste() + "<br>";
+					texto += "Extras: " + miVehiculo.getExtras() + "<br>";
+					texto += "Tienda: " + miVehiculo.getTiendaID() + "<br>";
+					texto += "Estado: " + miVehiculo.getEstado() + "<br>";
+					texto += "Modelo: " + miVehiculo.getModelo() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);
+				} else {
+					vistaConsultas.mostrarError();
 				}
 			}
 		});
@@ -421,12 +481,35 @@ public class Controlador {
 		});
 	}
 
+	private void listenerConsultarTienda() {
+		this.vistaGeneral.listenerConsultarTienda(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idTienda = vistaTienda.mostrarVentanaConsultarTienda();
+				TiendaDao consulta = new TiendaDao();
+				Tienda miTienda = consulta.consultarTienda(Integer.valueOf(idTienda));
+				String texto = "";
+				if (miTienda.getProvincia() != null) {
+					texto += "<html>Provincia: " + miTienda.getProvincia() + "<br>";
+					texto += "Municipio: " + miTienda.getMunicipio() + "<br>";
+					texto += "Calle: " + miTienda.getVia() + "<br>";
+					texto += "Numero: " + miTienda.getNumero() + "<br>";
+					texto += "Email: " + miTienda.getEmail() + "<br>";
+					texto += "Telefono: " + miTienda.getTelefono() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);
+				} else {
+					vistaConsultas.mostrarError();
+				}
+			}
+		});
+	}
+
 	private void listenerAniadirAlquiler() {
 		this.vistaGeneral.listenerAniadirAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				VehiculoDao vehiculo = new VehiculoDao();
 				ArrayList<String> vehiculos = vehiculo.buscarVehiculosDisponibles();
-				if(vehiculos.isEmpty()) {
+				if (vehiculos.isEmpty()) {
 					vistaAlquiler.mostrarVentanaNoVehiculos();
 				} else {
 					vistaAlquiler.removeListenerAniadirButton();
@@ -553,6 +636,31 @@ public class Controlador {
 			}
 		});
 	}
+	
+	private void listenerConsultarAlquiler() {
+		this.vistaGeneral.listenerConsultarAlquiler(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String idAlquiler = vistaAlquiler.mostrarVentanaConsultarAlquiler();
+				AlquilerDao consulta = new AlquilerDao();
+				Alquiler miAlquiler = consulta.consultarAlquiler(Integer.valueOf(idAlquiler));
+				String texto = "";
+				if (miAlquiler.getFecha1() != null) {
+					texto += "<html>Fecha Inicio: " + miAlquiler.getFecha1() + "<br>";
+					texto += "Fin: " + miAlquiler.getFecha2() + "<br>";
+					texto += "Coste: " + miAlquiler.getCoste() + "<br>";
+					texto += "Empleado: " + miAlquiler.getDniEmpleado() + "<br>";
+					texto += "Cliente: " + miAlquiler.getDniCliente() + "<br>";
+					texto += "Vehiculo: " + miAlquiler.getMatVehiculo() + "<br>";
+					texto += "Estado: " + miAlquiler.getEstado() + "<br>";
+					texto += "Oferta: " + miAlquiler.getOferta() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);
+				} else {
+					vistaConsultas.mostrarError();
+				}
+			}
+		});
+	}
 
 	private void listenerAniadirCliente() {
 		this.vistaGeneral.listenerAniadirCliente(new ActionListener() {
@@ -672,6 +780,37 @@ public class Controlador {
 			}
 		});
 	}
+	
+	private void listenerConsultarCliente() {
+		this.vistaGeneral.listenerConsultarCliente(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dni = vistaCliente.mostrarVentanaConsultarCliente();
+				ClienteDao consulta = new ClienteDao();
+				Cliente miCliente = consulta.consultarCliente(dni);
+				String texto = "";
+				if (miCliente.getDNI() != null) {
+					texto += "<html>DNI: " + miCliente.getDNI() + "<br>";
+					texto += "Nombre: " + miCliente.getNombre() + "<br>";
+					texto += "Apellido 1: " + miCliente.getApellido1() + "<br>";
+					texto += "Apellido 2: " + miCliente.getApellido2() + "<br>";
+					texto += "Telefono: " + miCliente.getTelefono() + "<br>";
+					texto += "Email: " + miCliente.getEmail() + "<br>";
+					texto += "Nacimiento: " + miCliente.getNacimiento() + "<br>";
+					texto += "Pais: " + miCliente.getPais() + "<br>";
+					texto += "Provincia: " + miCliente.getProvincia() + "<br>";
+					texto += "Municipio: " + miCliente.getMunicipio() + "<br>";
+					texto += "Calle: " + miCliente.getCalle() + "<br>";
+					texto += "Portal: " + miCliente.getPortal() + "<br>";
+					texto += "Piso: " + miCliente.getPiso() + "<br>";
+					texto += "Letra: " + miCliente.getLetra() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);			
+				} else {
+					vistaConsultas.mostrarError();
+				}
+			}
+		});
+	}
 
 	private void aniadirListenerAutenticar() {
 		this.vistaAutenticar.addButtonListener(new ActionListener() {
@@ -772,6 +911,29 @@ public class Controlador {
 			}
 		});
 	}
+	
+	private void listenerConsultarOferta() {
+		this.vistaGeneral.listenerConsultarOferta(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = vistaOferta.mostrarVentanaConsultarOferta();
+				OfertaDao consulta = new OfertaDao();
+				Oferta miOferta = consulta.buscarOferta(Integer.valueOf(id));
+				String texto = "";
+				if (miOferta.getFechaInicio() != null) {
+					texto += "<html>Inicio: " + miOferta.getFechaInicio() + "<br>";
+					texto += "Fin: " + miOferta.getFechaFin() + "<br>";
+					texto += "Tipo: " + miOferta.getTipoOferta() + "<br>";
+					texto += "Especificacion: " + miOferta.getEspecificacion() + "<br>";
+					texto += "Descuento: " + miOferta.getDescuento() + "<br>";					
+					texto += "Estado: " + miOferta.getEstado() + "<br></html>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);								
+				} else {
+					vistaConsultas.mostrarError();
+				}
+			}
+		});
+	}
 
 	private void listenerAniadirIncidencia() {
 		this.vistaGeneral.listenerAniadirIncidencia(new ActionListener() {
@@ -842,6 +1004,27 @@ public class Controlador {
 			}
 		});
 	}
+	
+	private void listenerConsultarIncidencia() {
+		this.vistaGeneral.listenerConsultarIncidencia(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = vistaIncidencia.mostrarVentanaConsultarIncidencia();
+				IncidenciaDao consulta = new IncidenciaDao();
+				Incidencia miIncidencia = consulta.consultarIncidencia(Integer.valueOf(id));
+				String texto = "";
+				if (miIncidencia.getTipo() != null) {
+					texto += "<html>Alquiler: " + miIncidencia.getAlquilerID() + "<br>";
+					texto += "Tipo: " + miIncidencia.getTipo() + "<br>";
+					texto += "Informe: " + miIncidencia.getInforme() + "<br>";
+					texto += "Estado: " + miIncidencia.getEstado() + "<br>";
+					vistaConsultas.setText(texto);
+					mostrarVentanaConsultas(true);								
+				} else {
+					vistaConsultas.mostrarError();
+				}				
+			}
+		});
+	}
 
 	private void aniadirListenerGeneral(int estado) {
 		listenerCambiarUsuario();
@@ -854,6 +1037,11 @@ public class Controlador {
 		listenerAniadirIncidencia();
 		listenerFinalizarIncidencia();
 		listenerModificarIncidencia();
+		listenerConsultarVehiculo();
+		listenerConsultarTienda();
+		listenerConsultarAlquiler();
+		listenerConsultarCliente();
+		listenerConsultarIncidencia();
 		// Cargar los listener de administrador
 		if (estado == 0) {
 			listenerAniadirEmpleado();
@@ -868,6 +1056,8 @@ public class Controlador {
 			listenerAniadirOferta();
 			listenerFinalizarOferta();
 			listenerModificarOferta();
+			listenerConsultarEmpleado();
+			listenerConsultarOferta();
 		}
 	}
 

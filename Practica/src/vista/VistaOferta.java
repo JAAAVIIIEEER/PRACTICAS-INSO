@@ -236,12 +236,12 @@ public class VistaOferta extends javax.swing.JFrame {
 	}
 	
 	public void avisarOfertaAniadidoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Oferta añadida correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Oferta añadida correctamente", "Oferta Añadida", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
 	public void avisarOfertaModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Oferta modificada correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Oferta modificada correctamente", "Oferta Modificada", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 

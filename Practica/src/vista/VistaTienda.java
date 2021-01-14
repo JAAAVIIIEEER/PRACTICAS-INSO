@@ -177,12 +177,12 @@ public class VistaTienda extends javax.swing.JFrame {
 	}
 
 	public void avisarTiendaAniadidaCorrecto() {
-		JOptionPane.showMessageDialog(null, "Tienda añadida correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Tienda añadida correctamente", "Tienda Añadida", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
 	public void avisarTiendaModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Tienda modificada correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Tienda modificada correctamente", "Tienda Modificada", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 

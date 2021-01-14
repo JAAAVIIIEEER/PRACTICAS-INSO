@@ -311,11 +311,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		empleadosMenu.add(bajaEmpleado);
 
 		consultarEmpleado.setText("Consultar");
-		consultarEmpleado.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarEmpleadoClicked(evt);
-			}
-		});
+
 		empleadosMenu.add(consultarEmpleado);
 
 		modificarEmpleado.setText("Modificar");
@@ -335,11 +331,6 @@ public class VistaGeneral extends javax.swing.JFrame {
 		clientesMenu.add(bajaCliente);
 
 		consultarCliente.setText("Consultar");
-		consultarCliente.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				consultarClienteClicked(evt);
-			}
-		});
 		clientesMenu.add(consultarCliente);
 
 		modificarCliente.setText("Modificar");
@@ -514,47 +505,34 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerModificarIncidencia(ActionListener listenerForButtons) {
 		this.modificarIncidencia.addActionListener(listenerForButtons);
 	}
-	
-	
 
-	private void consultarVehiculoClicked(java.awt.event.ActionEvent evt) {
-		String matConsulta = JOptionPane.showInputDialog(null, "Introduce la matricula:", "Vehiculo a consultar",
-				JOptionPane.QUESTION_MESSAGE);
-		VehiculoDao consulta = new VehiculoDao();
-		Vehiculo a = consulta.consultarVehiculo(matConsulta);
+	public void listenerConsultarVehiculo(ActionListener listenerForButtons) {
+		this.consultarVehiculo.addActionListener(listenerForButtons);
 	}
 	
-	private void consultarTiendaClicked(java.awt.event.ActionEvent evt) {
-		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Añadir implementacion de modelos
-		TiendaDao consulta = new TiendaDao();
-		Tienda a = consulta.consultarTienda(Integer.valueOf(idConsultar));
+	public void listenerConsultarTienda(ActionListener listenerForButtons) {
+		this.consultarTienda.addActionListener(listenerForButtons);
 	}
 	
-	private void consultarEmpleadoClicked(java.awt.event.ActionEvent evt) {
-		// TODO probablemente haya que mover estos listener
-		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Tienda a consultar",
-				JOptionPane.QUESTION_MESSAGE);
-		EmpleadoDao consulta = new EmpleadoDao();
-		Empleado a = consulta.consultarEmpleado(idConsultar);
+	public void listenerConsultarEmpleado(ActionListener listenerForButtons) {
+		this.consultarEmpleado.addActionListener(listenerForButtons);
 	}
 
 	
-	private void consultarClienteClicked(java.awt.event.ActionEvent evt) {
-		String dniCliente = JOptionPane.showInputDialog(null, "Introduce el DNI:", "Consultar Cliente",
-				JOptionPane.QUESTION_MESSAGE);
-		// TODO Implementar modelos esto solo es una prueba de funcionamiento de la
-		// implementacion
-		ClienteDao a = new ClienteDao();
-		a.consultarCliente(dniCliente);
+	public void listenerConsultarCliente(ActionListener listenerForButtons) {
+		this.consultarCliente.addActionListener(listenerForButtons);
 	}
 
-	private void consultarAlquilerClicked(java.awt.event.ActionEvent evt) {
-		String idConsultar = JOptionPane.showInputDialog(null, "Introduce el ID:", "Cliente a consultar",
-				JOptionPane.QUESTION_MESSAGE);
-		AlquilerDao consulta = new AlquilerDao();
-		Alquiler a = consulta.consultarAlquiler(Integer.valueOf(idConsultar));
+	public void listenerConsultarAlquiler(ActionListener listenerForButtons) {
+		this.consultarAlquiler.addActionListener(listenerForButtons);
+	}
+	
+	public void listenerConsultarOferta(ActionListener listenerForButtons) {
+		this.consultarOferta.addActionListener(listenerForButtons);
+	}
+	
+	public void listenerConsultarIncidencia(ActionListener listenerForButtons) {
+		this.consultarIncidencia.addActionListener(listenerForButtons);
 	}
 
 	// Variables declaration - do not modify

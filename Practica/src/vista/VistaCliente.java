@@ -267,12 +267,12 @@ public class VistaCliente extends javax.swing.JFrame {
 	}
 
 	public void avisarClienteAniadidoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Cliente añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Cliente añadido correctamente", "Cliente Añadido", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 	
 	public void avisarClienteModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Cliente modificado correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Cliente modificado correctamente", "Cliente Modificado", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 

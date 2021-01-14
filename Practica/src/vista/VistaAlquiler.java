@@ -201,12 +201,12 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	}
 
 	public void avisarAlquilerAniadidoCorrecto(int coste) {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, null,
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, "Alquiler Añadido",
 				JOptionPane.INFORMATION_MESSAGE, null);
 	}
 
 	public void avisarAlquilerModificadoCorrecto(int coste) {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, null,
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente " + coste, "Alquiler Modificado",
 				JOptionPane.INFORMATION_MESSAGE, null);
 	}
 

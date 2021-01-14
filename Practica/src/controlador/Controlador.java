@@ -308,6 +308,7 @@ public class Controlador {
 			public void actionPerformed(ActionEvent evt) {
 				vistaTienda.removeListenerAniadirButton();
 				vistaTienda.establecerEstadoDefecto();
+				vistaTienda.establecerBordesDefecto();
 				gestionarNuevaTienda();
 			}
 		});
@@ -318,6 +319,7 @@ public class Controlador {
 		this.vistaTienda.listenerAniadirButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tienda miTienda = new Tienda();
+				vistaTienda.establecerBordesDefecto();
 				miTienda.setProvincia(vistaTienda.getProvinciaText());
 				miTienda.setMunicipio(vistaTienda.getMunicipioText());
 				miTienda.setVia(vistaTienda.getCalleText());
@@ -325,9 +327,14 @@ public class Controlador {
 				miTienda.setEmail(vistaTienda.getEmailText());
 				miTienda.setTelefono(vistaTienda.getTelefonoText());
 				TiendaDao tienda = new TiendaDao();
-				if (tienda.aniadirTienda(miTienda)) {
-					mostrarVentanaAniadirTienda(noVisible);
-					vistaTienda.avisarTiendaAniadidaCorrecto();
+				int validar = validarDatos.validarTienda(miTienda);
+				if (validar == 0) {
+					if (tienda.aniadirTienda(miTienda)) {
+						mostrarVentanaAniadirTienda(noVisible);
+						vistaTienda.avisarTiendaAniadidaCorrecto();
+					}
+				} else {
+					vistaTienda.mostrarError(validar);
 				}
 			}
 		});
@@ -356,6 +363,7 @@ public class Controlador {
 		String id = vistaTienda.mostrarVentanaConsultarTienda();
 		TiendaDao tienda = new TiendaDao();
 		Tienda miTienda = tienda.consultarTienda(Integer.valueOf(id));
+		vistaTienda.establecerBordesDefecto();
 		vistaTienda.setProvinciaText(miTienda.getProvincia());
 		vistaTienda.setMunicipioText(miTienda.getMunicipio());
 		vistaTienda.setCalleText(miTienda.getVia());
@@ -365,15 +373,21 @@ public class Controlador {
 		mostrarVentanaAniadirTienda(visible);
 		this.vistaTienda.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				vistaTienda.establecerBordesDefecto();
 				miTienda.setProvincia(vistaTienda.getProvinciaText());
 				miTienda.setMunicipio(vistaTienda.getMunicipioText());
 				miTienda.setVia(vistaTienda.getCalleText());
 				miTienda.setNumero(vistaTienda.getNumeroText());
 				miTienda.setEmail(vistaTienda.getEmailText());
 				miTienda.setTelefono(vistaTienda.getTelefonoText());
-				if (tienda.modificarTienda(miTienda)) {
-					mostrarVentanaAniadirTienda(noVisible);
-					vistaTienda.avisarTiendaModificadoCorrecto();
+				int validar = validarDatos.validarTienda(miTienda);
+				if (validar == 0) {
+					if (tienda.aniadirTienda(miTienda)) {
+						mostrarVentanaAniadirTienda(noVisible);
+						vistaTienda.avisarTiendaModificadoCorrecto();
+					}
+				} else {
+					vistaTienda.mostrarError(validar);
 				}
 			}
 		});

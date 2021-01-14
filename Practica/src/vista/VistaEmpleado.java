@@ -362,7 +362,6 @@ public class VistaEmpleado extends javax.swing.JFrame {
 		dniText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		contraseniaText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		nombreText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-		dniText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		apellido1Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		apellido2Text.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 		telefonoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));

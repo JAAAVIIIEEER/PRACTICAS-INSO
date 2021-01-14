@@ -1,9 +1,12 @@
 package vista;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import implementacion.TiendaDao;
 import implementacion.VehiculoDao;
@@ -249,6 +252,38 @@ public class VistaTienda extends javax.swing.JFrame {
 		numeroText.setText("");
 		emailText.setText("");
 		telefonoText.setText("");
+	}
+	
+	public void mostrarError(int estado) {
+		switch(estado) {
+		case 1:
+			provinciaText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 2:
+			municipioText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 3:
+			calleText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 4:
+			numeroText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 5:
+			emailText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		case 6:
+			telefonoText.setBorder(BorderFactory.createLineBorder(Color.RED));
+			break;
+		}
+	}
+	
+	public void establecerBordesDefecto() {
+		provinciaText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		municipioText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		calleText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		numeroText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		telefonoText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+		emailText.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
 	}
 
 	// Variables declaration - do not modify

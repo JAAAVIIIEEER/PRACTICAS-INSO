@@ -98,4 +98,18 @@ public class ValidarDatos {
 			return 2;
 		return 0;
 	}
+	
+	public int validarTienda(Tienda miTienda) {
+		if (validarNumeroCaracteres(miTienda.getProvincia(), 3))
+			return 1;
+		if (validarNumeroCaracteres(miTienda.getMunicipio(), 2))
+			return 2;
+		if (validarNumeroCaracteres(miTienda.getVia(), 1))
+			return 3;
+		if (!validarEmail(miTienda.getEmail()))
+			return 5;
+		if (!validarTelefono(miTienda.getTelefono()))
+			return 6;
+		return 0;
+	}
 }

@@ -465,9 +465,9 @@ public class VistaCliente extends javax.swing.JFrame {
 		case 12:
 			pisoText.setBorder(BorderFactory.createLineBorder(Color.RED));
 			break;
-		case 13:
-			letraText.setBorder(BorderFactory.createLineBorder(Color.RED));
-			break;
+//		case 13:
+//			letraText.setBorder(BorderFactory.createLineBorder(Color.RED));
+//			break;
 		}
 	}
 	

@@ -70,6 +70,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		aniadirIncidencia = new javax.swing.JMenuItem();
 		consultarIncidencia = new javax.swing.JMenuItem();
 		modificarIncidencia = new javax.swing.JMenuItem();
+		finalizarIncidencia = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		this.setTitle("Empleado Base RentLeon");

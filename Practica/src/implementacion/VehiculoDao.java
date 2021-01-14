@@ -86,7 +86,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 			st.setInt(5, miVehiculo.getCoste());
 			st.setString(6, miVehiculo.getExtras());
 			st.setInt(7, miVehiculo.getTiendaID());
-			st.setString(7, miVehiculo.getModelo());
+			st.setString(8, miVehiculo.getModelo());
 			st.setString(9, miVehiculo.getMatricula());
 			st.executeUpdate();
 		} catch (SQLException e) {

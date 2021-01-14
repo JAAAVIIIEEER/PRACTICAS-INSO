@@ -200,13 +200,13 @@ public class VistaAlquiler extends javax.swing.JFrame {
 		}
 	}
 
-	public void avisarAlquilerAniadidoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+	public void avisarAlquilerAniadidoCorrecto(int coste) {
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente "+coste, null, JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
-	public void avisarAlquilerModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+	public void avisarAlquilerModificadoCorrecto(int coste) {
+		JOptionPane.showMessageDialog(null, "Alquiler añadido correctamente "+coste, null, JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
@@ -281,7 +281,7 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	public void establecerEstadoDefecto() {
 		mesInicioBox.setSelectedIndex(0);
 		mesFinalBox.setSelectedIndex(0);
-		vehiculosDisponiblesBox.setSelectedItem(null);
+		vehiculosDisponiblesBox.setSelectedItem(0);
 		dniEmpleadoText.setText("");
 		dniClienteText.setText("");
 		diaFinalSpinner.setValue(1);

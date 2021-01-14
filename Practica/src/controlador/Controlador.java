@@ -10,6 +10,7 @@ import implementacion.*;
 import vista.*;
 import modelo.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.*;
 
@@ -198,7 +199,7 @@ public class Controlador {
 				miEmpleado.setTipo(vistaEmpleado.getTipoText());
 				int validar = validarDatos.validarEmpleado(miEmpleado);
 				if (validar == 0) {
-					if (empleado.aniadirEmpleado(miEmpleado)) {
+					if (empleado.modificarEmpleado(miEmpleado)) {
 						mostrarVentanaAniadirEmpleado(noVisible);
 						vistaEmpleado.avisarEmpleadoModificadoCorrecto();
 						logger.info("Empleado modificado correctamente");
@@ -268,6 +269,8 @@ public class Controlador {
 	private void listenerModificarVehiculo() {
 		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
+				TiendaDao tienda = new TiendaDao();
+				vistaVehiculo.establecerTiendasDisponibles(tienda.buscarTiendas());
 				vistaVehiculo.removeListenerAniadirButton();
 				gestionarModificarVehiculo();
 			}
@@ -300,7 +303,7 @@ public class Controlador {
 				miVehiculo.setExtras(vistaVehiculo.getExtrasText());
 				int validar = validarDatos.validarVehiculo(miVehiculo);
 				if (validar == 0) {
-					if (vehiculo.aniadirVehiculo(miVehiculo)) {
+					if (vehiculo.modificarVehiculo(miVehiculo)) {
 						mostrarVentanaAniadirVehiculo(noVisible);
 						vistaVehiculo.avisarVehiculoModificadoCorrecto();
 						logger.info("Vehiculo modificado correctamente");
@@ -395,7 +398,7 @@ public class Controlador {
 				miTienda.setTelefono(vistaTienda.getTelefonoText());
 				int validar = validarDatos.validarTienda(miTienda);
 				if (validar == 0) {
-					if (tienda.aniadirTienda(miTienda)) {
+					if (tienda.modificarTienda(miTienda)) {
 						mostrarVentanaAniadirTienda(noVisible);
 						vistaTienda.avisarTiendaModificadoCorrecto();
 						logger.info("Error al modificar una tienda");
@@ -451,7 +454,7 @@ public class Controlador {
 				if (validar == 0) {
 					if (alquiler.aniadirAlquiler(miAlquiler)) {
 						mostrarVentanaAniadirAlquiler(noVisible);
-						vistaAlquiler.avisarAlquilerAniadidoCorrecto();
+						vistaAlquiler.avisarAlquilerAniadidoCorrecto(coste);
 						logger.info("Alquiler añadido correctamente");
 					}
 				} else {
@@ -477,9 +480,6 @@ public class Controlador {
 		this.vistaGeneral.listenerModificarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				vistaAlquiler.removeListenerAniadirButton();
-				VehiculoDao vehiculo = new VehiculoDao();
-				vistaAlquiler.establecerBordesDefecto();
-				vistaAlquiler.establecerVehiculosDisponibles(vehiculo.buscarVehiculosDisponibles());
 				gestionarModificarAlquiler();
 			}
 		});
@@ -494,6 +494,11 @@ public class Controlador {
 		vistaAlquiler.setFinalDate(miAlquiler.getFecha2());
 		vistaAlquiler.setVehiculosDisponiblesBox(miAlquiler.getMatVehiculo());
 		vistaAlquiler.setDniEmpleadoText(miAlquiler.getDniEmpleado());
+		VehiculoDao vehiculo = new VehiculoDao();
+		vistaAlquiler.establecerBordesDefecto();
+		ArrayList<String> vehiculosDisponibles = vehiculo.buscarVehiculosDisponibles();
+		vehiculosDisponibles.add(miAlquiler.getMatVehiculo());
+		vistaAlquiler.establecerVehiculosDisponibles(vehiculosDisponibles);
 		mostrarVentanaAniadirAlquiler(visible);
 		this.vistaAlquiler.listenerModificarButton(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -523,7 +528,7 @@ public class Controlador {
 				if (validar == 0) {
 					if (alquiler.modificarAlquiler(miAlquiler)) {
 						mostrarVentanaAniadirAlquiler(noVisible);
-						vistaAlquiler.avisarAlquilerModificadoCorrecto();
+						vistaAlquiler.avisarAlquilerModificadoCorrecto(coste);
 						logger.info("Alquiler modificado correctamente");
 					}
 				} else {

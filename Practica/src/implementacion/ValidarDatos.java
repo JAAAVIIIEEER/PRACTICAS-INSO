@@ -144,8 +144,8 @@ public class ValidarDatos {
 			return 9;
 		if (validarNumeroCaracteres(miCliente.getCalle(), 1))
 			return 10;
-		if (miCliente.getLetra().length() != 1 || Character.isLetter(miCliente.getLetra().charAt(0)))
-			return 13;
+//		if (miCliente.getLetra().length() != 1 || Character.isLetter(miCliente.getLetra().charAt(0)))
+//			return 13;
 		return 0;
 	}
 	

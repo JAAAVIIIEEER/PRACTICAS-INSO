@@ -9,11 +9,11 @@ import modelo.Empleado;
 import vista.VistaEmpleado;
 
 public class ControladorEmpleados {
-	
+
 	private VistaEmpleado vistaEmpleado;
 	private ValidarDatos validarDatos;
-	
-	public ControladorEmpleados (VistaEmpleado vistaEmpleados) {
+
+	public ControladorEmpleados(VistaEmpleado vistaEmpleados) {
 		this.vistaEmpleado = vistaEmpleados;
 		this.validarDatos = new ValidarDatos();
 	}
@@ -51,14 +51,14 @@ public class ControladorEmpleados {
 			}
 		});
 	}
-	
+
 	public void bajaEmpleado() {
 		String dni = vistaEmpleado.mostrarVentanaBajaEmpleado();
 		EmpleadoDao empleado = new EmpleadoDao();
 		empleado.eliminarEmpleado(dni);
 		ControladorGeneral.logger.info("Empleado eliminado correctamente");
 	}
-	
+
 	public void modificarEmpleado() {
 		vistaEmpleado.removeListenerAniadirButton();
 		String dni = vistaEmpleado.mostrarVentanaConsultarEmpleado();
@@ -100,25 +100,5 @@ public class ControladorEmpleados {
 				}
 			}
 		});
-	}
-	
-	public String consultarEmpleado() {
-		String dniEmpleado = vistaEmpleado.mostrarVentanaConsultarEmpleado();
-		EmpleadoDao consulta = new EmpleadoDao();
-		Empleado miEmpleado = consulta.consultarEmpleado(dniEmpleado);
-		if (miEmpleado.getUsuarioDNI() != null) {
-			String texto = "";
-			texto += "<html>DNI: " + miEmpleado.getUsuarioDNI() + "<br>";
-			texto += "Tipo: " + miEmpleado.getTipo() + "<br>";
-			texto += "Nombre: " + miEmpleado.getNombre() + "<br>";
-			texto += "Apellido 1: " + miEmpleado.getApellido1() + "<br>";
-			texto += "Apellido 2: " + miEmpleado.getApellido2() + "<br>";
-			texto += "Nacimiento: " + miEmpleado.getNacimiento() + "<br>";
-			texto += "Telefono: " + miEmpleado.getTelefono() + "<br>";
-			texto += "Email: " + miEmpleado.getEmail() + "<br></html>";
-			return texto;
-		} else {
-			return "";
-		}
 	}
 }

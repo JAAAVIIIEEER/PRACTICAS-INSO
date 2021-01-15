@@ -1,21 +1,12 @@
 package vista;
 
-import java.awt.event.ActionListener;
+@SuppressWarnings("serial")
+public class EmpleadosPanel extends PanelPadre {
 
-import javax.accessibility.AccessibleContext;
-import javax.swing.*;
-
-public class EmpleadosPanel extends VistaPanelPadre {
-
-	@SuppressWarnings("serial")
 	public EmpleadosPanel() {
 
 		jScrollPane = super.jScrollPane;
 		jTable = super.jTable;
-
-		// Cargar la tabla de clientes
-
-		// AQUI VA LO DEL BLOQUEO DE CELLS
 
 		jTable.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
@@ -34,9 +25,5 @@ public class EmpleadosPanel extends VistaPanelPadre {
 	public void setValue(String valor, int fila, int col) {
 		jTable.setValueAt(valor, fila, col);
 	}
-
-	// Variables declaration - do not modify
-	private javax.swing.JScrollPane jScrollPane;
 	private javax.swing.JTable jTable;
-	// End of variables declaration
 }

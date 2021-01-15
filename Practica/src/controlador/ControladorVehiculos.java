@@ -31,7 +31,7 @@ public class ControladorVehiculos {
 			vistaVehiculo.establecerBordesDefecto();
 			vistaVehiculo.establecerEstadoDefecto();
 			vistaVehiculo.setVisible(true);
-			this.vistaVehiculo.listenerAniadirButton(new ActionListener() {
+			this.vistaVehiculo.listenerAniadirButton(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
 					Vehiculo miVehiculo = new Vehiculo();
 					vistaVehiculo.establecerBordesDefecto();
@@ -111,27 +111,6 @@ public class ControladorVehiculos {
 					}
 				}
 			});
-		}
-	}
-	
-	public String consultarVehiculo() {
-		String matConsulta = vistaVehiculo.mostrarVentanaConsultarVehiculo();
-		VehiculoDao consulta = new VehiculoDao();
-		Vehiculo miVehiculo = consulta.consultarVehiculo(matConsulta);
-		String texto = "";
-		if (miVehiculo.getMatricula() != null) {
-			texto += "<html>Matricula: " + miVehiculo.getMatricula() + "<br>";
-			texto += "Tipo: " + miVehiculo.getTipo() + "<br>";
-			texto += "Combustible: " + miVehiculo.getCombustible() + "<br>";
-			texto += "Plazas: " + miVehiculo.getPlazas() + "<br>";
-			texto += "Coste: " + miVehiculo.getCoste() + "<br>";
-			texto += "Extras: " + miVehiculo.getExtras() + "<br>";
-			texto += "Tienda: " + miVehiculo.getTiendaID() + "<br>";
-			texto += "Estado: " + miVehiculo.getEstado() + "<br>";
-			texto += "Modelo: " + miVehiculo.getModelo() + "<br></html>";
-			return texto;
-		} else {
-			return "";
 		}
 	}
 }

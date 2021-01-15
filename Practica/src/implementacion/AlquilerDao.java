@@ -37,11 +37,13 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 			stSec.setString(2, miAlquiler.getMatVehiculo());
 			stSec.executeUpdate();
 		} catch (SQLException e) {
-			if (e.getMessage().indexOf("ClienteDNI") != -1? true:false) {
-				JOptionPane.showMessageDialog(null, "No se encuentra un cliente con ese DNI", "Cliente no encontrado", JOptionPane.ERROR_MESSAGE);
+			if (e.getMessage().indexOf("ClienteDNI") != -1 ? true : false) {
+				JOptionPane.showMessageDialog(null, "No se encuentra un cliente con ese DNI", "Cliente no encontrado",
+						JOptionPane.ERROR_MESSAGE);
 			}
-			if (e.getMessage().indexOf("UsuarioDNI") != -1? true:false) {
-				JOptionPane.showMessageDialog(null, "No se encuentra un empleado con ese DNI", "Empleado no encontrado", JOptionPane.ERROR_MESSAGE);
+			if (e.getMessage().indexOf("UsuarioDNI") != -1 ? true : false) {
+				JOptionPane.showMessageDialog(null, "No se encuentra un empleado con ese DNI", "Empleado no encontrado",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			return false;
 		}
@@ -62,8 +64,9 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 					.prepareStatement("SELECT VehiculoAlquilado FROM ALQUILERES WHERE AlquilerID=?");
 			stTer.setInt(1, alquilerid);
 			ResultSet res = stTer.executeQuery();
-			String mat = "";;
-			while(res.next()) {
+			String mat = "";
+			;
+			while (res.next()) {
 				mat = res.getString("VehiculoAlquilado");
 			}
 			PreparedStatement stSec = this.getConexion()
@@ -104,7 +107,7 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		}
 		return miAlquiler;
 	}
-	
+
 	@Override
 	public ArrayList<Alquiler> listarAlquileres() {
 		ArrayList<Alquiler> listaAlquileres = new ArrayList<Alquiler>();
@@ -154,17 +157,17 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		this.cerrarConexion();
 		return true;
 	}
-	
+
 	@Override
 	public int calcularCoste(String matVehiculo) {
 		int coste = 0;
-		this.establecerConexion(); 
+		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement(
-					"SELECT CostePorDia FROM vehiculos WHERE Matricula=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT CostePorDia FROM vehiculos WHERE Matricula=?");
 			st.setString(1, matVehiculo);
 			ResultSet res = st.executeQuery();
-			while(res.next()) {
+			while (res.next()) {
 				coste = res.getInt("CostePorDia");
 			}
 		} catch (SQLException e) {

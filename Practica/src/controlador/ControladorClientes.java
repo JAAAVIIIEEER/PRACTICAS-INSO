@@ -116,31 +116,4 @@ public class ControladorClientes {
 			}
 		});
 	}
-
-	public String consultarCliente() {
-		String dni = vistaCliente.mostrarVentanaConsultarCliente();
-		ClienteDao consulta = new ClienteDao();
-		Cliente miCliente = consulta.consultarCliente(dni);
-		String texto = "";
-		if (miCliente.getDNI() != null) {
-			texto += "<html>DNI: " + miCliente.getDNI() + "<br>";
-			texto += "Nombre: " + miCliente.getNombre() + "<br>";
-			texto += "Apellido 1: " + miCliente.getApellido1() + "<br>";
-			texto += "Apellido 2: " + miCliente.getApellido2() + "<br>";
-			texto += "Telefono: " + miCliente.getTelefono() + "<br>";
-			texto += "Email: " + miCliente.getEmail() + "<br>";
-			texto += "Nacimiento: " + miCliente.getNacimiento() + "<br>";
-			texto += "Pais: " + miCliente.getPais() + "<br>";
-			texto += "Provincia: " + miCliente.getProvincia() + "<br>";
-			texto += "Municipio: " + miCliente.getMunicipio() + "<br>";
-			texto += "Calle: " + miCliente.getCalle() + "<br>";
-			texto += "Portal: " + miCliente.getPortal() + "<br>";
-			texto += "Piso: " + miCliente.getPiso() + "<br>";
-			texto += "Letra: " + miCliente.getLetra() + "<br></html>";
-			return texto;
-		} else {
-			return "";
-		}
-	}
-
 }

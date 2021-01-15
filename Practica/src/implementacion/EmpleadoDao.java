@@ -29,8 +29,9 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 			st.setString(9, miEmpleado.getEmail());
 			st.executeUpdate();
 		} catch (SQLException e) {
-			if (e.getMessage().indexOf("Duplicate entry") != -1? true:false) {
-				JOptionPane.showMessageDialog(null, "Ya hay un empleado con el DNI", "DNI Duplicado", JOptionPane.ERROR_MESSAGE);
+			if (e.getMessage().indexOf("Duplicate entry") != -1 ? true : false) {
+				JOptionPane.showMessageDialog(null, "Ya hay un empleado con el DNI", "DNI Duplicado",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			return false;
 		}
@@ -79,7 +80,7 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.cerrarConexion();
 		return miEmpleado;
 	}
-	
+
 	@Override
 	public ArrayList<Empleado> listarEmpleados() {
 		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
@@ -108,7 +109,6 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.cerrarConexion();
 		return listaEmpleados;
 	}
-
 
 	@Override
 	public boolean modificarEmpleado(Empleado miEmpleado) {

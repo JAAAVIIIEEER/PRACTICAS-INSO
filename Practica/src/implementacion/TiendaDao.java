@@ -28,7 +28,7 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, "Portal no valido", "Number Fail", JOptionPane.ERROR_MESSAGE);
 			return false;
-		} catch  (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			return false;
 		}
@@ -72,7 +72,7 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		}
 		return miTienda;
 	}
-	
+
 	@Override
 	public ArrayList<Tienda> listarTiendas() {
 		ArrayList<Tienda> listaTiendas = new ArrayList<Tienda>();

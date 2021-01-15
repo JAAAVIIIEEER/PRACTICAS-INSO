@@ -70,7 +70,7 @@ public class OfertaDao extends Conexion implements OfertaInterface {
 		this.cerrarConexion();
 		return miOferta;
 	}
-	
+
 	@Override
 	public ArrayList<Oferta> listarOfertas() {
 		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();

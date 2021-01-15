@@ -17,7 +17,7 @@ public class ControladorTiendas {
 		this.vistaTienda = vistaTienda;
 		this.validarDatos = new ValidarDatos();
 	}
-	
+
 	public void aniadirTienda() {
 		vistaTienda.removeListenerAniadirButton();
 		vistaTienda.establecerEstadoDefecto();
@@ -48,14 +48,14 @@ public class ControladorTiendas {
 			}
 		});
 	}
-	
+
 	public void bajaTienda() {
 		String id = vistaTienda.mostrarVentanaBajaTienda();
 		TiendaDao tienda = new TiendaDao();
 		tienda.eliminarTienda(Integer.parseInt(id));
 		ControladorGeneral.logger.info("Tienda eliminada correctamente");
 	}
-	
+
 	public void modificarTienda() {
 		vistaTienda.removeListenerAniadirButton();
 		String id = vistaTienda.mostrarVentanaConsultarTienda();
@@ -91,23 +91,5 @@ public class ControladorTiendas {
 				}
 			}
 		});
-	}
-	
-	public String consultarTienda() {
-		String idTienda = vistaTienda.mostrarVentanaConsultarTienda();
-		TiendaDao consulta = new TiendaDao();
-		Tienda miTienda = consulta.consultarTienda(Integer.valueOf(idTienda));
-		String texto = "";
-		if (miTienda.getProvincia() != null) {
-			texto += "<html>Provincia: " + miTienda.getProvincia() + "<br>";
-			texto += "Municipio: " + miTienda.getMunicipio() + "<br>";
-			texto += "Calle: " + miTienda.getVia() + "<br>";
-			texto += "Numero: " + miTienda.getNumero() + "<br>";
-			texto += "Email: " + miTienda.getEmail() + "<br>";
-			texto += "Telefono: " + miTienda.getTelefono() + "<br></html>";
-			return texto;
-		} else {
-			return "";
-		}
 	}
 }

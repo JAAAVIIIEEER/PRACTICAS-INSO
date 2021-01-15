@@ -1,0 +1,7 @@
+Para ejecutar la aplicación deberás cargar la base de datos en:
+
+User -> root
+Password -> root
+Puerto -> 3306
+
+Para añadir y visualizar datos usar la JMenuBar.

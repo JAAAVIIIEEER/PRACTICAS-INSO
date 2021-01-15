@@ -7,9 +7,8 @@ import java.util.ArrayList;
 
 import interfaces.VehiculoInterface;
 
+public class VehiculoDao extends Conexion implements VehiculoInterface {
 
-public class VehiculoDao extends Conexion implements VehiculoInterface{
-	
 	@Override
 	public boolean aniadirVehiculo(Vehiculo miVehiculo) {
 		this.establecerConexion();
@@ -71,7 +70,7 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		}
 		return miVehiculo;
 	}
-	
+
 	@Override
 	public ArrayList<Vehiculo> listarVehiculos() {
 		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
@@ -122,13 +121,14 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		this.cerrarConexion();
 		return true;
 	}
-	
+
 	@Override
 	public ArrayList<String> buscarVehiculosDisponibles() {
 		ArrayList<String> disponibles = new ArrayList<String>();
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT Matricula FROM VEHICULOS WHERE Estado=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT Matricula FROM VEHICULOS WHERE Estado=?");
 			st.setString(1, "Disponible");
 			ResultSet res = st.executeQuery();
 			while (res.next()) {

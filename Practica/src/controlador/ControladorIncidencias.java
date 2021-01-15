@@ -4,18 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import implementacion.IncidenciaDao;
-import implementacion.ValidarDatos;
 import modelo.Incidencia;
 import vista.VistaIncidencia;
 
 public class ControladorIncidencias {
 
 	private VistaIncidencia vistaIncidencia;
-	private ValidarDatos validarDatos;
 
 	public ControladorIncidencias(VistaIncidencia vistaIncidencia) {
 		this.vistaIncidencia = vistaIncidencia;
-		this.validarDatos = new ValidarDatos();
 	}
 
 	public void aniadirIncidencia() {
@@ -37,14 +34,14 @@ public class ControladorIncidencias {
 			}
 		});
 	}
-	
+
 	public void finalizarIncidencia() {
 		String id = vistaIncidencia.mostrarVentanaFinalizarIncidencia();
 		IncidenciaDao incidencia = new IncidenciaDao();
 		incidencia.finalizarIncidencia(Integer.valueOf(id));
 		ControladorGeneral.logger.info("Incidencia Finalizada");
 	}
-	
+
 	public void modificarIncidencia() {
 		vistaIncidencia.removeListenerAniadirButton();
 		String id = vistaIncidencia.mostrarVentanaConsultarIncidencia();
@@ -66,21 +63,5 @@ public class ControladorIncidencias {
 				}
 			}
 		});
-	}
-	
-	public String consultarIncidencia() {
-		String id = vistaIncidencia.mostrarVentanaConsultarIncidencia();
-		IncidenciaDao consulta = new IncidenciaDao();
-		Incidencia miIncidencia = consulta.consultarIncidencia(Integer.valueOf(id));
-		String texto = "";
-		if (miIncidencia.getTipo() != null) {
-			texto += "<html>Alquiler: " + miIncidencia.getAlquilerID() + "<br>";
-			texto += "Tipo: " + miIncidencia.getTipo() + "<br>";
-			texto += "Informe: " + miIncidencia.getInforme() + "<br>";
-			texto += "Estado: " + miIncidencia.getEstado() + "<br>";
-			return texto;
-		} else {
-			return "";
-		}
 	}
 }

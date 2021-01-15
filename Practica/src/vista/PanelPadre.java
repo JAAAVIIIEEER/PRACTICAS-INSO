@@ -3,9 +3,9 @@ package vista;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class VistaPanelPadre extends JPanel {
+public class PanelPadre extends JPanel {
 
-	public VistaPanelPadre() {
+	public PanelPadre() {
 		jScrollPane = new javax.swing.JScrollPane(jTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jTable = new javax.swing.JTable();
@@ -26,8 +26,6 @@ public class VistaPanelPadre extends JPanel {
 
 		);
 	}
-
 	javax.swing.JScrollPane jScrollPane;
 	javax.swing.JTable jTable;
-	// End of variables declaration
 }

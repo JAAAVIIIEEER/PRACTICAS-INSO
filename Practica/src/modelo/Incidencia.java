@@ -7,19 +7,19 @@ public class Incidencia {
 	private int id;
 	private String tipo;
 	private String informe;
-		
+
 	public String getEstado() {
 		return estado;
 	}
-	
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -46,5 +46,5 @@ public class Incidencia {
 
 	public void setInforme(String informe) {
 		this.informe = informe;
-	}	
+	}
 }

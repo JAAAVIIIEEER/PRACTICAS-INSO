@@ -161,7 +161,7 @@ public class VistaAlquiler extends javax.swing.JFrame {
 
 		pack();
 	}
-	
+
 	public void listenerAniadirButton(ActionListener listenForButtons) {
 		this.setTitle("Añadir Alquiler");
 		this.aniadirButton.setText("Añadir");
@@ -313,5 +313,5 @@ public class VistaAlquiler extends javax.swing.JFrame {
 	private javax.swing.JSpinner diaInicioSpinner;
 	private javax.swing.JTextField dniClienteText;
 	private javax.swing.JTextField dniEmpleadoText;
-	
+
 }

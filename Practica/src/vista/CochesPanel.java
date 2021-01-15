@@ -1,13 +1,8 @@
 package vista;
 
-import java.awt.event.ActionListener;
+@SuppressWarnings("serial")
+public class CochesPanel extends PanelPadre {
 
-import javax.accessibility.AccessibleContext;
-import javax.swing.*;
-
-public class CochesPanel extends VistaPanelPadre {
-
-	@SuppressWarnings("serial")
 	public CochesPanel() {
 		jScrollPane = super.jScrollPane;
 		jTable = super.jTable;
@@ -29,9 +24,5 @@ public class CochesPanel extends VistaPanelPadre {
 	public void setValue(String valor, int fila, int col) {
 		jTable.setValueAt(valor, fila, col);
 	}
-
-	// Variables declaration - do not modify
-	private javax.swing.JScrollPane jScrollPane;
 	private javax.swing.JTable jTable;
-	// End of variables declaration
 }

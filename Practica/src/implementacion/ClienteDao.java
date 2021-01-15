@@ -94,7 +94,7 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 		this.cerrarConexion();
 		return miCliente;
 	}
-	
+
 	@Override
 	public ArrayList<Cliente> listarClientes() {
 		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();

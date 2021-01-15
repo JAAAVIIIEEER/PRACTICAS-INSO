@@ -3,7 +3,7 @@ package modelo;
 import java.sql.Date;
 
 public class Alquiler {
-	
+
 	private int id;
 	private String dniCliente;
 	private String dniEmpleado;
@@ -13,7 +13,7 @@ public class Alquiler {
 	private String estado;
 	private Integer oferta;
 	private int coste;
-	
+
 	public int getId() {
 		return id;
 	}

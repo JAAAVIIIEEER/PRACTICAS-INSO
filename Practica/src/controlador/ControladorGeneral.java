@@ -18,7 +18,7 @@ public class ControladorGeneral {
 
 	private VistaAutenticar vistaAutenticar;
 	private int errores = 0;
-	private Frame vistaGeneral;
+	private VistaGeneral vistaGeneral;
 	private VistaAlquiler vistaAlquiler;
 	private VistaEmpleado vistaEmpleado;
 	private VistaVehiculo vistaVehiculo;
@@ -52,34 +52,6 @@ public class ControladorGeneral {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void mostrarVentanaAniadirAlquiler(boolean estado) {
-		this.vistaAlquiler.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirEmpleado(boolean estado) {
-		this.vistaEmpleado.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirVehiculo(boolean estado) {
-		this.vistaVehiculo.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirCliente(boolean estado) {
-		this.vistaCliente.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirTienda(boolean estado) {
-		this.vistaTienda.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirOferta(boolean estado) {
-		this.vistaOferta.setVisible(estado);
-	}
-
-	public void mostrarVentanaAniadirIncidencia(boolean estado) {
-		this.vistaIncidencia.setVisible(estado);
 	}
 
 	public void mostrarVentanaAutenticar() {
@@ -122,7 +94,8 @@ public class ControladorGeneral {
 	private void listenerModificarEmpleado() {
 		this.vistaGeneral.listenerModificarEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-
+				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado);
+				empCont.modificarEmpleado();
 			}
 		});
 	}
@@ -308,7 +281,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTablaAlquileres()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTablaAlquileres()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTablaAlquileres()));
 				} else {
 					actualizarAlquileres();
 					vistaGeneral.getjTabbedPane().addTab("Alquileres", vistaGeneral.getTablaAlquileres());
@@ -316,7 +290,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizarAlquileres() {
 		AlquilerDao alquiler = new AlquilerDao();
 		ArrayList<Alquiler> listaAlquileres = alquiler.listarAlquileres();
@@ -340,7 +314,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getClientesPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getClientesPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getClientesPanel()));
 				} else {
 					actualizarClientes();
 					vistaGeneral.getjTabbedPane().addTab("Clientes", vistaGeneral.getClientesPanel());
@@ -348,7 +323,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizarClientes() {
 		ClienteDao cliente = new ClienteDao();
 		ArrayList<Cliente> listaClientes = cliente.listarClientes();
@@ -374,7 +349,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getEmpleadosPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getEmpleadosPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getEmpleadosPanel()));
 				} else {
 					actualizaEmpleados();
 					vistaGeneral.getjTabbedPane().addTab("Empleados", vistaGeneral.getEmpleadosPanel());
@@ -382,7 +358,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizaEmpleados() {
 		EmpleadoDao empleado = new EmpleadoDao();
 		ArrayList<Empleado> listaEmpleados = empleado.listarEmpleados();
@@ -405,7 +381,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getIncidenciasPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getIncidenciasPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getIncidenciasPanel()));
 				} else {
 					actualizarIncidencias();
 					vistaGeneral.getjTabbedPane().addTab("Incidencias", vistaGeneral.getIncidenciasPanel());
@@ -413,7 +390,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizarIncidencias() {
 		IncidenciaDao incidencia = new IncidenciaDao();
 		ArrayList<Incidencia> listaIncidencias = incidencia.listarIncidencias();
@@ -433,7 +410,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getOfertasPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getOfertasPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getOfertasPanel()));
 				} else {
 					actualizaOfertas();
 					vistaGeneral.getjTabbedPane().addTab("Ofertas", vistaGeneral.getOfertasPanel());
@@ -441,7 +419,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizaOfertas() {
 		OfertaDao oferta = new OfertaDao();
 		ArrayList<Oferta> listaOfertas = oferta.listarOfertas();
@@ -463,7 +441,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTiendasPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTiendasPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getTiendasPanel()));
 				} else {
 					actualizarTiendas();
 					vistaGeneral.getjTabbedPane().addTab("Tiendas", vistaGeneral.getTiendasPanel());
@@ -471,7 +450,7 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
+
 	private void actualizarTiendas() {
 		TiendaDao tienda = new TiendaDao();
 		ArrayList<Tienda> listaTiendas = tienda.listarTiendas();
@@ -493,7 +472,8 @@ public class ControladorGeneral {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getCochesPanel()) != -1) {
-					vistaGeneral.getjTabbedPane().remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getCochesPanel()));
+					vistaGeneral.getjTabbedPane()
+							.remove(vistaGeneral.getjTabbedPane().indexOfComponent(vistaGeneral.getCochesPanel()));
 				} else {
 					actualizarVehiculo();
 					vistaGeneral.getjTabbedPane().addTab("Vehiculos", vistaGeneral.getCochesPanel());
@@ -501,8 +481,8 @@ public class ControladorGeneral {
 			}
 		});
 	}
-	
-	private void actualizarVehiculo() { 
+
+	private void actualizarVehiculo() {
 		VehiculoDao vehiculo = new VehiculoDao();
 		ArrayList<Vehiculo> listaVehiculos = vehiculo.listarVehiculos();
 		int i = 0;
@@ -570,7 +550,7 @@ public class ControladorGeneral {
 				this.vistaAutenticar.cerrarProgramaErrorAutenticacion();
 			}
 		} else {
-			vistaGeneral = new Frame(estado);
+			vistaGeneral = new VistaGeneral(estado);
 			vistaGeneral.setVisible(true);
 			aniadirListenerGeneral(estado);
 			this.vistaAutenticar.setVisible(false);

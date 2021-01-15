@@ -1,15 +1,9 @@
 package vista;
 
-import java.awt.event.ActionListener;
+@SuppressWarnings("serial")
+public class ClientesPanel extends PanelPadre {
 
-import javax.accessibility.AccessibleContext;
-import javax.swing.*;
-
-public class ClientesPanel extends VistaPanelPadre {
-
-	@SuppressWarnings("serial")
 	public ClientesPanel() {
-		jScrollPane = super.jScrollPane;
 		jTable = super.jTable;
 
 		jTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -28,8 +22,8 @@ public class ClientesPanel extends VistaPanelPadre {
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "DNI", "Nombre", "Apellido 1", "Apellido 2", "Nacimiento", "Telefono", "Email", "Provincia",
-						"Municipio", "Calle", "Portal" }) {
+				new String[] { "DNI", "Nombre", "Apellido 1", "Apellido 2", "Nacimiento", "Telefono", "Email",
+						"Provincia", "Municipio", "Calle", "Portal" }) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -41,8 +35,5 @@ public class ClientesPanel extends VistaPanelPadre {
 		jTable.setValueAt(valor, fila, col);
 	}
 
-	// Variables declaration - do not modify
-	private javax.swing.JScrollPane jScrollPane;
 	private javax.swing.JTable jTable;
-	// End of variables declaration
 }

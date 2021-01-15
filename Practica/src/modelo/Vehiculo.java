@@ -1,10 +1,15 @@
 package modelo;
 
 public class Vehiculo {
-	
-	public static enum TiposVehiculos {furgoneta, coche};
-	public static enum TiposCombustible {gasolina, diesel, hibrido, electrico}
-	
+
+	public static enum TiposVehiculos {
+		furgoneta, coche
+	};
+
+	public static enum TiposCombustible {
+		gasolina, diesel, hibrido, electrico
+	}
+
 	private String matricula;
 	private String tipo;
 	private String combustible;
@@ -14,7 +19,7 @@ public class Vehiculo {
 	private String modelo;
 	private int tiendaID;
 	private String extras;
-	
+
 	public String getModelo() {
 		return modelo;
 	}
@@ -22,47 +27,47 @@ public class Vehiculo {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	
+
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public void setCombustible(String combustible) {
 		this.combustible = combustible;
 	}
-	
+
 	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
-	
+
 	public void setCoste(int coste) {
 		this.coste = coste;
 	}
-	
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	public String getMatricula() {
 		return this.matricula;
 	}
-	
+
 	public String getTipo() {
 		return this.tipo;
 	}
-	
+
 	public String getCombustible() {
 		return this.combustible;
 	}
-	
+
 	public int getPlazas() {
 		return this.plazas;
 	}
-	
+
 	public int getCoste() {
 		return this.coste;
 	}

@@ -89,22 +89,4 @@ public class ControladorOfertas {
 			}
 		});
 	}
-
-	public String consultarOferta() {
-		String id = vistaOferta.mostrarVentanaConsultarOferta();
-		OfertaDao consulta = new OfertaDao();
-		Oferta miOferta = consulta.buscarOferta(Integer.valueOf(id));
-		String texto = "";
-		if (miOferta.getFechaInicio() != null) {
-			texto += "<html>Inicio: " + miOferta.getFechaInicio() + "<br>";
-			texto += "Fin: " + miOferta.getFechaFin() + "<br>";
-			texto += "Tipo: " + miOferta.getTipoOferta() + "<br>";
-			texto += "Especificacion: " + miOferta.getEspecificacion() + "<br>";
-			texto += "Descuento: " + miOferta.getDescuento() + "<br>";
-			texto += "Estado: " + miOferta.getEstado() + "<br></html>";
-			return texto;
-		} else {
-			return "";
-		}
-	}
 }

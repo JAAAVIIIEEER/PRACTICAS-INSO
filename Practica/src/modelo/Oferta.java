@@ -11,7 +11,7 @@ public class Oferta {
 	private Integer ofertaid;
 	private String estado;
 	private String especificacion;
-	
+
 	public int getDescuento() {
 		return descuento;
 	}

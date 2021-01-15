@@ -1,7 +1,7 @@
 package modelo;
 
 public class Tienda {
-	
+
 	private int id;
 	private String via;
 	private String provincia;
@@ -9,7 +9,7 @@ public class Tienda {
 	private Integer numero;
 	private String telefono;
 	private String email;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -65,6 +65,5 @@ public class Tienda {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }

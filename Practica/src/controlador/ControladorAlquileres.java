@@ -21,7 +21,7 @@ public class ControladorAlquileres {
 		this.vistaAlquiler = vistaAlquiler;
 		this.validarDatos = new ValidarDatos();
 	}
-	
+
 	public void aniadirAlquiler() {
 		VehiculoDao vehiculo = new VehiculoDao();
 		ArrayList<String> vehiculos = vehiculo.buscarVehiculosDisponibles();
@@ -55,7 +55,8 @@ public class ControladorAlquileres {
 					int dias = (int) ((vistaAlquiler.getFechaFin().getTime() - vistaAlquiler.getFechaInicio().getTime())
 							/ milisecondsByDay);
 					AlquilerDao alquiler = new AlquilerDao();
-					int coste = (int) (alquiler.calcularCoste(vistaAlquiler.getVehiculo()) * dias * (1 - descuento / 100));
+					int coste = (int) (alquiler.calcularCoste(vistaAlquiler.getVehiculo()) * dias
+							* (1 - descuento / 100));
 					miAlquiler.setCoste(coste);
 					int validar = validarDatos.validarAlquiler(miAlquiler);
 					if (validar == 0) {
@@ -72,14 +73,14 @@ public class ControladorAlquileres {
 			});
 		}
 	}
-	
+
 	public void finalizarAlquiler() {
 		String id = vistaAlquiler.mostrarVentanaFinalizarAlquiler();
 		AlquilerDao alquiler = new AlquilerDao();
 		alquiler.finalizarAlquiler(Integer.parseInt(id));
 		ControladorGeneral.logger.info("Alquiler finalizado correctamente");
 	}
-	
+
 	public void modificarAlquiler() {
 		vistaAlquiler.removeListenerAniadirButton();
 		String id = vistaAlquiler.mostrarVentanaConsultarAlquiler();
@@ -133,25 +134,5 @@ public class ControladorAlquileres {
 				}
 			}
 		});
-	}
-	
-	public String consultarAlquiler() {
-		String idAlquiler = vistaAlquiler.mostrarVentanaConsultarAlquiler();
-		AlquilerDao consulta = new AlquilerDao();
-		Alquiler miAlquiler = consulta.consultarAlquiler(Integer.valueOf(idAlquiler));
-		String texto = "";
-		if (miAlquiler.getFecha1() != null) {
-			texto += "<html>Fecha Inicio: " + miAlquiler.getFecha1() + "<br>";
-			texto += "Fin: " + miAlquiler.getFecha2() + "<br>";
-			texto += "Coste: " + miAlquiler.getCoste() + "<br>";
-			texto += "Empleado: " + miAlquiler.getDniEmpleado() + "<br>";
-			texto += "Cliente: " + miAlquiler.getDniCliente() + "<br>";
-			texto += "Vehiculo: " + miAlquiler.getMatVehiculo() + "<br>";
-			texto += "Estado: " + miAlquiler.getEstado() + "<br>";
-			texto += "Oferta: " + miAlquiler.getOferta() + "<br></html>";
-			return texto;
-		} else {
-			return "";
-		}
 	}
 }

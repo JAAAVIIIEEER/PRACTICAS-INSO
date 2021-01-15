@@ -18,23 +18,23 @@ public class Cliente {
 	private Integer portal;
 	private Integer piso;
 	private String letra;
-	
+
 	public void setDNI(String DNI) {
 		this.DNI = DNI;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public void setApellido1(String apellido1) {
 		this.apellido1 = apellido1;
 	}
-	
+
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
-	
+
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
@@ -42,7 +42,7 @@ public class Cliente {
 	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -50,27 +50,27 @@ public class Cliente {
 	public String getDNI() {
 		return this.DNI;
 	}
-	
+
 	public String getNombre() {
 		return this.nombre;
 	}
-	
+
 	public String getApellido1() {
 		return this.apellido1;
 	}
-	
+
 	public String getApellido2() {
 		return this.apellido2;
 	}
-	
+
 	public String getTelefono() {
 		return this.telefono;
 	}
-	
+
 	public Date getNacimiento() {
 		return this.nacimiento;
 	}
-	
+
 	public String getEmail() {
 		return this.email;
 	}

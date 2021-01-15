@@ -45,15 +45,6 @@ public class ValidarDatos {
 		return Pattern.matches("^[0-9]{1,4}(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}", matricula);
 	}
 
-	private boolean validarNumero(String entero) {
-		try {
-			Integer.parseInt(entero);
-			return true;
-		} catch (NumberFormatException excepcion) {
-			return false;
-		}
-	}
-
 	private boolean validarCadena(String cadena) {
 		String regex = "(.)*(\\d)(.)*";
 		Pattern pattern = Pattern.compile(regex);
@@ -98,7 +89,7 @@ public class ValidarDatos {
 			return 2;
 		return 0;
 	}
-	
+
 	public int validarTienda(Tienda miTienda) {
 		if (validarNumeroCaracteres(miTienda.getProvincia(), 3))
 			return 1;
@@ -112,7 +103,7 @@ public class ValidarDatos {
 			return 6;
 		return 0;
 	}
-	
+
 	public int validarAlquiler(Alquiler miAlquiler) {
 		if (!validarDNI(miAlquiler.getDniEmpleado()))
 			return 1;
@@ -122,7 +113,7 @@ public class ValidarDatos {
 			return 3;
 		return 0;
 	}
-	
+
 	public int validarCliente(Cliente miCliente) {
 		if (validarNumeroCaracteres(miCliente.getNombre(), 2))
 			return 1;
@@ -144,11 +135,9 @@ public class ValidarDatos {
 			return 9;
 		if (validarNumeroCaracteres(miCliente.getCalle(), 1))
 			return 10;
-//		if (miCliente.getLetra().length() != 1 || Character.isLetter(miCliente.getLetra().charAt(0)))
-//			return 13;
 		return 0;
 	}
-	
+
 	public int validarOferta(Oferta miOferta) {
 		if (validarNumeroCaracteres(miOferta.getEspecificacion(), 2))
 			return 1;

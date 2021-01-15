@@ -17,15 +17,14 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 		this.establecerConexion();
 		try {
 			int alquilerid = miIncidencia.getAlquilerID();
-			PreparedStatement st = this.getConexion().prepareStatement(
-					"INSERT INTO INCIDENCIAS (AlquilerID, Tipo, Informe) VALUES (?, ?, ?)");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("INSERT INTO INCIDENCIAS (AlquilerID, Tipo, Informe) VALUES (?, ?, ?)");
 			st.setInt(1, miIncidencia.getAlquilerID());
-			
+
 			st.setString(2, miIncidencia.getTipo());
 			st.setString(3, miIncidencia.getInforme());
 			st.executeUpdate();
-			st = this.getConexion()
-					.prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
+			st = this.getConexion().prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
 			st.setString(1, "Finalizado");
 			st.setInt(2, alquilerid);
 			st.executeUpdate();
@@ -33,8 +32,9 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 					.prepareStatement("SELECT VehiculoAlquilado FROM ALQUILERES WHERE AlquilerID=?");
 			stTer.setInt(1, alquilerid);
 			ResultSet res = stTer.executeQuery();
-			String mat = "";;
-			while(res.next()) {
+			String mat = "";
+			;
+			while (res.next()) {
 				mat = res.getString("VehiculoAlquilado");
 			}
 			PreparedStatement stSec = this.getConexion()
@@ -43,8 +43,9 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 			stSec.setString(2, mat);
 			stSec.executeUpdate();
 		} catch (SQLException e) {
-			if (e.getMessage().indexOf("AlquilerID") != -1? true:false) {
-				JOptionPane.showMessageDialog(null, "No hay un alquiler con ese ID", "Alquiler no encontrado", JOptionPane.ERROR_MESSAGE);
+			if (e.getMessage().indexOf("AlquilerID") != -1 ? true : false) {
+				JOptionPane.showMessageDialog(null, "No hay un alquiler con ese ID", "Alquiler no encontrado",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			return false;
 		}
@@ -56,7 +57,8 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 	public boolean finalizarIncidencia(int alquilerID) {
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("UPDATE INCIDENCIAS SET ESTADO=? WHERE AlquilerID=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("UPDATE INCIDENCIAS SET ESTADO=? WHERE AlquilerID=?");
 			st.setString(1, "Finalizada");
 			st.setInt(2, alquilerID);
 			st.executeUpdate();
@@ -73,7 +75,8 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 		Incidencia miIncidencia = new Incidencia();
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM INCIDENCIAS WHERE IncidenciaID=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("SELECT * FROM INCIDENCIAS WHERE IncidenciaID=?");
 			st.setInt(1, alquilerID);
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
@@ -90,7 +93,7 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 		this.cerrarConexion();
 		return miIncidencia;
 	}
-	
+
 	@Override
 	public ArrayList<Incidencia> listarIncidencias() {
 		ArrayList<Incidencia> listaIncidencias = new ArrayList<Incidencia>();
@@ -119,8 +122,8 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 	public boolean modificarIncidencia(Incidencia miIncidencia) {
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE INCIDENCIAS SET AlquilerID=?, Tipo=?, Informe=? WHERE AlquilerID=?");
+			PreparedStatement st = this.getConexion()
+					.prepareStatement("UPDATE INCIDENCIAS SET AlquilerID=?, Tipo=?, Informe=? WHERE AlquilerID=?");
 			st.setInt(1, miIncidencia.getAlquilerID());
 			st.setString(2, miIncidencia.getTipo());
 			st.setString(3, miIncidencia.getInforme());

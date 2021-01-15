@@ -114,7 +114,7 @@ CREATE TABLE `vehiculos` (
   PRIMARY KEY (`VehiculoID`),
   UNIQUE KEY `Matricula_UNIQUE` (`Matricula`),
   KEY `Tienda_idx` (`Tienda`),
-  CONSTRAINT `Tienda` FOREIGN KEY (`Tienda`) REFERENCES `tiendas` (`TiendaID`)
+  CONSTRAINT `Tienda` FOREIGN KEY (`Tienda`) REFERENCES `tiendas` (`TiendaID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

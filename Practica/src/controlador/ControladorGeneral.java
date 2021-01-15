@@ -26,6 +26,7 @@ public class ControladorGeneral {
 	private VistaCliente vistaCliente;
 	private VistaOferta vistaOferta;
 	private VistaIncidencia vistaIncidencia;
+	private ControladorGeneral cont;
 
 	public static Logger logger = Logger.getLogger("RentLeonLog");
 
@@ -38,6 +39,7 @@ public class ControladorGeneral {
 		this.vistaCliente = new VistaCliente();
 		this.vistaOferta = new VistaOferta();
 		this.vistaIncidencia = new VistaIncidencia();
+		this.cont = this;
 		establecerLog();
 	}
 
@@ -76,7 +78,7 @@ public class ControladorGeneral {
 	private void listenerAniadirEmpleado() {
 		this.vistaGeneral.listenerAniadirEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado);
+				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado, cont);
 				empCont.aniadirEmpleado();
 			}
 		});
@@ -85,7 +87,7 @@ public class ControladorGeneral {
 	private void listenerBajaEmpleado() {
 		this.vistaGeneral.listenerBajaEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado);
+				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado, cont);
 				empCont.bajaEmpleado();
 			}
 		});
@@ -94,7 +96,7 @@ public class ControladorGeneral {
 	private void listenerModificarEmpleado() {
 		this.vistaGeneral.listenerModificarEmpleado(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado);
+				ControladorEmpleados empCont = new ControladorEmpleados(vistaEmpleado, cont);
 				empCont.modificarEmpleado();
 			}
 		});
@@ -103,7 +105,7 @@ public class ControladorGeneral {
 	private void listenerAniadirVehiculo() {
 		this.vistaGeneral.listenerAniadirVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo);
+				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo, cont);
 				vCont.aniadirVehiculo();
 			}
 		});
@@ -112,7 +114,7 @@ public class ControladorGeneral {
 	private void listenerBajaVehiculo() {
 		this.vistaGeneral.listenerBajaVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo);
+				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo, cont);
 				vCont.eliminarVehiculo();
 			}
 		});
@@ -121,7 +123,7 @@ public class ControladorGeneral {
 	private void listenerModificarVehiculo() {
 		this.vistaGeneral.listenerModificarVehiculo(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo);
+				ControladorVehiculos vCont = new ControladorVehiculos(vistaVehiculo, cont);
 				vCont.modificarVehiculo();
 			}
 		});
@@ -130,7 +132,7 @@ public class ControladorGeneral {
 	private void listenerAniadirTienda() {
 		this.vistaGeneral.listenerAniadirTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorTiendas tCont = new ControladorTiendas(vistaTienda);
+				ControladorTiendas tCont = new ControladorTiendas(vistaTienda, cont);
 				tCont.aniadirTienda();
 				actualizarTiendas();
 			}
@@ -140,7 +142,7 @@ public class ControladorGeneral {
 	private void listenerBajaTienda() {
 		this.vistaGeneral.listenerBajaTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorTiendas tCont = new ControladorTiendas(vistaTienda);
+				ControladorTiendas tCont = new ControladorTiendas(vistaTienda, cont);
 				tCont.bajaTienda();
 				actualizarTiendas();
 			}
@@ -150,7 +152,7 @@ public class ControladorGeneral {
 	private void listenerModificarTienda() {
 		this.vistaGeneral.listenerModificarTienda(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorTiendas tCont = new ControladorTiendas(vistaTienda);
+				ControladorTiendas tCont = new ControladorTiendas(vistaTienda, cont);
 				tCont.modificarTienda();
 				actualizarTiendas();
 			}
@@ -160,7 +162,7 @@ public class ControladorGeneral {
 	private void listenerAniadirAlquiler() {
 		this.vistaGeneral.listenerAniadirAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler);
+				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler, cont);
 				aCont.aniadirAlquiler();
 				actualizarAlquileres();
 			}
@@ -170,7 +172,7 @@ public class ControladorGeneral {
 	private void listenerFinalizarAlquiler() {
 		this.vistaGeneral.listenerFinalizarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler);
+				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler, cont);
 				aCont.finalizarAlquiler();
 				actualizarAlquileres();
 			}
@@ -180,7 +182,7 @@ public class ControladorGeneral {
 	private void listenerModificarAlquiler() {
 		this.vistaGeneral.listenerModificarAlquiler(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler);
+				ControladorAlquileres aCont = new ControladorAlquileres(vistaAlquiler, cont);
 				aCont.modificarAlquiler();
 				actualizarAlquileres();
 			}
@@ -190,7 +192,7 @@ public class ControladorGeneral {
 	private void listenerAniadirCliente() {
 		this.vistaGeneral.listenerAniadirCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorClientes cCont = new ControladorClientes(vistaCliente);
+				ControladorClientes cCont = new ControladorClientes(vistaCliente, cont);
 				cCont.aniadirCliente();
 				actualizarClientes();
 			}
@@ -200,7 +202,7 @@ public class ControladorGeneral {
 	private void listenerBajaCliente() {
 		this.vistaGeneral.listenerBajaCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorClientes cCont = new ControladorClientes(vistaCliente);
+				ControladorClientes cCont = new ControladorClientes(vistaCliente, cont);
 				cCont.eliminarCliente();
 				actualizarClientes();
 			}
@@ -210,7 +212,7 @@ public class ControladorGeneral {
 	private void listenerModificarCliente() {
 		this.vistaGeneral.listenerModificarCliente(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorClientes cCont = new ControladorClientes(vistaCliente);
+				ControladorClientes cCont = new ControladorClientes(vistaCliente, cont);
 				cCont.modificarCliente();
 				actualizarClientes();
 			}
@@ -228,7 +230,7 @@ public class ControladorGeneral {
 	private void listenerAniadirOferta() {
 		this.vistaGeneral.listenerAniadirOferta(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
+				ControladorOfertas oCont = new ControladorOfertas(vistaOferta, cont);
 				oCont.aniadirOferta();
 				actualizaOfertas();
 			}
@@ -238,7 +240,7 @@ public class ControladorGeneral {
 	private void listenerFinalizarOferta() {
 		this.vistaGeneral.listenerFinalizarOferta(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
+				ControladorOfertas oCont = new ControladorOfertas(vistaOferta, cont);
 				oCont.finalizarOferta();
 				actualizaOfertas();
 			}
@@ -248,7 +250,7 @@ public class ControladorGeneral {
 	private void listenerModificarOferta() {
 		this.vistaGeneral.listenerModificarOferta(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
+				ControladorOfertas oCont = new ControladorOfertas(vistaOferta, cont);
 				oCont.modificarOferta();
 				actualizaOfertas();
 			}
@@ -258,7 +260,7 @@ public class ControladorGeneral {
 	private void listenerAniadirIncidencia() {
 		this.vistaGeneral.listenerAniadirIncidencia(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia);
+				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia, cont);
 				iCont.aniadirIncidencia();
 			}
 		});
@@ -267,7 +269,7 @@ public class ControladorGeneral {
 	private void listenerFinalizarIncidencia() {
 		this.vistaGeneral.listenerFinalizarIncidencia(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia);
+				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia, cont);
 				iCont.finalizarIncidencia();
 				actualizarIncidencias();
 			}
@@ -277,7 +279,7 @@ public class ControladorGeneral {
 	private void listenerModificarIncidencia() {
 		this.vistaGeneral.listenerModificarIncidencia(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia);
+				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia, cont);
 				iCont.modificarIncidencia();
 				actualizarIncidencias();
 			}
@@ -299,7 +301,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizarAlquileres() {
+	public void actualizarAlquileres() {
 		AlquilerDao alquiler = new AlquilerDao();
 		ArrayList<Alquiler> listaAlquileres = alquiler.listarAlquileres();
 		int i = 0;
@@ -332,7 +334,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizarClientes() {
+	public void actualizarClientes() {
 		ClienteDao cliente = new ClienteDao();
 		ArrayList<Cliente> listaClientes = cliente.listarClientes();
 		int i = 0;
@@ -367,7 +369,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizaEmpleados() {
+	public void actualizaEmpleados() {
 		EmpleadoDao empleado = new EmpleadoDao();
 		ArrayList<Empleado> listaEmpleados = empleado.listarEmpleados();
 		int i = 0;
@@ -399,7 +401,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizarIncidencias() {
+	public void actualizarIncidencias() {
 		IncidenciaDao incidencia = new IncidenciaDao();
 		ArrayList<Incidencia> listaIncidencias = incidencia.listarIncidencias();
 		int i = 0;
@@ -428,7 +430,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizaOfertas() {
+	public void actualizaOfertas() {
 		OfertaDao oferta = new OfertaDao();
 		ArrayList<Oferta> listaOfertas = oferta.listarOfertas();
 		int i = 0;
@@ -459,7 +461,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizarTiendas() {
+	public void actualizarTiendas() {
 		TiendaDao tienda = new TiendaDao();
 		ArrayList<Tienda> listaTiendas = tienda.listarTiendas();
 		int i = 0;
@@ -490,7 +492,7 @@ public class ControladorGeneral {
 		});
 	}
 
-	private void actualizarVehiculo() {
+	public void actualizarVehiculo() {
 		VehiculoDao vehiculo = new VehiculoDao();
 		ArrayList<Vehiculo> listaVehiculos = vehiculo.listarVehiculos();
 		int i = 0;
@@ -560,6 +562,7 @@ public class ControladorGeneral {
 		} else {
 			vistaGeneral = new VistaGeneral(estado);
 			vistaGeneral.setVisible(true);
+			actualizarAlquileres();
 			aniadirListenerGeneral(estado);
 			this.vistaAutenticar.setVisible(false);
 		}

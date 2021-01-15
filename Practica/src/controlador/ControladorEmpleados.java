@@ -12,10 +12,12 @@ public class ControladorEmpleados {
 
 	private VistaEmpleado vistaEmpleado;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorEmpleados(VistaEmpleado vistaEmpleados) {
+	public ControladorEmpleados(VistaEmpleado vistaEmpleados, ControladorGeneral cont) {
 		this.vistaEmpleado = vistaEmpleados;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirEmpleado() {
@@ -43,6 +45,7 @@ public class ControladorEmpleados {
 						vistaEmpleado.setVisible(false);
 						vistaEmpleado.avisarEmpleadoAniadidoCorrecto();
 						ControladorGeneral.logger.info("Empleado añadido correctamente");
+						cont.actualizaEmpleados();
 					}
 				} else {
 					vistaEmpleado.mostrarError(validar);
@@ -60,6 +63,7 @@ public class ControladorEmpleados {
 				empleado.eliminarEmpleado(dni);
 				ControladorGeneral.logger.info("Empleado eliminado correctamente");
 				vistaEmpleado.empleadoEliminado();
+				cont.actualizaEmpleados();
 			} else {
 				vistaEmpleado.mostrarDniNoValido();
 			}
@@ -100,6 +104,7 @@ public class ControladorEmpleados {
 						vistaEmpleado.setVisible(false);
 						vistaEmpleado.avisarEmpleadoModificadoCorrecto();
 						ControladorGeneral.logger.info("Empleado modificado correctamente");
+						cont.actualizaEmpleados();
 					}
 				} else {
 					vistaEmpleado.mostrarError(validar);

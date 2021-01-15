@@ -12,10 +12,12 @@ public class ControladorOfertas {
 
 	private VistaOferta vistaOferta;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorOfertas(VistaOferta vistaOferta) {
+	public ControladorOfertas(VistaOferta vistaOferta, ControladorGeneral cont) {
 		this.vistaOferta = vistaOferta;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirOferta() {
@@ -39,6 +41,7 @@ public class ControladorOfertas {
 						vistaOferta.setVisible(false);
 						vistaOferta.avisarOfertaAniadidoCorrecto();
 						ControladorGeneral.logger.info("Oferta añadida correctamente");
+						cont.actualizaOfertas();
 					}
 				} else {
 					vistaOferta.mostrarError(validar);
@@ -57,6 +60,7 @@ public class ControladorOfertas {
 				oferta.eliminarOferta(Integer.valueOf(id));
 				ControladorGeneral.logger.info("Oferta Finalizada Correctamente");
 				vistaOferta.ofertaFinalizada();
+				cont.actualizaOfertas();
 			} else {
 				vistaOferta.errorNumero();
 			}
@@ -89,6 +93,7 @@ public class ControladorOfertas {
 						vistaOferta.setVisible(false);
 						vistaOferta.avisarOfertaModificadoCorrecto();
 						ControladorGeneral.logger.info("Oferta Añadida Correctamente");
+						cont.actualizaOfertas();
 					}
 				} else {
 					vistaOferta.mostrarError(validar);

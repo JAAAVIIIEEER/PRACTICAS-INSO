@@ -23,8 +23,7 @@ public class OfertasPanel extends PanelPadre {
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "ID", "Inicio", "Fin", "Tipo", "Especificacion", "Descuento", "Estado", "", "", "",
-						"" }) {
+				new String[] { "ID", "Inicio", "Fin", "Tipo", "Especificacion", "Descuento", "Estado"}) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

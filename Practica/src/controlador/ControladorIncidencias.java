@@ -12,10 +12,12 @@ public class ControladorIncidencias {
 
 	private VistaIncidencia vistaIncidencia;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorIncidencias(VistaIncidencia vistaIncidencia) {
+	public ControladorIncidencias(VistaIncidencia vistaIncidencia, ControladorGeneral cont) {
 		this.vistaIncidencia = vistaIncidencia;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirIncidencia() {
@@ -33,6 +35,7 @@ public class ControladorIncidencias {
 					vistaIncidencia.setVisible(false);
 					vistaIncidencia.avisarIncidenciaAniadidoCorrecto();
 					ControladorGeneral.logger.info("Incidencia Añadida Correctamente");
+					cont.actualizarIncidencias();
 				}
 			}
 		});
@@ -47,6 +50,7 @@ public class ControladorIncidencias {
 				incidencia.finalizarIncidencia(Integer.valueOf(id));
 				ControladorGeneral.logger.info("Cliente eliminado correctamente");
 				vistaIncidencia.incidenciaFinalizada();
+				cont.actualizarIncidencias();
 			} else {
 				vistaIncidencia.errorNumero();
 			}
@@ -71,6 +75,7 @@ public class ControladorIncidencias {
 					vistaIncidencia.setVisible(false);
 					vistaIncidencia.avisarIncidenciaModificadoCorrecto();
 					ControladorGeneral.logger.info("Incidencia Modificada");
+					cont.actualizarIncidencias();
 				}
 			}
 		});

@@ -23,7 +23,7 @@ public class IncidenciasPanel extends PanelPadre {
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "ID", "Alquiler", "Tipo", "Estado", "Informe", "", "", "", "", "", "" }));
+				new String[] { "ID", "Alquiler", "Tipo", "Estado", "Informe"}));
 	}
 
 	public void setValue(String valor, int fila, int col) {

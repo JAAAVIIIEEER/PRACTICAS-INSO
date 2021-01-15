@@ -23,8 +23,7 @@ public class TiendasPanel extends PanelPadre {
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
 						{ null, null, null, null }, { null, null, null, null }, { null, null, null, null }, },
-				new String[] { "ID", "Provincia", "Municipio", "Calle", "Portal", "Telefono", "Email", "", "", "",
-						"" }) {
+				new String[] { "ID", "Provincia", "Municipio", "Calle", "Portal", "Telefono", "Email"}) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

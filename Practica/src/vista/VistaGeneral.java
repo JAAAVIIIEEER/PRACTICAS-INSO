@@ -63,7 +63,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		finalizarIncidencia = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Administración RentLeon");
+		setTitle("Empleado Base RentLeon");
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));
 		setSize(1000, 790);
 		setLocationRelativeTo(null);
@@ -89,15 +89,8 @@ public class VistaGeneral extends javax.swing.JFrame {
 		jMenuItemIncidencias.setText("Incidencias");
 		jMenuVista.add(jMenuItemIncidencias);
 
-		jMenuItemOfertas.setText("Vehiculos");
-		jMenuVista.add(jMenuItemOfertas);
-
 		jMenuItemCoches.setText("Coches");
 		jMenuVista.add(jMenuItemCoches);
-
-		jMenuItemTiendas.setText("Tiendas");
-
-		jMenuVista.add(jMenuItemTiendas);
 
 		jMenuBar.add(jMenuVista);
 

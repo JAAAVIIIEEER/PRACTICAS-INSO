@@ -12,10 +12,12 @@ public class ControladorClientes {
 
 	private VistaCliente vistaCliente;
 	private ValidarDatos validarDatos;
-
-	public ControladorClientes(VistaCliente vistaCliente) {
+	private ControladorGeneral cont;
+	
+	public ControladorClientes(VistaCliente vistaCliente, ControladorGeneral cont) {
 		this.vistaCliente = vistaCliente;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirCliente() {
@@ -48,6 +50,7 @@ public class ControladorClientes {
 						vistaCliente.setVisible(false);
 						vistaCliente.avisarClienteAniadidoCorrecto();
 						ControladorGeneral.logger.info("Cliente añadido correctamente");
+						cont.actualizarClientes();
 					}
 				} else {
 					vistaCliente.mostrarError(validar);
@@ -65,6 +68,7 @@ public class ControladorClientes {
 				cliente.eliminarCliente(dni);
 				ControladorGeneral.logger.info("Cliente eliminado correctamente");
 				vistaCliente.clienteEliminado();
+				cont.actualizarClientes();
 			} else {
 				vistaCliente.mostrarDniNoValido();
 			}
@@ -115,6 +119,7 @@ public class ControladorClientes {
 						vistaCliente.setVisible(false);
 						vistaCliente.avisarClienteModificadoCorrecto();
 						ControladorGeneral.logger.info("Cliente modificado correctamente");
+						cont.actualizarClientes();
 					}
 				} else {
 					vistaCliente.mostrarError(validar);

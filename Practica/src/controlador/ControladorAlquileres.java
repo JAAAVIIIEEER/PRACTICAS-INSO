@@ -16,10 +16,12 @@ public class ControladorAlquileres {
 
 	private VistaAlquiler vistaAlquiler;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorAlquileres(VistaAlquiler vistaAlquiler) {
+	public ControladorAlquileres(VistaAlquiler vistaAlquiler, ControladorGeneral cont) {
 		this.vistaAlquiler = vistaAlquiler;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirAlquiler() {
@@ -64,6 +66,7 @@ public class ControladorAlquileres {
 							vistaAlquiler.setVisible(false);
 							vistaAlquiler.avisarAlquilerAniadidoCorrecto(coste);
 							ControladorGeneral.logger.info("Alquiler añadido correctamente");
+							cont.actualizarAlquileres();
 						}
 					} else {
 						vistaAlquiler.mostrarError(validar);
@@ -82,6 +85,7 @@ public class ControladorAlquileres {
 				alquiler.finalizarAlquiler(Integer.parseInt(id));
 				ControladorGeneral.logger.info("Alquiler finalizado correctamente");
 				vistaAlquiler.alquilerFinalizado();
+				cont.actualizarAlquileres();
 			} else {
 				vistaAlquiler.errorNumero();
 			}
@@ -134,6 +138,7 @@ public class ControladorAlquileres {
 						vistaAlquiler.setVisible(false);
 						vistaAlquiler.avisarAlquilerModificadoCorrecto(coste);
 						ControladorGeneral.logger.info("Alquiler modificado correctamente");
+						cont.actualizarAlquileres();
 					}
 				} else {
 					vistaAlquiler.mostrarError(validar);

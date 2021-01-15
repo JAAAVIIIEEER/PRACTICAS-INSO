@@ -14,10 +14,12 @@ public class ControladorVehiculos {
 
 	private VistaVehiculo vistaVehiculo;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorVehiculos(VistaVehiculo vistaVehiculo) {
+	public ControladorVehiculos(VistaVehiculo vistaVehiculo, ControladorGeneral cont) {
 		this.vistaVehiculo = vistaVehiculo;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirVehiculo() {
@@ -50,6 +52,7 @@ public class ControladorVehiculos {
 							vistaVehiculo.setVisible(false);
 							vistaVehiculo.avisarVehiculoAniadidoCorrecto();
 							ControladorGeneral.logger.info("Vehiculo añadido correctamente");
+							cont.actualizarVehiculo();
 						}
 					} else {
 						vistaVehiculo.mostrarError(validar);
@@ -68,6 +71,7 @@ public class ControladorVehiculos {
 				vehiculo.bajaVehiculo(matricula);
 				ControladorGeneral.logger.info("Vehiculo eliminado correctamente");
 				vistaVehiculo.vehiculoEliminado();
+				cont.actualizarVehiculo();
 			} else {
 				vistaVehiculo.errorMatricula();
 			}
@@ -111,6 +115,7 @@ public class ControladorVehiculos {
 							vistaVehiculo.setVisible(false);
 							vistaVehiculo.avisarVehiculoModificadoCorrecto();
 							ControladorGeneral.logger.info("Vehiculo modificado correctamente");
+							cont.actualizarVehiculo();
 						}
 					} else {
 						vistaVehiculo.mostrarError(validar);

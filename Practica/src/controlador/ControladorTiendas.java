@@ -12,10 +12,12 @@ public class ControladorTiendas {
 
 	private VistaTienda vistaTienda;
 	private ValidarDatos validarDatos;
+	private ControladorGeneral cont;
 
-	public ControladorTiendas(VistaTienda vistaTienda) {
+	public ControladorTiendas(VistaTienda vistaTienda, ControladorGeneral cont) {
 		this.vistaTienda = vistaTienda;
 		this.validarDatos = new ValidarDatos();
+		this.cont = cont;
 	}
 
 	public void aniadirTienda() {
@@ -40,6 +42,7 @@ public class ControladorTiendas {
 						vistaTienda.setVisible(false);
 						vistaTienda.avisarTiendaAniadidaCorrecto();
 						ControladorGeneral.logger.info("Tienda añadida correctamente");
+						cont.actualizarTiendas();
 					}
 				} else {
 					vistaTienda.mostrarError(validar);
@@ -57,6 +60,7 @@ public class ControladorTiendas {
 				tienda.eliminarTienda(Integer.parseInt(id));
 				ControladorGeneral.logger.info("Tienda eliminada correctamente");
 				vistaTienda.tiendaEliminada();
+				cont.actualizarTiendas();
 			} else {
 				vistaTienda.errorNumero();
 			}
@@ -91,6 +95,7 @@ public class ControladorTiendas {
 						vistaTienda.setVisible(false);
 						vistaTienda.avisarTiendaModificadoCorrecto();
 						ControladorGeneral.logger.info("Tienda modificada correctamente");
+						cont.actualizarTiendas();
 					}
 				} else {
 					vistaTienda.mostrarError(validar);

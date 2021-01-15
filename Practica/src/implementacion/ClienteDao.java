@@ -52,7 +52,7 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM CLIENTES WHERE DNI=?");
-			st.setString(2, clienteDNI);
+			st.setString(1, clienteDNI);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -155,7 +155,6 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 			return false;
 		}
 		this.cerrarConexion();
-		// listaEmpleados.add(emp);
 		return true;
 	}
 }

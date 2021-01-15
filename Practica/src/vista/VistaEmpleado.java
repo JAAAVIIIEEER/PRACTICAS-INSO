@@ -288,12 +288,12 @@ public class VistaEmpleado extends javax.swing.JFrame {
 	}
 
 	public void avisarEmpleadoAniadidoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Empleado añadido correctamente", "Empleado Añadido", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 
 	public void avisarEmpleadoModificadoCorrecto() {
-		JOptionPane.showMessageDialog(null, "Empleado modificado correctamente", null, JOptionPane.INFORMATION_MESSAGE,
+		JOptionPane.showMessageDialog(null, "Empleado modificado correctamente", "Empleado Modificado", JOptionPane.INFORMATION_MESSAGE,
 				null);
 	}
 

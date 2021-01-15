@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.ArrayList;
+
 import modelo.Empleado;
 
 public interface EmpleadoInterface {
@@ -8,5 +10,6 @@ public interface EmpleadoInterface {
 	public boolean eliminarEmpleado(String empleadoid);
 	public Empleado consultarEmpleado(String empleadoDNI); 
 	public boolean modificarEmpleado(Empleado modEmpleado);
+	public ArrayList<Empleado> listarEmpleados();
 	
 }

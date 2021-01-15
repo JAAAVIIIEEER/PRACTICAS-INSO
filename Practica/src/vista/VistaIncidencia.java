@@ -152,9 +152,9 @@ public class VistaIncidencia extends javax.swing.JFrame {
 	}
 
 	public String mostrarVentanaConsultarIncidencia() {
-		String dni = JOptionPane.showInputDialog(null, "Introduce el ID:", "Consultar Incidencia",
+		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Consultar Incidencia",
 				JOptionPane.QUESTION_MESSAGE);
-		return dni;
+		return id;
 	}
 	
 	public void establecerEstadoDefecto() {

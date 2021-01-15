@@ -11,5 +11,6 @@ public interface TiendaInterface {
 	public Tienda consultarTienda(int tiendaid);
 	public boolean modificarTienda(Tienda miTienda);
 	public ArrayList<Integer> buscarTiendas();
+	public ArrayList<Tienda> listarTiendas();
 	
 }

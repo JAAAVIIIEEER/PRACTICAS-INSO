@@ -11,5 +11,6 @@ public interface VehiculoInterface {
 	public Vehiculo consultarVehiculo(String matricula);
 	public boolean modificarVehiculo(Vehiculo miVehiculo);
 	public ArrayList<String> buscarVehiculosDisponibles();
+	public ArrayList<Vehiculo> listarVehiculos();
 	
 }

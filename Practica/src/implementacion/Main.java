@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
 
-		Controlador aut = new Controlador();
+		ControladorGeneral aut = new ControladorGeneral();
 		aut.mostrarVentanaAutenticar();	
 	}
 }

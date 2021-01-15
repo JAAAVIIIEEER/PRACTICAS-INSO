@@ -72,6 +72,31 @@ public class TiendaDao extends Conexion implements TiendaInterface {
 		}
 		return miTienda;
 	}
+	
+	@Override
+	public ArrayList<Tienda> listarTiendas() {
+		ArrayList<Tienda> listaTiendas = new ArrayList<Tienda>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM TIENDAS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Tienda miTienda = new Tienda();
+				miTienda.setProvincia(res.getString("Provincia"));
+				miTienda.setMunicipio(res.getString("Municipio"));
+				miTienda.setVia(res.getString("NombreVia"));
+				miTienda.setNumero(res.getInt("Portal"));
+				miTienda.setTelefono(res.getString("Telefono"));
+				miTienda.setEmail(res.getString("CorreoElectronico"));
+				miTienda.setId(res.getInt("TiendaID"));
+				listaTiendas.add(miTienda);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return listaTiendas;
+	}
 
 	@Override
 	public boolean modificarTienda(Tienda miTienda) {

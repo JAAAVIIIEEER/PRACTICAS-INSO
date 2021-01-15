@@ -3,6 +3,8 @@ package implementacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 import interfaces.EmpleadoInterface;
@@ -77,6 +79,36 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 		this.cerrarConexion();
 		return miEmpleado;
 	}
+	
+	@Override
+	public ArrayList<Empleado> listarEmpleados() {
+		ArrayList<Empleado> listaEmpleados = new ArrayList<Empleado>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM EMPLEADOS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Empleado miEmpleado = new Empleado();
+				miEmpleado.setID(res.getInt("EmpleadoID"));
+				miEmpleado.setUsuarioDNI(res.getString("UsuarioDNI"));
+				miEmpleado.setContrasenia(res.getString("Contraseña"));
+				miEmpleado.setNacimiento(res.getDate("FechaNacimiento"));
+				miEmpleado.setEmail(res.getString("Email"));
+				miEmpleado.setTelefono(res.getString("Telefono"));
+				miEmpleado.setNombre(res.getString("Nombre"));
+				miEmpleado.setApellido1(res.getString("Apellido1"));
+				miEmpleado.setApellido2(res.getString("Apellido2"));
+				miEmpleado.setTipo(res.getString("Tipo"));
+				listaEmpleados.add(miEmpleado);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.cerrarConexion();
+		return listaEmpleados;
+	}
+
 
 	@Override
 	public boolean modificarEmpleado(Empleado miEmpleado) {

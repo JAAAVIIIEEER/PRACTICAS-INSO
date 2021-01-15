@@ -3,6 +3,7 @@ package implementacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -67,7 +68,6 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 		Cliente miCliente = new Cliente();
 		this.establecerConexion();
 		try {
-			// TODO Implementar query cuando se implemente la bd
 			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM CLIENTES WHERE DNI=?");
 			st.setString(1, DNI);
 			ResultSet res = st.executeQuery();
@@ -91,7 +91,41 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		this.cerrarConexion();
 		return miCliente;
+	}
+	
+	@Override
+	public ArrayList<Cliente> listarClientes() {
+		ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM CLIENTES");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Cliente miCliente = new Cliente();
+				miCliente.setDNI(res.getString("DNI"));
+				miCliente.setNombre(res.getString("Nombre"));
+				miCliente.setApellido1(res.getString("Apellido1"));
+				miCliente.setApellido2(res.getString("Apellido2"));
+				miCliente.setTelefono(res.getString("Telefono"));
+				miCliente.setEmail(res.getString("CorreoElectronico"));
+				miCliente.setNacimiento(res.getDate("FechaNacimiento"));
+				miCliente.setPais(res.getString("Pais"));
+				miCliente.setProvincia(res.getString("Provincia"));
+				miCliente.setMunicipio(res.getString("Municipio"));
+				miCliente.setCalle(res.getString("NombreVia"));
+				miCliente.setPortal(res.getInt("Portal"));
+				miCliente.setPiso(res.getInt("Piso"));
+				miCliente.setLetra(res.getString("Letra"));
+				listaClientes.add(miCliente);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.cerrarConexion();
+		return listaClientes;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package implementacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import interfaces.OfertaInterface;
 import modelo.Oferta;
@@ -68,6 +69,32 @@ public class OfertaDao extends Conexion implements OfertaInterface {
 		}
 		this.cerrarConexion();
 		return miOferta;
+	}
+	
+	@Override
+	public ArrayList<Oferta> listarOfertas() {
+		ArrayList<Oferta> listaOfertas = new ArrayList<Oferta>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM OFERTAS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Oferta miOferta = new Oferta();
+				miOferta.setFechaInicio(res.getDate("FechaInicio"));
+				miOferta.setFechaFin(res.getDate("FechaFin"));
+				miOferta.setTipoOferta(res.getString("Tipo"));
+				miOferta.setEspecificacion(res.getString("Especificacion"));
+				miOferta.setDescuento(res.getInt("Descuento"));
+				miOferta.setEstado(res.getString("Estado"));
+				miOferta.setOfertaid(res.getInt("OfertaID"));
+				listaOfertas.add(miOferta);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.cerrarConexion();
+		return listaOfertas;
 	}
 
 	@Override

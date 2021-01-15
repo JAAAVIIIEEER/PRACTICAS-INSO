@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -102,6 +103,33 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 			System.out.println(e.getMessage());
 		}
 		return miAlquiler;
+	}
+	
+	@Override
+	public ArrayList<Alquiler> listarAlquileres() {
+		ArrayList<Alquiler> listaAlquileres = new ArrayList<Alquiler>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM ALQUILERES");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Alquiler miAlquiler = new Alquiler();
+				miAlquiler.setId(res.getInt("AlquilerID"));
+				miAlquiler.setFecha1(res.getDate("FechaRecogida"));
+				miAlquiler.setFecha2(res.getDate("FechaEntrega"));
+				miAlquiler.setCoste(res.getInt("CosteTotal"));
+				miAlquiler.setMatVehiculo(res.getString("VehiculoAlquilado"));
+				miAlquiler.setDniEmpleado(res.getString("EmpleadoDNI"));
+				miAlquiler.setDniCliente(res.getString("ClienteDNI"));
+				miAlquiler.setOferta(res.getInt("Oferta"));
+				miAlquiler.setEstado(res.getString("Estado"));
+				listaAlquileres.add(miAlquiler);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return listaAlquileres;
 	}
 
 	@Override

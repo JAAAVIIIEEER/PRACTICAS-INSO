@@ -71,6 +71,33 @@ public class VehiculoDao extends Conexion implements VehiculoInterface{
 		}
 		return miVehiculo;
 	}
+	
+	@Override
+	public ArrayList<Vehiculo> listarVehiculos() {
+		ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM VEHICULOS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Vehiculo miVehiculo = new Vehiculo();
+				miVehiculo.setMatricula(res.getString("Matricula"));
+				miVehiculo.setTipo(res.getString("Tipo"));
+				miVehiculo.setCombustible(res.getString("Combustible"));
+				miVehiculo.setPlazas(res.getInt("Plazas"));
+				miVehiculo.setCoste(res.getInt("CostePorDia"));
+				miVehiculo.setExtras(res.getString("Extras"));
+				miVehiculo.setTiendaID(res.getInt("Tienda"));
+				miVehiculo.setEstado(res.getString("Estado"));
+				miVehiculo.setModelo(res.getString("Modelo"));
+				listaVehiculos.add(miVehiculo);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return listaVehiculos;
+	}
 
 	@Override
 	public boolean modificarVehiculo(Vehiculo miVehiculo) {

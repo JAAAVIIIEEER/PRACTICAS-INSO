@@ -499,6 +499,62 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerConsultarIncidencia(ActionListener listenerForButtons) {
 		this.consultarIncidencia.addActionListener(listenerForButtons);
 	}
+	
+	public void listenerValoresTablaAlquileres(ActionListener listenerForButtons) {
+		// TODO this.tablaAlquileres.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorAlquiler(String valor, int fila, int col) {
+		// TODO this.tablaAlquileres.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaClientes(ActionListener listenerForButtons) {
+		// TODO this.tablaClientes.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorCliente(String valor, int fila, int col) {
+		// TODO this.tablaClientes.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaEmpleados(ActionListener listenerForButtons) {
+		// TODO this.tablaEmpleados.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorEmpleado(String valor, int fila, int col) {
+		// TODO this.tablaEmpleados.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaIncidencias(ActionListener listenerForButtons) {
+		// TODO this.tablaIncidencias.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorIncidencia(String valor, int fila, int col) {
+		// TODO this.tablaIncidencias.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaOfertas(ActionListener listenerForButtons) {
+		// TODO this.tablaOfertas.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorOferta(String valor, int fila, int col) {
+		// TODO this.tablaOfertas.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaTiendas(ActionListener listenerForButtons) {
+		// TODO this.tablaTiendas.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorTienda(String valor, int fila, int col) {
+		// TODO this.tablaTiendas.setValueAt(valor, fila, col);
+	}
+	
+	public void listenerValoresTablaVehiculos(ActionListener listenerForButtons) {
+		// TODO this.tablaVehiculos.addActionListener(listenerForButtons);
+	}
+	
+	public void establecerValorVehiculo(String valor, int fila, int col) {
+		// TODO this.tablaVehiculos.setValueAt(valor, fila, col);
+	}
 
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;

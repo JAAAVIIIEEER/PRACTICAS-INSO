@@ -3,6 +3,7 @@ package implementacion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -52,7 +53,7 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 		Incidencia miIncidencia = new Incidencia();
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM INCIDENCIAS WHERE AlquilerID=?");
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM INCIDENCIAS WHERE IncidenciaID=?");
 			st.setInt(1, alquilerID);
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
@@ -68,6 +69,30 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 		}
 		this.cerrarConexion();
 		return miIncidencia;
+	}
+	
+	@Override
+	public ArrayList<Incidencia> listarIncidencias() {
+		ArrayList<Incidencia> listaIncidencias = new ArrayList<Incidencia>();
+		this.establecerConexion();
+		try {
+			PreparedStatement st = this.getConexion().prepareStatement("SELECT * FROM INCIDENCIAS");
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+				Incidencia miIncidencia = new Incidencia();
+				miIncidencia.setId(res.getInt("IncidenciaID"));
+				miIncidencia.setAlquilerID(res.getInt("AlquilerID"));
+				miIncidencia.setTipo(res.getString("Tipo"));
+				miIncidencia.setEstado(res.getString("Estado"));
+				miIncidencia.setInforme(res.getString("Informe"));
+				listaIncidencias.add(miIncidencia);
+			}
+			res.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		this.cerrarConexion();
+		return listaIncidencias;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.ArrayList;
+
 import modelo.Oferta;
 
 public interface OfertaInterface {
@@ -8,4 +10,5 @@ public interface OfertaInterface {
 	public Oferta buscarOferta(int ofertaid); 
 	public boolean modificarOferta(Oferta miOferta);
 	public Oferta buscarPosibleOferta(String matVehiculo);
+	public ArrayList<Oferta> listarOfertas();
 }

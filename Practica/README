@@ -5,3 +5,9 @@ Password -> root
 Puerto -> 3306
 
 Para añadir y visualizar datos usar la JMenuBar.
+
+Formato para que no de errores:
+
+Matricula --> 4 numeros + 3 letras
+Email --> caracteres+@+letras+.+letras
+DNI --> 8 numeros + 1 letra

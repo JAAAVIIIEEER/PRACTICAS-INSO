@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import implementacion.AlquilerDao;
 import implementacion.TiendaDao;
 import implementacion.ValidarDatos;
 import modelo.Tienda;

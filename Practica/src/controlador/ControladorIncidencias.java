@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import implementacion.ClienteDao;
 import implementacion.IncidenciaDao;
 import implementacion.ValidarDatos;
 import modelo.Incidencia;

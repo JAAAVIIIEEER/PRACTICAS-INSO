@@ -240,7 +240,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		jMenuVista.add(jMenuItemEmpleados);
 
-		jMenuItemCoches.setText("Coches");
+		jMenuItemCoches.setText("Vehiculos");
 		jMenuVista.add(jMenuItemCoches);
 
 		jMenuItemTiendas.setText("Tiendas");

@@ -192,6 +192,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorClientes cCont = new ControladorClientes(vistaCliente);
 				cCont.aniadirCliente();
+				actualizarClientes();
 			}
 		});
 	}
@@ -201,6 +202,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorClientes cCont = new ControladorClientes(vistaCliente);
 				cCont.eliminarCliente();
+				actualizarClientes();
 			}
 		});
 	}
@@ -210,6 +212,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorClientes cCont = new ControladorClientes(vistaCliente);
 				cCont.modificarCliente();
+				actualizarClientes();
 			}
 		});
 	}
@@ -227,6 +230,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
 				oCont.aniadirOferta();
+				actualizaOfertas();
 			}
 		});
 	}
@@ -236,6 +240,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
 				oCont.finalizarOferta();
+				actualizaOfertas();
 			}
 		});
 	}
@@ -245,6 +250,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorOfertas oCont = new ControladorOfertas(vistaOferta);
 				oCont.modificarOferta();
+				actualizaOfertas();
 			}
 		});
 	}
@@ -263,6 +269,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia);
 				iCont.finalizarIncidencia();
+				actualizarIncidencias();
 			}
 		});
 	}
@@ -272,6 +279,7 @@ public class ControladorGeneral {
 			public void actionPerformed(ActionEvent evt) {
 				ControladorIncidencias iCont = new ControladorIncidencias(vistaIncidencia);
 				iCont.modificarIncidencia();
+				actualizarIncidencias();
 			}
 		});
 	}

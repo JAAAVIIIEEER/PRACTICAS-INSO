@@ -31,6 +31,15 @@ public class EmpleadosPanel extends PanelPadre {
 			}
 		});
 	}
+	
+	public void vaciarTabla() {
+		for (int i = 0; i < jTable.getRowCount(); i++) {
+			for (int j = 0; j < jTable.getColumnCount(); j++) {
+				jTable.setValueAt("", i, j);
+			}
+		}
+
+	}
 
 	public void setValue(String valor, int fila, int col) {
 		jTable.setValueAt(valor, fila, col);

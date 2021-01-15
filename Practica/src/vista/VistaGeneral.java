@@ -31,7 +31,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		incidenciasPanel = new IncidenciasPanel();
 		ofertasPanel = new OfertasPanel();
 		empleadosPanel = new EmpleadosPanel();
-		cochesPanel = new CochesPanel();
+		cochesPanel = new VehiculosPanel();
 		tiendasPanel = new TiendasPanel(); 
 		vehiculosMenu = new javax.swing.JMenu();
 		aniadirVehiculo = new javax.swing.JMenuItem();
@@ -168,7 +168,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		incidenciasPanel = new IncidenciasPanel();
 		ofertasPanel = new OfertasPanel();
 		empleadosPanel = new EmpleadosPanel();
-		cochesPanel = new CochesPanel();
+		cochesPanel = new VehiculosPanel();
 		tiendasPanel = new TiendasPanel(); 
 		vehiculosMenu = new javax.swing.JMenu();
 		aniadirVehiculo = new javax.swing.JMenuItem();
@@ -522,7 +522,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 		return ofertasPanel;
 	}
 
-	public CochesPanel getCochesPanel() {
+	public VehiculosPanel getCochesPanel() {
 		return cochesPanel;
 	}
 
@@ -532,6 +532,34 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 	public IncidenciasPanel getIncidenciasPanel() {
 		return incidenciasPanel;
+	}
+	
+	public void vaciarTiendas() {
+		this.tiendasPanel.vaciarTabla();
+	}
+	
+	public void vaciarAlquileres() {
+		this.tablaAlquileres.vaciarTabla();
+	}
+	
+	public void vaciarClientes() {
+		this.clientesPanel.vaciarTabla();
+	}
+	
+	public void vaciarEmpleados() {
+		this.empleadosPanel.vaciarTabla();
+	}
+	
+	public void vaciarIncidencias() {
+		this.incidenciasPanel.vaciarTabla();
+	}
+	
+	public void vaciarOfertas() {
+		this.ofertasPanel.vaciarTabla();
+	}
+	
+	public void vaciarVehiculos() {
+		this.cochesPanel.vaciarTabla();
 	}
 
 	// Variables declaration - do not modify
@@ -579,7 +607,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private IncidenciasPanel incidenciasPanel;
 	private OfertasPanel ofertasPanel;
 	private EmpleadosPanel empleadosPanel;
-	private CochesPanel cochesPanel;
+	private VehiculosPanel cochesPanel;
 	private TiendasPanel tiendasPanel;
 	private javax.swing.JTabbedPane jTabbedPane;
 	// End of variables declaration

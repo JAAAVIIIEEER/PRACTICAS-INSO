@@ -302,6 +302,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizarAlquileres() {
+		this.vistaGeneral.vaciarAlquileres();
 		AlquilerDao alquiler = new AlquilerDao();
 		ArrayList<Alquiler> listaAlquileres = alquiler.listarAlquileres();
 		int i = 0;
@@ -335,6 +336,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizarClientes() {
+		this.vistaGeneral.vaciarClientes();
 		ClienteDao cliente = new ClienteDao();
 		ArrayList<Cliente> listaClientes = cliente.listarClientes();
 		int i = 0;
@@ -370,6 +372,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizaEmpleados() {
+		this.vistaGeneral.vaciarEmpleados();
 		EmpleadoDao empleado = new EmpleadoDao();
 		ArrayList<Empleado> listaEmpleados = empleado.listarEmpleados();
 		int i = 0;
@@ -402,6 +405,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizarIncidencias() {
+		this.vistaGeneral.vaciarIncidencias();
 		IncidenciaDao incidencia = new IncidenciaDao();
 		ArrayList<Incidencia> listaIncidencias = incidencia.listarIncidencias();
 		int i = 0;
@@ -431,6 +435,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizaOfertas() {
+		this.vistaGeneral.vaciarOfertas();
 		OfertaDao oferta = new OfertaDao();
 		ArrayList<Oferta> listaOfertas = oferta.listarOfertas();
 		int i = 0;
@@ -462,6 +467,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizarTiendas() {
+		this.vistaGeneral.vaciarTiendas();
 		TiendaDao tienda = new TiendaDao();
 		ArrayList<Tienda> listaTiendas = tienda.listarTiendas();
 		int i = 0;
@@ -493,6 +499,7 @@ public class ControladorGeneral {
 	}
 
 	public void actualizarVehiculo() {
+		this.vistaGeneral.vaciarVehiculos();
 		VehiculoDao vehiculo = new VehiculoDao();
 		ArrayList<Vehiculo> listaVehiculos = vehiculo.listarVehiculos();
 		int i = 0;

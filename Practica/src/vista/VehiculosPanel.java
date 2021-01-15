@@ -1,9 +1,9 @@
 package vista;
 
 @SuppressWarnings("serial")
-public class CochesPanel extends PanelPadre {
+public class VehiculosPanel extends PanelPadre {
 
-	public CochesPanel() {
+	public VehiculosPanel() {
 		jScrollPane = super.jScrollPane;
 		jTable = super.jTable;
 
@@ -30,6 +30,14 @@ public class CochesPanel extends PanelPadre {
 				return false;
 			}
 		});
+	}
+	
+	public void vaciarTabla() {
+		for (int i = 0; i < jTable.getRowCount(); i++) {
+			for (int j = 0; j < jTable.getColumnCount(); j++) {
+				jTable.setValueAt("", i, j);
+			}
+		}
 	}
 
 	public void setValue(String valor, int fila, int col) {

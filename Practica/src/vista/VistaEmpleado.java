@@ -238,6 +238,14 @@ public class VistaEmpleado extends javax.swing.JFrame {
 		this.mesBox.setSelectedIndex(cal.get(Calendar.MONTH));
 		this.anioSpinner.setValue(cal.get(Calendar.YEAR));
 	}
+	
+	public void mostrarDniNoValido() {
+		JOptionPane.showMessageDialog(null, "Formato DNI no valido", "DNI No valido", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void empleadoEliminado() {
+		JOptionPane.showMessageDialog(null, "Empleado eliminado correctamente", "Empleado Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	public String getEmailText() {
 		return this.emailText.getText();

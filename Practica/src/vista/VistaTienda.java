@@ -168,6 +168,14 @@ public class VistaTienda extends javax.swing.JFrame {
 		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Baja Tienda", JOptionPane.QUESTION_MESSAGE);
 		return id;
 	}
+	
+	public void tiendaEliminada() {
+		JOptionPane.showMessageDialog(null, "Tienda eliminada correctamente", "Tienda Eliminada", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void errorNumero() {
+		JOptionPane.showMessageDialog(null, "Numero no valido", "Error ID", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	public String getProvinciaText() {
 		return provinciaText.getText();

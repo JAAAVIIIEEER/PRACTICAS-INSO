@@ -195,6 +195,14 @@ public class VistaAlquiler extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE);
 		return id;
 	}
+	
+	public void alquilerFinalizado() {
+		JOptionPane.showMessageDialog(null, "Alquiler finalizado correctamente", "Alquiler Finalizado", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void errorNumero() {
+		JOptionPane.showMessageDialog(null, "Numero no valido", "Error ID", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	public String mostrarVentanaConsultarAlquiler() {
 		String id = JOptionPane.showInputDialog(null, "Introduce el ID:", "Consultar Alquiler",

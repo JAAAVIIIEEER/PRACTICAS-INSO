@@ -416,6 +416,14 @@ public class VistaCliente extends javax.swing.JFrame {
 		this.calleText.setText(calleText);
 	}
 
+	public void mostrarDniNoValido() {
+		JOptionPane.showMessageDialog(null, "Formato DNI no valido", "DNI No valido", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void clienteEliminado() {
+		JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente", "Cliente Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void establecerEstadoDefecto() {
 		mesBox.setSelectedIndex(0);
 		dniText.setText("");

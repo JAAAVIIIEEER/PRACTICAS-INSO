@@ -59,9 +59,16 @@ public class ControladorClientes {
 
 	public void eliminarCliente() {
 		String dni = vistaCliente.mostrarVentanaBajaCliente();
-		ClienteDao cliente = new ClienteDao();
-		cliente.eliminarCliente(dni);
-		ControladorGeneral.logger.info("Cliente eliminado correctamente");
+		if (dni != null) {
+			ClienteDao cliente = new ClienteDao();
+			if (validarDatos.validarDNI(dni)) {
+				cliente.eliminarCliente(dni);
+				ControladorGeneral.logger.info("Cliente eliminado correctamente");
+				vistaCliente.clienteEliminado();
+			} else {
+				vistaCliente.mostrarDniNoValido();
+			}
+		}
 	}
 
 	public void modificarCliente() {

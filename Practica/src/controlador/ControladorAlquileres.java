@@ -76,9 +76,16 @@ public class ControladorAlquileres {
 
 	public void finalizarAlquiler() {
 		String id = vistaAlquiler.mostrarVentanaFinalizarAlquiler();
-		AlquilerDao alquiler = new AlquilerDao();
-		alquiler.finalizarAlquiler(Integer.parseInt(id));
-		ControladorGeneral.logger.info("Alquiler finalizado correctamente");
+		if (id != null) {
+			AlquilerDao alquiler = new AlquilerDao();
+			if (validarDatos.validarNumero(id)) {
+				alquiler.finalizarAlquiler(Integer.parseInt(id));
+				ControladorGeneral.logger.info("Alquiler finalizado correctamente");
+				vistaAlquiler.alquilerFinalizado();
+			} else {
+				vistaAlquiler.errorNumero();
+			}
+		}
 	}
 
 	public void modificarAlquiler() {

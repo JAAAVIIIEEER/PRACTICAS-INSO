@@ -218,6 +218,14 @@ public class VistaVehiculo extends javax.swing.JFrame {
 				JOptionPane.QUESTION_MESSAGE);
 		return mat;
 	}
+	
+	public void vehiculoEliminado() {
+		JOptionPane.showMessageDialog(null, "Vehiculo eliminado correctamente", "Vehiculo Eliminado", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void errorMatricula() {
+		JOptionPane.showMessageDialog(null, "Matricula no valida", "Error Matricula", JOptionPane.ERROR_MESSAGE);
+	}
 
 	public int getPlazasBoxText() {
 		return Integer.parseInt(this.plazasBox.getSelectedItem().toString());

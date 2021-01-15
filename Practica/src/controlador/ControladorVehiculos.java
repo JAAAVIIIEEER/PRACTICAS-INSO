@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import implementacion.AlquilerDao;
 import implementacion.TiendaDao;
 import implementacion.ValidarDatos;
 import implementacion.VehiculoDao;
@@ -62,9 +63,16 @@ public class ControladorVehiculos {
 
 	public void eliminarVehiculo() {
 		String matricula = vistaVehiculo.mostrarVentanaBajaVehiculo();
-		VehiculoDao vehiculo = new VehiculoDao();
-		vehiculo.bajaVehiculo(matricula);
-		ControladorGeneral.logger.info("Vehiculo eliminado correctamente");
+		if (matricula != null) {
+			VehiculoDao vehiculo = new VehiculoDao();
+			if (validarDatos.validarMatricula(matricula)) {
+				vehiculo.bajaVehiculo(matricula);
+				ControladorGeneral.logger.info("Vehiculo eliminado correctamente");
+				vistaVehiculo.vehiculoEliminado();
+			} else {
+				vistaVehiculo.errorMatricula();
+			}
+		}
 	}
 
 	public void modificarVehiculo() {

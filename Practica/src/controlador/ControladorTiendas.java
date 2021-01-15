@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import implementacion.AlquilerDao;
 import implementacion.TiendaDao;
 import implementacion.ValidarDatos;
 import modelo.Tienda;
@@ -51,9 +52,16 @@ public class ControladorTiendas {
 
 	public void bajaTienda() {
 		String id = vistaTienda.mostrarVentanaBajaTienda();
-		TiendaDao tienda = new TiendaDao();
-		tienda.eliminarTienda(Integer.parseInt(id));
-		ControladorGeneral.logger.info("Tienda eliminada correctamente");
+		if (id != null) {
+			TiendaDao tienda = new TiendaDao();
+			if (validarDatos.validarNumero(id)) {
+				tienda.eliminarTienda(Integer.parseInt(id));
+				ControladorGeneral.logger.info("Tienda eliminada correctamente");
+				vistaTienda.tiendaEliminada();
+			} else {
+				vistaTienda.errorNumero();
+			}
+		}
 	}
 
 	public void modificarTienda() {

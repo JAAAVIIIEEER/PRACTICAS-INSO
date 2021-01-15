@@ -249,6 +249,14 @@ public class VistaOferta extends javax.swing.JFrame {
 		return dni;
 	}
 	
+	public void ofertaFinalizada() {
+		JOptionPane.showMessageDialog(null, "Oferta finalizada correctamente", "Oferta Finalizada", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void errorNumero() {
+		JOptionPane.showMessageDialog(null, "Numero no valido", "Error ID", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void establecerEstadoDefecto() {
 		mesInicioBox.setSelectedIndex(0);
 		mesFinalBox.setSelectedIndex(0);

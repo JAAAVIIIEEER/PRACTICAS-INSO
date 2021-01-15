@@ -3,16 +3,20 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import implementacion.ClienteDao;
 import implementacion.IncidenciaDao;
+import implementacion.ValidarDatos;
 import modelo.Incidencia;
 import vista.VistaIncidencia;
 
 public class ControladorIncidencias {
 
 	private VistaIncidencia vistaIncidencia;
+	private ValidarDatos validarDatos;
 
 	public ControladorIncidencias(VistaIncidencia vistaIncidencia) {
 		this.vistaIncidencia = vistaIncidencia;
+		this.validarDatos = new ValidarDatos();
 	}
 
 	public void aniadirIncidencia() {
@@ -36,10 +40,18 @@ public class ControladorIncidencias {
 	}
 
 	public void finalizarIncidencia() {
-		String id = vistaIncidencia.mostrarVentanaFinalizarIncidencia();
-		IncidenciaDao incidencia = new IncidenciaDao();
-		incidencia.finalizarIncidencia(Integer.valueOf(id));
 		ControladorGeneral.logger.info("Incidencia Finalizada");
+		String id = vistaIncidencia.mostrarVentanaFinalizarIncidencia();
+		if (id != null) {
+			IncidenciaDao incidencia = new IncidenciaDao();
+			if (validarDatos.validarNumero(id)) {
+				incidencia.finalizarIncidencia(Integer.valueOf(id));
+				ControladorGeneral.logger.info("Cliente eliminado correctamente");
+				vistaIncidencia.incidenciaFinalizada();
+			} else {
+				vistaIncidencia.errorNumero();
+			}
+		}
 	}
 
 	public void modificarIncidencia() {

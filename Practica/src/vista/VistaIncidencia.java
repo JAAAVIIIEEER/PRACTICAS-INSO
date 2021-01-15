@@ -157,6 +157,14 @@ public class VistaIncidencia extends javax.swing.JFrame {
 		return id;
 	}
 	
+	public void incidenciaFinalizada() {
+		JOptionPane.showMessageDialog(null, "Incidencia finalizada correctamente", "Incidencia Finalizada", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void errorNumero() {
+		JOptionPane.showMessageDialog(null, "Numero no valido", "Error ID", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public void establecerEstadoDefecto() {
 		tipoBox.setSelectedIndex(0);
 		idAlquilerText.setText("");

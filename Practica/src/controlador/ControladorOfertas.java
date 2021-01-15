@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import implementacion.AlquilerDao;
 import implementacion.OfertaDao;
 import implementacion.ValidarDatos;
 import modelo.Oferta;
@@ -49,10 +50,18 @@ public class ControladorOfertas {
 	}
 
 	public void finalizarOferta() {
+		
 		String id = vistaOferta.mostrarVentanaFinalizarOferta();
-		OfertaDao oferta = new OfertaDao();
-		oferta.eliminarOferta(Integer.valueOf(id));
-		ControladorGeneral.logger.info("Oferta Finalizada Correctamente");
+		if (id != null) {
+			OfertaDao oferta = new OfertaDao();
+			if (validarDatos.validarNumero(id)) {
+				oferta.eliminarOferta(Integer.valueOf(id));
+				ControladorGeneral.logger.info("Oferta Finalizada Correctamente");
+				vistaOferta.ofertaFinalizada();
+			} else {
+				vistaOferta.errorNumero();
+			}
+		}		
 	}
 
 	public void modificarOferta() {

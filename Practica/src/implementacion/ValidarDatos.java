@@ -13,7 +13,7 @@ public class ValidarDatos {
 	 * @param dni
 	 * @return
 	 */
-	private boolean validarDNI(String dni) {
+	public boolean validarDNI(String dni) {
 		return Pattern.matches("\\d{8}[A-HJ-NP-TV-Z]", dni);
 	}
 
@@ -41,7 +41,7 @@ public class ValidarDatos {
 		return true;
 	}
 
-	private boolean validarMatricula(String matricula) {
+	public boolean validarMatricula(String matricula) {
 		return Pattern.matches("^[0-9]{1,4}(?!.*(LL|CH))[BCDFGHJKLMNPRSTVWXYZ]{3}", matricula);
 	}
 
@@ -61,6 +61,15 @@ public class ValidarDatos {
 		int milisecondsByDay = 86400000;
 		int dias = (int) ((fin.getTime() - inicio.getTime()) / milisecondsByDay);
 		return dias > 0;
+	}
+	
+	public boolean validarNumero(String entero) {
+		try {
+			Integer.parseInt(entero);
+			return true;
+		} catch (NumberFormatException excepcion) {
+			return false;
+		}
 	}
 
 	public int validarEmpleado(Empleado miEmpleado) {

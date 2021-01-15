@@ -54,9 +54,16 @@ public class ControladorEmpleados {
 
 	public void bajaEmpleado() {
 		String dni = vistaEmpleado.mostrarVentanaBajaEmpleado();
-		EmpleadoDao empleado = new EmpleadoDao();
-		empleado.eliminarEmpleado(dni);
-		ControladorGeneral.logger.info("Empleado eliminado correctamente");
+		if (dni != null) {
+			EmpleadoDao empleado = new EmpleadoDao();
+			if (validarDatos.validarDNI(dni)) {
+				empleado.eliminarEmpleado(dni);
+				ControladorGeneral.logger.info("Empleado eliminado correctamente");
+				vistaEmpleado.empleadoEliminado();
+			} else {
+				vistaEmpleado.mostrarDniNoValido();
+			}
+		}
 	}
 
 	public void modificarEmpleado() {

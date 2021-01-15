@@ -16,12 +16,32 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 	public boolean almacenarIncidencia(Incidencia miIncidencia) {
 		this.establecerConexion();
 		try {
+			int alquilerid = miIncidencia.getAlquilerID();
 			PreparedStatement st = this.getConexion().prepareStatement(
 					"INSERT INTO INCIDENCIAS (AlquilerID, Tipo, Informe) VALUES (?, ?, ?)");
 			st.setInt(1, miIncidencia.getAlquilerID());
+			
 			st.setString(2, miIncidencia.getTipo());
 			st.setString(3, miIncidencia.getInforme());
 			st.executeUpdate();
+			st = this.getConexion()
+					.prepareStatement("UPDATE ALQUILERES SET estado=? WHERE AlquilerID=?");
+			st.setString(1, "Finalizado");
+			st.setInt(2, alquilerid);
+			st.executeUpdate();
+			PreparedStatement stTer = this.getConexion()
+					.prepareStatement("SELECT VehiculoAlquilado FROM ALQUILERES WHERE AlquilerID=?");
+			stTer.setInt(1, alquilerid);
+			ResultSet res = stTer.executeQuery();
+			String mat = "";;
+			while(res.next()) {
+				mat = res.getString("VehiculoAlquilado");
+			}
+			PreparedStatement stSec = this.getConexion()
+					.prepareStatement("UPDATE VEHICULOS SET estado=? WHERE Matricula=?");
+			stSec.setString(1, "Disponible");
+			stSec.setString(2, mat);
+			stSec.executeUpdate();
 		} catch (SQLException e) {
 			if (e.getMessage().indexOf("AlquilerID") != -1? true:false) {
 				JOptionPane.showMessageDialog(null, "No hay un alquiler con ese ID", "Alquiler no encontrado", JOptionPane.ERROR_MESSAGE);

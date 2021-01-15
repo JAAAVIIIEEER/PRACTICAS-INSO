@@ -48,7 +48,7 @@ public class VistaEmpleado extends javax.swing.JFrame {
 		setResizable(false);
 
 		jLabel2.setText("Contraseña");
-
+ 
 		jLabel3.setText("Nombre");
 
 		jLabel4.setText("Apelliido 1");

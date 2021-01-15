@@ -1,83 +1,115 @@
+/*
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package vista;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
-@SuppressWarnings("serial")
-public class VistaGeneral extends javax.swing.JFrame {
+/**
+ *
+ * @author JP
+ */
 
-	private final int base = 1;
-	
-	public VistaGeneral(int estado) {
-		if (estado == base) {
+public class Frame extends javax.swing.JFrame {
+
+	/** Creates new form NewJFrame */
+	public Frame(int estado) {
+		if (estado == 1) 
 			initComponentsBase();
-		} else {
+		else 
 			initComponentsAdmin();
-		}
 	}
-
+	
 	private void initComponentsBase() {
-
-		jLabel1 = new javax.swing.JLabel();
-		jLabel2 = new javax.swing.JLabel();
-		jLabel3 = new javax.swing.JLabel();
-		jLabel4 = new javax.swing.JLabel();
-		barraMenus = new javax.swing.JMenuBar();
-		opcionesMenu = new javax.swing.JMenu();
-		cambiarUsuario = new javax.swing.JMenuItem();
+		jTabbedPane = new javax.swing.JTabbedPane();
+		jMenuBar = new javax.swing.JMenuBar();
+		jMenuInicio = new javax.swing.JMenu();
+		jMenuVista = new javax.swing.JMenu();
+		jMenuItemClientes = new javax.swing.JMenuItem();
+		jMenuItemAlquileres = new javax.swing.JMenuItem();
+		jMenuItemIncidencias = new javax.swing.JMenuItem();
+		jMenuItemOfertas = new javax.swing.JMenuItem();
+		jMenuItemCoches = new javax.swing.JMenuItem();
+		jMenuItemTiendas = new javax.swing.JMenuItem();
+		jMenuItemEmpleados = new javax.swing.JMenuItem();
+		jMenuItemCerrarSesion = new javax.swing.JMenuItem();
+		clientesPanel = new ClientesPanel();
+		tablaAlquileres = new AlquileresPanel();
+		incidenciasPanel = new IncidenciasPanel();
+		ofertasPanel = new OfertasPanel();
+		empleadosPanel = new EmpleadosPanel();
+		cochesPanel = new CochesPanel();
+		tiendasPanel = new TiendasPanel(); 
 		vehiculosMenu = new javax.swing.JMenu();
-		consultarVehiculo = new javax.swing.JMenuItem();
+		aniadirVehiculo = new javax.swing.JMenuItem();
+		bajaVehiculo = new javax.swing.JMenuItem();
+		modificarVehiculo = new javax.swing.JMenuItem();
 		tiendaMenu = new javax.swing.JMenu();
-		consultarTienda = new javax.swing.JMenuItem();
+		aniadirTienda = new javax.swing.JMenuItem();
+		bajaTienda = new javax.swing.JMenuItem();
+		modificarTienda = new javax.swing.JMenuItem();
+		empleadosMenu = new javax.swing.JMenu();
+		aniadirEmpleado = new javax.swing.JMenuItem();
+		bajaEmpleado = new javax.swing.JMenuItem();
+		modificarEmpleado = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
-		consultarCliente = new javax.swing.JMenuItem();
 		modificarCliente = new javax.swing.JMenuItem();
 		alquileresMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
-		consultarAlquiler = new javax.swing.JMenuItem();
 		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
+		ofertasMenu = new javax.swing.JMenu();
+		aniadirOferta = new javax.swing.JMenuItem();
+		modificarOferta = new javax.swing.JMenuItem();
+		finalizarOferta = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
 		aniadirIncidencia = new javax.swing.JMenuItem();
-		consultarIncidencia = new javax.swing.JMenuItem();
 		modificarIncidencia = new javax.swing.JMenuItem();
 		finalizarIncidencia = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		this.setTitle("Empleado Base RentLeon");
+		setTitle("Administración RentLeon");
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));
+		setSize(1000, 790);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
-		jLabel1.setText("Aqluileres Activos:");
+		jTabbedPane.addTab("Alquileres", tablaAlquileres);
 
-		jLabel2.setText("0");
+		jMenuInicio.setText("Inicio");
 
-		jLabel3.setText("Vehiculos Disponibles:");
+		jMenuItemCerrarSesion.setText("Cerrar Sesión");
+		jMenuInicio.add(jMenuItemCerrarSesion);
 
-		jLabel4.setText("0");
+		jMenuBar.add(jMenuInicio);
 
-		opcionesMenu.setText("Opciones");
+		jMenuVista.setText("Vista");
 
-		cambiarUsuario.setText("Cambiar Usuario");
-		
-		opcionesMenu.add(cambiarUsuario);
- 
-		barraMenus.add(opcionesMenu);
+		jMenuItemClientes.setText("Clientes");
+		jMenuVista.add(jMenuItemClientes);
 
-		vehiculosMenu.setText("Vehiculos");
+		jMenuItemAlquileres.setText("Alquileres");
+		jMenuVista.add(jMenuItemAlquileres);
 
-		consultarVehiculo.setText("Consultar");
+		jMenuItemIncidencias.setText("Incidencias");
+		jMenuVista.add(jMenuItemIncidencias);
 
-		vehiculosMenu.add(consultarVehiculo);
+		jMenuItemOfertas.setText("Vehiculos");
+		jMenuVista.add(jMenuItemOfertas);
 
-		barraMenus.add(vehiculosMenu);
+		jMenuItemCoches.setText("Coches");
+		jMenuVista.add(jMenuItemCoches);
 
-		tiendaMenu.setText("Tiendas");
+		jMenuItemTiendas.setText("Tiendas");
 
-		consultarTienda.setText("Consultar");
-		
-		tiendaMenu.add(consultarTienda);
+		jMenuVista.add(jMenuItemTiendas);
 
-		barraMenus.add(tiendaMenu);
+		jMenuBar.add(jMenuVista);
 
 		clientesMenu.setText("Clientes");
 
@@ -89,24 +121,17 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		clientesMenu.add(bajaCliente);
 
-		consultarCliente.setText("Consultar");
-
-		clientesMenu.add(consultarCliente);
-
 		modificarCliente.setText("Modificar");
 
 		clientesMenu.add(modificarCliente);
 
-		barraMenus.add(clientesMenu);
+		jMenuBar.add(clientesMenu);
 
 		alquileresMenu.setText("Alquileres");
 
 		aniadirAlquiler.setText("Añadir");
 
 		alquileresMenu.add(aniadirAlquiler);
-
-		consultarAlquiler.setText("Consultar");
-		alquileresMenu.add(consultarAlquiler);
 
 		modificarAlquiler.setText("Modificar");
 
@@ -116,115 +141,123 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		alquileresMenu.add(finalizarAlquiler);
 
-		barraMenus.add(alquileresMenu);
+		jMenuBar.add(alquileresMenu);
 
 		incidenciasMenu.setText("Incidencias");
 
 		aniadirIncidencia.setText("Añadir");
 		incidenciasMenu.add(aniadirIncidencia);
 
-		consultarIncidencia.setText("Consultar");
-		incidenciasMenu.add(consultarIncidencia);
-
 		modificarIncidencia.setText("Modificar");
 		incidenciasMenu.add(modificarIncidencia);
-		
+
 		finalizarIncidencia.setText("Finalizar");
 		incidenciasMenu.add(finalizarIncidencia);
 
-		barraMenus.add(incidenciasMenu);
+		jMenuBar.add(incidenciasMenu);
 
-		setJMenuBar(barraMenus);
+		setJMenuBar(jMenuBar);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addComponent(jLabel3)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(jLabel4))
-								.addGroup(layout.createSequentialGroup().addComponent(jLabel1)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jLabel2)))
-						.addContainerGap(1228, Short.MAX_VALUE)));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addContainerGap()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(jLabel1).addComponent(jLabel2))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(jLabel3).addComponent(jLabel4))
-								.addContainerGap(697, Short.MAX_VALUE)));
+		layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(jTabbedPane));
+		layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(jTabbedPane));
 
 		pack();
 	}
 
 	private void initComponentsAdmin() {
 
-		jLabel1 = new javax.swing.JLabel();
-		jLabel2 = new javax.swing.JLabel();
-		jLabel3 = new javax.swing.JLabel();
-		jLabel4 = new javax.swing.JLabel();
-		barraMenus = new javax.swing.JMenuBar();
-		opcionesMenu = new javax.swing.JMenu();
-		cambiarUsuario = new javax.swing.JMenuItem();
+		jTabbedPane = new javax.swing.JTabbedPane();
+		jMenuBar = new javax.swing.JMenuBar();
+		jMenuInicio = new javax.swing.JMenu();
+		jMenuVista = new javax.swing.JMenu();
+		jMenuItemClientes = new javax.swing.JMenuItem();
+		jMenuItemAlquileres = new javax.swing.JMenuItem();
+		jMenuItemIncidencias = new javax.swing.JMenuItem();
+		jMenuItemOfertas = new javax.swing.JMenuItem();
+		jMenuItemCoches = new javax.swing.JMenuItem();
+		jMenuItemTiendas = new javax.swing.JMenuItem();
+		jMenuItemEmpleados = new javax.swing.JMenuItem();
+		jMenuItemCerrarSesion = new javax.swing.JMenuItem();
+		clientesPanel = new ClientesPanel();
+		tablaAlquileres = new AlquileresPanel();
+		incidenciasPanel = new IncidenciasPanel();
+		ofertasPanel = new OfertasPanel();
+		empleadosPanel = new EmpleadosPanel();
+		cochesPanel = new CochesPanel();
+		tiendasPanel = new TiendasPanel(); 
 		vehiculosMenu = new javax.swing.JMenu();
 		aniadirVehiculo = new javax.swing.JMenuItem();
 		bajaVehiculo = new javax.swing.JMenuItem();
-		consultarVehiculo = new javax.swing.JMenuItem();
 		modificarVehiculo = new javax.swing.JMenuItem();
 		tiendaMenu = new javax.swing.JMenu();
 		aniadirTienda = new javax.swing.JMenuItem();
 		bajaTienda = new javax.swing.JMenuItem();
-		consultarTienda = new javax.swing.JMenuItem();
 		modificarTienda = new javax.swing.JMenuItem();
 		empleadosMenu = new javax.swing.JMenu();
 		aniadirEmpleado = new javax.swing.JMenuItem();
 		bajaEmpleado = new javax.swing.JMenuItem();
-		consultarEmpleado = new javax.swing.JMenuItem();
 		modificarEmpleado = new javax.swing.JMenuItem();
 		clientesMenu = new javax.swing.JMenu();
 		aniadirCliente = new javax.swing.JMenuItem();
 		bajaCliente = new javax.swing.JMenuItem();
-		consultarCliente = new javax.swing.JMenuItem();
 		modificarCliente = new javax.swing.JMenuItem();
 		alquileresMenu = new javax.swing.JMenu();
 		aniadirAlquiler = new javax.swing.JMenuItem();
-		consultarAlquiler = new javax.swing.JMenuItem();
 		modificarAlquiler = new javax.swing.JMenuItem();
 		finalizarAlquiler = new javax.swing.JMenuItem();
 		ofertasMenu = new javax.swing.JMenu();
 		aniadirOferta = new javax.swing.JMenuItem();
 		modificarOferta = new javax.swing.JMenuItem();
-		consultarOferta = new javax.swing.JMenuItem();
 		finalizarOferta = new javax.swing.JMenuItem();
 		incidenciasMenu = new javax.swing.JMenu();
 		aniadirIncidencia = new javax.swing.JMenuItem();
-		consultarIncidencia = new javax.swing.JMenuItem();
 		modificarIncidencia = new javax.swing.JMenuItem();
 		finalizarIncidencia = new javax.swing.JMenuItem();
 
-		this.setTitle("Administración RentLeon");
-
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle("Administración RentLeon");
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(".\\media\\LOGO.png"));
+		setSize(1000, 790);
+		setLocationRelativeTo(null);
+		setResizable(false);
 
-		jLabel1.setText("Aqluileres Activos:");
+		jTabbedPane.addTab("Alquileres", tablaAlquileres);
 
-		jLabel2.setText("0");
+		jMenuInicio.setText("Inicio");
 
-		jLabel3.setText("Vehiculos Disponibles:");
+		jMenuItemCerrarSesion.setText("Cerrar Sesión");
+		jMenuInicio.add(jMenuItemCerrarSesion);
 
-		jLabel4.setText("0");
+		jMenuBar.add(jMenuInicio);
 
-		opcionesMenu.setText("Opciones");
+		jMenuVista.setText("Vista");
 
-		cambiarUsuario.setText("Cambiar Usuario");
+		jMenuItemClientes.setText("Clientes");
+		jMenuVista.add(jMenuItemClientes);
 
-		opcionesMenu.add(cambiarUsuario);
+		jMenuItemAlquileres.setText("Alquileres");
+		jMenuVista.add(jMenuItemAlquileres);
 
-		barraMenus.add(opcionesMenu);
+		jMenuItemIncidencias.setText("Incidencias");
+		jMenuVista.add(jMenuItemIncidencias);
+
+		jMenuItemOfertas.setText("Ofertas");
+		jMenuVista.add(jMenuItemOfertas);
+
+		jMenuItemEmpleados.setText("Empleados");
+
+		jMenuVista.add(jMenuItemEmpleados);
+
+		jMenuItemCoches.setText("Coches");
+		jMenuVista.add(jMenuItemCoches);
+
+		jMenuItemTiendas.setText("Tiendas");
+
+		jMenuVista.add(jMenuItemTiendas);
+
+		jMenuBar.add(jMenuVista);
 
 		vehiculosMenu.setText("Vehiculos");
 
@@ -233,17 +266,14 @@ public class VistaGeneral extends javax.swing.JFrame {
 		vehiculosMenu.add(aniadirVehiculo);
 
 		bajaVehiculo.setText("Baja");
-		
-		vehiculosMenu.add(bajaVehiculo);
 
-		consultarVehiculo.setText("Consultar");
-		vehiculosMenu.add(consultarVehiculo);
+		vehiculosMenu.add(bajaVehiculo);
 
 		modificarVehiculo.setText("Modificar");
 
 		vehiculosMenu.add(modificarVehiculo);
 
-		barraMenus.add(vehiculosMenu);
+		jMenuBar.add(vehiculosMenu);
 
 		tiendaMenu.setText("Tiendas");
 
@@ -255,35 +285,27 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		tiendaMenu.add(bajaTienda);
 
-		consultarTienda.setText("Consultar");
-
-		tiendaMenu.add(consultarTienda);
-
 		modificarTienda.setText("Modificar");
 
 		tiendaMenu.add(modificarTienda);
-		
-		barraMenus.add(tiendaMenu);
+
+		jMenuBar.add(tiendaMenu);
 
 		empleadosMenu.setText("Empleados");
 
 		aniadirEmpleado.setText("Añadir");
-	
+
 		empleadosMenu.add(aniadirEmpleado);
 
 		bajaEmpleado.setText("Baja");
 
 		empleadosMenu.add(bajaEmpleado);
 
-		consultarEmpleado.setText("Consultar");
-
-		empleadosMenu.add(consultarEmpleado);
-
 		modificarEmpleado.setText("Modificar");
 
 		empleadosMenu.add(modificarEmpleado);
 
-		barraMenus.add(empleadosMenu);
+		jMenuBar.add(empleadosMenu);
 
 		clientesMenu.setText("Clientes");
 
@@ -295,14 +317,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		clientesMenu.add(bajaCliente);
 
-		consultarCliente.setText("Consultar");
-		clientesMenu.add(consultarCliente);
-
 		modificarCliente.setText("Modificar");
 
 		clientesMenu.add(modificarCliente);
 
-		barraMenus.add(clientesMenu);
+		jMenuBar.add(clientesMenu);
 
 		alquileresMenu.setText("Alquileres");
 
@@ -310,91 +329,64 @@ public class VistaGeneral extends javax.swing.JFrame {
 
 		alquileresMenu.add(aniadirAlquiler);
 
-		consultarAlquiler.setText("Consultar");
-
-		alquileresMenu.add(consultarAlquiler);
-
 		modificarAlquiler.setText("Modificar");
 
 		alquileresMenu.add(modificarAlquiler);
 
 		finalizarAlquiler.setText("Finalizar");
-		
+
 		alquileresMenu.add(finalizarAlquiler);
 
-		barraMenus.add(alquileresMenu);
+		jMenuBar.add(alquileresMenu);
 
 		ofertasMenu.setText("Ofertas");
 
 		aniadirOferta.setText("Añadir");
 		ofertasMenu.add(aniadirOferta);
-		
-		consultarOferta.setText("Consultar");
-		ofertasMenu.add(consultarOferta);
 
 		modificarOferta.setText("Modificar");
 		ofertasMenu.add(modificarOferta);
-		
+
 		finalizarOferta.setText("Finalizar");
 		ofertasMenu.add(finalizarOferta);
-		
-		barraMenus.add(ofertasMenu);
+
+		jMenuBar.add(ofertasMenu);
 
 		incidenciasMenu.setText("Incidencias");
 
 		aniadirIncidencia.setText("Añadir");
 		incidenciasMenu.add(aniadirIncidencia);
 
-		consultarIncidencia.setText("Consultar");
-		incidenciasMenu.add(consultarIncidencia);
-
 		modificarIncidencia.setText("Modificar");
 		incidenciasMenu.add(modificarIncidencia);
-		
+
 		finalizarIncidencia.setText("Finalizar");
 		incidenciasMenu.add(finalizarIncidencia);
 
-		barraMenus.add(incidenciasMenu);
+		jMenuBar.add(incidenciasMenu);
 
-		setJMenuBar(barraMenus);
+		setJMenuBar(jMenuBar);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(18, 18, 18)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addComponent(jLabel3)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-										.addComponent(jLabel4))
-								.addGroup(layout.createSequentialGroup().addComponent(jLabel1)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(jLabel2)))
-						.addContainerGap(1228, Short.MAX_VALUE)));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addContainerGap()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(jLabel1).addComponent(jLabel2))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(jLabel3).addComponent(jLabel4))
-								.addContainerGap(697, Short.MAX_VALUE)));
+		layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(jTabbedPane));
+		layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(jTabbedPane));
 
 		pack();
 	}
-	
+
 	public void addButtonListener(ActionListener listenerForButtons) {
-		this.cambiarUsuario.addActionListener(listenerForButtons);
+		this.jMenuItemCerrarSesion.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirEmpleado(ActionListener listenerForButtons) {
 		this.aniadirEmpleado.addActionListener(listenerForButtons);
 	}
 
 	public void listenerBajaEmpleado(ActionListener listenerForButtons) {
-		this.bajaEmpleado.addActionListener(listenerForButtons);	
+		this.bajaEmpleado.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarEmpleado(ActionListener listenerForButtons) {
 		this.modificarEmpleado.addActionListener(listenerForButtons);
 	}
@@ -406,11 +398,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerBajaVehiculo(ActionListener listenerForButtons) {
 		this.bajaVehiculo.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarVehiculo(ActionListener listenerForButtons) {
 		this.modificarVehiculo.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirTienda(ActionListener listenerForButtons) {
 		this.aniadirTienda.addActionListener(listenerForButtons);
 	}
@@ -418,11 +410,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerBajaTienda(ActionListener listenerForButtons) {
 		this.bajaTienda.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarTienda(ActionListener listenerForButtons) {
 		this.modificarTienda.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirAlquiler(ActionListener listenerForButtons) {
 		this.aniadirAlquiler.addActionListener(listenerForButtons);
 	}
@@ -434,7 +426,7 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerModificarAlquiler(ActionListener listenerForButtons) {
 		this.modificarAlquiler.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirCliente(ActionListener listenerForButtons) {
 		this.aniadirCliente.addActionListener(listenerForButtons);
 	}
@@ -442,11 +434,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerBajaCliente(ActionListener listenerForButtons) {
 		this.bajaCliente.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarCliente(ActionListener listenerForButtons) {
 		this.modificarCliente.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirOferta(ActionListener listenerForButtons) {
 		this.aniadirOferta.addActionListener(listenerForButtons);
 	}
@@ -454,11 +446,11 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerFinalizarOferta(ActionListener listenerForButtons) {
 		this.finalizarOferta.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarOferta(ActionListener listenerForButtons) {
 		this.modificarOferta.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerAniadirIncidencia(ActionListener listenerForButtons) {
 		this.aniadirIncidencia.addActionListener(listenerForButtons);
 	}
@@ -466,101 +458,102 @@ public class VistaGeneral extends javax.swing.JFrame {
 	public void listenerFinalizarIncidencia(ActionListener listenerForButtons) {
 		this.finalizarIncidencia.addActionListener(listenerForButtons);
 	}
-	
+
 	public void listenerModificarIncidencia(ActionListener listenerForButtons) {
 		this.modificarIncidencia.addActionListener(listenerForButtons);
 	}
 
-	public void listenerConsultarVehiculo(ActionListener listenerForButtons) {
-		this.consultarVehiculo.addActionListener(listenerForButtons);
-	}
-	
-	public void listenerConsultarTienda(ActionListener listenerForButtons) {
-		this.consultarTienda.addActionListener(listenerForButtons);
-	}
-	
-	public void listenerConsultarEmpleado(ActionListener listenerForButtons) {
-		this.consultarEmpleado.addActionListener(listenerForButtons);
-	}
-
-	
-	public void listenerConsultarCliente(ActionListener listenerForButtons) {
-		this.consultarCliente.addActionListener(listenerForButtons);
-	}
-
-	public void listenerConsultarAlquiler(ActionListener listenerForButtons) {
-		this.consultarAlquiler.addActionListener(listenerForButtons);
-	}
-	
-	public void listenerConsultarOferta(ActionListener listenerForButtons) {
-		this.consultarOferta.addActionListener(listenerForButtons);
-	}
-	
-	public void listenerConsultarIncidencia(ActionListener listenerForButtons) {
-		this.consultarIncidencia.addActionListener(listenerForButtons);
-	}
-	
 	public void listenerValoresTablaAlquileres(ActionListener listenerForButtons) {
-		// TODO this.tablaAlquileres.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorAlquiler(String valor, int fila, int col) {
-		// TODO this.tablaAlquileres.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaClientes(ActionListener listenerForButtons) {
-		// TODO this.tablaClientes.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorCliente(String valor, int fila, int col) {
-		// TODO this.tablaClientes.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaEmpleados(ActionListener listenerForButtons) {
-		// TODO this.tablaEmpleados.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorEmpleado(String valor, int fila, int col) {
-		// TODO this.tablaEmpleados.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaIncidencias(ActionListener listenerForButtons) {
-		// TODO this.tablaIncidencias.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorIncidencia(String valor, int fila, int col) {
-		// TODO this.tablaIncidencias.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaOfertas(ActionListener listenerForButtons) {
-		// TODO this.tablaOfertas.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorOferta(String valor, int fila, int col) {
-		// TODO this.tablaOfertas.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaTiendas(ActionListener listenerForButtons) {
-		// TODO this.tablaTiendas.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorTienda(String valor, int fila, int col) {
-		// TODO this.tablaTiendas.setValueAt(valor, fila, col);
-	}
-	
-	public void listenerValoresTablaVehiculos(ActionListener listenerForButtons) {
-		// TODO this.tablaVehiculos.addActionListener(listenerForButtons);
-	}
-	
-	public void establecerValorVehiculo(String valor, int fila, int col) {
-		// TODO this.tablaVehiculos.setValueAt(valor, fila, col);
+		this.jMenuItemAlquileres.addActionListener(listenerForButtons);
 	}
 
-	private javax.swing.JLabel jLabel1;
-	private javax.swing.JLabel jLabel2;
-	private javax.swing.JLabel jLabel3;
-	private javax.swing.JLabel jLabel4;
-	private javax.swing.JMenu opcionesMenu;
+	public void establecerValorAlquiler(String valor, int fila, int col) {
+		tablaAlquileres.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaClientes(ActionListener listenerForButtons) {
+		this.jMenuItemClientes.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorCliente(String valor, int fila, int col) {
+		clientesPanel.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaEmpleados(ActionListener listenerForButtons) {
+		this.jMenuItemEmpleados.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorEmpleado(String valor, int fila, int col) {
+		empleadosPanel.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaIncidencias(ActionListener listenerForButtons) {
+		this.jMenuItemIncidencias.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorIncidencia(String valor, int fila, int col) {
+		this.incidenciasPanel.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaOfertas(ActionListener listenerForButtons) {
+		this.jMenuItemOfertas.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorOferta(String valor, int fila, int col) {
+		this.ofertasPanel.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaTiendas(ActionListener listenerForButtons) {
+		this.jMenuItemTiendas.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorTienda(String valor, int fila, int col) {
+		this.tiendasPanel.setValue(valor, fila, col);
+	}
+
+	public void listenerValoresTablaVehiculos(ActionListener listenerForButtons) {
+		this.jMenuItemCoches.addActionListener(listenerForButtons);
+	}
+
+	public void establecerValorVehiculo(String valor, int fila, int col) {
+		this.cochesPanel.setValue(valor, fila, col);
+	}
+
+	public EmpleadosPanel getEmpleadosPanel() {
+		return empleadosPanel;
+	}
+
+	public javax.swing.JTabbedPane getjTabbedPane() {
+		return jTabbedPane;
+	}
+
+	public AlquileresPanel getTablaAlquileres() {
+		return tablaAlquileres;
+	}
+
+	public ClientesPanel getClientesPanel() {
+		return clientesPanel;
+	}
+
+	public OfertasPanel getOfertasPanel() {
+		return ofertasPanel;
+	}
+
+	public CochesPanel getCochesPanel() {
+		return cochesPanel;
+	}
+
+	public TiendasPanel getTiendasPanel() {
+		return tiendasPanel;
+	}
+
+	public IncidenciasPanel getIncidenciasPanel() {
+		return incidenciasPanel;
+	}
+
+	// Variables declaration - do not modify
+	private javax.swing.JMenu jMenuInicio;
+	private javax.swing.JMenu jMenuVista;
 	private javax.swing.JMenu vehiculosMenu;
 	private javax.swing.JMenu tiendaMenu;
 	private javax.swing.JMenu empleadosMenu;
@@ -568,34 +561,43 @@ public class VistaGeneral extends javax.swing.JFrame {
 	private javax.swing.JMenu clientesMenu;
 	private javax.swing.JMenu ofertasMenu;
 	private javax.swing.JMenu incidenciasMenu;
-	private javax.swing.JMenuBar barraMenus;
-	private javax.swing.JMenuItem cambiarUsuario;
+	private javax.swing.JMenuBar jMenuBar;
+	private javax.swing.JMenuItem jMenuItemClientes;
+	private javax.swing.JMenuItem jMenuItemAlquileres;
+	private javax.swing.JMenuItem jMenuItemIncidencias;
+	private javax.swing.JMenuItem jMenuItemOfertas;
+	private javax.swing.JMenuItem jMenuItemCoches;
+	private javax.swing.JMenuItem jMenuItemTiendas;
+	private javax.swing.JMenuItem jMenuItemEmpleados;
+	private javax.swing.JMenuItem jMenuItemCerrarSesion;
 	private javax.swing.JMenuItem aniadirEmpleado;
 	private javax.swing.JMenuItem bajaEmpleado;
-	private javax.swing.JMenuItem consultarEmpleado;
 	private javax.swing.JMenuItem modificarEmpleado;
 	private javax.swing.JMenuItem aniadirAlquiler;
-	private javax.swing.JMenuItem consultarAlquiler;
 	private javax.swing.JMenuItem modificarAlquiler;
 	private javax.swing.JMenuItem aniadirCliente;
 	private javax.swing.JMenuItem bajaCliente;
-	private javax.swing.JMenuItem consultarCliente;
 	private javax.swing.JMenuItem modificarVehiculo;
 	private javax.swing.JMenuItem modificarCliente;
 	private javax.swing.JMenuItem aniadirOferta;
 	private javax.swing.JMenuItem modificarOferta;
-	private javax.swing.JMenuItem consultarOferta;
 	private javax.swing.JMenuItem finalizarOferta;
 	private javax.swing.JMenuItem finalizarAlquiler;
 	private javax.swing.JMenuItem aniadirIncidencia;
-	private javax.swing.JMenuItem consultarIncidencia;
 	private javax.swing.JMenuItem modificarIncidencia;
 	private javax.swing.JMenuItem finalizarIncidencia;
 	private javax.swing.JMenuItem modificarTienda;
 	private javax.swing.JMenuItem aniadirVehiculo;
 	private javax.swing.JMenuItem bajaVehiculo;
-	private javax.swing.JMenuItem consultarVehiculo;
 	private javax.swing.JMenuItem aniadirTienda;
 	private javax.swing.JMenuItem bajaTienda;
-	private javax.swing.JMenuItem consultarTienda;
+	private ClientesPanel clientesPanel;
+	private AlquileresPanel tablaAlquileres;
+	private IncidenciasPanel incidenciasPanel;
+	private OfertasPanel ofertasPanel;
+	private EmpleadosPanel empleadosPanel;
+	private CochesPanel cochesPanel;
+	private TiendasPanel tiendasPanel;
+	private javax.swing.JTabbedPane jTabbedPane;
+	// End of variables declaration
 }

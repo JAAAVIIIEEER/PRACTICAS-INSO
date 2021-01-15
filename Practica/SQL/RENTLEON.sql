@@ -254,4 +254,4 @@ UNLOCK TABLES;
 -- Dump completed on 2021-01-11 20:53:26
 
 DELETE FROM `empleados` WHERE `UsuarioDNI`='admin';
-INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`, `FechaNacimiento`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com', 1/1/1900);
+INSERT INTO `empleados` (`UsuarioDNI`, `Contraseña`, `Tipo`, `Nombre`, `Apellido1`, `Apellido2`, `Telefono`, `Email`, `FechaNacimiento`) VALUES ('admin', 'admin', 'Administrador', 'admin', 'admin', 'admin', 0, 'admin@admin.com', '1900-1-1');

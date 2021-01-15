@@ -140,13 +140,17 @@ public class AlquilerDao extends Conexion implements AlquilerInterface {
 		this.establecerConexion();
 		try {
 			PreparedStatement st = this.getConexion().prepareStatement(
-					"UPDATE ALQUILERES SET FechaRecogida=?, FechaEntrega=?, CosteTotal=?, EmpleadoDNI=?, ClienteDNI=?, Oferta=?, VehiculoAlquilado=? WHERE matricula=?");
+					"UPDATE ALQUILERES SET FechaRecogida=?, FechaEntrega=?, CosteTotal=?, EmpleadoDNI=?, ClienteDNI=?, Oferta=?, VehiculoAlquilado=? WHERE AlquilerID=?");
 			st.setDate(1, miAlquiler.getFecha1());
 			st.setDate(2, miAlquiler.getFecha2());
 			st.setInt(3, miAlquiler.getCoste());
 			st.setString(4, miAlquiler.getDniEmpleado());
 			st.setString(5, miAlquiler.getDniCliente());
-			st.setInt(6, miAlquiler.getOferta());
+			if (miAlquiler.getOferta() != null) {
+				st.setInt(6, miAlquiler.getOferta());
+			} else {
+				st.setNull(6, Types.INTEGER);
+			}
 			st.setString(7, miAlquiler.getMatVehiculo());
 			st.setInt(8, miAlquiler.getId());
 			st.executeUpdate();

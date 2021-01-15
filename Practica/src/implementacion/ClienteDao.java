@@ -60,7 +60,6 @@ public class ClienteDao extends Conexion implements ClienteInterface {
 		}
 		this.cerrarConexion();
 		return true;
-
 	}
 
 	@Override

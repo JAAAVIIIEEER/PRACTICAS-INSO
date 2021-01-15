@@ -117,6 +117,7 @@ public class ControladorAlquileres {
 				miAlquiler.setFecha1(vistaAlquiler.getFechaInicio());
 				miAlquiler.setFecha2(vistaAlquiler.getFechaFin());
 				miAlquiler.setMatVehiculo(vistaAlquiler.getVehiculo());
+				miAlquiler.setId(Integer.parseInt(id));
 				OfertaDao oferta = new OfertaDao();
 				Oferta posibleOferta = oferta.buscarPosibleOferta(vistaAlquiler.getVehiculo());
 				double descuento = 0;

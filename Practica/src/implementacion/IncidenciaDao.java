@@ -127,7 +127,7 @@ public class IncidenciaDao extends Conexion implements IncidenciaInterface {
 			st.setInt(1, miIncidencia.getAlquilerID());
 			st.setString(2, miIncidencia.getTipo());
 			st.setString(3, miIncidencia.getInforme());
-			st.setInt(1, miIncidencia.getAlquilerID());
+			st.setInt(4, miIncidencia.getAlquilerID());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

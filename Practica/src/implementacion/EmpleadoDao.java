@@ -43,7 +43,7 @@ public class EmpleadoDao extends Conexion implements EmpleadoInterface {
 	public boolean eliminarEmpleado(String dni) {
 		this.establecerConexion();
 		try {
-			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM EMPLEADOS WHERE DNI=?");
+			PreparedStatement st = this.getConexion().prepareStatement("DELETE FROM EMPLEADOS WHERE UsuarioDNI=?");
 			st.setString(1, dni);
 			st.executeUpdate();
 		} catch (SQLException e) {
